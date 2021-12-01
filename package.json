@@ -19,7 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll=false",
+    "test-watch": "react-scripts test",
     "test-all": "npm run type-check && npm run lint",
     "eject": "react-scripts eject",
     "type-check": "tsc --pretty --noEmit",
