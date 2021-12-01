@@ -1,5 +1,5 @@
-import { User, UserId } from "./user";
-import { Priority } from "./priority";
+import { User, UserId } from "../user/user";
+import { Priority } from "../priority/priority";
 
 type TaskId = number;
 export type Task = {

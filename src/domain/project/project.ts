@@ -1,5 +1,5 @@
-import { User } from "./user";
-import { Category } from "./category";
+import { User } from "../user/user";
+import { Category } from "../category/category";
 
 type ProjectId = number;
 export type Project = {

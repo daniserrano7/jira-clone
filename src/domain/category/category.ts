@@ -1,4 +1,4 @@
-import { Task } from "./taks";
+import { Task } from "../task/task";
 
 export const categories = ["backlog", "todo", "progress", "done"] as const;
 
