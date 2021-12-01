@@ -1,10 +1,11 @@
-import { Task } from "../task/task";
+import { Task } from "domain/task"
 
 export const categories = ["backlog", "todo", "progress", "done"] as const;
 
 type CategoryId = typeof categories[number];
 export type Category = {
-  id: CategoryId;
+  id: number,
+  category: CategoryId;
   tasks: Task[];
 }
 
