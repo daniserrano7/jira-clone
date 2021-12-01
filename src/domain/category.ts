@@ -7,3 +7,11 @@ export type Category = {
   id: CategoryId;
   tasks: Task[];
 }
+
+export const addTask = (category: Category, task: Task): Category => {
+  const updatedTasks = [...category.tasks, task];
+  return {
+    ...category,
+    tasks: updatedTasks,
+  }
+}
