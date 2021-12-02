@@ -1,5 +1,107 @@
+@import "/src/ui/styles";
+
 .container {
-  background-color: pink;
-  width: 240px;
-  height: 100%;
+  display: flex;
+
+  .content {
+    background-color: color(grey-100);
+    width: 240px;
+    height: 100%;
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  
+    .header {
+      padding: spacing(12) spacing(10);
+      display: flex;
+      align-items: center;
+  
+      img {
+        border-radius: 3px;
+      }
+  
+      .project {
+        margin-left: spacing(8);
+  
+        .project_name,
+        .project_description {
+          display: block;
+        }
+      }
+    }
+  
+    .body {
+      padding: spacing(5);
+  
+      .nav_item {
+        display: flex;
+        align-items: center;
+        padding: spacing(4) spacing(5);
+        border-radius: 3px;
+        cursor: pointer;
+      
+        &:hover {
+          background-color: color(grey-300);
+        }
+      
+        &.active {
+          background-color: color(grey-300);
+          color: color(primary-main);
+      
+          svg {
+            color: color(primary-main);
+          }
+        }
+      
+        .name {
+          margin-left: spacing(8);
+        }
+        svg {
+          color: color(icon);
+          fill: white;
+        }
+      }
+    }
+  }
+
+  .toggle_bar {
+    margin-left: spacing(15);
+
+    &.open {
+      margin-left: 0;
+    }
+    .button_container {
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    button {
+      position: absolute;
+      left: -50%;
+      top: spacing(12);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      border-radius: 50%;
+      border: none;
+      box-shadow: rgba(9, 30, 66, 0.08) 0px 0px 0px 1px, rgba(9, 30, 66, 0.08) 0px 2px 4px 1px;
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: color(primary-main);
+        color: white;
+      }
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }

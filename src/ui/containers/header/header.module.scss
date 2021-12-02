@@ -1,4 +1,4 @@
-@import "/src/ui/styles/utils.scss";
+@import "/src/ui/styles";
 
 .container {
   width: 100%;
@@ -46,7 +46,7 @@
   border: none;
   fill: white;
   color: color(icon);
-  border-radius: 999px;
+  border-radius: 50%;
   cursor: pointer;
 
   &:hover {
