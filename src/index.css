@@ -18,7 +18,7 @@ code {
 }
 
 .App {
-  background-color: black;
+  background-color: pink;
   display: flex;
   flex-direction: column;
 }
