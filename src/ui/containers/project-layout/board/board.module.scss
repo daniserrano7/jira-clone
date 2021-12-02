@@ -1,0 +1,22 @@
+@import "/src/ui/styles/";
+
+.container {
+  background-color: lightblue;
+  width: 100%;
+  .header {
+    .title {
+      margin-top: spacing(8);
+    }
+  }
+
+  .tools {
+    background-color: pink;
+    display: flex;
+    align-items: center;
+
+    .users,
+    .filters {
+      display: inline;
+    }
+  }
+}

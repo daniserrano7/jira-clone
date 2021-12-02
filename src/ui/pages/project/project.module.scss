@@ -1,6 +1,7 @@
+@import "/src/ui/styles";
+
 .container {
-  background-color: red;
+  background-color: color(background-default);
   display: flex;
-  // height: 100%;
   flex-grow: 1;
 }
