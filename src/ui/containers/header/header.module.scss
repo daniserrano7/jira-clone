@@ -1,5 +1,56 @@
+@import "/src/ui/styles/utils.scss";
+
 .container {
-  background-color: blue;
   width: 100%;
   height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 spacing(10);
+  box-sizing: border-box;
+  box-shadow: 0px 1px 5px -1px rgba(0,0,0, 0.3);
+  background-color: color(background-default);
+  z-index: 1;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    padding: spacing(3) spacing(6);
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(primary-light);
+    }
+
+    .app_title {
+      margin-left: spacing(4);
+    }
+  }
+
+  .icons_container {
+    display: flex;
+    gap: spacing(5);
+  }
+}
+
+.icon_button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  box-sizing: content-box;
+  background-color: white;
+  border: none;
+  fill: white;
+  color: color(icon);
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color(primary-light);
+    color: color(primary-main);
+  }
 }
