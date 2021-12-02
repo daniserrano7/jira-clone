@@ -3,11 +3,14 @@ $palette: (
   'primary-light': #deebff,
   'secondary-main': #403294,
   'secondary-light': #EAE6FF,
-  'background': #fff,
+  'background-default': #fff,
   'grey-100': #fafbfc,
-  'grey-200': #f4f5f7
+  'grey-200': #f4f5f7,
   'grey-300': #ebecf0,
   'grey-400': #e0e1e6,
+  'font-main': #172b4d,
+  'font-light': #5e6c84,
+  'icon': #344563
 );
 
 @function color($color) {
