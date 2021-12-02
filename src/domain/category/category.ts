@@ -1,4 +1,4 @@
-import { Task } from "domain/task"
+import { Task, TaskId } from "domain/task"
 
 export const categories = ["backlog", "todo", "progress", "done"] as const;
 
@@ -11,6 +11,14 @@ export type Category = {
 
 export const addTask = (category: Category, task: Task): Category => {
   const updatedTasks = [...category.tasks, task];
+  return {
+    ...category,
+    tasks: updatedTasks,
+  }
+}
+
+export const removeTask = (category: Category, taskId: TaskId): Category => {
+  const updatedTasks = category.tasks.filter(task => task.id !== taskId);
   return {
     ...category,
     tasks: updatedTasks,

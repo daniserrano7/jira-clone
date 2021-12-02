@@ -1,7 +1,7 @@
 import { User, UserId } from "../user/user";
 import { Priority } from "../priority/priority";
 
-type TaskId = number;
+export type TaskId = number;
 export type Task = {
   id: TaskId;
   name: string;
