@@ -1,4 +1,4 @@
-import { Breadcrumbs, breadcrumbsInfo } from "ui/components";
+import { Breadcrumbs, breadcrumbsInfo, Input } from "ui/components";
 import { AvatarList, avatarListInfo } from "ui/containers";
 import styles from "./board.module.scss";
 
@@ -10,7 +10,7 @@ export const Board = (): JSX.Element => {
         <h1 className={styles.title}>Sprint board</h1>
       </section>
       <section className={styles.tools}>
-        <input type="text" />
+        <Input />
         <div className={styles.users}>
           <AvatarList {...avatarListInfo} />
         </div>

@@ -45,7 +45,7 @@ export const Sidebar = (): JSX.Element => {
         <div className={styles.bar} />
         <div className={styles.button_container}>
           <button onClick={toggleSidebar} className={isOpen ? styles.open : ""}>
-            <Icon name="arrow" width={24} height={24} />
+            <Icon name="arrow" size={24} />
           </button>
         </div>
       </div>

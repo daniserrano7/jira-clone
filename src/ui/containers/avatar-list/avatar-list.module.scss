@@ -2,6 +2,7 @@
 
 .container {
   position: relative;
+
   .avatar_container {
     position: relative;
     display: inline-block;
@@ -9,15 +10,15 @@
     z-index: 4;
 
     &:not(:first-child) {
-      margin-left: spacing(-3);
+      margin-left: spacing(-2.5);
     }
 
     &:hover {
       z-index: 5;
+    }
 
-      img {
-        z-index: 999;
-      }
+    img {
+      border: 2px solid white;
     }
   }
 }

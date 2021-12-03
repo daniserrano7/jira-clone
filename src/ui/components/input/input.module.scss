@@ -1,0 +1,70 @@
+@import "/src/ui/styles/";
+
+.container {
+  // background-color: pink;
+  position: relative;
+  width: fit-content;
+
+  &:hover {
+    input {
+      background-color: color(grey-300);
+    }
+  }
+
+  .icon_container {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    padding: 0 spacing(4);
+
+
+    .icon {
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      color: color(icon);
+      background-color: inherit;
+
+      &.search {
+        cursor: text;
+      }
+
+      &.clear {
+        background-color: color(grey-300);
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  input {
+    width: 120px;
+    height: 40px;
+    padding: spacing(4) spacing(16) spacing(4) spacing(3);
+    box-sizing: border-box;
+    background-color: color(grey-100);
+    border: 1px solid color(grey-400);
+    border-width: 2px;
+    border-radius: 3px;
+    transition: 0.2s ease-in-out 0s;
+
+    &::placeholder {
+      opacity: 0;
+      transition: 0.2s ease-in-out 0s;
+    }
+
+    &:focus {
+      background-color: white;
+      width: 190px;
+
+      &::placeholder {
+        opacity: 1;
+      }
+    }
+  }
+}

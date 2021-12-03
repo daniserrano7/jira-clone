@@ -1,7 +1,6 @@
 @import "/src/ui/styles/";
 
 .container {
-  background-color: lightblue;
   width: 100%;
   .header {
     .title {
@@ -10,13 +9,16 @@
   }
 
   .tools {
-    background-color: pink;
     display: flex;
     align-items: center;
 
     .users,
     .filters {
       display: inline;
+    }
+
+    .users {
+      margin: 0 spacing(6);
     }
   }
 }
