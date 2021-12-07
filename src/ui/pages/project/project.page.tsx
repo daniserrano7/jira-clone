@@ -5,7 +5,9 @@ export const Project = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <Sidebar />
-      <ProjectLayout />
+      <div className={styles.project_container}>
+        <ProjectLayout />
+      </div>
     </div>
   )
 }

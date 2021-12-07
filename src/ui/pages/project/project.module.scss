@@ -3,5 +3,14 @@
 .container {
   background-color: color(background-default);
   display: flex;
+  // overflow: hidden;
   flex-grow: 1;
+  // box-sizing: border-box;
+
+  .project_container {
+    background-color: purple;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+  }
 }

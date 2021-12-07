@@ -2,6 +2,12 @@
 
 .container {
   width: 100%;
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  // overflow: hidden;
+
   .header {
     .title {
       margin-top: spacing(8);
@@ -20,5 +26,16 @@
     .users {
       margin: 0 spacing(6);
     }
+  }
+
+  .issues {
+    background-color: red;
+    height: 100%;
+    // width: 100%;
+    display: flex;
+    // box-sizing: border-box;
+    // width: 100%;
+    // overflow-x: scroll;
+    overflow-x: hidden;
   }
 }

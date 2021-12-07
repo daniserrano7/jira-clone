@@ -1,5 +1,5 @@
 import { Breadcrumbs, breadcrumbsInfo, Input } from "ui/components";
-import { AvatarList, avatarListInfo } from "ui/containers";
+import { AvatarList, avatarListInfo, Issues } from "ui/containers";
 import styles from "./board.module.scss";
 
 export const Board = (): JSX.Element => {
@@ -19,7 +19,7 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.issues}>
-        ISSUES
+        <Issues />
       </section>
     </div>
   )

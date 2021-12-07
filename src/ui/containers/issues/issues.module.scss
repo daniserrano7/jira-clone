@@ -1,0 +1,19 @@
+.container {
+  // width: 900px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 1;
+  background-color: blue;
+  overflow-x: scroll;
+  position: relative;
+}
+
+.issue_category {
+  overflow-x: auto;
+  height: 500px;
+  // flex-grow: 1;
+  background-color: grey;
+  min-width: 400px;
+  margin-left: 20px;
+}
