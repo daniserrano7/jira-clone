@@ -29,15 +29,19 @@
       padding: 0;
       color: color(icon);
       background-color: inherit;
+      z-index: 3;
 
       &.search {
         cursor: text;
       }
 
       &.clear {
-        background-color: color(grey-300);
         border-radius: 3px;
         cursor: pointer;
+
+        &:hover {
+          background-color: color(grey-300);
+        }
       }
     }
   }
@@ -59,8 +63,8 @@
     }
 
     &:focus {
-      background-color: white;
       width: 190px;
+      background-color: white;
 
       &::placeholder {
         opacity: 1;
