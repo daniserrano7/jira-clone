@@ -1,8 +1,8 @@
-import { useState, MouseEvent } from "react";
+import { useState } from "react";
 import { Icon } from "..";
 import styles from "./input.module.scss";
 
-export const Input = (props: InputProps): JSX.Element => {
+export const Input = (): JSX.Element => {
   const [ searchText, setSearchText ] = useState<string>("");
   
   const clearSearch = () => setSearchText("");
@@ -45,7 +45,7 @@ interface ClearIconProps {
   onClick: () => void;
 }
 
-interface InputProps {
-  placeholder?: string;
-  onFocusPlaceholder?: string;
-}
+// interface InputProps {
+//   placeholder?: string;
+//   onFocusPlaceholder?: string;
+// }

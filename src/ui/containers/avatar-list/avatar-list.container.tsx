@@ -1,4 +1,4 @@
-import { Avatar, AvatarProps } from "ui/components";
+import { Avatar, AvatarProps, Tooltip } from "ui/components";
 import styles from "./avatar-list.module.scss";
 
 export const AvatarList = ({ avatars }: AvatarListProps): JSX.Element => {
@@ -6,7 +6,9 @@ export const AvatarList = ({ avatars }: AvatarListProps): JSX.Element => {
     <span className={styles.container}>
       {avatars.map((avatar, index) => (
         <div key={index} className={styles.avatar_container}>
-          <Avatar {...avatar} />
+          <Tooltip title={avatar.tooltip} >
+            <Avatar {...avatar} />
+          </Tooltip>
         </div>
       ))}
     </span>

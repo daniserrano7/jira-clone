@@ -15,6 +15,6 @@ export const Avatar = ({ image = "default-avatar.png", size = 32 }: AvatarProps)
 
 export interface AvatarProps {
   image?: string;
-  tooltip?: string;
+  tooltip: string;
   size?: number;
 }

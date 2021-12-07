@@ -1,0 +1,31 @@
+@import "/src/ui/styles";
+
+.container {
+  position: relative;
+  width: fit-content;
+
+  .tooltip {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    justify-content: center;
+    width: 240px;
+    overflow-wrap: break-word;
+    z-index: 800;
+
+    &.visible {
+      display: flex;
+    }
+
+    .content {
+      width: fit-content;
+      padding: spacing(1) spacing(3);
+      color: white;
+      background-color: color(font-main);
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+}
