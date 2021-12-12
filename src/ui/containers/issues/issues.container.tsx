@@ -4,7 +4,7 @@ export const Issues = (): JSX.Element => {
   return (
     <div className={styles.container}>
       {/* <div className={styles.content}> */}
-        {Array(3).fill(null).map((_, index) => (
+        {Array(5).fill(null).map((_, index) => (
           <IssueCategory key={index} />
         ))}
       {/* </div> */}

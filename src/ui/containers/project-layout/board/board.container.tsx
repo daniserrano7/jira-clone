@@ -19,6 +19,7 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.issues}>
+        {/* ISSUES */}
         <Issues />
       </section>
     </div>

@@ -1,8 +1,9 @@
 @import "/src/ui/styles/";
 
 .container {
-  width: 100%;
+  // width: 100%;
   display: flex;
+  // flex-grow: 1;
   height: 100%;
   background-color: green;
   box-sizing: border-box;
