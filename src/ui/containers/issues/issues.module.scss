@@ -1,22 +1,16 @@
 .container {
-  width: 700px;
-  // width: 100%;
-  // box-sizing: border-box;
+  width: 0px;
   display: inline-flex;
-  // flex-grow: 1;
   flex: 1 1 0;
   background-color: blue;
   overflow-x: auto;
-  max-width: 100%;
-  // position: relative;
+//   max-width: 100%;
 }
 
 .issue_category {
   overflow-x: auto;
   height: 500px;
   min-width: 100px;
-  // flex-grow: 1;
   background-color: grey;
-  // min-width: 400px;
   margin-left: 100px;
 }

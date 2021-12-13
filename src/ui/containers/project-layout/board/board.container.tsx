@@ -1,8 +1,18 @@
+import { useState, useRef, useEffect } from "react";
 import { Breadcrumbs, breadcrumbsInfo, Input } from "ui/components";
 import { AvatarList, avatarListInfo, Issues } from "ui/containers";
 import styles from "./board.module.scss";
 
 export const Board = (): JSX.Element => {
+  const issuesRef = useRef<HTMLHeadingElement>(null);
+  const [ issuesWidth, setIssuesWidth ] = useState<number>(0);
+
+  useEffect(() => {
+    if (!issuesRef.current) return;
+
+    setIssuesWidth(issuesRef.current.offsetWidth);
+  }, [issuesRef]);
+
   return (
     <div className={styles.container}>
       <section className={styles.header}>
@@ -18,9 +28,9 @@ export const Board = (): JSX.Element => {
           FILTERS
         </div>
       </section>
-      <section className={styles.issues}>
+      <section ref={issuesRef} className={styles.issues}>
         {/* ISSUES */}
-        <Issues />
+        <Issues width={issuesWidth} />
       </section>
     </div>
   )

@@ -3,9 +3,9 @@
 .container {
   // width: 100%;
   display: flex;
-  // flex-grow: 1;
-  height: 100%;
+  flex-grow: 1;
+//   height: 100%;
   background-color: green;
-  box-sizing: border-box;
+//   box-sizing: border-box;
   padding: spacing(12) spacing(10);
 }

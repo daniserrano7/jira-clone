@@ -1,8 +1,8 @@
 import styles from "./issues.module.scss";
 
-export const Issues = (): JSX.Element => {
+export const Issues = ({ width }: { width: number }): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ width }}>
       {/* <div className={styles.content}> */}
         {Array(5).fill(null).map((_, index) => (
           <IssueCategory key={index} />
