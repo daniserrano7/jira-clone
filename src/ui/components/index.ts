@@ -4,3 +4,4 @@ export * from "./breadcrumbs/breadcrumbs.info";
 export * from "./avatar/avatar.component";
 export * from "./input/input.component";
 export * from "./tooltip/tooltip.component";
+export * from "./scroll-area/scroll-area.component";

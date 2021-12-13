@@ -1,4 +1,5 @@
-import { Sidebar, ProjectLayout } from "ui/containers";
+import { Sidebar } from "ui/containers";
+import { Board } from "ui/containers/project-layouts";
 import styles from "./project.module.scss";
 
 export const Project = (): JSX.Element => {
@@ -6,7 +7,7 @@ export const Project = (): JSX.Element => {
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.project_container}>
-        <ProjectLayout />
+        <Board />
       </div>
     </div>
   )

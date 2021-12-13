@@ -1,11 +1,11 @@
 @import "/src/ui/styles/";
 
 .container {
-  width: 100%;
-//   height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-//   box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: pink;
 
   .header {
     .title {
@@ -30,8 +30,5 @@
   .issues {
     background-color: red;
     height: 100%;
-    box-sizing: border-box;
-    position: relative;
-    // margin-top: spacing(10);
   }
 }

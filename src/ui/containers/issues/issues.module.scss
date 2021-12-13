@@ -1,16 +1,34 @@
 .container {
-  width: 0px;
-  display: inline-flex;
-  flex: 1 1 0;
+  // width: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 50px;
   background-color: blue;
   overflow-x: auto;
-//   max-width: 100%;
 }
 
 .issue_category {
-  overflow-x: auto;
-  height: 500px;
-  min-width: 100px;
+  display: flex;
+  flex-direction: column;
+  // overflow-x: auto;
+  height: 100%;
+  min-width: 300px;
   background-color: grey;
-  margin-left: 100px;
+  position: relative;
+
+  .header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: orange;
+  }
+
+  .body {
+    background-color: pink;
+    // height: 100%;
+    // flex-grow: 1;
+    // overflow-y: auto;
+
+  }
 }
