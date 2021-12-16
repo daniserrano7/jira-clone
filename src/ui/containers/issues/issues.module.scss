@@ -1,5 +1,6 @@
+@import "/src/ui/styles";
+
 .container {
-  // width: 0px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -11,24 +12,26 @@
 .issue_category {
   display: flex;
   flex-direction: column;
-  // overflow-x: auto;
+  overflow-x: auto; // Disable to scroll all categories at the same time instead of individual scrolling
   height: 100%;
-  min-width: 300px;
-  background-color: grey;
+  min-width: 270px;
+  max-width: 270px;
+  flex-grow: 1;
+  background-color: color(grey-200);
   position: relative;
 
   .header {
     position: sticky;
+    height: 48px;
     top: 0;
     left: 0;
-    background-color: orange;
+    display: flex;
+    align-items: center;
+    padding-left: spacing(4);
+    background-color: color(grey-200);
   }
 
   .body {
     background-color: pink;
-    // height: 100%;
-    // flex-grow: 1;
-    // overflow-y: auto;
-
   }
 }
