@@ -17,7 +17,7 @@ const IssueCategory = (): JSX.Element => {
       <div className={styles.header}>HEADER</div>
       <div className={styles.body}>
         <ScrollArea height>
-          {Array(4).fill(null).map((_, index) => (
+          {Array(40).fill(null).map((_, index) => (
             <div key={index}>
               Issue card
             </div>

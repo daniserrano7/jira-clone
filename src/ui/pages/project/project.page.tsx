@@ -1,5 +1,4 @@
-import { Sidebar } from "ui/containers";
-import { Board } from "ui/containers/project-layouts";
+import { Sidebar, Board } from "ui/containers";
 import styles from "./project.module.scss";
 
 export const Project = (): JSX.Element => {
