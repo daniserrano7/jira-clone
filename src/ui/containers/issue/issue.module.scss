@@ -1,0 +1,36 @@
+@import "/src/ui/styles";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: spacing(6);
+  box-shadow: rgba(0,0,0, 0.2) 0px 1px 1px, rgba(0,0,0, 0.2) 0px 0px 1px;
+  border-radius: 3px;
+  background-color: white;
+
+  .title {
+    margin: 0 0 spacing(8);
+  }
+
+  .details {
+    height: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+
+    .task_name {
+      margin-left: 5px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .priority {
+      color: red;
+    }
+  }
+}

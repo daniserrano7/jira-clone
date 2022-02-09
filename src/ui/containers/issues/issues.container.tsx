@@ -1,4 +1,5 @@
 import { ScrollArea } from "ui/components";
+import { Issue } from "ui/containers";
 import styles from "./issues.module.scss";
 
 export const Issues = (): JSX.Element => {
@@ -17,11 +18,13 @@ const IssueCategory = (): JSX.Element => {
       <div className={styles.header}>HEADER</div>
       <div className={styles.body}>
         <ScrollArea height>
-          {Array(40).fill(null).map((_, index) => (
-            <div key={index}>
-              Issue card
-            </div>
-          ))}
+          <ul className={styles.issues_list}>
+            {Array(40).fill(null).map((_, index) => (
+              <div key={index}>
+                <Issue />
+              </div>
+            ))}
+          </ul>
         </ScrollArea>
       </div>
     </div>
