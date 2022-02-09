@@ -5,13 +5,13 @@ describe("Category entity module", () => {
   it("Add task to category", () => {
     const task = taskMock1;
     const reference: Category = {
-      id: 1,
-      category: "backlog",
+      id: "TODO",
+      name: "To Do",
       tasks: [],
     }
     const expected: Category = {
-      id: 1,
-      category: "backlog",
+      id: "TODO",
+      name: "To Do",
       tasks: [task],
     }
     const result = addTask(reference, task);
@@ -22,13 +22,13 @@ describe("Category entity module", () => {
   it("Remove task from category", () => {
     const task = taskMock1;
     const reference: Category = {
-      id: 1,
-      category: "backlog",
+      id: "TODO",
+      name: "To Do",
       tasks: [task],
     }
     const expected: Category = {
-      id: 1,
-      category: "backlog",
+      id: "TODO",
+      name: "To Do",
       tasks: [],
     }
     const result = removeTask(reference, task.id);

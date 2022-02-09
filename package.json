@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "test-watch": "react-scripts test",
-    "test-all": "npm run type-check && npm run lint",
+    "test-all": "npm run type-check && npm run lint && npm run test",
     "eject": "react-scripts eject",
     "type-check": "tsc --pretty --noEmit",
     "lint": "npx eslint --ext ts,tsx src",

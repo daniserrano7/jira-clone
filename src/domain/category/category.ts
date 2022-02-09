@@ -1,11 +1,11 @@
 import { Task, TaskId } from "domain/task"
 
-export const categories = ["backlog", "todo", "progress", "done"] as const;
+export const categoryIds = ["TODO", "IN_PROGRESS", "DONE"] as const;
+type CategoryId = typeof categoryIds[number];
 
-type CategoryId = typeof categories[number];
 export type Category = {
-  id: number,
-  category: CategoryId;
+  id: CategoryId,
+  name: string;
   tasks: Task[];
 }
 

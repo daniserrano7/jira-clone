@@ -5,7 +5,7 @@ import styles from "./issues.module.scss";
 export const Issues = (): JSX.Element => {
   return (
     <div className={styles.container}>
-      {Array(8).fill(null).map((_, index) => (
+      {Array(3).fill(null).map((_, index) => (
         <IssueCategory key={index} />
       ))}
     </div>
