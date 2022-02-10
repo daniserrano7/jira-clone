@@ -1,37 +1,37 @@
-import { Category, addTask, removeTask } from "./category";
-import { taskMock1 } from "domain/task";
+import { Category, addIssue, removeIssue } from "./category";
+import { issueMock1 } from "domain/issue";
 
 describe("Category entity module", () => {
-  it("Add task to category", () => {
-    const task = taskMock1;
+  it("Add issue to category", () => {
+    const issue = issueMock1;
     const reference: Category = {
       id: "TODO",
       name: "To Do",
-      tasks: [],
+      issues: [],
     }
     const expected: Category = {
       id: "TODO",
       name: "To Do",
-      tasks: [task],
+      issues: [issue],
     }
-    const result = addTask(reference, task);
+    const result = addIssue(reference, issue);
 
     expect(result).toEqual(expected);
   })
 
-  it("Remove task from category", () => {
-    const task = taskMock1;
+  it("Remove issue from category", () => {
+    const issue = issueMock1;
     const reference: Category = {
       id: "TODO",
       name: "To Do",
-      tasks: [task],
+      issues: [issue],
     }
     const expected: Category = {
       id: "TODO",
       name: "To Do",
-      tasks: [],
+      issues: [],
     }
-    const result = removeTask(reference, task.id);
+    const result = removeIssue(reference, issue.id);
 
     expect(result).toEqual(expected);
   })

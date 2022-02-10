@@ -1,6 +1,6 @@
 import { userMock1, userMock2, userMock3 } from "domain/user";
 import { 
-  Task,
+  Issue,
   Comment,
   setName, 
   setDescription,
@@ -8,12 +8,12 @@ import {
   removeAsignee,
   addComment,
   removeComment
-} from "./task";
+} from "./issue";
 
-describe("Task entity module", () => {
-  it("Change task name", () => {
-    const name = "Task name test";
-    const reference: Task = {
+describe("Issue entity module", () => {
+  it("Change issue name", () => {
+    const name = "Issue name test";
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "Should be better to use UUID so ID duplication is less likely",
@@ -36,9 +36,9 @@ describe("Task entity module", () => {
     expect(result).toEqual(expected);
   })
 
-  it("Change task description", () => {
-    const description = "Task description test";
-    const reference: Task = {
+  it("Change issue description", () => {
+    const description = "Issue description test";
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "",
@@ -61,9 +61,9 @@ describe("Task entity module", () => {
     expect(result).toEqual(expected);
   })
 
-  it("Add asignees to task", () => {
+  it("Add asignees to issue", () => {
     const asignee = userMock2;
-    const reference: Task = {
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "",
@@ -86,9 +86,9 @@ describe("Task entity module", () => {
     expect(result).toEqual(expected);
   })
 
-  it("Remove asignee from task", () => {
+  it("Remove asignee from issue", () => {
     const asignee = userMock2;
-    const reference: Task = {
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "",
@@ -111,13 +111,13 @@ describe("Task entity module", () => {
     expect(result).toEqual(expected);
   })
 
-  it("Add comment to task", () => {
+  it("Add comment to issue", () => {
     const comment: Comment = {
       id: 1,
       user: userMock1,
       message: "Comment message test",
     }
-    const reference: Task = {
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "",
@@ -140,13 +140,13 @@ describe("Task entity module", () => {
     expect(result).toEqual(expected);
   })
 
-  it("Remove comment from task", () => {
+  it("Remove comment from issue", () => {
     const comment: Comment = {
       id: 1,
       user: userMock1,
       message: "Comment message test",
     }
-    const reference: Task = {
+    const reference: Issue = {
       id: 1,
       name: "",
       description: "",

@@ -1,27 +1,37 @@
+import { Issue } from "domain/issue";
+import { getCategories } from "infrastructure/store";
 import { ScrollArea } from "ui/components";
-import { Issue } from "ui/containers";
+import { Issue as IssueContainer } from "ui/containers";
 import styles from "./issues.module.scss";
 
 export const Issues = (): JSX.Element => {
+  const categories = getCategories();
+
   return (
     <div className={styles.container}>
-      {Array(3).fill(null).map((_, index) => (
-        <IssueCategory key={index} />
+      {categories.map(category => (
+        <IssueCategory
+          key={category.id} 
+          name={category.name} 
+          issues={category.issues}
+        />
       ))}
     </div>
   )
 }
 
-const IssueCategory = (): JSX.Element => {
+const IssueCategory = ({ name, issues }: IssueCategoryProps): JSX.Element => {
   return (
     <div className={styles.issue_category}>
-      <div className={styles.header}>HEADER</div>
+      <div className={styles.header}>
+        {name}
+      </div>
       <div className={styles.body}>
         <ScrollArea height>
           <ul className={styles.issues_list}>
-            {Array(40).fill(null).map((_, index) => (
-              <div key={index}>
-                <Issue />
+            {issues.map(issue => (
+              <div key={issue.id}>
+                <IssueContainer title={issue.name} />
               </div>
             ))}
           </ul>
@@ -29,4 +39,9 @@ const IssueCategory = (): JSX.Element => {
       </div>
     </div>
   )
+}
+
+interface IssueCategoryProps {
+  name: string;
+  issues: Issue[];
 }

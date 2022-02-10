@@ -1,26 +1,26 @@
-import { Task, TaskId } from "domain/task"
+import { Issue, IssueId } from "domain/issue"
 
 export const categoryIds = ["TODO", "IN_PROGRESS", "DONE"] as const;
-type CategoryId = typeof categoryIds[number];
+export type CategoryId = typeof categoryIds[number];
 
 export type Category = {
   id: CategoryId,
   name: string;
-  tasks: Task[];
+  issues: Issue[];
 }
 
-export const addTask = (category: Category, task: Task): Category => {
-  const updatedTasks = [...category.tasks, task];
+export const addIssue = (category: Category, issue: Issue): Category => {
+  const updatedIssues = [...category.issues, issue];
   return {
     ...category,
-    tasks: updatedTasks,
+    issues: updatedIssues,
   }
 }
 
-export const removeTask = (category: Category, taskId: TaskId): Category => {
-  const updatedTasks = category.tasks.filter(task => task.id !== taskId);
+export const removeIssue = (category: Category, issueId: IssueId): Category => {
+  const updatedIssues = category.issues.filter(issue => issue.id !== issueId);
   return {
     ...category,
-    tasks: updatedTasks,
+    issues: updatedIssues,
   }
 }

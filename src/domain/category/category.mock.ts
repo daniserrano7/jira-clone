@@ -1,20 +1,26 @@
 import { Category } from "domain/category";
-import { taskMock1, taskMock2, taskMock3, taskMock4 } from "domain/task";
+import { issueMock1, issueMock2, issueMock3, issueMock4 } from "domain/issue";
 
 export const categoryMock1: Category = {
   id: "TODO",
   name: "To Do",
-  tasks: [taskMock1],
+  issues: [issueMock1],
 }
 
 export const categoryMock2: Category = {
   id: "IN_PROGRESS",
   name: "In progress",
-  tasks: [taskMock2],
+  issues: [issueMock2],
 }
 
 export const categoryMock3: Category = {
   id: "DONE",
   name: "Done",
-  tasks: [taskMock3, taskMock4],
+  issues: [issueMock3, issueMock4],
 }
+
+export const categoriesMock: Category[] = [
+  categoryMock1,
+  categoryMock2,
+  categoryMock3
+];
