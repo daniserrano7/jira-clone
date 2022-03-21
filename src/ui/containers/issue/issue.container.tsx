@@ -1,6 +1,6 @@
 
-import styles from "./issue.module.scss";
 import { Icon } from "ui/components";
+import styles from "./issue.module.scss";
 
 
 export const Issue = ({ title }: IssueProps): JSX.Element => {

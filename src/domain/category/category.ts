@@ -1,26 +1,30 @@
-import { Issue, IssueId } from "domain/issue"
+import { Issue, IssueId } from "domain/issue";
 
 export const categoryIds = ["TODO", "IN_PROGRESS", "DONE"] as const;
 export type CategoryId = typeof categoryIds[number];
 
-export type Category = {
+
+export interface CategoryData {
   id: CategoryId,
   name: string;
   issues: Issue[];
 }
 
-export const addIssue = (category: Category, issue: Issue): Category => {
-  const updatedIssues = [...category.issues, issue];
-  return {
-    ...category,
-    issues: updatedIssues,
-  }
+export interface Category extends CategoryData {
+  addIssue: (issue: Issue) => void;
+  removeIssue: (issueId: IssueId) => void;
 }
 
-export const removeIssue = (category: Category, issueId: IssueId): Category => {
-  const updatedIssues = category.issues.filter(issue => issue.id !== issueId);
+export const createCategory = (data: CategoryData): Category => {
   return {
-    ...category,
-    issues: updatedIssues,
+    ...data,
+
+    addIssue: function(issue: Issue) {
+      this.issues.push(issue);
+    },
+
+    removeIssue: function(issueId: IssueId) {
+      this.issues = this.issues.filter(issue => issue.id !== issueId);
+    },
   }
 }

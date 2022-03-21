@@ -1,33 +1,33 @@
-import { User } from "domain/user";
+import { User, UserId } from "domain/user";
 import { Category } from "domain/category";
 
 type ProjectId = number;
-export type Project = {
+
+export interface ProjectData {
   id: ProjectId;
   name: string;
   users: User[];
   categories: Category[];
 }
 
-export const setName = (project: Project, name: string): Project => {
-  return {
-    ...project,
-    name,
-  }
+export interface Project extends ProjectData {
+  setName: (name: string) => void;
+  addUser: (user: User) => void;
+  removeUser: (userId: UserId) => void;
 }
 
-export const addUser = (project: Project, user: User): Project => {
-  const updatedUsers = [...project.users, user];
-  return {
-    ...project,
-    users: updatedUsers,
-  }
-}
+export const createProject = (data: ProjectData): Project => ({
+  ...data,
 
-export const removeUser = (project: Project, userId: ProjectId): Project => {
-  const updatedUsers = project.users.filter(user => user.id !== userId);
-  return {
-    ...project,
-    users: updatedUsers,
-  }
-}
+  setName: function(name: string) {
+    this.name = name;
+  },
+
+  addUser: function(user: User) {
+    this.users.push(user);
+  },
+
+  removeUser: function(userId: UserId) {
+    this.users = this.users.filter(user => user.id !== userId);
+  },
+});

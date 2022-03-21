@@ -1,25 +1,25 @@
-import { Category } from "domain/category";
+import { CategoryData } from "domain/category";
 import { issueMock1, issueMock2, issueMock3, issueMock4 } from "domain/issue";
 
-export const categoryMock1: Category = {
+export const categoryMock1: CategoryData = {
   id: "TODO",
   name: "To Do",
   issues: [issueMock1],
 }
 
-export const categoryMock2: Category = {
+export const categoryMock2: CategoryData = {
   id: "IN_PROGRESS",
   name: "In progress",
   issues: [issueMock2],
 }
 
-export const categoryMock3: Category = {
+export const categoryMock3: CategoryData = {
   id: "DONE",
   name: "Done",
   issues: [issueMock3, issueMock4],
 }
 
-export const categoriesMock: Category[] = [
+export const categoriesMock: CategoryData[] = [
   categoryMock1,
   categoryMock2,
   categoryMock3

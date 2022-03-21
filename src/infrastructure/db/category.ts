@@ -1,4 +1,4 @@
-import { Category, CategoryId, categoriesMock } from "domain/category"
+import { Category, CategoryId, createCategory, categoriesMock } from "domain/category"
 
 const get = (categoryId: CategoryId): Category => {
   const category = categoriesMock.find(category => category.id === categoryId);
@@ -7,11 +7,11 @@ const get = (categoryId: CategoryId): Category => {
     throw new Error(`Category with id: ${categoryId} not found`);
   }
 
-  return category;
+  return createCategory(category);
 }
 
 const getAll = (): Category[] => {
-  return categoriesMock;
+  return categoriesMock.map(createCategory);
 }
 
 export default {

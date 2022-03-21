@@ -1,32 +1,33 @@
-import { useState } from "react";
-import { Issue, issueMock1 } from "domain/issue";
-import { getCategories } from "infrastructure/store";
+import { observer } from "mobx-react-lite";
+import { Category } from "domain/category";
+import { issueMock1 } from "domain/issue";
+import { useStore } from "infrastructure/store";
 import { ScrollArea } from "ui/components";
 import { Issue as IssueContainer } from "ui/containers";
 import styles from "./issues.module.scss";
 
-export const Issues = (): JSX.Element => {
-  const categories = getCategories();
+export const Issues = observer((): JSX.Element => {
+  console.log("RENDERING ISSUES");
+  const store = useStore();
 
   return (
     <div className={styles.container}>
-      {categories.map(category => (
+      {store.project.categories.map(category => (
         <IssueCategory
-          key={category.id} 
-          name={category.name} 
-          issues={category.issues}
+          key={category.id}
+          category={category}
         />
       ))}
     </div>
   )
-}
+});
 
-const IssueCategory = ({ name, issues }: IssueCategoryProps): JSX.Element => {
-  const [ categoryIssues, setCategoryIssues ] = useState<Issue[]>(issues);
+const IssueCategory = observer(({ category }: IssueCategoryProps): JSX.Element => {
+  const { name, issues } = category;
+  console.log("RENDERING CATEGORY: ", name);
 
   const createIssue = () => {
-    const issue: Issue = {...issueMock1};
-    setCategoryIssues([...categoryIssues, issue]);
+    category.addIssue(issueMock1);
   }
 
   return (
@@ -37,8 +38,8 @@ const IssueCategory = ({ name, issues }: IssueCategoryProps): JSX.Element => {
       <div className={styles.body}>
         <ScrollArea height>
           <ul className={styles.issues_list}>
-            {categoryIssues.map(issue => (
-              <div key={issue.id}>
+            {issues.map((issue, index) => (
+              <div key={index}>
                 <IssueContainer title={issue.name} />
               </div>
             ))}
@@ -50,9 +51,8 @@ const IssueCategory = ({ name, issues }: IssueCategoryProps): JSX.Element => {
       </div>
     </div>
   )
-}
+})
 
 interface IssueCategoryProps {
-  name: string;
-  issues: Issue[];
+  category: Category;
 }

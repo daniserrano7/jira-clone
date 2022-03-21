@@ -1,8 +1,9 @@
-import { User, UserId } from "../user/user";
-import { Priority } from "../priority/priority";
+import { User } from "../user";
+import { Comment } from "../comment";
+import { Priority } from "../priority";
 
 export type IssueId = number;
-export type Issue = {
+export interface IssueData {
   id: IssueId;
   name: string;
   description?: string;
@@ -15,65 +16,63 @@ export type Issue = {
   //TODO: updatedAt: timestamp
 }
 
-type CommentId = number;
-export type Comment = {
-  id: CommentId,
-  user: User;
-  message: string;
-  //TODO: createdAt: timestamp
+export interface Issue extends IssueData {
+  setName: (name: string) => void;
+  setDescription: (description: string) => void;
+  // addAsignee: (asignee: User) => void;
+  // removeAsignee: (asigneeId: UserId) => void;
+  // setPriority: (priority: Priority) => void;
+  // addComment: (comment: Comment) => void;
+  // removeComment: (commentId: CommentId) => void;
 }
 
-//TODO: ¿¿ createIssue ??
+export const createIssue = (data: IssueData): Issue => ({
+  ...data,
 
-export const setName = (issue: Issue, name: string): Issue => {
-  return {
-    ...issue,
-    name,
-  }
-}
+  setName: function(name: string) {
+    this.name = name;
+  },
 
-export const setDescription = (issue: Issue, description: string): Issue => {
-  return {
-    ...issue,
-    description,
-  }
-}
+  setDescription: function(description: string) {
+    this.description = description;
+  },
+});
 
-export const addAsignee = (issue: Issue, asignee: User): Issue => {
-  const updatedAsignees = [...issue.asignees, asignee];
-  return {
-    ...issue,
-    asignees: updatedAsignees,
-  }
-}
+// export const addAsignee = (issue: Issue, asignee: User): Issue => {
+//   const updatedAsignees = [...issue.asignees, asignee];
+//   return {
+//     ...issue,
+//     asignees: updatedAsignees,
+//   }
+// }
 
-export const removeAsignee = (issue: Issue, asigneeId: UserId): Issue => {
-  const updatedAsignees = issue.asignees.filter(asignee => asignee.id !== asigneeId);
-  return {
-    ...issue,
-    asignees: updatedAsignees,
-  }
-}
+// export const removeAsignee = (issue: Issue, asigneeId: UserId): Issue => {
+//   const updatedAsignees = issue.asignees.filter(asignee => asignee.id !== asigneeId);
+//   return {
+//     ...issue,
+//     asignees: updatedAsignees,
+//   }
+// }
 
-export const setPriority = (issue: Issue, priority: Priority): Issue => {
-  return {
-    ...issue,
-    priority,
-  }
-}
+// export const setPriority = (issue: Issue, priority: Priority): Issue => {
+//   return {
+//     ...issue,
+//     priority,
+//   }
+// }
 
-export const addComment = (issue: Issue, comment: Comment): Issue => {
-  const updatedComments = [...issue.comments, comment];
-  return {
-    ...issue,
-    comments: updatedComments,
-  }
-}
+// export const addComment = (issue: Issue, comment: Comment): Issue => {
+//   const updatedComments = [...issue.comments, comment];
+//   return {
+//     ...issue,
+//     comments: updatedComments,
+//   }
+// }
 
-export const removeComment = (issue: Issue, commentId: CommentId): Issue => {
-  const updatedComments = issue.comments.filter(comment => comment.id !== commentId);
-  return {
-    ...issue,
-    comments: updatedComments,
-  }
-}
+// export const removeComment = (issue: Issue, commentId: CommentId): Issue => {
+//   const updatedComments = issue.comments.filter(comment => comment.id !== commentId);
+//   return {
+//     ...issue,
+//     comments: updatedComments,
+//   }
+// }

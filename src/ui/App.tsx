@@ -3,6 +3,7 @@ import { Header } from "./containers";
 import { Project } from "./pages";
 
 function App(): JSX.Element {
+  console.log("RENDERING APP");
   return (
     <div className="App">
       <Header />
