@@ -4,16 +4,15 @@ import { createIssue, issueMock1 } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { ScrollArea } from "ui/components";
 import { Issue as IssueContainer } from "ui/containers";
-import styles from "./issues.module.scss";
+import styles from "./categories-board.module.scss";
 
-export const Issues = observer((): JSX.Element => {
-  console.log("RENDERING ISSUES");
+export const CategoriesBoard = observer((): JSX.Element => {
   const store = useStore();
 
   return (
     <div className={styles.container}>
       {store.project.categories.map(category => (
-        <IssueCategory
+        <CategoryColumn
           key={category.id}
           category={category}
         />
@@ -22,9 +21,8 @@ export const Issues = observer((): JSX.Element => {
   )
 });
 
-const IssueCategory = observer(({ category }: IssueCategoryProps): JSX.Element => {
+const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
-  console.log("RENDERING CATEGORY: ", name);
 
   const createNewIssue = () => {
     category.addIssue(createIssue(issueMock1));
@@ -53,6 +51,6 @@ const IssueCategory = observer(({ category }: IssueCategoryProps): JSX.Element =
   )
 })
 
-interface IssueCategoryProps {
+interface CategoryColumnProps {
   category: Category;
 }
