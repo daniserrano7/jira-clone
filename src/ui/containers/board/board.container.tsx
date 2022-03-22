@@ -1,5 +1,5 @@
 import { Breadcrumbs, breadcrumbsInfo, Input, ScrollArea } from "ui/components";
-import { AvatarList, avatarListInfo, CategoriesBoard } from "ui/containers";
+import { AvatarList, avatarListInfo, CategoriesPanel } from "ui/containers";
 import styles from "./board.module.scss";
 
 export const Board = (): JSX.Element => {
@@ -18,11 +18,9 @@ export const Board = (): JSX.Element => {
           FILTERS
         </div>
       </section>
-      <section className={styles.CategoriesBoard}>
-        {/* ISSUES */}
-        {/* <Issues width={issuesWidth} /> */}
+      <section className={styles.categories}>
         <ScrollArea width>
-          <CategoriesBoard />
+          <CategoriesPanel />
         </ScrollArea>
       </section>
     </div>

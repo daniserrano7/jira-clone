@@ -1,27 +1,11 @@
 import { observer } from "mobx-react-lite";
 import { Category } from "domain/category";
 import { createIssue, issueMock1 } from "domain/issue";
-import { useStore } from "infrastructure/store";
 import { ScrollArea } from "ui/components";
-import { Issue as IssueContainer } from "ui/containers";
-import styles from "./categories-board.module.scss";
+import { Issue as IssueCard } from "ui/containers";
+import styles from "./category-column.module.scss";
 
-export const CategoriesBoard = observer((): JSX.Element => {
-  const store = useStore();
-
-  return (
-    <div className={styles.container}>
-      {store.project.categories.map(category => (
-        <CategoryColumn
-          key={category.id}
-          category={category}
-        />
-      ))}
-    </div>
-  )
-});
-
-const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
+export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
 
   const createNewIssue = () => {
@@ -38,7 +22,7 @@ const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element
           <ul className={styles.issues_list}>
             {issues.map((issue, index) => (
               <div key={index}>
-                <IssueContainer title={issue.name} />
+                <IssueCard title={issue.name} />
               </div>
             ))}
           </ul>
@@ -49,7 +33,7 @@ const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element
       </div>
     </div>
   )
-})
+});
 
 interface CategoryColumnProps {
   category: Category;
