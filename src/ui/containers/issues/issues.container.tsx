@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Category } from "domain/category";
-import { issueMock1 } from "domain/issue";
+import { createIssue, issueMock1 } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { ScrollArea } from "ui/components";
 import { Issue as IssueContainer } from "ui/containers";
@@ -26,8 +26,8 @@ const IssueCategory = observer(({ category }: IssueCategoryProps): JSX.Element =
   const { name, issues } = category;
   console.log("RENDERING CATEGORY: ", name);
 
-  const createIssue = () => {
-    category.addIssue(issueMock1);
+  const createNewIssue = () => {
+    category.addIssue(createIssue(issueMock1));
   }
 
   return (
@@ -44,7 +44,7 @@ const IssueCategory = observer(({ category }: IssueCategoryProps): JSX.Element =
               </div>
             ))}
           </ul>
-          <button onClick={createIssue}>
+          <button onClick={createNewIssue}>
             Create  issue
           </button>
         </ScrollArea>
