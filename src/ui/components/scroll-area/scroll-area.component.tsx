@@ -19,6 +19,7 @@ export const ScrollArea = ({ width, height, children }: ScrollAreaProps): JSX.El
       <div style={{ 
         width: areaWidth,
         height: areaHeight,
+        overflowX: "auto",
       }}>
         {children}
       </div>

@@ -6,7 +6,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow-x: auto; //Uncomment to enable column scrolling
+  // overflow-x: auto; //Uncomment to enable column scrolling
   border-radius: 3px;
   background-color: color(grey-200);
 
@@ -19,6 +19,7 @@
   }
 
   .body {
+    height: 100%;
     padding: 0 spacing(3);
 
     .issues_list {

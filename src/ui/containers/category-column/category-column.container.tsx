@@ -1,12 +1,22 @@
+import { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
+import ScrollArea from "@xico2k/react-scroll-area";
 import { Category } from "domain/category";
 import { createIssue, issueMock1 } from "domain/issue";
-import { ScrollArea } from "ui/components";
-import { Issue as IssueCard } from "ui/containers";
+import { IssueCard } from "ui/containers";
 import styles from "./category-column.module.scss";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
+
+  const scrollRef = useRef<HTMLHeadingElement>(null);
+  const [ areaHeight, setAreaHeight ] = useState<string>("100%");
+
+  useEffect(() => {
+    if (!scrollRef.current) return;
+
+    setAreaHeight(`${scrollRef.current.offsetHeight}px`);
+  }, [scrollRef]);
 
   const createNewIssue = () => {
     category.addIssue(createIssue(issueMock1));
@@ -17,12 +27,12 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       <div className={styles.header}>
         {name}
       </div>
-      <div className={styles.body}>
-        <ScrollArea height>
+      <div ref={scrollRef} className={styles.body}>
+        <ScrollArea height={areaHeight}>
           <ul className={styles.issues_list}>
             {issues.map((issue, index) => (
               <div key={index}>
-                <IssueCard title={issue.name} />
+                <IssueCard issue={issue} />
               </div>
             ))}
           </ul>
