@@ -19,9 +19,9 @@ export interface IssueData {
 export interface Issue extends IssueData {
   setName: (name: string) => void;
   setDescription: (description: string) => void;
+  setPriority: (priority: Priority) => void;
   // addAsignee: (asignee: User) => void;
   // removeAsignee: (asigneeId: UserId) => void;
-  // setPriority: (priority: Priority) => void;
   // addComment: (comment: Comment) => void;
   // removeComment: (commentId: CommentId) => void;
 }
@@ -35,6 +35,10 @@ export const createIssue = (data: IssueData): Issue => ({
 
   setDescription: function(description: string) {
     this.description = description;
+  },
+
+  setPriority: function(priority: Priority) {
+    this.priority = priority;
   },
 });
 

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { ScrollAreaProps } from "./scroll-area.interface";
 import styles from "./scroll-area.module.scss";
 
-export const ScrollArea = ({ width, height, children }: ScrollAreaProps): JSX.Element => {
+export const ScrollArea = ({ width, height, disabled, children }: ScrollAreaProps): JSX.Element => {
   const areaRef = useRef<HTMLHeadingElement>(null);
   const [ areaWidth, setAreaWidth ] = useState<string>(width ? "0px" : "100%");
   const [ areaHeight, setAreaHeight ] = useState<string>(height ? "0px" : "100%");
@@ -19,7 +19,7 @@ export const ScrollArea = ({ width, height, children }: ScrollAreaProps): JSX.El
       <div style={{ 
         width: areaWidth,
         height: areaHeight,
-        overflowX: "auto",
+        overflowX: disabled ? "hidden" : "auto",
       }}>
         {children}
       </div>

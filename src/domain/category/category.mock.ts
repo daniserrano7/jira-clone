@@ -4,7 +4,19 @@ import { createIssue, issueMock1, issueMock2, issueMock3, issueMock4 } from "dom
 export const categoryMock1: CategoryData = {
   id: "TODO",
   name: "To Do",
-  issues: [createIssue(issueMock1)],
+  issues: [
+    createIssue(issueMock1),
+    createIssue(issueMock1)
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1),
+    // createIssue(issueMock1)
+  ],
 }
 
 export const categoryMock2: CategoryData = {

@@ -1,0 +1,142 @@
+@import "/src/ui/styles";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: spacing(6);
+  box-shadow: rgba(0,0,0, 0.2) 0px 1px 1px, rgba(0,0,0, 0.2) 0px 0px 1px;
+  border-radius: 3px;
+  background-color: white;
+  transition: background-color ease-in-out .2s;
+  cursor: pointer;
+
+  &:hover {
+    // background-color: color(primary-light);
+  }
+
+  .title {
+    margin: 0 0 spacing(8);
+  }
+
+  .details {
+    height: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .issue_type {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        display: flex;
+        align-items: center;
+      }
+
+      .code {
+        margin-left: 5px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+
+    .priority {
+      position: relative;
+      border: none;
+      border-radius: 4px;
+      padding: spacing(1) spacing(4);
+      // cursor: pointer;
+
+      // &:hover {
+      //   background-color: color(grey-600);
+      // }
+
+      // .menu_button {
+      //   background-color: color(grey-500);
+      // }
+
+      .icon {
+        background-color: none;
+
+        &.high {
+          color: red;
+        }
+
+        &.medium {
+          color: orange;
+        }
+
+        &.low {
+          color: green;
+        }
+      }
+
+      // .menu {
+      //   position: absolute;
+      //   display: flex;
+      //   flex-direction: column;
+      //   gap: spacing(2);
+      //   margin-top: spacing(2);
+      //   background-color: color(grey-500);
+      //   border-radius: 4px;
+      //   padding: spacing(2);
+      //   z-index: 9;
+
+      //   .item {
+      //     display: flex;
+      //     justify-content: flex-start;
+      //     align-items: center;
+      //     gap: spacing(4);
+      //     background-color: color(grey-500);
+          
+      //     &:hover {
+      //       background-color: color(grey-600);
+      //     }
+      //   }
+      // }
+    }
+  }
+
+  .priority {
+    position: relative;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      border-radius: 4px;
+      padding: spacing(2) spacing(4);
+      cursor: pointer;
+
+      &:hover {
+        background-color: color(grey-600);
+      }
+    }
+
+    .list_items {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      gap: spacing(2);
+      margin-top: spacing(4);
+      padding: spacing(2);
+      background-color: color(grey-500);
+      border-radius: 4px;
+      list-style: none;
+      box-shadow: 1px 1px 3px rgba(0,0,0, 0.2);
+      z-index: 99;
+
+      .item {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: spacing(2);
+      }
+    }
+  }
+}

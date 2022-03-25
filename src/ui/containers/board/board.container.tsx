@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Breadcrumbs, breadcrumbsInfo, Input, ScrollArea } from "ui/components";
-import { AvatarList, avatarListInfo, CategoriesPanel } from "ui/containers";
+import { AvatarList, avatarListInfo } from "ui/containers";
+import { CategoriesPanel } from "../categories-panel";
+import { CategoriesPanelContext, CategoriesPanelContextProps } from "../board";
 import styles from "./board.module.scss";
 
 export const Board = (): JSX.Element => {
+  const [ scrollDisabled, setScrollDisabled ] = useState<boolean>(false);
+
+  const values: CategoriesPanelContextProps = {
+    scrollDisabled,
+    setScrollDisabled,
+  }
+
   return (
     <div className={styles.container}>
       <section className={styles.header}>
@@ -19,9 +29,11 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.categories}>
-        <ScrollArea width>
-          <CategoriesPanel />
-        </ScrollArea>
+        <CategoriesPanelContext.Provider value={values}>
+          <ScrollArea width disabled={scrollDisabled}>
+            <CategoriesPanel />
+          </ScrollArea>
+        </CategoriesPanelContext.Provider>
       </section>
     </div>
   )
