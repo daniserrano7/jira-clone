@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Listbox } from "@headlessui/react";
 import { Issue } from "domain/issue";
 import { priorities, Priority } from "domain/priority";
-import { Icon, IconName } from "ui/components";
+import { Icon, IconName } from "ui/components/icon";
 import { useCategoriesPanelContext } from "../board";
 import styles from "./issue-card.module.scss";
 

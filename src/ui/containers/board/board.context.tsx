@@ -12,11 +12,6 @@ export const useCategoriesPanelContext = () => {
   return context;
 }
 
-// interface CategoriesPanelContextProviderProps {
-//   children: JSX.Element | JSX.Element[];
-//   values: CategoriesPanelContextProps
-// }
-
 export interface CategoriesPanelContextProps {
   scrollDisabled: boolean;
   setScrollDisabled: (isDisabled: boolean) => void;

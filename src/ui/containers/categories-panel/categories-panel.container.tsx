@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "infrastructure/store";
-import { CategoryColumn } from "ui/containers";
+import { CategoryColumn } from "ui/containers/category-column";
 import { useCategoriesPanelContext } from "../board";
 import styles from "./categories-panel.module.scss";
 

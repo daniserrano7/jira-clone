@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Icon } from "..";
+import { Icon } from "../icon";
 import styles from "./input.module.scss";
 
 export const Input = (): JSX.Element => {

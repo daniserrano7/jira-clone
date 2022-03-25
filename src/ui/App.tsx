@@ -1,5 +1,4 @@
-// import Playground from "./Playground";
-import { Header } from "./containers";
+import { Header } from "./containers/header";
 import { Project } from "./pages";
 
 function App(): JSX.Element {

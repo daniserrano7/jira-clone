@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Icon, IconName } from "ui/components";
+import { Icon, IconName } from "ui/components/icon";
 import { navItems } from "./sidebar.info";
 import imageProject from "ui/assets/images/default-project.png";
 import styles from "./sidebar.module.scss";

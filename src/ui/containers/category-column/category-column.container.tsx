@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import ScrollArea from "@xico2k/react-scroll-area";
 import { Category } from "domain/category";
 import { createIssue, issueMock1 } from "domain/issue";
-import { IssueCard } from "ui/containers";
+import { IssueCard } from "ui/containers/issue-card";
 import { useCategoriesPanelContext } from "../board";
 import styles from "./category-column.module.scss";
 

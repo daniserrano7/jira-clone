@@ -1,4 +1,5 @@
-import { Avatar, AvatarProps, Tooltip } from "ui/components";
+import { Avatar, AvatarProps } from "ui/components/avatar";
+import { Tooltip } from "ui/components/tooltip";
 import styles from "./avatar-list.module.scss";
 
 export const AvatarList = ({ avatars }: AvatarListProps): JSX.Element => {

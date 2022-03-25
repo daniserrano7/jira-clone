@@ -1,4 +1,4 @@
-import { Sidebar } from "ui/containers";
+import { Sidebar } from "ui/containers/sidebar";
 import { Board } from "ui/containers/board";
 import styles from "./project.module.scss";
 

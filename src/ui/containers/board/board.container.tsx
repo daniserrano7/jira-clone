@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Breadcrumbs, breadcrumbsInfo, Input, ScrollArea } from "ui/components";
-import { AvatarList, avatarListInfo } from "ui/containers";
+import { Breadcrumbs, breadcrumbsInfo } from "ui/components/breadcrumbs";
+import { Input } from "ui/components/input";
+import { ScrollArea } from "ui/components/scroll-area";
+import { AvatarList, avatarListInfo } from "ui/containers/avatar-list";
 import { CategoriesPanel } from "../categories-panel";
 import { CategoriesPanelContext, CategoriesPanelContextProps } from "../board";
 import styles from "./board.module.scss";
