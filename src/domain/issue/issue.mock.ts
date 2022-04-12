@@ -1,9 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
 import { IssueData } from "./issue";
 import { createComment } from "domain/comment";
 import { userMock1, userMock2, userMock3 } from "domain/user";
 
 export const issueMock1: IssueData = {
-  id: 1,
+  id: uuidv4(),
   name: "Refactor entities id to UUID",
   description: "Should be better to use UUID so ID duplication is less likely",
   reporter: userMock1,
@@ -13,7 +14,7 @@ export const issueMock1: IssueData = {
 }
 
 export const issueMock2: IssueData = {
-  id: 2,
+  id: uuidv4(),
   name: "Random issue 2",
   description: "Random issue 2 description",
   reporter: userMock1,
@@ -23,7 +24,7 @@ export const issueMock2: IssueData = {
 }
 
 export const issueMock3: IssueData = {
-  id: 3,
+  id: uuidv4(),
   name: "Random issue 3",
   description: "Random issue 3 description",
   reporter: userMock1,
@@ -33,17 +34,17 @@ export const issueMock3: IssueData = {
 }
 
 export const issueMock4: IssueData = {
-  id: 4,
+  id: uuidv4(),
   name: "Random issue 4",
   description: "Random issue 4 description",
   reporter: userMock2,
   asignees: [userMock1, userMock3],
   comments: [createComment({
-    id: 1,
+    id: uuidv4(),
     user: userMock2,
     message: "This should be implemented ASAP",
   }), createComment({
-    id: 2,
+    id: uuidv4(),
     user: userMock1,
     message: "Ok, I'm on it",
   })],

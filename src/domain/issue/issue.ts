@@ -1,10 +1,11 @@
+import { v4 as uuidv4 } from "uuid";
 import { User } from "../user";
 import { Comment } from "../comment";
 import { Priority } from "../priority";
 
-export type IssueId = number;
+export type IssueId = string;
 export interface IssueData {
-  id: IssueId;
+  id: Readonly<IssueId>;
   name: string;
   description?: string;
   reporter: User;
@@ -26,7 +27,8 @@ export interface Issue extends IssueData {
   // removeComment: (commentId: CommentId) => void;
 }
 
-export const createIssue = (data: IssueData): Issue => ({
+export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
+  id: uuidv4(),
   ...data,
 
   setName: function(name: string) {

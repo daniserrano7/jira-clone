@@ -1,7 +1,7 @@
 import { User } from "../user";
 
 
-export type CommentId = number;
+export type CommentId = string;
 
 export interface CommentData {
   id: CommentId,

@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
 import { userMock1, userMock2, userMock3 } from "domain/user";
 import { 
-  Issue,
+  IssueData,
   Comment,
   setName, 
   setDescription,
@@ -13,8 +14,8 @@ import {
 describe("Issue entity module", () => {
   it("Change issue name", () => {
     const name = "Issue name test";
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "Should be better to use UUID so ID duplication is less likely",
       reporter: userMock1,
@@ -23,7 +24,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name,
       description: "Should be better to use UUID so ID duplication is less likely",
       reporter: userMock1,
@@ -38,8 +39,8 @@ describe("Issue entity module", () => {
 
   it("Change issue description", () => {
     const description = "Issue description test";
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -48,7 +49,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name: "",
       description,
       reporter: userMock1,
@@ -63,8 +64,8 @@ describe("Issue entity module", () => {
 
   it("Add asignees to issue", () => {
     const asignee = userMock2;
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -73,7 +74,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -88,8 +89,8 @@ describe("Issue entity module", () => {
 
   it("Remove asignee from issue", () => {
     const asignee = userMock2;
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -98,7 +99,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -113,12 +114,12 @@ describe("Issue entity module", () => {
 
   it("Add comment to issue", () => {
     const comment: Comment = {
-      id: 1,
+      id: uuidv4(),
       user: userMock1,
       message: "Comment message test",
     }
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -127,7 +128,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -142,12 +143,12 @@ describe("Issue entity module", () => {
 
   it("Remove comment from issue", () => {
     const comment: Comment = {
-      id: 1,
+      id: uuidv4(),
       user: userMock1,
       message: "Comment message test",
     }
-    const reference: Issue = {
-      id: 1,
+    const reference: IssueData = {
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
@@ -156,7 +157,7 @@ describe("Issue entity module", () => {
       priority: "high",
     }
     const expected = {
-      id: 1,
+      id: uuidv4(),
       name: "",
       description: "",
       reporter: userMock1,
