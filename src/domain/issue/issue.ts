@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { User } from "../user";
+import { User, userMock1 } from "../user";
 import { Comment } from "../comment";
 import { Priority } from "../priority";
 
@@ -27,8 +27,14 @@ export interface Issue extends IssueData {
   // removeComment: (commentId: CommentId) => void;
 }
 
-export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
+export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
   id: uuidv4(),
+  name: "",
+  description: "",
+  reporter: userMock1,
+  asignees: [],
+  comments: [],
+  priority: "low",
   ...data,
 
   setName: function(name: string) {

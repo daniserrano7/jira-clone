@@ -6,16 +6,8 @@ export const categoryMock1: CategoryData = {
   name: "To Do",
   issues: [
     createIssue(issueMock1),
-    createIssue(issueMock1)
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1),
-    // createIssue(issueMock1)
+    createIssue(issueMock1),
+    createIssue(issueMock4)
   ],
 }
 

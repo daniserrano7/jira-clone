@@ -5,6 +5,7 @@ import { ScrollArea } from "ui/components/scroll-area";
 import { AvatarList, avatarListInfo } from "ui/containers/avatar-list";
 import { CategoriesPanel } from "../categories-panel";
 import { CategoriesPanelContext, CategoriesPanelContextProps } from "../board";
+
 import styles from "./board.module.scss";
 
 export const Board = (): JSX.Element => {

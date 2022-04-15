@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
 import ScrollArea from "@xico2k/react-scroll-area";
 import { Category } from "domain/category";
-import { createIssue, issueMock1 } from "domain/issue";
 import { IssueCard } from "ui/containers/issue-card";
 import { useCategoriesPanelContext } from "../board";
 import styles from "./category-column.module.scss";
+import { Issue } from "domain/issue";
 
-export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
+export const CategoryColumn = observer(({ category, createIssue, editIssue }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
   const { scrollDisabled } = useCategoriesPanelContext();
 
@@ -20,10 +20,6 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
 
     setAreaHeight(`${scrollRef.current.offsetHeight}px`);
   }, [scrollRef]);
-
-  const createNewIssue = () => {
-    category.addIssue(createIssue(issueMock1));
-  }
 
   // Expensive effect. Might want to disable
   const onScroll = ({ scrollTop }: {scrollTop: number}) => {
@@ -39,7 +35,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
         <span>
           {name}
         </span>
-        <button onClick={createNewIssue}>
+        <button onClick={() => createIssue(category)}>
           Create  issue
         </button>
       </div>
@@ -55,7 +51,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
         >
           <ul className={styles.issues_list}>
             {issues.map((issue, index) => (
-              <div key={index}>
+              <div key={index} onClick={() => editIssue(category, issue)}>
                 <IssueCard issue={issue} />
               </div>
             ))}
@@ -68,4 +64,6 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
 
 interface CategoryColumnProps {
   category: Category;
+  createIssue: (category: Category) => void;
+  editIssue: (category: Category, issue: Issue) => void;
 }
