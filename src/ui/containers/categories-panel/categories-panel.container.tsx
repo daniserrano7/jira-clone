@@ -4,13 +4,11 @@ import { Category } from "domain/category";
 import { Issue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { CategoryColumn } from "ui/containers/category-column";
-import { useCategoriesPanelContext } from "../board";
 import { IssueEditPanel } from "../issue-edit-panel";
 import styles from "./categories-panel.module.scss";
 
 export const CategoriesPanel = observer((): JSX.Element => {
   const store = useStore();
-  const { scrollDisabled } = useCategoriesPanelContext();
 
   const [ editingCategory, setEditingCategory ] = useState<Category | null>(null);
   const [ editingIssue, setEditingIssue ] = useState<Issue | null>(null);
@@ -38,7 +36,6 @@ export const CategoriesPanel = observer((): JSX.Element => {
   return (
     <div className={`
       ${styles.container}
-      ${scrollDisabled ? styles.scroll_disabled : undefined}
     `}>
       {store.project.categories.map(category => (
         <CategoryColumn

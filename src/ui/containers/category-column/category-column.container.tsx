@@ -3,13 +3,11 @@ import { observer } from "mobx-react-lite";
 import ScrollArea from "@xico2k/react-scroll-area";
 import { Category } from "domain/category";
 import { IssueCard } from "ui/containers/issue-card";
-import { useCategoriesPanelContext } from "../board";
 import styles from "./category-column.module.scss";
 import { Issue } from "domain/issue";
 
 export const CategoryColumn = observer(({ category, createIssue, editIssue }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
-  const { scrollDisabled } = useCategoriesPanelContext();
 
   const scrollRef = useRef<HTMLHeadingElement>(null);
   const [ areaHeight, setAreaHeight ] = useState<string>("100%");
@@ -46,7 +44,6 @@ export const CategoryColumn = observer(({ category, createIssue, editIssue }: Ca
           innerClassName={styles.scroll_area_inner}
           overflowClassName={`
             ${styles.scroll_area}
-            ${scrollDisabled ? styles.scroll_disabled : undefined}
           `}
         >
           <ul className={styles.issues_list}>

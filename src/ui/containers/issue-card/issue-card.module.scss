@@ -41,101 +41,18 @@
     }
 
     .priority {
-      position: relative;
-      border: none;
-      border-radius: 4px;
-      padding: spacing(1) spacing(4);
-      // cursor: pointer;
+      display: flex;
 
-      // &:hover {
-      //   background-color: color(grey-600);
-      // }
-
-      // .menu_button {
-      //   background-color: color(grey-500);
-      // }
-
-      .icon {
-        background-color: none;
-
-        &.high {
-          color: red;
-        }
-
-        &.medium {
-          color: orange;
-        }
-
-        &.low {
-          color: green;
-        }
+      &.high {
+        color: red;
       }
 
-      // .menu {
-      //   position: absolute;
-      //   display: flex;
-      //   flex-direction: column;
-      //   gap: spacing(2);
-      //   margin-top: spacing(2);
-      //   background-color: color(grey-500);
-      //   border-radius: 4px;
-      //   padding: spacing(2);
-      //   z-index: 9;
-
-      //   .item {
-      //     display: flex;
-      //     justify-content: flex-start;
-      //     align-items: center;
-      //     gap: spacing(4);
-      //     background-color: color(grey-500);
-          
-      //     &:hover {
-      //       background-color: color(grey-600);
-      //     }
-      //   }
-      // }
-    }
-  }
-
-  .priority {
-    position: relative;
-
-    .icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    button {
-      border: none;
-      border-radius: 4px;
-      padding: spacing(2) spacing(4);
-      cursor: pointer;
-
-      &:hover {
-        background-color: color(grey-600);
+      &.medium {
+        color: orange;
       }
-    }
 
-    .list_items {
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      gap: spacing(2);
-      margin-top: spacing(4);
-      padding: spacing(2);
-      background-color: color(grey-500);
-      border-radius: 4px;
-      list-style: none;
-      box-shadow: 1px 1px 3px rgba(0,0,0, 0.2);
-      z-index: 99;
-
-      .item {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: spacing(2);
+      &.low {
+        color: green;
       }
     }
   }
