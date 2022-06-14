@@ -7,7 +7,21 @@ export const categoryMock1: CategoryData = {
   issues: [
     createIssue(issueMock1),
     createIssue(issueMock1),
-    createIssue(issueMock4)
+    createIssue(issueMock4),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1),
+    createIssue(issueMock1)
   ],
 }
 

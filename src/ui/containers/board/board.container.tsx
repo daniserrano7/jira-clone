@@ -23,9 +23,9 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.categories}>
-          <ScrollArea width>
-            <CategoriesPanel />
-          </ScrollArea>
+        {/* <ScrollArea width> */}
+          <CategoriesPanel />
+        {/* </ScrollArea> */}
       </section>
     </div>
   )

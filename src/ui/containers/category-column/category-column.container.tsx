@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from "react";
 import { observer } from "mobx-react-lite";
-import ScrollArea from "@xico2k/react-scroll-area";
+import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { Category } from "domain/category";
 import { IssueCard } from "ui/containers/issue-card";
 import styles from "./category-column.module.scss";
@@ -9,27 +8,9 @@ import { Issue } from "domain/issue";
 export const CategoryColumn = observer(({ category, createIssue, editIssue }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
 
-  const scrollRef = useRef<HTMLHeadingElement>(null);
-  const [ areaHeight, setAreaHeight ] = useState<string>("100%");
-  const [ scrollTop, setScrollTop ] = useState<number>(0);
-
-  useEffect(() => {
-    if (!scrollRef.current) return;
-
-    setAreaHeight(`${scrollRef.current.offsetHeight}px`);
-  }, [scrollRef]);
-
-  // Expensive effect. Might want to disable
-  const onScroll = ({ scrollTop }: {scrollTop: number}) => {
-    setScrollTop(scrollTop);
-  }
-
   return (
     <div className={styles.issue_category}>
-      <div className={`
-        ${styles.header}
-        ${scrollTop > 3 ? styles.scroll_shadow : undefined}
-      `}>
+      <div className={styles.header}>
         <span>
           {name}
         </span>
@@ -37,23 +18,16 @@ export const CategoryColumn = observer(({ category, createIssue, editIssue }: Ca
           Create  issue
         </button>
       </div>
-      <div ref={scrollRef} className={styles.body}>
-        <ScrollArea
-          height={areaHeight}
-          onScroll={onScroll}
-          innerClassName={styles.scroll_area_inner}
-          overflowClassName={`
-            ${styles.scroll_area}
-          `}
-        >
+      <div className={styles.body}>
+        <ScrollAreaComponent>
           <ul className={styles.issues_list}>
             {issues.map((issue, index) => (
-              <div key={index} onClick={() => editIssue(category, issue)}>
+              <li key={index} onClick={() => editIssue(category, issue)}>
                 <IssueCard issue={issue} />
-              </div>
+              </li>
             ))}
           </ul>
-        </ScrollArea>
+        </ScrollAreaComponent>
       </div>
     </div>
   )
@@ -63,4 +37,23 @@ interface CategoryColumnProps {
   category: Category;
   createIssue: (category: Category) => void;
   editIssue: (category: Category, issue: Issue) => void;
+}
+
+const ScrollAreaComponent = ({ children }: ScrollAreaComponentProps): JSX.Element => (
+  <ScrollArea.Root type="hover" scrollHideDelay={400} className={styles.root}>
+    <ScrollArea.Viewport className={styles.viewport}>
+      {children}
+    </ScrollArea.Viewport>
+    <ScrollArea.Scrollbar orientation="vertical" className={styles.scrollbar}>
+      <ScrollArea.Thumb className={styles.thumb} />
+    </ScrollArea.Scrollbar>
+    <ScrollArea.Scrollbar orientation="horizontal" className={styles.scrollbar}>
+      <ScrollArea.Thumb className={styles.thumb} />
+    </ScrollArea.Scrollbar>
+    <ScrollArea.Corner className={styles.corner} />
+  </ScrollArea.Root>
+);
+
+interface ScrollAreaComponentProps {
+  children: JSX.Element | JSX.Element[];
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
+// import { Dialog } from "@headlessui/react";
 import { Issue } from "domain/issue";
 import { Category } from "domain/category";
 import { Comment } from "domain/comment";
@@ -25,44 +25,45 @@ export const IssueEditPanel = (props: IssueEditPanelProps): JSX.Element => {
   }
 
   return (
-    <Dialog
-      as="div" 
-      open={isOpen} 
-      onClose={closePanel}
-      className={styles.container}
-    >
-      <Dialog.Overlay className={styles.overlay} />
-        <div className={styles.content}>
-          <section>
-            <Dialog.Title>
-              <input
-                type="text" 
-                placeholder="Issue name"
-                value={name}
-                className={styles.name}
-                onChange={e => updateName(e.target.value)}
-              />
-            </Dialog.Title>
-            <Dialog.Description>
-              <p className={styles.label}>Description</p>
-              <textarea
-                placeholder="Add a description..."
-                value={description}
-                className={styles.description}
-                onChange={e => updateDescription(e.target.value)}
-              />
-              <div className={styles.comments}>
-                {issue.comments.map((comment, index) => (
-                  <CommentComponent key={index} {...comment} />
-                ))}
-              </div>
-            </Dialog.Description>
-          </section>
-          <section>
-            PRIORITY
-          </section>
-        </div>
-    </Dialog>
+    <div>ON CONSTRUCTION</div>
+    // <Dialog
+    //   as="div" 
+    //   open={isOpen} 
+    //   onClose={closePanel}
+    //   className={styles.container}
+    // >
+    //   <Dialog.Overlay className={styles.overlay} />
+    //     <div className={styles.content}>
+    //       <section>
+    //         <Dialog.Title>
+    //           <input
+    //             type="text" 
+    //             placeholder="Issue name"
+    //             value={name}
+    //             className={styles.name}
+    //             onChange={e => updateName(e.target.value)}
+    //           />
+    //         </Dialog.Title>
+    //         <Dialog.Description>
+    //           <p className={styles.label}>Description</p>
+    //           <textarea
+    //             placeholder="Add a description..."
+    //             value={description}
+    //             className={styles.description}
+    //             onChange={e => updateDescription(e.target.value)}
+    //           />
+    //           <div className={styles.comments}>
+    //             {issue.comments.map((comment, index) => (
+    //               <CommentComponent key={index} {...comment} />
+    //             ))}
+    //           </div>
+    //         </Dialog.Description>
+    //       </section>
+    //       <section>
+    //         PRIORITY
+    //       </section>
+    //     </div>
+    // </Dialog>
   )
 }
 

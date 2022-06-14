@@ -15,7 +15,7 @@ export const StoreContextProvider = ({ children }: StoreContextProviderProps): J
   )
 }
 
-export const useStore = () => {
+export const useStore = (): Store => {
   const context = useContext(StoreContext);
 
   if (!context) {
