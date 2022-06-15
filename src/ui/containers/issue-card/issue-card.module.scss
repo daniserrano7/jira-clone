@@ -8,10 +8,10 @@
   border-radius: 3px;
   background-color: white;
   transition: background-color ease-in-out .2s;
-  // cursor: pointer;
+  cursor: pointer;
 
   &:hover {
-    // background-color: color(primary-light);
+    background-color: color(primary-light);
   }
 
   .title {

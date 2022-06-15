@@ -1,6 +1,5 @@
 import { Breadcrumbs, breadcrumbsInfo } from "ui/components/breadcrumbs";
 import { Input } from "ui/components/input";
-import { ScrollArea } from "ui/components/scroll-area";
 import { AvatarList, avatarListInfo } from "ui/containers/avatar-list";
 import { CategoriesPanel } from "../categories-panel";
 
@@ -23,9 +22,7 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.categories}>
-        {/* <ScrollArea width> */}
-          <CategoriesPanel />
-        {/* </ScrollArea> */}
+        <CategoriesPanel />
       </section>
     </div>
   )

@@ -8,6 +8,7 @@ import { ReactComponent as LensIcon } from "ui/assets/icons/lens.svg";
 import { ReactComponent as CloseIcon } from "ui/assets/icons/close.svg";
 import { ReactComponent as TaskIcon } from "ui/assets/icons/issue-types/task.svg";
 import { ReactComponent as PriorityIcon } from "ui/assets/icons/priority.svg";
+import { ReactComponent as AddIcon } from "ui/assets/icons/add.svg";
 
 type IconModule = FunctionComponent<SVGProps<SVGSVGElement>>;
 export type IconName = 
@@ -19,7 +20,8 @@ export type IconName =
   | "lens"
   | "close"
   | "task"
-  | "priority";
+  | "priority"
+  | "add";
 
 const iconLibrary: Record<IconName, IconModule> = {
   question: QuestionIcon,
@@ -31,6 +33,7 @@ const iconLibrary: Record<IconName, IconModule> = {
   close: CloseIcon,
   task: TaskIcon,
   priority: PriorityIcon,
+  add: AddIcon,
 }
 
 export const Icon = ({ name, size = 24, ...otherProps }: IconProps): JSX.Element => {

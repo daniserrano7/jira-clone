@@ -1,9 +1,10 @@
 import { observer } from "mobx-react-lite";
 import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { Category } from "domain/category";
+import { Issue } from "domain/issue";
+import { Icon } from "ui/components/icon";
 import { IssueCard } from "ui/containers/issue-card";
 import styles from "./category-column.module.scss";
-import { Issue } from "domain/issue";
 
 export const CategoryColumn = observer(({ category, createIssue, editIssue }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
@@ -14,8 +15,8 @@ export const CategoryColumn = observer(({ category, createIssue, editIssue }: Ca
         <span>
           {name}
         </span>
-        <button onClick={() => createIssue(category)}>
-          Create  issue
+        <button className={styles.add_issue} onClick={() => createIssue(category)}>
+          <Icon name="add" size={24} />
         </button>
       </div>
       <div className={styles.body}>
