@@ -1,13 +1,19 @@
 import { observer } from "mobx-react-lite";
-import * as ScrollArea from "@radix-ui/react-scroll-area";
 import { Category } from "domain/category";
-import { Issue } from "domain/issue";
+import { createIssue } from "domain/issue";
+import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard } from "ui/containers/issue-card";
+import { ScrollArea } from "./scroll-area/scroll-area.container";
 import styles from "./category-column.module.scss";
 
-export const CategoryColumn = observer(({ category, createIssue, editIssue }: CategoryColumnProps): JSX.Element => {
+export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const { name, issues } = category;
+  const store = useStore();
+
+  const createEmptyIssue = () => {
+    store.editingIssue = createIssue({});
+  }
 
   return (
     <div className={styles.issue_category}>
@@ -15,20 +21,20 @@ export const CategoryColumn = observer(({ category, createIssue, editIssue }: Ca
         <span>
           {name}
         </span>
-        <button className={styles.add_issue} onClick={() => createIssue(category)}>
+        <button className={styles.add_issue} onClick={createEmptyIssue}>
           <Icon name="add" size={24} />
         </button>
       </div>
       <div className={styles.body}>
-        <ScrollAreaComponent>
+        <ScrollArea>
           <ul className={styles.issues_list}>
             {issues.map((issue, index) => (
-              <li key={index} onClick={() => editIssue(category, issue)}>
+              <li key={index} >
                 <IssueCard issue={issue} />
               </li>
             ))}
           </ul>
-        </ScrollAreaComponent>
+        </ScrollArea>
       </div>
     </div>
   )
@@ -36,25 +42,4 @@ export const CategoryColumn = observer(({ category, createIssue, editIssue }: Ca
 
 interface CategoryColumnProps {
   category: Category;
-  createIssue: (category: Category) => void;
-  editIssue: (category: Category, issue: Issue) => void;
-}
-
-const ScrollAreaComponent = ({ children }: ScrollAreaComponentProps): JSX.Element => (
-  <ScrollArea.Root type="hover" scrollHideDelay={400} className={styles.root}>
-    <ScrollArea.Viewport className={styles.viewport}>
-      {children}
-    </ScrollArea.Viewport>
-    <ScrollArea.Scrollbar orientation="vertical" className={styles.scrollbar}>
-      <ScrollArea.Thumb className={styles.thumb} />
-    </ScrollArea.Scrollbar>
-    <ScrollArea.Scrollbar orientation="horizontal" className={styles.scrollbar}>
-      <ScrollArea.Thumb className={styles.thumb} />
-    </ScrollArea.Scrollbar>
-    <ScrollArea.Corner className={styles.corner} />
-  </ScrollArea.Root>
-);
-
-interface ScrollAreaComponentProps {
-  children: JSX.Element | JSX.Element[];
 }
