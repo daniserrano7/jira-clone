@@ -29,5 +29,7 @@
   .categories {
     height: 100%;
     margin-top: spacing(24);
+    display: flex;
+    gap: 12px;
   }
 }

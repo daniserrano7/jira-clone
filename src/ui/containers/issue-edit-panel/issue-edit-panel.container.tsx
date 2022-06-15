@@ -1,15 +1,16 @@
 import { useState } from "react";
-// import { Dialog } from "@headlessui/react";
 import { Issue } from "domain/issue";
 import { Category } from "domain/category";
 import { Comment } from "domain/comment";
 import { createIssue } from "domain/issue";
 import styles from "./issue-edit-panel.module.scss";
+import { useStore } from "infrastructure/store";
 
 export const IssueEditPanel = (props: IssueEditPanelProps): JSX.Element => {
   const { category, isOpen, closePanel } = props;
   const issue = props.issue || createIssue({});
   console.log(category);
+  const store = useStore();
 
   const [ name, setName ] = useState<string>(issue.name);
   const [ description, setDescription ] = useState<string>(issue.description || "");
@@ -25,7 +26,10 @@ export const IssueEditPanel = (props: IssueEditPanelProps): JSX.Element => {
   }
 
   return (
-    <div>ON CONSTRUCTION</div>
+    <div>
+      <div>ON CONSTRUCTION</div>
+      <button onClick={() => store.editingIssue = null}>Discard editing issue</button>
+    </div>
     // <Dialog
     //   as="div" 
     //   open={isOpen} 
@@ -68,10 +72,10 @@ export const IssueEditPanel = (props: IssueEditPanelProps): JSX.Element => {
 }
 
 interface IssueEditPanelProps {
-  category: Category | null;
-  issue: Issue | null;
-  isOpen: boolean;
-  closePanel: () => void;
+  category?: Category | null;
+  issue?: Issue | null;
+  isOpen?: boolean;
+  closePanel?: () => void;
 }
 
 const CommentComponent = (props: Comment): JSX.Element => {

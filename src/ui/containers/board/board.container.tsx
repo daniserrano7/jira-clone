@@ -1,15 +1,17 @@
-import { Breadcrumbs, breadcrumbsInfo } from "ui/components/breadcrumbs";
+import { observer } from "mobx-react-lite";
+import { useStore } from "infrastructure/store";
 import { Input } from "ui/components/input";
 import { AvatarList, avatarListInfo } from "ui/containers/avatar-list";
-import { CategoriesPanel } from "../categories-panel";
-
+import { IssueEditPanel } from "../issue-edit-panel";
+import { CategoryColumn } from "../category-column";
 import styles from "./board.module.scss";
 
-export const Board = (): JSX.Element => {
+export const Board = observer((): JSX.Element => {
+  const store = useStore();
   return (
     <div className={styles.container}>
       <section className={styles.header}>
-        <Breadcrumbs {...breadcrumbsInfo} />
+        {store.project.name}
         <h1 className={styles.title}>Sprint board</h1>
       </section>
       <section className={styles.tools}>
@@ -22,8 +24,14 @@ export const Board = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.categories}>
-        <CategoriesPanel />
+        {store.project.categories.map(category => (
+          <CategoryColumn
+            key={category.id}
+            category={category}
+          />
+        ))}
       </section>
+      {Boolean(store.editingIssue) && <IssueEditPanel />}
     </div>
   )
-}
+})
