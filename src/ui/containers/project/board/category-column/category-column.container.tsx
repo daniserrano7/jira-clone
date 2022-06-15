@@ -3,7 +3,7 @@ import { Category } from "domain/category";
 import { createIssue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
-import { IssueCard } from "ui/containers/issue-card";
+import { IssueCard } from "./issue-card";
 import { ScrollArea } from "./scroll-area/scroll-area.container";
 import styles from "./category-column.module.scss";
 
