@@ -1,15 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, userMock1 } from "../user";
-import { Comment } from "../comment";
+import { Comment, CommentId } from "../comment";
 import { Priority } from "../priority";
 
-export type IssueId = string;
+export type IssueId = string; 
 export interface IssueData {
   id: Readonly<IssueId>;
   name: string;
   description?: string;
   reporter: User;
-  asignees: User[];
+  asignee: User;
   comments: Comment[];
   priority: Priority;
   //TODO: epic: Epic
@@ -21,10 +21,10 @@ export interface Issue extends IssueData {
   setName: (name: string) => void;
   setDescription: (description: string) => void;
   setPriority: (priority: Priority) => void;
-  // addAsignee: (asignee: User) => void;
-  // removeAsignee: (asigneeId: UserId) => void;
-  // addComment: (comment: Comment) => void;
-  // removeComment: (commentId: CommentId) => void;
+  setAsignee: (asignee: User) => void;
+  getComment: (commentId: CommentId) => Comment | undefined;
+  addComment: (comment: Comment) => void;
+  removeComment: (commentId: CommentId) => Comment | undefined;
 }
 
 export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
@@ -32,7 +32,7 @@ export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
   name: "",
   description: "",
   reporter: userMock1,
-  asignees: [],
+  asignee: userMock1,
   comments: [],
   priority: "low",
   ...data,
@@ -48,43 +48,22 @@ export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
   setPriority: function(priority: Priority) {
     this.priority = priority;
   },
+
+  setAsignee: function(asignee: User) {
+    this.asignee = asignee;
+  },
+  
+  getComment: function(commentId: CommentId) {
+    return this.comments.find(comment => comment.id === commentId);
+  },
+
+  addComment: function(comment: Comment) {
+    this.comments.push(comment);
+  },
+
+  removeComment: function(commentId: CommentId) {
+    this.comments = this.comments.filter(comment => comment.id !== commentId);
+    const removedComment = this.getComment(commentId);
+    return removedComment;
+  },
 });
-
-// export const addAsignee = (issue: Issue, asignee: User): Issue => {
-//   const updatedAsignees = [...issue.asignees, asignee];
-//   return {
-//     ...issue,
-//     asignees: updatedAsignees,
-//   }
-// }
-
-// export const removeAsignee = (issue: Issue, asigneeId: UserId): Issue => {
-//   const updatedAsignees = issue.asignees.filter(asignee => asignee.id !== asigneeId);
-//   return {
-//     ...issue,
-//     asignees: updatedAsignees,
-//   }
-// }
-
-// export const setPriority = (issue: Issue, priority: Priority): Issue => {
-//   return {
-//     ...issue,
-//     priority,
-//   }
-// }
-
-// export const addComment = (issue: Issue, comment: Comment): Issue => {
-//   const updatedComments = [...issue.comments, comment];
-//   return {
-//     ...issue,
-//     comments: updatedComments,
-//   }
-// }
-
-// export const removeComment = (issue: Issue, commentId: CommentId): Issue => {
-//   const updatedComments = issue.comments.filter(comment => comment.id !== commentId);
-//   return {
-//     ...issue,
-//     comments: updatedComments,
-//   }
-// }

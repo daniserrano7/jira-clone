@@ -1,62 +1,75 @@
-import { Project, setName, addUser, removeUser } from "./project";
-import { userMock1 } from "domain/user/";
+import { userMock1 } from "domain/user";
 import { categoryMock1 } from "domain/category";
+import { createProject } from "./project";
 
 describe("Project entity module", () => {
   it("Set project name", () => {
     const name = "Project name test";
-    const reference: Project = {
+    const reference = createProject({
       id: 1,
-      name: "",
+      name: "Original name",
       users: [userMock1],
       categories: [categoryMock1],
-    }
-    const expected: Project = {
+    });
+    const expected = createProject({
       id: 1,
       name,
       users: [userMock1],
       categories: [categoryMock1],
-    }
-    const result = setName(reference, name);
+    });
+    reference.setName(name);
 
-    expect(result).toEqual(expected);
-  })
+    expect(reference).toEqual(expected);
+  });
 
   it("Add user to project", () => {
-    const user = userMock1;
-    const reference: Project = {
+    const reference = createProject({
       id: 1,
-      name: "",
+      name: "Original name",
       users: [],
       categories: [categoryMock1],
-    }
-    const expected: Project = {
+    });
+    const expected = createProject({
       id: 1,
-      name: "",
-      users: [user],
+      name: "Original name",
+      users: [userMock1],
       categories: [categoryMock1],
-    }
-    const result = addUser(reference, user);
+    });
+    reference.addUser(userMock1);
 
-    expect(result).toEqual(expected);
-  })
+    expect(reference).toEqual(expected);
+  });
 
   it("Remove user from project", () => {
     const user = userMock1;
-    const reference: Project = {
+    const reference = createProject({
       id: 1,
-      name: "",
+      name: "Original name",
       users: [user],
       categories: [categoryMock1],
-    }
-    const expected: Project = {
+    });
+    const expected = createProject({
       id: 1,
-      name: "",
+      name: "Original name",
       users: [],
       categories: [categoryMock1],
-    }
-    const result = removeUser(reference, user.id);
+    });
+    const removedUser = reference.removeUser(user.id);
 
-    expect(result).toEqual(expected);
-  })
+    expect(reference).toEqual(expected);
+    expect(removedUser).toEqual(user);
+  });
+
+  it("Remove undefined user from project", () => {
+    const reference = createProject({
+      id: 1,
+      name: "Original name",
+      users: [userMock1],
+      categories: [categoryMock1],
+    });
+    const removedUser = reference.removeUser(999);
+
+    expect(reference).toEqual(reference);
+    expect(removedUser).toEqual(undefined);
+  });
 })

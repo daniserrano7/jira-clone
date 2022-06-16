@@ -1,38 +1,39 @@
-import { Category, addIssue, removeIssue } from "./category";
-import { issueMock1 } from "domain/issue";
+import { createIssue, issueMock1 } from "domain/issue";
+import { toPlainObject } from "domain/utils";
+import { Category, createCategory } from "./category";
 
 describe("Category entity module", () => {
   it("Add issue to category", () => {
     const issue = issueMock1;
-    const reference: Category = {
+    const reference: Category = createCategory({
       id: "TODO",
       name: "To Do",
       issues: [],
-    }
-    const expected: Category = {
+    });
+    const expected: Category = createCategory({
       id: "TODO",
       name: "To Do",
-      issues: [issue],
-    }
-    const result = addIssue(reference, issue);
+      issues: [createIssue(issue)],
+    });
+    reference.addIssue(issue);
 
-    expect(result).toEqual(expected);
-  })
+    expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
+  });
 
   it("Remove issue from category", () => {
     const issue = issueMock1;
-    const reference: Category = {
+    const reference: Category = createCategory({
       id: "TODO",
       name: "To Do",
       issues: [issue],
-    }
-    const expected: Category = {
+    });
+    const expected: Category = createCategory({
       id: "TODO",
       name: "To Do",
       issues: [],
-    }
-    const result = removeIssue(reference, issue.id);
+    });
+    reference.removeIssue(issue.id);
 
-    expect(result).toEqual(expected);
-  })
-})
+    expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
+  });
+});

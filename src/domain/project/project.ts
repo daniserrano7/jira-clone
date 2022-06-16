@@ -2,7 +2,6 @@ import { User, UserId } from "domain/user";
 import { Category } from "domain/category";
 
 type ProjectId = number;
-
 export interface ProjectData {
   id: ProjectId;
   name: string;
@@ -13,7 +12,7 @@ export interface ProjectData {
 export interface Project extends ProjectData {
   setName: (name: string) => void;
   addUser: (user: User) => void;
-  removeUser: (userId: UserId) => void;
+  removeUser: (userId: UserId) => User | undefined;
 }
 
 export const createProject = (data: ProjectData): Project => ({
@@ -29,5 +28,7 @@ export const createProject = (data: ProjectData): Project => ({
 
   removeUser: function(userId: UserId) {
     this.users = this.users.filter(user => user.id !== userId);
+    const user = this.users.find(user => user.id !== userId);
+    return user;
   },
 });
