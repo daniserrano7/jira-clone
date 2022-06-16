@@ -1,5 +1,6 @@
 import { userMock1 } from "domain/user";
 import { categoryMock1 } from "domain/category";
+import { toPlainObject } from "domain/utils";
 import { createProject } from "./project";
 
 describe("Project entity module", () => {
@@ -19,7 +20,7 @@ describe("Project entity module", () => {
     });
     reference.setName(name);
 
-    expect(reference).toEqual(expected);
+    expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
   });
 
   it("Add user to project", () => {
@@ -37,7 +38,7 @@ describe("Project entity module", () => {
     });
     reference.addUser(userMock1);
 
-    expect(reference).toEqual(expected);
+    expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
   });
 
   it("Remove user from project", () => {
@@ -56,7 +57,7 @@ describe("Project entity module", () => {
     });
     const removedUser = reference.removeUser(user.id);
 
-    expect(reference).toEqual(expected);
+    expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
     expect(removedUser).toEqual(user);
   });
 
@@ -69,7 +70,7 @@ describe("Project entity module", () => {
     });
     const removedUser = reference.removeUser(999);
 
-    expect(reference).toEqual(reference);
+    expect(toPlainObject(reference)).toEqual(toPlainObject(reference));
     expect(removedUser).toEqual(undefined);
   });
 })

@@ -27,8 +27,8 @@ export const createProject = (data: ProjectData): Project => ({
   },
 
   removeUser: function(userId: UserId) {
+    const user = this.users.find(user => user.id === userId);
     this.users = this.users.filter(user => user.id !== userId);
-    const user = this.users.find(user => user.id !== userId);
     return user;
   },
 });
