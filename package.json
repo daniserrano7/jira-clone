@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@radix-ui/react-dialog": "^0.1.7",
     "@radix-ui/react-scroll-area": "^0.1.4",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",

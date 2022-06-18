@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "infrastructure/store";
 import { Input } from "ui/components/input";
 import { AvatarList, avatarListInfo } from "ui/containers/project/board/avatar-list";
-import { IssueEditPanel } from "./issue-edit-panel";
 import { CategoryColumn } from "./category-column";
 import styles from "./board.module.scss";
 
@@ -31,7 +30,6 @@ export const Board = observer((): JSX.Element => {
           />
         ))}
       </section>
-      {Boolean(store.editingIssue) && <IssueEditPanel />}
     </div>
   )
 })
