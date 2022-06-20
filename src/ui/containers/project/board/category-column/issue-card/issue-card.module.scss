@@ -39,21 +39,5 @@
         font-weight: bold;
       }
     }
-
-    .priority {
-      display: flex;
-
-      &.high {
-        color: red;
-      }
-
-      &.medium {
-        color: orange;
-      }
-
-      &.low {
-        color: green;
-      }
-    }
   }
 }
