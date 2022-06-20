@@ -1,12 +1,15 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { UserId, usersMock } from "domain/user";
+import { UserId } from "domain/user";
+import { useStore } from "infrastructure/store";
 import { Avatar } from "ui/components/avatar";
 import { Icon } from "ui/components/icon";
 import styles from "./select-asignee.module.scss";
 
 export const SelectAsignee = (): JSX.Element => {
-  const defaultValue = usersMock[0].id;
+  const store = useStore();
+  const users = store.project.users;
+  const defaultValue = users[0].id;
   const [ selectValue, setSelectValue ] = useState<UserId>(defaultValue);
 
   return (
@@ -27,7 +30,7 @@ export const SelectAsignee = (): JSX.Element => {
       <Select.Content className={styles.content}>
         <Select.ScrollUpButton />
         <Select.Viewport>
-          {usersMock.map((user, index) => (
+          {users.map((user, index) => (
             <Select.Item
               key={index} 
               value={user.id} 
