@@ -1,0 +1,17 @@
+@import "/src/ui/styles";
+
+.container {
+  display: flex;
+
+  &.high {
+    color: red;
+  }
+
+  &.medium {
+    color: orange;
+  }
+
+  &.low {
+    color: green;
+  }
+}
