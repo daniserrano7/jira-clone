@@ -1,15 +1,23 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as Select from "@radix-ui/react-select";
+import { usersMock } from "domain/user";
 import { Comment, commentMock1, commentMock2 } from "domain/comment";
+import { priorityList } from "domain/priority";
+import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
+import { SelectStatus } from "./select-status";
+import { SelectPriority } from "./select-priority";
+import { SelectAsignee } from "./select-asignee";
 import styles from "./issue-edit-panel.module.scss";
 
 
 const COMMENT_PLACEHOLDER = "Add your comment...";
 
 export const IssueEditPanel = (): JSX.Element => {
+  const store = useStore();
   const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
   const [ comments, setComments ] = useState<Comment[]>([commentMock1, commentMock2]);
@@ -72,7 +80,7 @@ export const IssueEditPanel = (): JSX.Element => {
               </Dialog.Close>
             </div>
             <div className={styles.body}>
-              <section>
+              <section className={styles.left_column}>
                 <Dialog.Title>
                   <input
                     placeholder="Write the title" 
@@ -101,14 +109,30 @@ export const IssueEditPanel = (): JSX.Element => {
                   </ul>
                 </div>
               </section>
-              <section>
+              <section className={styles.right_column}>
                 <div>
-                  <p>Status</p>
-
+                  <p className={styles.select_label}>Status</p>
+                  <SelectStatus />
                 </div>
-                <div>REPORTER</div>
-                <div>ASIGNEE</div>
-                <div>PRIORITY</div>
+                <div>
+                  <p className={styles.select_label}>Priority</p>
+                  <SelectPriority />
+                </div>
+                <div>
+                  <p className={styles.select_label}>Asignee</p>
+                  <SelectAsignee />
+                </div>
+                <div>
+                  <p className={styles.select_label}>Reporter</p>
+                  <div className={styles.reporter}>
+                    <Avatar 
+                      size={32}
+                      image="default-avatar.png"
+                      tooltip={store.user.name}
+                    />
+                    <p>{store.user.name}</p>
+                  </div>
+                </div>
               </section>
             </div>
             <Dialog.Close />

@@ -83,148 +83,172 @@
       margin: 0;
     }
 
-    $inline-padding: 4;
+    .left_column {
+      $inline-padding: 4;
 
-    input,
-    textarea {
-      width: 100%;
-      padding: spacing(6) spacing($inline-padding);
-      color: color(font-main);
-      border-radius: 6px;
-      border: none;
-      box-sizing: border-box;
-      outline-color: white;
-      font-family: Arial, Helvetica, sans-serif;
-      transition: .2s ease-in-out;
-      
-      &:hover {
-        background-color: color(grey-300);
-      }
-  
-      &:focus {
-        outline-color: color(primary-main);
-        background-color: white;
-      }
-    }
-
-    textarea {
-      font-size: 16px;
-      resize: none;
-    }
-
-    .title {
-      font-size: 24px;
-    }
-  
-    .label {
-      margin-bottom: spacing(2);
-      color: color(font-main);
-      font-weight: 600;
-    }
-  
-    .description {
-      font-weight: 600;
-    }
-
-    .title,
-    .description {
-      margin-left: spacing(-#{$inline-padding});
-    }
-
-    .comments {
-      margin-top: spacing(12);
-
-      .edit_comment {
+      input,
+      textarea {
         width: 100%;
-      
-        textarea {
-          &:not(:focus) {
-            outline: 1px solid color(grey-400);
-            background-color: color(grey-200);
-          }
+        padding: spacing(6) spacing($inline-padding);
+        color: color(font-main);
+        border-radius: 6px;
+        border: none;
+        box-sizing: border-box;
+        outline-color: white;
+        font-family: Arial, Helvetica, sans-serif;
+        transition: .2s ease-in-out;
+        
+        &:hover {
+          background-color: color(grey-300);
         }
-      
-        button {
-          margin-top: spacing(4);
-          padding: spacing(5) spacing(7);
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-      
-          &:not(:last-child) {
-            margin-right: spacing(4);
+    
+        &:focus {
+          outline-color: color(primary-main);
+          background-color: white;
+        }
+      }
+  
+      textarea {
+        font-size: 16px;
+        resize: none;
+      }
+  
+      .title {
+        font-size: 24px;
+      }
+    
+      .label {
+        margin-bottom: spacing(2);
+        color: color(font-main);
+        font-weight: 600;
+      }
+    
+      .description {
+        font-weight: 600;
+      }
+  
+      .title,
+      .description {
+        margin-left: spacing(-#{$inline-padding});
+      }
+  
+      .comments {
+        margin-top: spacing(12);
+  
+        .edit_comment {
+          width: 100%;
+        
+          textarea {
+            &:not(:focus) {
+              outline: 1px solid color(grey-400);
+              background-color: color(grey-200);
+            }
           }
-
-          &.save {
-            background-color: color(primary-main);
-            color: white;
-
-            &:hover {
-              background-color: lighten($color: color(primary-main), $amount: 5);
+        
+          button {
+            margin-top: spacing(4);
+            padding: spacing(5) spacing(7);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        
+            &:not(:last-child) {
+              margin-right: spacing(4);
+            }
+  
+            &.save {
+              background-color: color(primary-main);
+              color: white;
+  
+              &:hover {
+                background-color: lighten($color: color(primary-main), $amount: 5);
+              }
             }
           }
         }
-      }
-  
-      .create_comment {
-        display: flex;
-        align-items: flex-start;
-        gap: spacing(12);
-        margin-top: spacing(8);
     
-        .comment_placeholder {
-          outline: 2px solid color(grey-400);
-          color: color(font-light);
-          cursor: pointer;
-    
-          &:hover {
-            outline-color: color(grey-700);
-            color: darken($color: color(font-light), $amount: 60);
-            background-color: inherit;
-          }
-        }
-      }
-  
-      .comment_list {
-        list-style: none;
-        margin-top: spacing(16);
-        padding: 0;
-  
-        li:not(:last-child) {
-          margin-bottom: spacing(12);
-        }
-  
-        .comment {
+        .create_comment {
           display: flex;
+          align-items: flex-start;
           gap: spacing(12);
-  
-          .user_name {
-            display: inline-block;
-            margin-right: spacing(8);
-            margin-bottom: spacing(6);
+          margin-top: spacing(8);
+      
+          .comment_placeholder {
+            outline: 2px solid color(grey-400);
+            color: color(font-light);
+            cursor: pointer;
+      
+            &:hover {
+              outline-color: color(grey-700);
+              color: darken($color: color(font-light), $amount: 60);
+              background-color: inherit;
+            }
           }
-  
-          .idle {
-            .buttons_container {
-              margin-top: spacing(4);
-  
-              button {
-                padding: 0;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
+        }
     
-                &:hover {
-                  text-decoration: underline;
+        .comment_list {
+          list-style: none;
+          margin-top: spacing(16);
+          padding: 0;
+    
+          li:not(:last-child) {
+            margin-bottom: spacing(12);
+          }
+    
+          .comment {
+            display: flex;
+            gap: spacing(12);
+    
+            .user_name {
+              display: inline-block;
+              margin-right: spacing(8);
+              margin-bottom: spacing(6);
+            }
+    
+            .idle {
+              .buttons_container {
+                margin-top: spacing(4);
+    
+                button {
+                  padding: 0;
+                  background-color: transparent;
+                  border: none;
+                  cursor: pointer;
+      
+                  &:hover {
+                    text-decoration: underline;
+                  }
+                }
+      
+                .separator {
+                  margin-inline: spacing(4);
                 }
               }
-    
-              .separator {
-                margin-inline: spacing(4);
-              }
             }
           }
         }
+      }
+    }
+
+    .right_column {
+      > div {
+        margin-bottom: spacing(20);
+      }
+
+      .select_label {
+        font-weight: bold;
+        margin-bottom: spacing(2);
+      }
+
+      .reporter {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: spacing(4);
+        margin-top: spacing(2);
+        padding: spacing(2) spacing(7) spacing(2) spacing(2);
+        border-radius: 999px;
+        background-color: color(grey-300);
       }
     }
   }
