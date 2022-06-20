@@ -1,10 +1,13 @@
 $palette: (
   'primary-main': #0052cc,
   'primary-light': #deebff,
+  'primary-hover': lighten($color: #0052cc, $amount: 5),
   'secondary-main': #403294,
   'secondary-light': #EAE6FF,
   'background-default': #fff,
   'focus': #4c9aff,
+  'success-main': #00875A,
+  'success-hover': lighten($color: #00875A, $amount: 5),
   'grey-100': #fafbfc,
   'grey-200': #f4f5f7,
   'grey-300': #ebecf0,
@@ -14,6 +17,8 @@ $palette: (
   'grey-700': rgb(190, 190, 190),
   'font-main': #172b4d,
   'font-light': #5e6c84,
+  'font-success-main': #006644,
+  'font-success-light': #E3FCEF,
   'icon': #344563
 );
 
