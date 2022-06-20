@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { User, userMock1 } from "../user";
+import { User } from "../user";
+import { CategoryId } from "domain/category";
 import { Comment, CommentId } from "../comment";
 import { Priority } from "../priority";
 
@@ -8,6 +9,7 @@ export interface IssueData {
   id: Readonly<IssueId>;
   name: string;
   description?: string;
+  categoryId: CategoryId;
   reporter: User;
   asignee: User;
   comments: Comment[];
@@ -20,6 +22,7 @@ export interface IssueData {
 export interface Issue extends IssueData {
   setName: (name: string) => void;
   setDescription: (description: string) => void;
+  setCategoryId: (categoryId: CategoryId) => void;
   setPriority: (priority: Priority) => void;
   setAsignee: (asignee: User) => void;
   getComment: (commentId: CommentId) => Comment | undefined;
@@ -27,14 +30,9 @@ export interface Issue extends IssueData {
   removeComment: (commentId: CommentId) => Comment | undefined;
 }
 
-export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
+export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
   id: uuidv4(),
-  name: "",
   description: "",
-  reporter: userMock1,
-  asignee: userMock1,
-  comments: [],
-  priority: "low",
   ...data,
 
   setName: function(name: string) {
@@ -43,6 +41,10 @@ export const createIssue = (data: Partial<Omit<IssueData, "id">>): Issue => ({
 
   setDescription: function(description: string) {
     this.description = description;
+  },
+
+  setCategoryId: function(categoryId: CategoryId) {
+    this.categoryId = categoryId;
   },
 
   setPriority: function(priority: Priority) {

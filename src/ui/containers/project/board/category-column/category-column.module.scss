@@ -15,10 +15,23 @@
     left: 0;
     display: flex;
     justify-content: space-between;
-
     padding: spacing(5) spacing(6) spacing(8);
     z-index: 9;
     transition: .2s ease-in-out;
+
+    .create_issue {
+      display: flex;
+      padding: 4px;
+      border: none;
+      border-radius: 4px;
+      background-color: transparent;
+      color: grey;
+      cursor: pointer;
+    
+      &:hover {
+        background-color: color(grey-400);
+      }
+    }
   }
 
   .body {

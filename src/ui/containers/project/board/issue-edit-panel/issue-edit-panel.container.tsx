@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Comment, commentMock1, commentMock2 } from "domain/comment";
+import { Comment, commentMock1, commentMock2, createComment } from "domain/comment";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
@@ -13,17 +13,12 @@ import styles from "./issue-edit-panel.module.scss";
 
 const COMMENT_PLACEHOLDER = "Add your comment...";
 
-export const IssueEditPanel = (): JSX.Element => {
+export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => {
   const store = useStore();
-  const [ isOpen, setIsOpen ] = useState<boolean>(false);
   const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
   const [ comments, setComments ] = useState<Comment[]>([commentMock1, commentMock2]);
 
-  const open = () => {
-    setIsDeleting(false);
-    setIsOpen(true);
-  }
-  const close = () => setIsOpen(false);
+  const close = () => store.isEditingIssue = false;
 
   const deleteIssue = () => {
     setIsDeleting(true);
@@ -31,6 +26,10 @@ export const IssueEditPanel = (): JSX.Element => {
       close();
       setIsDeleting(false);
     }, 1180);
+  }
+
+  const addComment = (comment: Comment): void => {
+    setComments([...comments, comment]);
   }
 
   const renderDeleteIcon = (): JSX.Element => {
@@ -56,9 +55,6 @@ export const IssueEditPanel = (): JSX.Element => {
 
   return (
     <Dialog.Root open={isOpen}>
-      <Dialog.Trigger onClick={open} className={styles.trigger}>
-        <Icon name="add" size={24} />
-      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay}>
           <Dialog.Content onPointerDownOutside={close} className={styles.content}>
@@ -95,7 +91,7 @@ export const IssueEditPanel = (): JSX.Element => {
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
                   <div>
-                    <CreateComment />
+                    <CreateComment addComment={addComment} />
                   </div>
                   <ul className={styles.comment_list}>
                     {comments.map((comment, index) => (
@@ -140,11 +136,23 @@ export const IssueEditPanel = (): JSX.Element => {
   )
 }
 
-const CreateComment = (): JSX.Element => {
+interface IssueEditPanelProps {
+  isOpen: boolean;
+}
+
+const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element => {
+  const store = useStore();
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const edit = () => setIsEditing(true);
-  const save = () => setIsEditing(false);
+  const save = () => {
+    const comment = createComment({
+      user: store.user,
+      message: "Test comment",
+    });
+    addComment(comment);
+    setIsEditing(false);
+  }
   const cancel = () => setIsEditing(false);
 
   return (
@@ -172,6 +180,10 @@ const CreateComment = (): JSX.Element => {
       }
     </div>
   )
+}
+
+interface CreateCommentProps {
+  addComment: (comment: Comment) => void;
 }
 
 const CommentComponent = ({ comment }: CommentComponentProps): JSX.Element => {

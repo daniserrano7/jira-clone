@@ -13,6 +13,7 @@ describe("Issue entity module", () => {
     const reference = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -21,6 +22,7 @@ describe("Issue entity module", () => {
     const expected = createIssue({
       name,
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -36,6 +38,7 @@ describe("Issue entity module", () => {
     const reference = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -44,6 +47,7 @@ describe("Issue entity module", () => {
     const expected = createIssue({
       name: "Refactor entities id to UUID",
       description,
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -59,6 +63,7 @@ describe("Issue entity module", () => {
     const reference = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock1,
       comments: [],
@@ -67,6 +72,7 @@ describe("Issue entity module", () => {
     const expected = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -81,6 +87,7 @@ describe("Issue entity module", () => {
     const reference = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],
@@ -89,6 +96,7 @@ describe("Issue entity module", () => {
     const expected = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [commentMock1],
@@ -102,6 +110,7 @@ describe("Issue entity module", () => {
     const reference = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [commentMock1],
@@ -110,6 +119,7 @@ describe("Issue entity module", () => {
     const expected = createIssue({
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
+      categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
       comments: [],

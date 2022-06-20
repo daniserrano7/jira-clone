@@ -17,7 +17,7 @@ export const IssueCard = ({ issue }: IssueCardProps): JSX.Element => {
           </span>
           <span className={styles.code}>Issue 1</span>
         </span>
-        <PriorityIcon priority={issue.priority} />
+        <PriorityIcon priority={issue.priority} size={14} />
       </div>
     </div>
   )

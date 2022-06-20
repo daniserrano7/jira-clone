@@ -3,10 +3,12 @@ import { useStore } from "infrastructure/store";
 import { Input } from "ui/components/input";
 import { AvatarList, avatarListInfo } from "ui/containers/project/board/avatar-list";
 import { CategoryColumn } from "./category-column";
+import { IssueEditPanel } from "./issue-edit-panel";
 import styles from "./board.module.scss";
 
 export const Board = observer((): JSX.Element => {
   const store = useStore();
+
   return (
     <div className={styles.container}>
       <section className={styles.header}>
@@ -30,6 +32,7 @@ export const Board = observer((): JSX.Element => {
           />
         ))}
       </section>
+      <IssueEditPanel isOpen={store.isEditingIssue} />
     </div>
   )
-})
+});

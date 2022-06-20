@@ -68,7 +68,7 @@ describe("Project entity module", () => {
       users: [userMock1],
       categories: [categoryMock1],
     });
-    const removedUser = reference.removeUser(999);
+    const removedUser = reference.removeUser("abcxyz");
 
     expect(toPlainObject(reference)).toEqual(toPlainObject(reference));
     expect(removedUser).toEqual(undefined);
