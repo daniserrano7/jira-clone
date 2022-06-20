@@ -1,5 +1,6 @@
 import { Issue } from "domain/issue";
 import { Icon } from "ui/components/icon";
+import { PriorityIcon } from "ui/components/priority-icon";
 import styles from "./issue-card.module.scss";
 
 
@@ -16,12 +17,7 @@ export const IssueCard = ({ issue }: IssueCardProps): JSX.Element => {
           </span>
           <span className={styles.code}>Issue 1</span>
         </span>
-        <span className={`
-          ${styles.priority}
-          ${styles[issue.priority]}
-        `}>
-          <Icon name="priority" size={16} />
-        </span>
+        <PriorityIcon priority={issue.priority} />
       </div>
     </div>
   )
