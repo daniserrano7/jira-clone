@@ -1,86 +1,40 @@
 @import "/src/ui/styles";
+@import "../select.module.scss";
 
 .trigger {
-  display: flex;
-  align-items: center;
-  padding: 0 spacing(3) 0 spacing(5);
-  border: none;
-  border-radius: 4px;
-  background-color: color(grey-400);
-  font-size: 14px;
-  font-weight: 600;
-  color: darken($color: grey, $amount: 10);
-  cursor: pointer;
-
-  &:hover {
-    background-color: darken($color: color(grey-400), $amount: 5);
-  }
-
   &.in_progress {
     background-color: color(primary-main);
     color: white;
+
+    &:hover {
+      background-color: color(primary-hover);
+    }
   }
 
   &.done {
     background-color: color(success-main);
     color: white;
-  }
 
-  .icon {
-    transform: rotate(90deg);
+    &:hover {
+      background-color: color(success-hover);
+    }
   }
 }
 
 .content {
-  background-color: white;
-  border: 1px solid color(grey-400);
-  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.5);
-  margin-top: spacing(-1);
-  padding: spacing(2) 0;
-
   .item {
-    position: relative;
-    user-select: none;
-    border-left: 3px solid transparent;
-    padding: spacing(3) spacing(4) spacing(3) spacing(15);
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-  
-    &:hover {
-      border-left-color: color(primary-main);
-      background-color: color(grey-200);
-    }
-  
     > span:last-child {
-      color: grey;
       background-color: color(grey-300);
-      padding: 0 spacing(3);
-      border-radius: 4px;
     }
-  
+
     &.in_progress > span:last-child {
       color: color(primary-main);
       background-color: color(primary-light);
     }
   
     &.done > span:last-child {
-      color: color(font-success);
-      background-color: color(success-light);
-    }
-
-    .indicator {
-      $size: 7px;
-      
-      position: absolute;
-      left: spacing(6);
-      top: 50%;
-      transform: translateY(-50%);
-      width: $size;
-      height: $size;
-      border-radius: 50%;
-      background-color: color(primary-main);
+      color: color(font-success-main);
+      background-color: color(font-success-light);
     }
   }
 }

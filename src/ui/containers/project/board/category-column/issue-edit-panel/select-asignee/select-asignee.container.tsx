@@ -1,21 +1,17 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { usersMock } from "domain/user";
+import { UserId, usersMock } from "domain/user";
 import { Avatar } from "ui/components/avatar";
 import { Icon } from "ui/components/icon";
 import styles from "./select-asignee.module.scss";
 
 export const SelectAsignee = (): JSX.Element => {
   const defaultValue = usersMock[0].id;
-  const [ selectValue, setSelectValue ] = useState<string>(defaultValue);
-
-  const onValueChange = (value: string): void => {
-    setSelectValue(value);
-  }
+  const [ selectValue, setSelectValue ] = useState<UserId>(defaultValue);
 
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
-      <Select.Trigger className={`${styles.trigger} ${styles.trigger_asignee} ${styles[selectValue]}`}>
+    <Select.Root defaultValue={defaultValue} onValueChange={setSelectValue}>
+      <Select.Trigger className={`${styles.trigger} ${styles[selectValue]}`}>
         <div className={styles.avatar}>
           <Avatar 
             size={32}
