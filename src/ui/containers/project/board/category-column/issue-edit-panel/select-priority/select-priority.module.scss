@@ -1,0 +1,64 @@
+@import "/src/ui/styles";
+
+
+.trigger {
+  display: flex;
+  align-items: center;
+  padding: 0 spacing(3) 0 spacing(5);
+  border: none;
+  border-radius: 4px;
+  background-color: color(grey-400);
+  font-size: 14px;
+  font-weight: 600;
+  color: darken($color: grey, $amount: 10);
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($color: color(grey-400), $amount: 5);
+  }
+
+  &.trigger_asignee {
+    padding: spacing(3) spacing(4);
+  }
+
+  .avatar {
+    display: flex;
+    margin-right: spacing(4);
+  }
+
+  .icon {
+    transform: rotate(90deg);
+  }
+}
+
+
+.content {
+  background-color: white;
+  border: 1px solid color(grey-400);
+  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.5);
+  margin-top: spacing(-1);
+  padding: spacing(2) 0;
+
+  .item {
+    display: flex;
+    align-items: center;
+    border-left: 3px solid transparent;
+    padding: spacing(3) spacing(4);
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    user-select: none;
+    cursor: pointer;
+  
+    &:hover {
+      border-left-color: color(primary-main);
+      background-color: color(grey-200);
+    }
+  
+    > span {
+      color: grey;
+      padding: 0 spacing(3);
+      border-radius: 4px;
+    }
+  }
+}
