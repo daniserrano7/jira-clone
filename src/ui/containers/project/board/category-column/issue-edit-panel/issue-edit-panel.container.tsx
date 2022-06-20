@@ -1,16 +1,13 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import * as Select from "@radix-ui/react-select";
-import { usersMock } from "domain/user";
 import { Comment, commentMock1, commentMock2 } from "domain/comment";
-import { priorityList } from "domain/priority";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
-import { SelectStatus } from "./select-status";
-import { SelectPriority } from "./select-priority";
-import { SelectAsignee } from "./select-asignee";
+import { SelectStatus } from "./select/select-status";
+import { SelectPriority } from "./select/select-priority";
+import { SelectAsignee } from "./select/select-asignee";
 import styles from "./issue-edit-panel.module.scss";
 
 
