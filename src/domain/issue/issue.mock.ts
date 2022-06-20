@@ -35,11 +35,9 @@ export const issueMock4: Issue = createIssue({
   reporter: userMock2,
   asignee: userMock2,
   comments: [createComment({
-    // id: uuidv4(),
     user: userMock2,
     message: "This should be implemented ASAP",
   }), createComment({
-    // id: uuidv4(),
     user: userMock1,
     message: "Ok, I'm on it",
   })],

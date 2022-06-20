@@ -1,13 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User } from "../user";
 
-// jest.mock("uuid", () => ({
-//   v4: () => "some-uuid",
-// }));
-
-// console.log(uuidv4.v4())
-// console.log(uuidv4.v4())
-
 export type CommentId = string;
 
 export interface CommentData {
