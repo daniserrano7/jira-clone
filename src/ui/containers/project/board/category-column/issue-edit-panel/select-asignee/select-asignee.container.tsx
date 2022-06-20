@@ -37,6 +37,7 @@ export const SelectAsignee = (): JSX.Element => {
               value={user.id} 
               className={`${styles.item} ${styles[user.id]}`}
             >
+              <Select.ItemIndicator className={styles.indicator} />
               <Avatar 
                 size={32}
                 image="default-avatar.png"
@@ -45,7 +46,6 @@ export const SelectAsignee = (): JSX.Element => {
               <Select.ItemText>
                 {user.name}
               </Select.ItemText>
-              {/* <Select.ItemIndicator /> */}
             </Select.Item>
           ))}
           <Select.Separator />

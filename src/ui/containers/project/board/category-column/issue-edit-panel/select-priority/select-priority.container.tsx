@@ -1,15 +1,16 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { priorityList } from "domain/priority";
+import { Priority, priorityList } from "domain/priority";
 import { Icon } from "ui/components/icon";
 import { PriorityIcon } from "ui/components/priority-icon";
 import styles from "./select-priority.module.scss";
 
 export const SelectPriority = (): JSX.Element => {
   const defaultValue = priorityList[0].id;
-  const [ selectValue, setSelectValue ] = useState<string>(defaultValue);
+  const [ selectValue, setSelectValue ] = useState<Priority>(defaultValue);
 
-  const onValueChange = (value: string): void => {
+  const onValueChange = (value: Priority): void => {
+    console.log("VALUE: ", value);
     setSelectValue(value);
   }
 
@@ -18,9 +19,9 @@ export const SelectPriority = (): JSX.Element => {
       <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
         <Select.Trigger className={`${styles.trigger} ${styles.trigger_asignee} ${styles[selectValue]}`}>
           <div className={styles.avatar}>
-            <Icon name="priority" size={18} />
+            <PriorityIcon priority={selectValue} size={14} />
           </div>
-          <Select.Value style={{ marginLeft: "8px" }} className={styles.value} />
+          <Select.Value />
           <Select.Icon className={styles.icon}>
             <Icon name="arrow" size={28} />
           </Select.Icon>
@@ -34,7 +35,8 @@ export const SelectPriority = (): JSX.Element => {
                 value={priority.id} 
                 className={`${styles.item} ${styles[priority.id]}`}
               >
-                <PriorityIcon priority={priority.id} size={22} />
+                <Select.ItemIndicator className={styles.indicator} />
+                <PriorityIcon priority={priority.id} size={14} />
                 <Select.ItemText>
                   {priority.label}
                 </Select.ItemText>

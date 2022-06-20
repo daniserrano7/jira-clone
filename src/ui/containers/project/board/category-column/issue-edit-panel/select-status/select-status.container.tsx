@@ -40,7 +40,8 @@ export const SelectStatus = (): JSX.Element => {
               value={item.value} 
               className={`${styles.item} ${styles[item.value.toLowerCase()]}`}
             >
-              <Select.ItemText className={styles.item_text}>
+              <Select.ItemIndicator className={styles.indicator} />
+              <Select.ItemText>
                 {item.label}
               </Select.ItemText>
             </Select.Item>

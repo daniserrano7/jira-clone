@@ -39,9 +39,10 @@
   padding: spacing(2) 0;
 
   .item {
+    position: relative;
     user-select: none;
     border-left: 3px solid transparent;
-    padding: spacing(3) spacing(4) spacing(3) spacing(6);
+    padding: spacing(3) spacing(4) spacing(3) spacing(15);
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
@@ -52,21 +53,34 @@
       background-color: color(grey-200);
     }
   
-    > span {
+    > span:last-child {
       color: grey;
       background-color: color(grey-300);
       padding: 0 spacing(3);
       border-radius: 4px;
     }
   
-    &.in_progress > span {
+    &.in_progress > span:last-child {
       color: color(primary-main);
       background-color: color(primary-light);
     }
   
-    &.done > span {
+    &.done > span:last-child {
       color: color(font-success);
       background-color: color(success-light);
+    }
+
+    .indicator {
+      $size: 7px;
+      
+      position: absolute;
+      left: spacing(6);
+      top: 50%;
+      transform: translateY(-50%);
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      background-color: color(primary-main);
     }
   }
 }
