@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Comment, commentMock1, commentMock2 } from "domain/comment";
 import { useStore } from "infrastructure/store";
-import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
-import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
+import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
@@ -16,42 +15,16 @@ import styles from "./issue-panel.module.scss";
 
 export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => {
   const store = useStore();
-  const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
   const [ comments, setComments ] = useState<Comment[]>([commentMock1, commentMock2]);
 
   const close = () => store.isEditingIssue = false;
 
   const deleteIssue = () => {
-    setIsDeleting(true);
-    setTimeout(() => {
-      close();
-      setIsDeleting(false);
-    }, 1180);
+    close();
   }
 
   const addComment = (comment: Comment): void => {
     setComments([...comments, comment]);
-  }
-
-  const renderDeleteIcon = (): JSX.Element => {
-    const StaticIcon = () => (
-      <span style={{ display: isDeleting ? "none" : "flex"}}>
-        <Icon name="delete" size={24} />
-      </span>
-    );
-
-    const AnimatedIcon = () => (
-      <img
-        src={deleteAnimatedIcon}
-        width={24} 
-        height={24} 
-        style={{ display: isDeleting ? "flex" : "none"}}
-      />
-    );
-    
-    return isDeleting
-      ? <AnimatedIcon />
-      : <StaticIcon />
   }
 
   return (
@@ -59,23 +32,7 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay}>
           <Dialog.Content onPointerDownOutside={close} className={styles.content}>
-            <div className={styles.header}>
-              <span className={styles.issue_type}>
-                <span className={styles.icon}>
-                  <Icon name="task" size={16} />
-                </span>
-                <span className={styles.code}>Issue 1</span>
-              </span>
-              <button 
-                onClick={deleteIssue} 
-                className={`${styles.header_button} ${styles.delete_button}`}
-              >
-                {renderDeleteIcon()}
-              </button>
-              <Dialog.Close onClick={close} className={styles.header_button}>
-                <Icon name="close" size={24} />
-              </Dialog.Close>
-            </div>
+            <PanelHeader onDeleteIssue={deleteIssue} />
             <div className={styles.body}>
               <section className={styles.left_column}>
                 <Dialog.Title>

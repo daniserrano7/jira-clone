@@ -26,44 +26,6 @@
   box-sizing: border-box;
   z-index: 999;
 
-  .header {
-    display: flex;
-
-    > *:first-child {
-      flex-grow: 1;
-    }
-
-    .issue_type {
-      display: flex;
-      align-items: center;
-
-      .icon {
-        display: flex;
-        align-items: center;
-      }
-
-      .code {
-        margin-left: 5px;
-        font-size: 16px;
-      }
-    }
-
-    .header_button {
-      padding: 6px;
-      display: flex;
-      margin-left: 12px;
-      background: transparent;
-      border: none;
-      border-radius: 4px;
-      color: color(icon);
-      cursor: pointer;
-      
-      &:hover {
-        background-color: color(grey-300);
-      }
-    }
-  }
-
   .body {
     display: grid;
     grid-template-columns: 6fr 4fr;
@@ -98,13 +60,10 @@
         color: color(font-main);
         font-weight: 600;
       }
-
-      .description {
-        margin-left: spacing(-#{$inline-padding});
-      }
     
       .description {
-        margin: 0;
+        margin: 0 0 0 spacing(-#{$inline-padding});
+        // font-family: $font-bold !important;
 
         textarea {
           $idle-height: calc(16px + 26px); // font-size + vertical padding
