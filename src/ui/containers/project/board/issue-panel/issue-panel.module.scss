@@ -56,21 +56,20 @@
       }
     
       .label {
-        margin: 0 0 spacing(2);
+        margin: 0;
         color: color(font-main);
         font-weight: 600;
       }
     
       .description {
         margin: 0 0 0 spacing(-#{$inline-padding});
-        // font-family: $font-bold !important;
 
         textarea {
-          $idle-height: calc(16px + 26px); // font-size + vertical padding
+          $idle-height: calc(16px + 28px); // font-size + vertical padding
 
-          font-weight: 600;
           max-height: $idle-height;
           min-height: $idle-height;
+          font-family: $font-normal;
           transition: .3s ease-in-out;
 
           &:focus {
