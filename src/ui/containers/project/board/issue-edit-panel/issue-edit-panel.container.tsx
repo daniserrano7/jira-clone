@@ -1,17 +1,17 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Comment, commentMock1, commentMock2, createComment } from "domain/comment";
+import { Comment, commentMock1, commentMock2 } from "domain/comment";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
+import { CreateComment } from "./comment/create-comment";
+import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
 import { SelectPriority } from "./select/select-priority";
 import { SelectAsignee } from "./select/select-asignee";
 import styles from "./issue-edit-panel.module.scss";
 
-
-const COMMENT_PLACEHOLDER = "Add your comment...";
 
 export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => {
   const store = useStore();
@@ -96,7 +96,7 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
                   <ul className={styles.comment_list}>
                     {comments.map((comment, index) => (
                       <li key={index}>
-                        <CommentComponent comment={comment} />
+                        <ViewComment comment={comment} />
                       </li>
                     ))}
                   </ul>
@@ -138,118 +138,4 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
 
 interface IssueEditPanelProps {
   isOpen: boolean;
-}
-
-const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element => {
-  const store = useStore();
-  const [ isEditing, setIsEditing ] = useState<boolean>(false);
-
-  const edit = () => setIsEditing(true);
-  const save = () => {
-    const comment = createComment({
-      user: store.user,
-      message: "Test comment",
-    });
-    addComment(comment);
-    setIsEditing(false);
-  }
-  const cancel = () => setIsEditing(false);
-
-  return (
-    <div className={styles.create_comment}>
-      <Avatar 
-        size={32}
-        image="default-avatar.png"
-        tooltip="User"
-      />
-      {isEditing
-        ? (
-          <EditComment 
-            message=""
-            save={save}
-            cancel={cancel}
-          />
-        )
-        : (
-          <textarea 
-            placeholder={COMMENT_PLACEHOLDER}
-            onClick={edit}
-            className={styles.comment_placeholder}
-          />
-        )
-      }
-    </div>
-  )
-}
-
-interface CreateCommentProps {
-  addComment: (comment: Comment) => void;
-}
-
-const CommentComponent = ({ comment }: CommentComponentProps): JSX.Element => {
-  const [ isEditing, setIsEditing ] = useState<boolean>(false);
-
-  const edit = () => setIsEditing(true);
-  const remove = () => console.log("DELETING");
-  const save = () => setIsEditing(false);
-  const cancel = () => setIsEditing(false);
-
-  const IdleComment = (): JSX.Element => (
-    <div className={styles.idle}>
-      <p>{comment.message}</p>
-      <div className={styles.buttons_container}>
-        <button onClick={edit}>Edit</button>
-        <span className={styles.separator}>{"·"}</span>
-        <button onClick={remove}>Delete</button>
-      </div>
-    </div>
-  )
-
-  return (
-    <div className={styles.comment}>
-      <Avatar 
-        size={32}
-        image="default-avatar.png"
-        tooltip={comment.user.name}
-      />
-      <div style={{ width: "100%"}}>
-        <p className={styles.user_name}>{comment.user.name}</p>
-        <span>a day ago</span>
-        {isEditing
-          ? <EditComment
-              message={comment.message} 
-              save={save} 
-              cancel={cancel} 
-            />
-          : <IdleComment />
-        }
-      </div>
-    </div>
-  )
-}
-
-interface CommentComponentProps {
-  comment: Comment;
-}
-
-const EditComment = ({ message, save, cancel }: EditCommentProps): JSX.Element => (
-  <div className={styles.edit_comment}>
-    <textarea
-      ref={ref => ref && ref.focus()}
-      onFocus={e => e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
-      defaultValue={message}
-      placeholder={COMMENT_PLACEHOLDER}
-      autoFocus
-    />
-    <div>
-      <button className={styles.save} onClick={save}>Save</button>
-      <button className={styles.cancel} onClick={cancel}>Cancel</button>
-    </div>
-  </div>
-);
-
-interface EditCommentProps {
-  message: string;
-  save: () => void;
-  cancel: () => void;
 }
