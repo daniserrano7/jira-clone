@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useStore } from "infrastructure/store";
 import { Icon, IconName } from "ui/components/icon";
 import { navItems } from "./sidebar.info";
 import imageProject from "ui/assets/images/default-project.png";
 import styles from "./sidebar.module.scss";
 
 export const Sidebar = (): JSX.Element => {
+  const store = useStore();
   const [ isOpen, setIsOpen ] = useState<boolean>(true);
   const [ currentItem, setCurrentItem ] = useState<number>(0);
 
@@ -18,22 +20,23 @@ export const Sidebar = (): JSX.Element => {
         <section className={styles.header}>
           <img
             src={imageProject}
-            width={24}
-            height={24}
+            width={28}
+            height={28}
             alt="project"
           />
           <div className={styles.project}>
-            <span className={styles.project_name}>My project</span>
-            <span className={styles.project_description}>Software project</span>
+            <span className={styles.name}>{store.project.name}</span>
+            <span className={styles.description}>{store.project.description}</span>
           </div>
         </section>
         <section className={styles.body}>
           <nav>
-            {navItems.map(({ icon, name }, index) => (
+            {navItems.map(({ icon, name, disabled }, index) => (
               <NavItem
                 key={name}
                 icon={icon}
                 name={name}
+                disabled={disabled}
                 active={index === currentItem}
                 onClick={() => setCurrentItem(index)}
               />
@@ -53,21 +56,28 @@ export const Sidebar = (): JSX.Element => {
   )
 }
 
-const NavItem = ({ icon, name, active, onClick }: NavItemProps): JSX.Element => {
+const NavItem = ({ icon, name, disabled, active, onClick }: NavItemProps): JSX.Element => {
   return (
-    <a
-      className={`${styles.nav_item} ${active && styles.active}`}
+    <button
+      className={`
+        ${styles.nav_item} 
+        ${active && styles.active}
+        ${disabled ? styles.disabled : undefined}
+      `}
+      disabled={disabled}
       onClick={onClick}
     >
       <Icon name={icon} />
       <span className={styles.name}>{name}</span>
-    </a>
+      <span className={styles.not_implemented}>Not implemented</span>
+    </button>
   )
 }
 
 export interface NavItemProps {
   icon: IconName,
   name: string;
+  disabled?: boolean;
   active?: boolean;
   onClick?: () => void;
 }

@@ -3,32 +3,51 @@
 .container {
   display: flex;
   position: relative;
+  z-index: 4;
 
   .content {
     background-color: color(grey-100);
-    width: 240px;
+    max-width: 0;
     height: 100%;
-    display: none;
+    transition: .3s;
+    opacity: 0;
+    white-space: nowrap;
 
     &.open {
-      display: block;
+      $width: 240px;
+
+      width: $width;
+      max-width: $width;
+      opacity: 1;
+      white-space: normal;
     }
   
     .header {
       padding: spacing(12) spacing(10);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
   
       img {
         border-radius: 3px;
+        margin-top: spacing(1);
       }
   
       .project {
         margin-left: spacing(8);
   
-        .project_name,
-        .project_description {
+        .name,
+        .description {
           display: block;
+        }
+
+        .name {
+          font-family: $font-bold;
+          font-size: 18px;
+        }
+
+        .description {
+          font-family: $font-light;
+          font-size: 14px;
         }
       }
     }
@@ -37,10 +56,15 @@
       padding: spacing(5);
   
       .nav_item {
+        width: 100%;
         display: flex;
         align-items: center;
+        gap: spacing(8);
         padding: spacing(4) spacing(5);
+        border: none;
         border-radius: 3px;
+        background-color: transparent;
+        font-family: $font-normal;
         cursor: pointer;
       
         &:hover {
@@ -55,10 +79,31 @@
             color: color(primary-main);
           }
         }
-      
-        .name {
-          margin-left: spacing(8);
+
+        &.disabled:hover {
+          background-color: transparent;
+          cursor: not-allowed;
+
+          .not_implemented {
+            display: flex;
+          }
+
+          .name {
+            display: none;
+          }
         }
+
+        .not_implemented {
+          display: none;
+          align-items: center;
+          background-color: color(grey-300);
+          margin-left: spacing(-4);
+          padding: spacing(3) spacing(4) spacing(2);
+          border-radius: 4px;
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+
         svg {
           color: color(icon);
           fill: white;
@@ -71,8 +116,10 @@
     height: 100%;
     width: 10px;
     right: 0px;
-    margin-left: spacing(12);
+    margin-left: spacing(14);
     position: relative;
+    background-color: white;
+    z-index: 8;
     
     &.open {
       margin-left: 0;

@@ -5,12 +5,14 @@ type ProjectId = number;
 export interface ProjectData {
   id: ProjectId;
   name: string;
+  description?: string;
   users: User[];
   categories: Category[];
 }
 
 export interface Project extends ProjectData {
   setName: (name: string) => void;
+  setDescription: (description: string) => void;
   addUser: (user: User) => void;
   removeUser: (userId: UserId) => User | undefined;
 }
@@ -20,6 +22,10 @@ export const createProject = (data: ProjectData): Project => ({
 
   setName: function(name: string) {
     this.name = name;
+  },
+
+  setDescription: function(description: string) {
+    this.description = description;
   },
 
   addUser: function(user: User) {
