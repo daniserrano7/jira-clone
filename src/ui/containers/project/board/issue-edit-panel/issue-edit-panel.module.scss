@@ -1,18 +1,5 @@
 @import "/src/ui/styles";
 
-.trigger {
-  display: flex;
-  padding: 4px;
-  border: none;
-  border-radius: 4px;
-  background-color: transparent;
-  color: grey;
-  cursor: pointer;
-
-  &:hover {
-    background-color: color(grey-400);
-  }
-}
 
 .overlay {
   top: 0;
@@ -33,7 +20,8 @@
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.3);
-  max-width: 80vw;
+  width: 80%;
+  max-width: 1000px;
   padding: 25px;
   z-index: 999;
 
@@ -77,11 +65,7 @@
   .body {
     display: grid;
     grid-template-columns: 6fr 4fr;
-    gap: 32px;
-
-    p {
-      margin: 0;
-    }
+    gap: spacing(32);
 
     .left_column {
       $inline-padding: 4;
@@ -118,13 +102,28 @@
       }
     
       .label {
-        margin-bottom: spacing(2);
+        margin: 0 0 spacing(2);
         color: color(font-main);
         font-weight: 600;
       }
     
       .description {
-        font-weight: 600;
+        margin: 0;
+
+        textarea {
+          $idle-height: calc(16px + 26px); // font-size + vertical padding
+          font-weight: 600;
+          max-height: $idle-height;
+          min-height: $idle-height;
+          transition: .3s ease-in-out;
+
+          &:focus {
+            $height: 100px;
+
+            min-height: $height;
+            max-height: $height;
+          }
+        }
       }
   
       .title,
@@ -134,57 +133,6 @@
   
       .comments {
         margin-top: spacing(12);
-  
-        .edit_comment {
-          width: 100%;
-        
-          textarea {
-            &:not(:focus) {
-              outline: 1px solid color(grey-400);
-              background-color: color(grey-200);
-            }
-          }
-        
-          button {
-            margin-top: spacing(4);
-            padding: spacing(5) spacing(7);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        
-            &:not(:last-child) {
-              margin-right: spacing(4);
-            }
-  
-            &.save {
-              background-color: color(primary-main);
-              color: white;
-  
-              &:hover {
-                background-color: lighten($color: color(primary-main), $amount: 5);
-              }
-            }
-          }
-        }
-    
-        .create_comment {
-          display: flex;
-          align-items: flex-start;
-          gap: spacing(12);
-          margin-top: spacing(8);
-      
-          .comment_placeholder {
-            outline: 2px solid color(grey-400);
-            color: color(font-light);
-            cursor: pointer;
-      
-            &:hover {
-              outline-color: color(grey-700);
-              color: darken($color: color(font-light), $amount: 60);
-              background-color: inherit;
-            }
-          }
-        }
     
         .comment_list {
           list-style: none;
@@ -193,38 +141,6 @@
     
           li:not(:last-child) {
             margin-bottom: spacing(12);
-          }
-    
-          .comment {
-            display: flex;
-            gap: spacing(12);
-    
-            .user_name {
-              display: inline-block;
-              margin-right: spacing(8);
-              margin-bottom: spacing(6);
-            }
-    
-            .idle {
-              .buttons_container {
-                margin-top: spacing(4);
-    
-                button {
-                  padding: 0;
-                  background-color: transparent;
-                  border: none;
-                  cursor: pointer;
-      
-                  &:hover {
-                    text-decoration: underline;
-                  }
-                }
-      
-                .separator {
-                  margin-inline: spacing(4);
-                }
-              }
-            }
           }
         }
       }
@@ -249,6 +165,10 @@
         padding: spacing(2) spacing(7) spacing(2) spacing(2);
         border-radius: 999px;
         background-color: color(grey-300);
+
+        p {
+          margin: 0;
+        }
       }
     }
   }

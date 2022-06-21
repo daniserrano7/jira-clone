@@ -24,7 +24,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   )
 
   return (
-    <div className={styles.comment}>
+    <div className={styles.container}>
       <Avatar 
         size={32}
         image="default-avatar.png"

@@ -1,0 +1,12 @@
+@import "/src/ui/styles";
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: spacing(12);
+  margin-top: spacing(8);
+
+  .comment_placeholder {
+    outline: 1px solid color(grey-600) !important;
+  }
+}

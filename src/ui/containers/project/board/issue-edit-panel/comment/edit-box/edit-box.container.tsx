@@ -2,7 +2,7 @@ import { COMMENT_PLACEHOLDER } from "../comment";
 import styles from "./edit-box.module.scss";
 
 export const EditBox = ({ message, save, cancel }: EditBoxProps): JSX.Element => (
-  <div className={styles.edit_comment}>
+  <div className={styles.container}>
     <textarea
       ref={ref => ref && ref.focus()}
       onFocus={e => e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}

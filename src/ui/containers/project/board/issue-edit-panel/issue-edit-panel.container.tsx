@@ -82,10 +82,10 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
                   />
                 </Dialog.Title>
                 <p className={styles.label}>Description</p>
-                <Dialog.Description>
+                <Dialog.Description className={styles.description}>
                   <textarea
                     placeholder="Add a description..."
-                    className={styles.description}
+                    
                   />
                 </Dialog.Description>
                 <div className={styles.comments}>

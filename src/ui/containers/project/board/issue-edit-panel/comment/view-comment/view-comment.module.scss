@@ -1,0 +1,39 @@
+@import "/src/ui/styles";
+
+
+.container {
+  display: flex;
+  gap: spacing(12);
+
+  p {
+    margin: 0;
+  }
+
+  .user_name {
+    display: inline-block;
+    margin-right: spacing(8);
+  }
+
+  .idle {
+    padding-top: spacing(4);
+
+    .buttons_container {
+      margin-top: spacing(6);
+
+      button {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .separator {
+        margin-inline: spacing(4);
+      }
+    }
+  }
+}

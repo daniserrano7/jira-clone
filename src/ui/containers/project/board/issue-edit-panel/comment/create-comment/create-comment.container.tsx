@@ -23,7 +23,7 @@ export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element =
   const cancel = () => setIsEditing(false);
 
   return (
-    <div className={styles.create_comment}>
+    <div className={styles.container}>
       <Avatar 
         size={32}
         image="default-avatar.png"
