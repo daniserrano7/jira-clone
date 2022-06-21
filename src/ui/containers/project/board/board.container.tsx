@@ -3,7 +3,7 @@ import { useStore } from "infrastructure/store";
 import { Input } from "ui/components/input";
 import { AvatarList, avatarListInfo } from "ui/containers/project/board/avatar-list";
 import { CategoryColumn } from "./category-column";
-import { IssueEditPanel } from "./issue-edit-panel";
+import { IssueEditPanel } from "./issue-panel";
 import styles from "./board.module.scss";
 
 export const Board = observer((): JSX.Element => {

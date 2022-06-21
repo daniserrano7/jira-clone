@@ -10,7 +10,7 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
 import { SelectPriority } from "./select/select-priority";
 import { SelectAsignee } from "./select/select-asignee";
-import styles from "./issue-edit-panel.module.scss";
+import styles from "./issue-panel.module.scss";
 
 
 export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => {
