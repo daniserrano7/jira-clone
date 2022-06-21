@@ -5,6 +5,9 @@
   width: 100%;
 
   textarea {
+    font-family: $font-light;
+    font-size: 14px;
+
     &:not(:focus) {
       outline: 1px solid color(grey-400);
       background-color: color(grey-200);

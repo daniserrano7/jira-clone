@@ -12,10 +12,19 @@
   .user_name {
     display: inline-block;
     margin-right: spacing(8);
+    font-family: $font-bold;
+  }
+
+  .timestamp {
+    font-family: $font-light;
+    font-size: 13px;
+    font-weight: lighter;
   }
 
   .idle {
     padding-top: spacing(4);
+    font-family: $font-light;
+    line-height: 1.4;
 
     .buttons_container {
       margin-top: spacing(6);
@@ -24,6 +33,8 @@
         padding: 0;
         background-color: transparent;
         border: none;
+        color: color(font-light);
+        font-family: $font-light;
         cursor: pointer;
 
         &:hover {

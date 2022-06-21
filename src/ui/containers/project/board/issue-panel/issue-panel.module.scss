@@ -58,6 +58,7 @@
       .label {
         margin: 0;
         color: color(font-main);
+        font-family: $font-normal;
         font-weight: 600;
       }
     
@@ -69,7 +70,7 @@
 
           max-height: $idle-height;
           min-height: $idle-height;
-          font-family: $font-normal;
+          font-family: $font-light;
           transition: .3s ease-in-out;
 
           &:focus {
