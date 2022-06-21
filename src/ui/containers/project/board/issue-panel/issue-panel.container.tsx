@@ -1,6 +1,6 @@
-import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Comment, commentMock1, commentMock2 } from "domain/comment";
+import { observer } from "mobx-react-lite";
+import { Comment } from "domain/comment";
 import { useStore } from "infrastructure/store";
 import { Avatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
@@ -13,18 +13,20 @@ import { SelectAsignee } from "./select/select-asignee";
 import styles from "./issue-panel.module.scss";
 
 
-export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => {
+export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.Element => {
   const store = useStore();
-  const [ comments, setComments ] = useState<Comment[]>([commentMock1, commentMock2]);
+  const issue = store.editingIssue;
 
-  const close = () => store.isEditingIssue = false;
+  if (!issue) return <></>
+
+  const close = () => store.editingIssue = null;
 
   const deleteIssue = () => {
     close();
   }
 
   const addComment = (comment: Comment): void => {
-    setComments([...comments, comment]);
+    issue.addComment(comment);
   }
 
   return (
@@ -32,7 +34,10 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay}>
           <Dialog.Content onPointerDownOutside={close} className={styles.content}>
-            <PanelHeader onDeleteIssue={deleteIssue} />
+            <PanelHeader 
+              onDeleteIssue={deleteIssue} 
+              onClose={close}
+            />
             <div className={styles.body}>
               <section className={styles.left_column}>
                 <Dialog.Title>
@@ -48,7 +53,7 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
                     <CreateComment addComment={addComment} />
                   </div>
                   <ul className={styles.comment_list}>
-                    {comments.map((comment, index) => (
+                    {issue.comments.map((comment, index) => (
                       <li key={index}>
                         <ViewComment comment={comment} />
                       </li>
@@ -82,13 +87,12 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
                 </div>
               </section>
             </div>
-            <Dialog.Close />
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>
     </Dialog.Root>
   )
-}
+});
 
 interface IssueEditPanelProps {
   isOpen: boolean;

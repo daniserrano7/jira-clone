@@ -11,7 +11,7 @@ export interface IssueData {
   description?: string;
   categoryId: CategoryId;
   reporter: User;
-  asignee: User;
+  asignee: User | null;
   comments: Comment[];
   priority: Priority;
   //TODO: epic: Epic

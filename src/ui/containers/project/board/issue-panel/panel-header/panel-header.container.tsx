@@ -4,7 +4,7 @@ import { Icon } from "ui/components/icon";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
 import styles from "./panel-header.module.scss";
 
-export const PanelHeader = ({ onDeleteIssue }: PanelHeaderProps): JSX.Element => {
+export const PanelHeader = ({ onDeleteIssue, onClose }: PanelHeaderProps): JSX.Element => {
   const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
 
   const deleteIssue = () => {
@@ -52,7 +52,7 @@ export const PanelHeader = ({ onDeleteIssue }: PanelHeaderProps): JSX.Element =>
       >
         {renderDeleteIcon()}
       </button>
-      <Dialog.Close onClick={close} className={styles.header_button}>
+      <Dialog.Close onClick={onClose} className={styles.header_button}>
         <Icon name="close" size={24} />
       </Dialog.Close>
     </div>
@@ -61,4 +61,5 @@ export const PanelHeader = ({ onDeleteIssue }: PanelHeaderProps): JSX.Element =>
 
 interface PanelHeaderProps {
   onDeleteIssue: () => void;
+  onClose: () => void;
 }

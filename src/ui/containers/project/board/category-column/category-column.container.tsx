@@ -1,5 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Category } from "domain/category";
+import { createIssue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard } from "./issue-card";
@@ -9,9 +10,18 @@ import styles from "./category-column.module.scss";
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const store = useStore();
 
-  const createIssue = () => {
-    store.isEditingIssue = true;
-    store.editingIssueCategory = category.id;
+  const createCategoryIssue = () => {
+    const issue = createIssue({
+      categoryId: category.id,
+      name: "",
+      description: "",
+      reporter: store.user,
+      asignee: null,
+      comments: [],
+      priority: "low",
+    });
+    category.addIssue(issue);
+    store.editingIssue = issue;
   }
 
   return (
@@ -21,7 +31,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
           {category.name}
         </span>
         <button 
-          onClick={createIssue}
+          onClick={createCategoryIssue}
           className={styles.create_issue}
         >
           <Icon name="add" size={24} />

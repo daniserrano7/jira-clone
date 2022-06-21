@@ -1,5 +1,5 @@
 import { User, UserId } from "domain/user";
-import { Category } from "domain/category";
+import { Category, CategoryId } from "domain/category";
 
 type ProjectId = number;
 export interface ProjectData {
@@ -15,6 +15,7 @@ export interface Project extends ProjectData {
   setDescription: (description: string) => void;
   addUser: (user: User) => void;
   removeUser: (userId: UserId) => User | undefined;
+  getCategory: (categoryId: CategoryId) => Category | undefined;
 }
 
 export const createProject = (data: ProjectData): Project => ({
@@ -36,5 +37,9 @@ export const createProject = (data: ProjectData): Project => ({
     const user = this.users.find(user => user.id === userId);
     this.users = this.users.filter(user => user.id !== userId);
     return user;
+  },
+
+  getCategory: function(categoryId: CategoryId): Category | undefined {
+    return this.categories.find(category => category.id === categoryId);
   },
 });

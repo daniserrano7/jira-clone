@@ -32,7 +32,7 @@ export const Board = observer((): JSX.Element => {
           />
         ))}
       </section>
-      <IssueEditPanel isOpen={store.isEditingIssue} />
+      <IssueEditPanel isOpen={Boolean(store.editingIssue)} />
     </div>
   )
 });
