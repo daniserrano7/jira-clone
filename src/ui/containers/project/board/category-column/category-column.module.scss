@@ -1,5 +1,6 @@
 @import "/src/ui/styles/";
 
+
 .issue_category {
   min-width: 260px;
   position: relative;
@@ -18,6 +19,10 @@
     padding: spacing(5) spacing(6) spacing(8);
     z-index: 9;
     transition: .2s ease-in-out;
+    text-transform: uppercase;
+    font-family: $font-light;
+    font-size: 13px;
+    color: color(font-light);
 
     .create_issue {
       display: flex;

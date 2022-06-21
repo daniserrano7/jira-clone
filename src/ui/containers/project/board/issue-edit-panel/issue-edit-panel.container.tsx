@@ -65,7 +65,10 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
                 </span>
                 <span className={styles.code}>Issue 1</span>
               </span>
-              <button onClick={deleteIssue} className={styles.header_button}>
+              <button 
+                onClick={deleteIssue} 
+                className={`${styles.header_button} ${styles.delete_button}`}
+              >
                 {renderDeleteIcon()}
               </button>
               <Dialog.Close onClick={close} className={styles.header_button}>
