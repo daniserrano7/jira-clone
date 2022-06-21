@@ -23,8 +23,9 @@
 
   .idle {
     padding-top: spacing(4);
-    font-family: $font-light;
     line-height: 1.4;
+    font-family: $font-light;
+    font-size: 16px;
 
     .buttons_container {
       margin-top: spacing(6);

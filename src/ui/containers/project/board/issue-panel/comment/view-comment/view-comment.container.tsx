@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { Comment } from "domain/comment";
+import { useStore } from "infrastructure/store";
 import { Avatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./view-comment.module.scss";
 
 export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
+  const store = useStore();
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const edit = () => setIsEditing(true);
-  const remove = () => console.log("DELETING");
-  const save = () => setIsEditing(false);
+  const remove = () => {
+    if (comment.user.id !== store.user.id) {
+      return
+    }
+    store.editingIssue?.removeComment(comment.id);
+  }
+  const save = (commentText: string): void => {
+    comment.setMessage(commentText);
+    setIsEditing(false);
+  }
   const cancel = () => setIsEditing(false);
 
   const IdleComment = (): JSX.Element => (
@@ -35,7 +45,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
         <span className={styles.timestamp}>a day ago</span>
         {isEditing
           ? <EditBox
-              message={comment.message} 
+              defaultMessage={comment.message} 
               save={save} 
               cancel={cancel} 
             />

@@ -12,10 +12,10 @@ export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element =
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const edit = () => setIsEditing(true);
-  const save = () => {
+  const save = (message: string) => {
     const comment = createComment({
       user: store.user,
-      message: "Test comment",
+      message,
     });
     addComment(comment);
     setIsEditing(false);
@@ -32,7 +32,7 @@ export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element =
       {isEditing
         ? (
           <EditBox
-            message=""
+            defaultMessage=""
             save={save}
             cancel={cancel}
           />
