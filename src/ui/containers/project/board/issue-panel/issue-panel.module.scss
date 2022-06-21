@@ -22,7 +22,8 @@
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.3);
   width: 80%;
   max-width: 1000px;
-  padding: 25px;
+  padding: spacing(12) spacing(16);
+  box-sizing: border-box;
   z-index: 999;
 
   .header {
@@ -69,9 +70,8 @@
     gap: spacing(32);
 
     .left_column {
-      $inline-padding: 4;
+      $inline-padding: 6;
 
-      input,
       textarea {
         width: 100%;
         padding: spacing(6) spacing($inline-padding);
@@ -80,8 +80,8 @@
         border: none;
         box-sizing: border-box;
         outline-color: white;
-        font-family: Arial, Helvetica, sans-serif;
         transition: .2s ease-in-out;
+        resize: none;
         
         &:hover {
           background-color: color(grey-300);
@@ -92,20 +92,15 @@
           background-color: white;
         }
       }
-  
-      textarea {
-        font-size: 16px;
-        resize: none;
-      }
-  
-      .title {
-        font-size: 24px;
-      }
     
       .label {
         margin: 0 0 spacing(2);
         color: color(font-main);
         font-weight: 600;
+      }
+
+      .description {
+        margin-left: spacing(-#{$inline-padding});
       }
     
       .description {
@@ -113,6 +108,7 @@
 
         textarea {
           $idle-height: calc(16px + 26px); // font-size + vertical padding
+
           font-weight: 600;
           max-height: $idle-height;
           min-height: $idle-height;
@@ -125,11 +121,6 @@
             max-height: $height;
           }
         }
-      }
-  
-      .title,
-      .description {
-        margin-left: spacing(-#{$inline-padding});
       }
   
       .comments {

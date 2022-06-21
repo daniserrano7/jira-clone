@@ -1,10 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Comment, commentMock1, commentMock2 } from "domain/comment";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { Avatar } from "ui/components/avatar";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
+import { Title } from "./title";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
@@ -78,18 +79,11 @@ export const IssueEditPanel = ({ isOpen }: IssueEditPanelProps): JSX.Element => 
             <div className={styles.body}>
               <section className={styles.left_column}>
                 <Dialog.Title>
-                  <input
-                    placeholder="Write the title" 
-                    className={styles.title}
-                    autoFocus
-                  />
+                  <Title />
                 </Dialog.Title>
                 <p className={styles.label}>Description</p>
                 <Dialog.Description className={styles.description}>
-                  <textarea
-                    placeholder="Add a description..."
-                    
-                  />
+                  <textarea placeholder="Add a description..." />
                 </Dialog.Description>
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>

@@ -1,0 +1,43 @@
+@import "/src/ui/styles";
+
+
+.container {
+  position: relative;
+  margin-left: spacing(-6);
+
+  .edit_title,
+  .view_title {
+    padding: spacing(6);
+    line-height: 1.5;
+    font-family: $font-black;
+    font-size: 24px;
+    font-weight: normal;
+    box-sizing: border-box;
+  }
+
+  .edit_title {
+    max-height: calc(48px * 2);
+    text-align: left;
+  }
+
+  .view_title {
+    width: 100%;
+    margin-left: spacing(-1);
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+  }
+
+  .counter {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    color: color(font-light);
+    font-family: $font-light;
+    font-weight: normal;
+    font-size: 14px;
+
+    &.max_length {
+      color: color(error-main);
+    }
+  }
+}
