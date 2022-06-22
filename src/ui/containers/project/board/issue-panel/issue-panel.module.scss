@@ -41,8 +41,6 @@
         border-radius: 6px;
         border: none;
         box-sizing: border-box;
-        outline-color: white;
-        transition: .2s ease-in-out;
         resize: none;
         
         &:hover {
@@ -54,32 +52,21 @@
           background-color: white;
         }
       }
+
+
+      .title {
+        margin-left: spacing(-#{$inline-padding});
+      }
+
+      .description {
+        margin: 0 0 0 spacing(-#{$inline-padding});
+      }
     
       .label {
         margin: 0;
         color: color(font-main);
         font-family: $font-normal;
         font-weight: 600;
-      }
-    
-      .description {
-        margin: 0 0 0 spacing(-#{$inline-padding});
-
-        textarea {
-          $idle-height: calc(16px + 28px); // font-size + vertical padding
-
-          max-height: $idle-height;
-          min-height: $idle-height;
-          font-family: $font-light;
-          transition: .3s ease-in-out;
-
-          &:focus {
-            $height: 100px;
-
-            min-height: $height;
-            max-height: $height;
-          }
-        }
       }
   
       .comments {

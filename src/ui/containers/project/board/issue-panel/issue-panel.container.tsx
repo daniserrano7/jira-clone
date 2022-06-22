@@ -5,6 +5,7 @@ import { useStore } from "infrastructure/store";
 import { Avatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
+import { Description } from "./description";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
@@ -40,12 +41,12 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
             />
             <div className={styles.body}>
               <section className={styles.left_column}>
-                <Dialog.Title>
+                <Dialog.Title className={styles.title}>
                   <Title />
                 </Dialog.Title>
                 <p className={styles.label}>Description</p>
                 <Dialog.Description className={styles.description}>
-                  <textarea placeholder="Add a description..." />
+                  <Description />
                 </Dialog.Description>
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
