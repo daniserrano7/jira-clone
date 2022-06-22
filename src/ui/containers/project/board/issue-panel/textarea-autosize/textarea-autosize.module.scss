@@ -2,6 +2,8 @@
 
 
 .container {
+  position: relative;
+  
   textarea,
   p {
     padding: spacing(6);

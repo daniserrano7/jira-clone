@@ -3,11 +3,11 @@
 
 .container {
   position: relative;
-  margin-left: spacing(-6);
+  // margin-left: spacing(-6);
 
   &.require_error {
     textarea {
-      outline: 2px solid color(error-main) !important;
+      outline: 2px solid color(error-main);
     }
 
     .error_message {
@@ -25,7 +25,6 @@
     font-family: $font-black;
     font-size: 24px;
     font-weight: normal;
-    transition: 0s !important;
   }
 
   .counter {
