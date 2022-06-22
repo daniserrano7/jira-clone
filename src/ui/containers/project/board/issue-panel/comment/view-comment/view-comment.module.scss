@@ -21,12 +21,22 @@
     font-weight: lighter;
   }
 
+  textarea {
+    margin-top: spacing(4);
+  }
+
+  textarea,
   .idle {
-    padding-top: spacing(4);
     line-height: 1.4;
     font-family: $font-light;
     font-size: 16px;
+  }
 
+  .idle {
+    padding-top: spacing(6);
+  }
+
+  .idle {
     .buttons_container {
       margin-top: spacing(6);
 

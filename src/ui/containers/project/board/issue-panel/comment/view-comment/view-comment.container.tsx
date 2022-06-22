@@ -42,7 +42,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
       />
       <div style={{ width: "100%"}}>
         <p className={styles.user_name}>{comment.user.name}</p>
-        <span className={styles.timestamp}>a day ago</span>
+        <span className={styles.timestamp}>(Coming soon...)</span>
         {isEditing
           ? <EditBox
               defaultMessage={comment.message} 
