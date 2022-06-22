@@ -1,33 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { TextareaAutosize } from "../../textarea-autosize";
 import { COMMENT_PLACEHOLDER } from "../comment";
 import styles from "./edit-box.module.scss";
 
-export const EditBox = ({ defaultMessage, save, cancel }: EditBoxProps): JSX.Element => {
+export const EditBox = ({ defaultMessage, disabled, save, cancel }: EditBoxProps): JSX.Element => {
   const [ message, setMessage ] = useState<string>(defaultMessage);
+  const [ initError, setInitError ] = useState<boolean>(false);
 
-  const onFocus = (e: React.FocusEvent<HTMLTextAreaElement>): void => {
-    const target = e.currentTarget;
-    target.setSelectionRange(target.value.length, target.value.length)
+  const messageAreOnlySpaces = (): boolean => {
+    return /^( )\1*$/.test(message);
+  }
+
+  const messageIsValid = (): boolean => {
+    return message.length > 0 && !messageAreOnlySpaces();
   }
 
   const onSave = () => {
-    save(message);
+    messageIsValid()
+      ? save(message)
+      : setInitError(true);
   }
 
-  const onTextAreaChange = (e: React.FormEvent<HTMLTextAreaElement>): void => {
-    const value = e.currentTarget.value;
-    setMessage(value);
-  }
+  const isError = initError && !messageIsValid();
+  const errorStyles = isError ? styles.error : undefined;
+  const placeholder = isError
+    ? "Message cannot be empty"
+    : COMMENT_PLACEHOLDER;
+
   return (
-    <div className={styles.container}>
-      <textarea
-        ref={ref => ref && ref.focus()}
-        onFocus={onFocus}
+    <div className={`${styles.container} ${errorStyles}`}>
+      <TextareaAutosize
         value={message}
-        defaultValue={defaultMessage}
-        onChange={onTextAreaChange}
-        placeholder={COMMENT_PLACEHOLDER}
-        autoFocus
+        setValue={setMessage}
+        placeholder={placeholder}
+        disabled={disabled}
       />
       <div>
         <button className={styles.save} onClick={onSave}>Save</button>
@@ -39,6 +45,7 @@ export const EditBox = ({ defaultMessage, save, cancel }: EditBoxProps): JSX.Ele
 
 interface EditBoxProps {
   defaultMessage: string;
+  disabled?: boolean;
   save: (commentText: string) => void;
   cancel: () => void;
 }

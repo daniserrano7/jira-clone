@@ -4,6 +4,14 @@
 .container {
   width: 100%;
 
+  &.error {
+    textarea,
+    textarea:focus {
+      color: darken($color: color(error-main), $amount: 5) !important;
+      outline: 2px solid color(error-main) !important;
+    }
+  }
+
   textarea {
     line-height: 1.4;
     font-family: $font-light;
