@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useStore } from "infrastructure/store";
 import { TextareaAutosize } from "../textarea-autosize";
 import styles from "./title.module.scss";
 
 export const Title = (): JSX.Element => {
+  const store = useStore();
   const [ title, setTitle ] = useState<string>("");
   const [ isFocus, setIsFocus ] = useState<boolean>(true);
 
@@ -16,6 +18,11 @@ export const Title = (): JSX.Element => {
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);
 
+  const updateTitle = (newTitle: string) => {
+    setTitle(newTitle);
+    store.editingIssue?.setName(newTitle);
+  }
+
   return (
     <div className={`
       ${styles.container}
@@ -23,7 +30,7 @@ export const Title = (): JSX.Element => {
     `}>
       <TextareaAutosize
         value={title}
-        setValue={setTitle}
+        setValue={updateTitle}
         placeholder="Write the title"
         onFocus={onFocus}
         onBlur={onBlur}

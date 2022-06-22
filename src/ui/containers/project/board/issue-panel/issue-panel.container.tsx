@@ -20,7 +20,11 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   if (!issue) return <></>
 
-  const close = () => store.editingIssue = null;
+  const close = () => {
+    const category = store.project.getCategory(issue.categoryId);
+    category?.addIssue(issue);
+    store.editingIssue = null;
+  }
 
   const deleteIssue = () => {
     close();

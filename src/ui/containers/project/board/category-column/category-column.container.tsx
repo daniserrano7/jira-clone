@@ -20,7 +20,6 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       comments: [],
       priority: "low",
     });
-    category.addIssue(issue);
     store.editingIssue = issue;
   }
 
