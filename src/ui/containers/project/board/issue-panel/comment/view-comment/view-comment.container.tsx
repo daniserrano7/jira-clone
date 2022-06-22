@@ -47,7 +47,8 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
           ? <EditBox
               defaultMessage={comment.message} 
               save={save} 
-              cancel={cancel} 
+              cancel={cancel}
+              autofocus
             />
           : <IdleComment />
         }

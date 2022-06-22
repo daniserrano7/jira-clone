@@ -27,6 +27,7 @@ export const Title = (): JSX.Element => {
         placeholder="Write the title"
         onFocus={onFocus}
         onBlur={onBlur}
+        autofocus
       />
       {requireError && (
         <span className={styles.error_message}>

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./textarea-autosize.module.scss";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
-  const { value, setValue, placeholder, disabled, onFocus, onBlur } = props;
+  const { value, setValue, placeholder, autofocus, onFocus, onBlur } = props;
 
   const [ textareaHeight, setTextareaHeight ] = useState<number>(40);
   const textareaRef = useRef<HTMLParagraphElement>(null);
@@ -39,8 +39,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
         onFocus={handleOnFocus}
         onBlur={onBlur}
         style={{ height: `${textareaHeight}px`}}
-        disabled={disabled}
-        autoFocus
+        autoFocus={autofocus}
       />
       <p ref={textareaRef}>
         {(valueIsNotOnlySpaces() && value) || placeholder}
@@ -53,8 +52,7 @@ interface TitleProps {
   value: string;
   setValue: (value: string) => void;
   placeholder: string;
-  disabled?: boolean;
-  required?: boolean;
+  autofocus?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
 }

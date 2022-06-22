@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { TextareaAutosize } from "../../textarea-autosize";
-import { COMMENT_PLACEHOLDER } from "../comment";
 import styles from "./edit-box.module.scss";
 
-export const EditBox = ({ defaultMessage, disabled, save, cancel }: EditBoxProps): JSX.Element => {
+export const EditBox = ({ defaultMessage, autofocus, save, cancel }: EditBoxProps): JSX.Element => {
   const [ message, setMessage ] = useState<string>(defaultMessage);
   const [ initError, setInitError ] = useState<boolean>(false);
-  const [ isEditing, setIsEditing ] = useState<boolean>(true);
+  const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const messageAreOnlySpaces = (): boolean => {
     return /^( )\1*$/.test(message);
@@ -43,7 +42,7 @@ export const EditBox = ({ defaultMessage, disabled, save, cancel }: EditBoxProps
   const editingStyles = isEditing ? styles.editing : undefined;
   const placeholder = isError
     ? "Message cannot be empty"
-    : COMMENT_PLACEHOLDER;
+    : "Add your comment...";
 
   return (
     <div className={`${styles.container} ${errorStyles}`}>
@@ -51,8 +50,8 @@ export const EditBox = ({ defaultMessage, disabled, save, cancel }: EditBoxProps
         value={message}
         setValue={setMessage}
         placeholder={placeholder}
-        disabled={disabled}
         onFocus={onFocus}
+        autofocus={autofocus}
       />
       <div className={`${styles.buttons} ${editingStyles}`}>
         <button className={styles.save} onClick={onSave}>Save</button>
@@ -64,7 +63,7 @@ export const EditBox = ({ defaultMessage, disabled, save, cancel }: EditBoxProps
 
 interface EditBoxProps {
   defaultMessage: string;
-  disabled?: boolean;
+  autofocus?: boolean;
   save: (commentText: string) => void;
   cancel: () => void;
 }
