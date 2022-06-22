@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useStore } from "infrastructure/store";
+import { Issue } from "domain/issue";
 import { TextareaAutosize } from "../textarea-autosize";
 import styles from "./title.module.scss";
 
-export const Title = (): JSX.Element => {
-  const store = useStore();
-  const [ title, setTitle ] = useState<string>("");
+export const Title = ({ issue }: TitleProps): JSX.Element => {
+  const [ title, setTitle ] = useState<string>(issue.name);
   const [ isFocus, setIsFocus ] = useState<boolean>(true);
 
   const MAX_LENGTH = 6000;
@@ -20,7 +19,7 @@ export const Title = (): JSX.Element => {
 
   const updateTitle = (newTitle: string) => {
     setTitle(newTitle);
-    store.editingIssue?.setName(newTitle);
+    issue.setName(newTitle);
   }
 
   return (
@@ -48,4 +47,8 @@ export const Title = (): JSX.Element => {
       )}
     </div>
   )
+}
+
+interface TitleProps {
+  issue: Issue;
 }

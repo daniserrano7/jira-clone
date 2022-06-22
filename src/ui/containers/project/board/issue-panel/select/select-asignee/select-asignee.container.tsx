@@ -1,19 +1,28 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { UserId } from "domain/user";
+import { Issue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Avatar } from "ui/components/avatar";
 import { Icon } from "ui/components/icon";
 import styles from "./select-asignee.module.scss";
 
-export const SelectAsignee = (): JSX.Element => {
+export const SelectAsignee = ({ issue }: SelectAsigneeProps): JSX.Element => {
   const store = useStore();
   const users = store.project.users;
-  const defaultValue = users[0].id;
+  const defaultValue = issue.asignee?.id || store.user.id;
   const [ selectValue, setSelectValue ] = useState<UserId>(defaultValue);
 
+  const onValueChange = (userId: UserId) => {
+    setSelectValue(userId);
+    const asignee = store.project.getUser(userId);
+    if (asignee) {
+      issue.setAsignee(asignee);
+    }
+  }
+
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={setSelectValue}>
+    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
       <Select.Trigger className={`${styles.trigger} ${styles[selectValue]}`}>
         <div className={styles.avatar}>
           <Avatar 
@@ -53,4 +62,8 @@ export const SelectAsignee = (): JSX.Element => {
       </Select.Content>
     </Select.Root>
   )
+}
+
+interface SelectAsigneeProps {
+  issue: Issue;
 }

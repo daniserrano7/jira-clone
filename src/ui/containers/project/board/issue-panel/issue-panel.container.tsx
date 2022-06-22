@@ -46,11 +46,11 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
             <div className={styles.body}>
               <section className={styles.left_column}>
                 <Dialog.Title className={styles.title}>
-                  <Title />
+                  <Title issue={issue} />
                 </Dialog.Title>
                 <p className={styles.label}>Description</p>
                 <Dialog.Description className={styles.description}>
-                  <Description />
+                  <Description issue={issue} />
                 </Dialog.Description>
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
@@ -69,15 +69,15 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
               <section className={styles.right_column}>
                 <div>
                   <p className={styles.select_label}>Status</p>
-                  <SelectStatus />
+                  <SelectStatus issue={issue} />
                 </div>
                 <div>
                   <p className={styles.select_label}>Priority</p>
-                  <SelectPriority />
+                  <SelectPriority issue={issue} />
                 </div>
                 <div>
                   <p className={styles.select_label}>Asignee</p>
-                  <SelectAsignee />
+                  <SelectAsignee issue={issue} />
                 </div>
                 <div>
                   <p className={styles.select_label}>Reporter</p>

@@ -1,12 +1,17 @@
 @import "/src/ui/styles";
 
 .container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: spacing(6);
   box-shadow: rgba(0,0,0, 0.2) 0px 1px 1px, rgba(0,0,0, 0.2) 0px 0px 1px;
+  border: none;
   border-radius: 3px;
   background-color: white;
+  text-align: left;
+  font-family: $font-normal;
+  font-size: 16px;
   transition: background-color ease-in-out .2s;
   cursor: pointer;
 

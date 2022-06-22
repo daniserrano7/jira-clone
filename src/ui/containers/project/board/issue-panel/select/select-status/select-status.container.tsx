@@ -1,17 +1,19 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
+import { CategoryId } from "domain/category";
+import { Issue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import styles from "./select-status.module.scss";
 
-export const SelectStatus = (): JSX.Element => {
+export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
   const store = useStore();
   const categories = store.project.categories;
-  const defaultValue = categories[0].id;
+  const defaultValue = issue.categoryId;
   const [ selectValue, setSelectValue ] = useState<string>(defaultValue);
 
   interface SelectItem {
-    value: string;
+    value: CategoryId;
     label: string;
   }
   const statusSelectInfo: SelectItem[] = categories.map(category => ({
@@ -19,8 +21,9 @@ export const SelectStatus = (): JSX.Element => {
     label: category.name,
   }));
 
-  const onValueChange = (value: string): void => {
+  const onValueChange = (value: CategoryId): void => {
     setSelectValue(value.toLowerCase());
+    issue.setCategoryId(value);
   }
 
   return (
@@ -52,4 +55,8 @@ export const SelectStatus = (): JSX.Element => {
       </Select.Content>
     </Select.Root>
   )
+}
+
+interface SelectStatusProps {
+  issue: Issue;
 }

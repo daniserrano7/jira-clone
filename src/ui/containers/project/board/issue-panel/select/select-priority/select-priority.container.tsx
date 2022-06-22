@@ -1,15 +1,19 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
+import { Issue } from "domain/issue";
 import { Priority, priorityList } from "domain/priority";
 import { Icon } from "ui/components/icon";
 import { PriorityIcon } from "ui/components/priority-icon";
 import styles from "./select-priority.module.scss";
 
-export const SelectPriority = (): JSX.Element => {
-  const defaultValue = priorityList[0].id;
+export const SelectPriority = ({ issue }: SelectPriorityProps): JSX.Element => {
+  const defaultValue = issue.priority;
   const [ selectValue, setSelectValue ] = useState<Priority>(defaultValue);
 
-  const onValueChange = (value: Priority): void => setSelectValue(value);
+  const onValueChange = (value: Priority): void => {
+    setSelectValue(value);
+    issue.setPriority(value);
+  }
 
   return (
     <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
@@ -43,4 +47,8 @@ export const SelectPriority = (): JSX.Element => {
       </Select.Content>
     </Select.Root>
   )
+}
+
+interface SelectPriorityProps {
+  issue: Issue;
 }
