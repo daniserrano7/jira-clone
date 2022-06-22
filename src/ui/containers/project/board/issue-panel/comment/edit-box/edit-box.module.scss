@@ -13,6 +13,7 @@
   }
 
   textarea {
+    min-height: 80px;
     line-height: 1.4;
     font-family: $font-light;
     font-size: 14px;
@@ -23,23 +24,31 @@
     }
   }
 
-  button {
-    margin-top: spacing(4);
-    padding: spacing(5) spacing(7);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .buttons {
+    display: none;
 
-    &:not(:last-child) {
-      margin-right: spacing(4);
+    &.editing {
+      display: block;
     }
 
-    &.save {
-      background-color: color(primary-main);
-      color: white;
-
-      &:hover {
-        background-color: lighten($color: color(primary-main), $amount: 5);
+    button {
+      margin-top: spacing(4);
+      padding: spacing(5) spacing(7);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+  
+      &:not(:last-child) {
+        margin-right: spacing(4);
+      }
+  
+      &.save {
+        background-color: color(primary-main);
+        color: white;
+  
+        &:hover {
+          background-color: lighten($color: color(primary-main), $amount: 5);
+        }
       }
     }
   }
