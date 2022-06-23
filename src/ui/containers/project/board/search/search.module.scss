@@ -52,23 +52,22 @@
     padding: spacing(4) spacing(16) spacing(4) spacing(3);
     box-sizing: border-box;
     background-color: color(grey-100);
-    border: 1px solid color(grey-400);
+    outline: 2px solid color(grey-400);
+    border: none;
     border-width: 2px;
     border-radius: 3px;
+    font-family: $font-light;
     transition: 0.2s ease-in-out 0s;
 
     &::placeholder {
-      opacity: 0;
       transition: 0.2s ease-in-out 0s;
     }
 
     &:focus {
       width: 190px;
+      outline-color: color(primary-main);
       background-color: white;
-
-      &::placeholder {
-        opacity: 1;
-      }
+      box-shadow: 5px 5px 20px 1px rgba(0, 82, 204, 0.2);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import { Category } from "domain/category";
-import { createIssue } from "domain/issue";
+import { Issue, createIssue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard } from "./issue-card";
@@ -9,6 +9,7 @@ import styles from "./category-column.module.scss";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const store = useStore();
+  const searchFilter = store.filters.search.toLowerCase();
 
   const createCategoryIssue = () => {
     const issue = createIssue({
@@ -21,6 +22,13 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       priority: "low",
     });
     store.editingIssue = issue;
+  }
+
+  const filteredIssues = (): Issue[] => {
+    return category.issues.filter(issue => {
+      const name = issue.name.toLowerCase();
+      return name.includes(searchFilter);
+    })
   }
 
   return (
@@ -39,7 +47,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       <div className={styles.body}>
         <ScrollArea>
           <ul className={styles.issues_list}>
-            {category.issues.map((issue, index) => (
+            {filteredIssues().map((issue, index) => (
               <li key={index} >
                 <IssueCard issue={issue} />
               </li>
