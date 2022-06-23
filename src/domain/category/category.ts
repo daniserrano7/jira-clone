@@ -11,6 +11,7 @@ export interface CategoryData {
 }
 
 export interface Category extends CategoryData {
+  getIssue: (issueId: IssueId) => Issue | undefined;
   addIssue: (issue: Issue) => void;
   removeIssue: (issueId: IssueId) => void;
 }
@@ -18,6 +19,10 @@ export interface Category extends CategoryData {
 export const createCategory = (data: CategoryData): Category => {
   return {
     ...data,
+
+    getIssue: function(issueId): Issue | undefined {
+      return this.issues.find(issue => issue.id === issueId);
+    },
 
     addIssue: function(issue: Issue) {
       this.issues.push(issue);

@@ -22,7 +22,11 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   const close = () => {
     const category = store.project.getCategory(issue.categoryId);
-    category?.addIssue(issue);
+    const foundIssue = category?.getIssue(issue.id);
+
+    if (!foundIssue) {
+      category?.addIssue(issue);
+    }
     store.editingIssue = null;
   }
 
@@ -49,9 +53,9 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                   <Title issue={issue} />
                 </Dialog.Title>
                 <p className={styles.label}>Description</p>
-                <Dialog.Description className={styles.description}>
+                <div className={styles.description}>
                   <Description issue={issue} />
-                </Dialog.Description>
+                </div>
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
                   <div>
