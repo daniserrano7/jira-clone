@@ -56,7 +56,9 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
         tooltip={comment.user.name}
       />
       <div style={{ width: "100%"}}>
-        <p className={styles.user_name}>{comment.user.name}</p>
+        <p className={styles.user_name}>
+          {comment.user.name}
+        </p>
         <span className={styles.timestamp}>
           {formatDateTime()}
         </span>
