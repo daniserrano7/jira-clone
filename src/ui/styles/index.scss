@@ -1,3 +1,27 @@
 @import "./colors.scss";
 @import "./spacing.scss";
 @import "./fonts.scss";
+
+html, body, #root, .App {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: color(font-main);
+  font-family: "CircularStdMedium", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
