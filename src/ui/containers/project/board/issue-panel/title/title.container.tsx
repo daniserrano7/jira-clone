@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Issue } from "domain/issue";
 import { TextareaAutosize } from "../textarea-autosize";
+import { textAreOnlySpaces } from "../utils";
 import styles from "./title.module.scss";
 
 export const Title = ({ issue }: TitleProps): JSX.Element => {
@@ -9,7 +10,7 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
 
   const MAX_LENGTH = 6000;
   const isMaxLength = title.length >= MAX_LENGTH;
-  const requireError = !isFocus && title.length === 0;
+  const requireError = !isFocus && (title.length === 0 || textAreOnlySpaces(title));
 
   const requireErrorStyles = requireError ? styles.require_error : undefined
   const maxLengthStyles = isMaxLength ? styles.max_length : undefined

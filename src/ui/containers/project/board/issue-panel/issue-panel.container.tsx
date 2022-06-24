@@ -11,6 +11,7 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
 import { SelectPriority } from "./select/select-priority";
 import { SelectAsignee } from "./select/select-asignee";
+import { textAreOnlySpaces } from "./utils";
 import styles from "./issue-panel.module.scss";
 
 
@@ -23,6 +24,9 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
   const category = store.project.getCategory(issue.categoryId);
 
   const applyChanges = () => {
+    if (issue.name.length === 0 || textAreOnlySpaces(issue.name)) {
+      return
+    }
     const foundIssue = category?.getIssue(issue.id);
 
     if (!foundIssue) {
@@ -35,7 +39,6 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
   const deleteIssue = () => {
     category?.removeIssue(issue.id);
     close();
-    // setTimeout(close, 1000);
   }
 
   const close = () => store.editingIssue = null;

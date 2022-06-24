@@ -4,7 +4,9 @@
 .container {
   margin-top: spacing(2);
 
-  textarea {
+  textarea,
+  p {
     font-family: $font-light;
+    line-height: 1.5;
   }
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextareaAutosize } from "../../textarea-autosize";
+import { textAreOnlySpaces } from "../../utils";
 import styles from "./edit-box.module.scss";
 
 export const EditBox = ({ defaultMessage, autofocus, save, cancel }: EditBoxProps): JSX.Element => {
@@ -7,12 +8,8 @@ export const EditBox = ({ defaultMessage, autofocus, save, cancel }: EditBoxProp
   const [ initError, setInitError ] = useState<boolean>(false);
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
-  const messageAreOnlySpaces = (): boolean => {
-    return /^( )\1*$/.test(message);
-  }
-
   const messageIsValid = (): boolean => {
-    return message.length > 0 && !messageAreOnlySpaces();
+    return message.length > 0 && !textAreOnlySpaces(message);
   }
 
   const resetValues = () => {
