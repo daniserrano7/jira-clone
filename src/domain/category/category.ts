@@ -3,6 +3,12 @@ import { Issue, IssueId } from "domain/issue";
 export const categoryIds = ["TODO", "IN_PROGRESS", "DONE"] as const;
 export type CategoryId = typeof categoryIds[number];
 
+export const categoryIdDict: Record<CategoryId, string> = {
+  TODO: "To do",
+  IN_PROGRESS: "In progress",
+  DONE: "Done",
+}
+
 
 export interface CategoryData {
   id: CategoryId,

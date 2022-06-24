@@ -1,5 +1,5 @@
 import { userMock1, userMock2 } from "domain/user";
-import { commentMock1 } from "domain/comment";
+import { createComment } from "domain/comment";
 import { toPlainObject } from "domain/utils";
 import { createIssue } from "./issue";
 
@@ -7,6 +7,12 @@ import { createIssue } from "./issue";
 jest.mock("uuid", () => ({
   v4: () => "mock-uuid",
 }));
+
+const commentMock = createComment({
+  user: userMock2,
+  message: "This should be implemented ASAP",
+});
+
 describe("Issue entity module", () => {
   it("Change issue name", () => {
     const name = "Issue name test";
@@ -99,10 +105,10 @@ describe("Issue entity module", () => {
       categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
-      comments: [commentMock1],
+      comments: [commentMock],
       priority: "high",
     });
-    reference.addComment(commentMock1);
+    reference.addComment(commentMock);
     expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
   });
 
@@ -113,7 +119,7 @@ describe("Issue entity module", () => {
       categoryId: "TODO",
       reporter: userMock1,
       asignee: userMock2,
-      comments: [commentMock1],
+      comments: [commentMock],
       priority: "high",
     });
     const expected = createIssue({
@@ -125,11 +131,11 @@ describe("Issue entity module", () => {
       comments: [],
       priority: "high",
     });
-    const removedComment = reference.removeComment(commentMock1.id);
+    const removedComment = reference.removeComment(commentMock.id);
     expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
     
     if (removedComment) {
-      expect(toPlainObject(removedComment)).toEqual(toPlainObject(commentMock1));
+      expect(toPlainObject(removedComment)).toEqual(toPlainObject(commentMock));
     }
   });
 });

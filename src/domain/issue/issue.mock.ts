@@ -1,49 +1,84 @@
 import { IssueData } from "./issue";
-import { createComment, commentMock1 } from "domain/comment";
+import { createComment } from "domain/comment";
 import { userMock1, userMock2 } from "domain/user";
 
-export const issueMock1: Omit<IssueData, "id"> = {
-  name: "Refactor entities id to UUID",
-  description: "Should be better to use UUID so ID duplication is less likely",
-  categoryId: "TODO",
-  reporter: userMock1,
-  asignee: userMock2,
-  comments: [],
-  priority: "high",
-}
 
-export const issueMock2: Omit<IssueData, "id"> = {
-  name: "Random issue 2",
-  description: "Random issue 2 description",
-  categoryId: "TODO",
-  reporter: userMock1,
-  asignee: userMock2,
-  comments: [createComment(commentMock1)],
-  priority: "medium",
-};
+export const todoIssues: IssueData[] = [
+  {
+    name: "Implement IndexedDB local database",
+    description: "All the data must be store in the IndexedDB so it is persistent in the same device. All actions that currently modifies the store must be reflected on the local DB too. Thinking about implement an interface that handle both cases or just call two methods on the same user action.",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [
+      createComment({
+        user: userMock2,
+        message: "This should be implemented ASAP",
+      }), 
+      createComment({
+        user: userMock1,
+        message: "Ok, I'm on it",
+      })
+    ],
+    priority: "high",
+  }, {
+    name: "Add and display issue timestamps",
+    description: "Is should be create automatically on createIssue(). It must be displayed on issue panel, as well as an updatedAt parameter",
+    reporter: userMock1,
+    asignee: userMock2,
+    comments: [
+      createComment({
+        user: userMock2,
+        message: "Adipisicing irure non voluptate id magna enim minim labore. Lorem deserunt velit sit ea ullamco laborum laboris culpa laborum. Minim cillum et dolore ipsum occaecat commodo. Sint esse sit consequat aute velit duis. Id et proident aute velit consectetur Lorem velit aliqua id. Duis sit proident veniam qui aliquip aute aliquip ad do. Duis deserunt veniam ipsum quis cupidatat voluptate dolor ullamco nisi duis occaecat ex non ad.",
+      })
+    ],
+    priority: "medium",
+  }, {
+    name: "Add projects section and the ability to create multiple projects",
+    description: "Router would be needed. Can create and edit project, as well as add users to that particular project",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }, {
+    name: "Add more filters",
+    description: "E.g. 'My issues' or by priority",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }, {
+    name: "Add avatar images",
+    description: "Thinking about using local images or import remotely",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }, {
+    name: "Create quick guide about the app",
+    description: "A dropdown panel with few steps about funcionalities. The first time it should be open by default. Control this through localStorage",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "medium",
+  }, {
+    name: "Sort issues?",
+    description: "By date or by priority. Don't know if it is good UX",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }
+];
 
-export const issueMock3: Omit<IssueData, "id"> = {
-  name: "Random issue 3",
-  description: "Random issue 3 description",
-  categoryId: "IN_PROGRESS",
-  reporter: userMock1,
-  asignee: userMock2,
-  comments: [],
-  priority: "low",
-};
+export const inProgressIssues: IssueData[] = [
+  {
+    name: "Update and improve Github repo README",
+    description: "",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "high",
+  }
+];
 
-export const issueMock4: Omit<IssueData, "id"> = {
-  name: "Random issue 4",
-  description: "Random issue 4 description",
-  categoryId: "DONE",
-  reporter: userMock2,
-  asignee: userMock2,
-  comments: [createComment({
-    user: userMock2,
-    message: "This should be implemented ASAP",
-  }), createComment({
-    user: userMock1,
-    message: "Ok, I'm on it",
-  })],
-  priority: "high",
-};
+export const doneIssues: IssueData[] = [];

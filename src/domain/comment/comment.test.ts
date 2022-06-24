@@ -6,6 +6,7 @@ import { createComment } from "./comment";
 jest.mock("uuid", () => ({
   v4: () => "mock-uuid",
 }));
+
 describe("Comment entity module", () => {
   it("Change comment message", () => {
     const message = "Test new comment message";

@@ -1,5 +1,5 @@
 import { userMock1 } from "domain/user";
-import { categoryMock1 } from "domain/category";
+import { todoCategory } from "domain/category";
 import { toPlainObject } from "domain/utils";
 import { createProject } from "./project";
 
@@ -10,13 +10,13 @@ describe("Project entity module", () => {
       id: 1,
       name: "Original name",
       users: [userMock1],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     const expected = createProject({
       id: 1,
       name,
       users: [userMock1],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     reference.setName(name);
 
@@ -28,13 +28,13 @@ describe("Project entity module", () => {
       id: 1,
       name: "Original name",
       users: [],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     const expected = createProject({
       id: 1,
       name: "Original name",
       users: [userMock1],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     reference.addUser(userMock1);
 
@@ -47,13 +47,13 @@ describe("Project entity module", () => {
       id: 1,
       name: "Original name",
       users: [user],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     const expected = createProject({
       id: 1,
       name: "Original name",
       users: [],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     const removedUser = reference.removeUser(user.id);
 
@@ -66,7 +66,7 @@ describe("Project entity module", () => {
       id: 1,
       name: "Original name",
       users: [userMock1],
-      categories: [categoryMock1],
+      categories: [todoCategory],
     });
     const removedUser = reference.removeUser("abcxyz");
 

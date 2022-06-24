@@ -6,10 +6,8 @@ import { Priority } from "../priority";
 
 export type IssueId = string; 
 export interface IssueData {
-  id: Readonly<IssueId>;
   name: string;
   description?: string;
-  categoryId: CategoryId;
   reporter: User;
   asignee: User | null;
   comments: Comment[];
@@ -20,6 +18,8 @@ export interface IssueData {
 }
 
 export interface Issue extends IssueData {
+  id: Readonly<IssueId>;
+  categoryId: CategoryId;
   setName: (name: string) => void;
   setDescription: (description: string) => void;
   setCategoryId: (categoryId: CategoryId) => void;
@@ -30,7 +30,7 @@ export interface Issue extends IssueData {
   removeComment: (commentId: CommentId) => Comment | undefined;
 }
 
-export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
+export const createIssue = (data: CreateIssue): Issue => ({
   id: uuidv4(),
   description: "",
   ...data,
@@ -69,3 +69,7 @@ export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
     return removedComment;
   },
 });
+
+interface CreateIssue extends Omit<IssueData, "id"> {
+  categoryId: CategoryId;
+}
