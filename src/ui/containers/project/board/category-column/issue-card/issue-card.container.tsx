@@ -8,6 +8,7 @@ import styles from "./issue-card.module.scss";
 
 export const IssueCard = observer(({ issue }: IssueCardProps): JSX.Element => {
   const store = useStore();
+  const issueIdPrefix = issue.id.split("-")[0];
 
   const openIssue = () => {
     store.editingIssue = issue;  
@@ -23,7 +24,9 @@ export const IssueCard = observer(({ issue }: IssueCardProps): JSX.Element => {
           <span className={styles.icon}>
             <Icon name="task" size={16} />
           </span>
-          <span className={styles.code}>Issue 1</span>
+          <span className={styles.code}>
+            {issueIdPrefix}
+          </span>
         </span>
         <PriorityIcon priority={issue.priority} size={14} />
       </div>
