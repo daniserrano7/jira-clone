@@ -8,7 +8,7 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
   const [ title, setTitle ] = useState<string>(issue.name);
   const [ isFocus, setIsFocus ] = useState<boolean>(true);
 
-  const MAX_LENGTH = 6000;
+  const MAX_LENGTH = 80;
   const isMaxLength = title.length >= MAX_LENGTH;
   const requireError = !isFocus && (title.length === 0 || textAreOnlySpaces(title));
 
