@@ -5,7 +5,7 @@ import styles from "./description.module.scss";
 
 
 export const Description = ({ issue }: DescriptionProps): JSX.Element => {
-  const [ description, setDescription ] = useState<string>("");
+  const [ description, setDescription ] = useState<string>(issue.description || "");
 
   const updateDescription = (newDescription: string) => {
     setDescription(newDescription);
