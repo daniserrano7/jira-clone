@@ -7,15 +7,16 @@ export interface CommentData {
   id: CommentId,
   user: User;
   message: string;
-  //TODO: createdAt: timestamp
+  createdAt: Date;
 }
 
 export interface Comment extends CommentData {
   setMessage: (message: string) => void;
 }
 
-export const createComment = (data: Omit<CommentData, "id">): Comment => ({
+export const createComment = (data: Omit<CommentData, "id" | "createdAt">): Comment => ({
   id: uuidv4(),
+  createdAt: new Date(),
   ...data,
 
   setMessage: function(message: string) {

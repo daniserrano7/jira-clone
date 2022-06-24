@@ -9,6 +9,21 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   const store = useStore();
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
+  const formatDateTime = (): string => {
+    const locale = "en-US";
+    const date = comment.createdAt.toLocaleDateString(locale, {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+    const time = comment.createdAt.toLocaleTimeString(locale, {
+      hour12: false,
+      timeStyle: "short",
+    });
+
+    return `${time} · ${date}`;
+  }
+
   const edit = () => setIsEditing(true);
   const remove = () => {
     if (comment.user.id !== store.user.id) {
@@ -42,7 +57,9 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
       />
       <div style={{ width: "100%"}}>
         <p className={styles.user_name}>{comment.user.name}</p>
-        <span className={styles.timestamp}>(Coming soon...)</span>
+        <span className={styles.timestamp}>
+          {formatDateTime()}
+        </span>
         {isEditing
           ? <EditBox
               defaultMessage={comment.message} 

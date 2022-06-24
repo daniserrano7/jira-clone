@@ -60,7 +60,7 @@ export const createIssue = (data: Omit<IssueData, "id">): Issue => ({
   },
 
   addComment: function(comment: Comment) {
-    this.comments.push(comment);
+    this.comments.unshift(comment);
   },
 
   removeComment: function(commentId: CommentId) {
