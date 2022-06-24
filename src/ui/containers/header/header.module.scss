@@ -32,6 +32,11 @@
     display: flex;
     gap: spacing(5);
 
+    > :first-child {
+      // Temporary untill help dropdown is implemented
+      cursor: not-allowed !important;
+    }
+
     .icon {
       width: 32px;
       height: 32px;
