@@ -20,19 +20,25 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   if (!issue) return <></>
 
-  const close = () => {
-    const category = store.project.getCategory(issue.categoryId);
+  const category = store.project.getCategory(issue.categoryId);
+
+  const applyChanges = () => {
     const foundIssue = category?.getIssue(issue.id);
 
     if (!foundIssue) {
       category?.addIssue(issue);
     }
-    store.editingIssue = null;
+
+    close();
   }
 
   const deleteIssue = () => {
+    category?.removeIssue(issue.id);
     close();
+    // setTimeout(close, 1000);
   }
+
+  const close = () => store.editingIssue = null;
 
   const addComment = (comment: Comment): void => {
     issue.addComment(comment);
@@ -43,14 +49,14 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay}>
           <Dialog.Content 
-            onEscapeKeyDown={close}
-            onPointerDownOutside={close} 
+            onEscapeKeyDown={applyChanges}
+            onPointerDownOutside={applyChanges} 
             className={styles.content}
           >
             <PanelHeader
               id={issue.id}
               onDeleteIssue={deleteIssue} 
-              onClose={close}
+              onClose={applyChanges}
             />
             <div className={styles.body}>
               <section className={styles.left_column}>
@@ -103,9 +109,9 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
             </div>
             <div className={styles.bottom}>
               <span className={styles.escape_label}>
-                Press <kbd>Esc</kbd> to close
+                Press <kbd>Esc</kbd> to apply changes
               </span>
-              <Dialog.Close onClick={close} className={styles.done_button}>
+              <Dialog.Close onClick={applyChanges} className={styles.done_button}>
                 Done
               </Dialog.Close>
             </div>

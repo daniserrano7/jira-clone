@@ -13,8 +13,8 @@ export const PanelHeader = ({ id, onDeleteIssue, onClose }: PanelHeaderProps): J
     
     setIsDeleting(true);
     setTimeout(() => {
-      onDeleteIssue();
       setIsDeleting(false);
+      onDeleteIssue();
     }, GIF_LOOP_TIMEOUT);
   }
 
