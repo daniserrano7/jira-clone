@@ -17,6 +17,7 @@
 }
 
 .content {
+  position: relative;
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 0 3px 3px rgba(0,0,0,0.3);
@@ -107,6 +108,43 @@
         p {
           margin: 0;
         }
+      }
+    }
+  }
+
+  .bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-end;
+
+    .escape_label {
+      font-family: $font-light;
+      color: lighten($color: color(font-light), $amount: 10);
+      font-size: 12px;
+
+      kbd {
+        padding: spacing(2);
+        background-color: color(grey-300);
+        border-radius: 4px;
+        color: color(icon);
+        font-family: $font-light;
+      }
+    }
+
+    .done_button {
+      justify-self: center;
+      width: fit-content;
+      padding: spacing(4) spacing(12);
+      border: none;
+      border-radius: 4px;
+      background-color: color(primary-main);
+      color: white;
+      font-family: $font-bold;
+      font-size: 20px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: color(primary-hover);
       }
     }
   }

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { IssueId } from "domain/issue";
 import { Icon } from "ui/components/icon";
 import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
 import styles from "./panel-header.module.scss";
 
-export const PanelHeader = ({ onDeleteIssue, onClose }: PanelHeaderProps): JSX.Element => {
+export const PanelHeader = ({ id, onDeleteIssue, onClose }: PanelHeaderProps): JSX.Element => {
   const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
 
   const deleteIssue = () => {
@@ -44,7 +45,9 @@ export const PanelHeader = ({ onDeleteIssue, onClose }: PanelHeaderProps): JSX.E
         <span className={styles.icon}>
           <Icon name="task" size={16} />
         </span>
-        <span className={styles.code}>Issue 1</span>
+        <span className={styles.id}>
+          {id}
+        </span>
       </span>
       <button 
         onClick={deleteIssue} 
@@ -60,6 +63,7 @@ export const PanelHeader = ({ onDeleteIssue, onClose }: PanelHeaderProps): JSX.E
 }
 
 interface PanelHeaderProps {
+  id: IssueId;
   onDeleteIssue: () => void;
   onClose: () => void;
 }

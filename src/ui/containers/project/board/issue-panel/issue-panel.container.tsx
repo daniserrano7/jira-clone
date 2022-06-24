@@ -42,8 +42,13 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
     <Dialog.Root open={isOpen}>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay}>
-          <Dialog.Content onPointerDownOutside={close} className={styles.content}>
-            <PanelHeader 
+          <Dialog.Content 
+            onEscapeKeyDown={close}
+            onPointerDownOutside={close} 
+            className={styles.content}
+          >
+            <PanelHeader
+              id={issue.id}
               onDeleteIssue={deleteIssue} 
               onClose={close}
             />
@@ -95,6 +100,14 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                   </div>
                 </div>
               </section>
+            </div>
+            <div className={styles.bottom}>
+              <span className={styles.escape_label}>
+                Press <kbd>Esc</kbd> to close
+              </span>
+              <Dialog.Close onClick={close} className={styles.done_button}>
+                Done
+              </Dialog.Close>
             </div>
           </Dialog.Content>
         </Dialog.Overlay>
