@@ -4,7 +4,7 @@ import { Category, createCategory } from "./category";
 
 describe("Category entity module", () => {
   it("Add issue to category", () => {
-    const issue = issueMock1;
+    const issue = createIssue(issueMock1);
     const reference: Category = createCategory({
       id: "TODO",
       name: "To Do",
@@ -13,7 +13,7 @@ describe("Category entity module", () => {
     const expected: Category = createCategory({
       id: "TODO",
       name: "To Do",
-      issues: [createIssue(issue)],
+      issues: [issue],
     });
     reference.addIssue(issue);
 
@@ -21,7 +21,7 @@ describe("Category entity module", () => {
   });
 
   it("Remove issue from category", () => {
-    const issue = issueMock1;
+    const issue = createIssue(issueMock1);
     const reference: Category = createCategory({
       id: "TODO",
       name: "To Do",
