@@ -31,26 +31,26 @@
   .icons_container {
     display: flex;
     gap: spacing(5);
-  }
-}
 
-.icon_button {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  box-sizing: content-box;
-  background-color: white;
-  border: none;
-  fill: white;
-  color: color(icon);
-  border-radius: 50%;
-  cursor: pointer;
-
-  &:hover {
-    background-color: color(primary-light);
-    color: color(primary-main);
+    .icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px;
+      box-sizing: content-box;
+      background-color: white;
+      border: none;
+      fill: white;
+      color: color(icon);
+      border-radius: 50%;
+      cursor: pointer;
+    
+      &:hover {
+        background-color: color(primary-light);
+        color: color(primary-main);
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { FunctionComponent, SVGProps } from "react";
 import { ReactComponent as QuestionIcon } from "ui/assets/icons/question.svg";
+import { ReactComponent as GithubIcon } from "ui/assets/icons/github.svg";
 import { ReactComponent as SettingsIcon } from "ui/assets/icons/settings.svg";
 import { ReactComponent as BacklogIcon } from "ui/assets/icons/backlog.svg";
 import { ReactComponent as BoardIcon } from "ui/assets/icons/board.svg";
@@ -14,6 +15,7 @@ import { ReactComponent as DeleteIcon } from "ui/assets/icons/delete.svg";
 type IconModule = FunctionComponent<SVGProps<SVGSVGElement>>;
 export type IconName = 
   | "question"
+  | "github"
   | "settings"
   | "backlog"
   | "board"
@@ -27,6 +29,7 @@ export type IconName =
 
 const iconLibrary: Record<IconName, IconModule> = {
   question: QuestionIcon,
+  github: GithubIcon,
   settings: SettingsIcon,
   backlog: BacklogIcon,
   board: BoardIcon,

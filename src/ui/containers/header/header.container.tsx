@@ -1,6 +1,5 @@
 import jiraLogo from "ui/assets/images/logo.png";
-import { ReactComponent as SettingsIcon } from "ui/assets/icons/settings.svg";
-import { ReactComponent as QuestionIcon } from "ui/assets/icons/question.svg";
+import { Icon } from "ui/components/icon";
 import styles from "./header.module.scss";
 
 export const Header = (): JSX.Element => {
@@ -13,29 +12,16 @@ export const Header = (): JSX.Element => {
         </div>
       </section>
       <section className={styles.icons_container}>
-        <HeaderIcon>
-          <QuestionIcon />
-        </HeaderIcon>
-        <HeaderIcon>
-          <SettingsIcon />
-        </HeaderIcon>
+        <button className={styles.icon}>
+          <Icon name="question" />
+        </button>
+        <a 
+          href="https://github.com/daniserrano7/jira-clone"
+          className={styles.icon}
+        >
+          <Icon name="github" />
+        </a>
       </section>
     </header>
   )
-}
-
-const HeaderIcon = ({ onClick, children }: HeaderIconProps): JSX.Element => {
-  return (
-    <button
-      className={styles.icon_button}
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  )
-}
-
-interface HeaderIconProps {
-  onClick?: () => void;
-  children: JSX.Element;
 }
