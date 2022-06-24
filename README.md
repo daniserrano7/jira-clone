@@ -57,13 +57,15 @@ npm run test-all
 
 ## Overview<a name="overview"></a>
 The app simulates Jira's project board. Related to that project, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and asign it to different users. 
-BOARD IMAGE
+
+![Board](./board.png)
 
 Within the issue editing panel you can manage the issue and see its information. It is very intuitive and simple to use, and includes real-time sync (every change is saved), errors validation and key bindings.
-ISSUE PANEL IMAGE
+
+![Issue panel](./issue-panel.png)
 
 ## Technologies<a name="technologies"></a>
-The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/) and [Radix](radix-ui.com/) fort the UI, [SASS](https://sass-lang.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. I have implemented testing with [Jest](https://jestjs.io), focused on entities and use cases.
+The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/) and [Radix](https://www.radix-ui.com/) fort the UI, [SASS](https://sass-lang.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. I have implemented testing with [Jest](https://jestjs.io), focused on entities and use cases.
 
 The whole app is bootstrapped with Create React App, but thinking to migrate to Vite at some point. I've used [ESLint](https://eslint.org/) for linting with low restrictive rules. The app is deployed at [Netlify](https://www.netlify.com/)
 
