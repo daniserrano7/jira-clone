@@ -4,7 +4,7 @@ import { Issue, createIssue } from "domain/issue";
 import { useStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard } from "./issue-card";
-import { ScrollArea } from "./scroll-area";
+import { ScrollArea } from "ui/components/scroll-area";
 import styles from "./category-column.module.scss";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
