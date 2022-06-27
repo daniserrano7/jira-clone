@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
 import { Comment } from "domain/comment";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -16,12 +16,11 @@ import styles from "./issue-panel.module.scss";
 
 
 export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.Element => {
-  const store = useStore();
-  const issue = store.editingIssue;
+  const issue = projectStore.editingIssue;
 
   if (!issue) return <></>
 
-  const category = store.project.getCategory(issue.categoryId);
+  const category = projectStore.project.getCategory(issue.categoryId);
 
   const applyChanges = () => {
     if (issue.name.length === 0 || textAreOnlySpaces(issue.name)) {
@@ -41,7 +40,7 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
     close();
   }
 
-  const close = () => store.editingIssue = null;
+  const close = () => projectStore.editingIssue = null;
 
   const addComment = (comment: Comment): void => {
     issue.addComment(comment);
@@ -100,8 +99,8 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div>
                   <p className={styles.select_label}>Reporter</p>
                   <div className={styles.reporter}>
-                    <UserAvatar {...store.user} tooltip={false} />
-                    <p>{store.user.name}</p>
+                    <UserAvatar {...projectStore.user} tooltip={false} />
+                    <p>{projectStore.user.name}</p>
                   </div>
                 </div>
               </section>

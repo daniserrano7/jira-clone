@@ -1,27 +1,26 @@
 import { observer } from "mobx-react-lite";
 import { Category } from "domain/category";
 import { Issue, createIssue } from "domain/issue";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard } from "./issue-card";
 import { ScrollArea } from "ui/components/scroll-area";
 import styles from "./category-column.module.scss";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
-  const store = useStore();
-  const searchFilter = store.filters.search.toLowerCase();
+  const searchFilter = projectStore.filters.search.toLowerCase();
 
   const createCategoryIssue = () => {
     const issue = createIssue({
       categoryId: category.id,
       name: "",
       description: "",
-      reporter: store.user,
-      asignee: store.user,
+      reporter: projectStore.user,
+      asignee: projectStore.user,
       comments: [],
       priority: "low",
     });
-    store.editingIssue = issue;
+    projectStore.editingIssue = issue;
   }
 
   const filteredIssues = (): Issue[] => {

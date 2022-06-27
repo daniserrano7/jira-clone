@@ -2,13 +2,12 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { CategoryId } from "domain/category";
 import { Issue } from "domain/issue";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import styles from "./select-status.module.scss";
 
 export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
-  const store = useStore();
-  const categories = store.project.categories;
+  const categories = projectStore.project.categories;
   const defaultValue = issue.categoryId;
   const [ selectValue, setSelectValue ] = useState<string>(defaultValue);
 

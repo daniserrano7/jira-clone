@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Comment } from "domain/comment";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./view-comment.module.scss";
 
 export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
-  const store = useStore();
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const formatDateTime = (): string => {
@@ -26,10 +25,10 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
 
   const edit = () => setIsEditing(true);
   const remove = () => {
-    if (comment.user.id !== store.user.id) {
+    if (comment.user.id !== projectStore.user.id) {
       return
     }
-    store.editingIssue?.removeComment(comment.id);
+    projectStore.editingIssue?.removeComment(comment.id);
   }
   const save = (commentText: string): void => {
     comment.setMessage(commentText);

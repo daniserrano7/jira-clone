@@ -1,17 +1,16 @@
 import { Issue } from "domain/issue";
 import { observer } from "mobx-react-lite";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { PriorityIcon } from "ui/components/priority-icon";
 import styles from "./issue-card.module.scss";
 
 
 export const IssueCard = observer(({ issue }: IssueCardProps): JSX.Element => {
-  const store = useStore();
   const issueIdPrefix = issue.id.split("-")[0];
 
   const openIssue = () => {
-    store.editingIssue = issue;  
+    projectStore.editingIssue = issue;  
   }
 
   return (

@@ -1,9 +1,9 @@
+import { v4 as uuidv4 } from "uuid";
 import { User, UserId } from "domain/user";
 import { Category, CategoryId } from "domain/category";
 
-type ProjectId = number;
+export type ProjectId = string;
 export interface ProjectData {
-  id: ProjectId;
   name: string;
   description?: string;
   users: User[];
@@ -11,6 +11,7 @@ export interface ProjectData {
 }
 
 export interface Project extends ProjectData {
+  id: Readonly<ProjectId>;
   setName: (name: string) => void;
   setDescription: (description: string) => void;
   getUser: (userId: UserId) => User | undefined;
@@ -20,6 +21,7 @@ export interface Project extends ProjectData {
 }
 
 export const createProject = (data: ProjectData): Project => ({
+  id: uuidv4(),
   ...data,
 
   setName: function(name: string) {

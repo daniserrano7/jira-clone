@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { Icon, IconName } from "ui/components/icon";
 import { navItems } from "./sidebar.info";
 import imageProject from "ui/assets/images/default-project.png";
 import styles from "./sidebar.module.scss";
 
 export const Sidebar = (): JSX.Element => {
-  const store = useStore();
   const [ isOpen, setIsOpen ] = useState<boolean>(true);
   const [ currentItem, setCurrentItem ] = useState<number>(0);
 
@@ -25,8 +24,8 @@ export const Sidebar = (): JSX.Element => {
             alt="project"
           />
           <div className={styles.project}>
-            <span className={styles.name}>{store.project.name}</span>
-            <span className={styles.description}>{store.project.description}</span>
+            <span className={styles.name}>{projectStore.project.name}</span>
+            <span className={styles.description}>{projectStore.project.description}</span>
           </div>
         </section>
         <section className={styles.body}>

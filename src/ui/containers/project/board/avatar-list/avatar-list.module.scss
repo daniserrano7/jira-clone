@@ -48,7 +48,7 @@
 .content {
   $bg-color: white;
 
-  padding: spacing(4);
+  padding: spacing(4) spacing(4);
   border-radius: 6px;
   background-color: $bg-color;
   box-shadow: 5px 5px 20px 1px rgba(0, 82, 204, 0.2);
@@ -58,11 +58,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: spacing(6);
-    margin-inline: spacing(2) spacing(8);
-
-    &:hover {
-      outline: none;
-    }
+    outline: none;
 
     &:not(:last-child) {
       margin-bottom: spacing(4);

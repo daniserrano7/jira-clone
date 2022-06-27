@@ -1,15 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { useStore } from "infrastructure/store";
+import { projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import styles from "./search.module.scss";
 
 export const Search = observer((): JSX.Element => {
-  const store = useStore();
-  const search = store.filters.search;
+  const search = projectStore.filters.search;
 
   const setSearch = (value: string) => {
-    store.filters.search = value;
+    projectStore.filters.search = value;
   }
 
   const clearSearch = () => setSearch("");
