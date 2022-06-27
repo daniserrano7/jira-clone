@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
 import { Comment } from "domain/comment";
 import { useStore } from "infrastructure/store";
-import { Avatar } from "ui/components/avatar";
+import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
 import { Description } from "./description";
@@ -100,11 +100,7 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div>
                   <p className={styles.select_label}>Reporter</p>
                   <div className={styles.reporter}>
-                    <Avatar 
-                      size={32}
-                      image="default-avatar.png"
-                      tooltip={store.user.name}
-                    />
+                    <UserAvatar {...store.user} tooltip={false} />
                     <p>{store.user.name}</p>
                   </div>
                 </div>

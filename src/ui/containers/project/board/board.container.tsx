@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "infrastructure/store";
 import { Search } from "ui/containers/project/board/search";
-import { AvatarList, avatarListInfo } from "ui/containers/project/board/avatar-list";
+import { UserAvatarList } from "./avatar-list";
 import { CategoryColumn } from "./category-column";
 import { IssueEditPanel } from "./issue-panel";
 import styles from "./board.module.scss";
@@ -18,7 +18,7 @@ export const Board = observer((): JSX.Element => {
       <section className={styles.tools}>
         <Search />
         <div className={styles.users}>
-          <AvatarList {...avatarListInfo} />
+          <UserAvatarList />
         </div>
         <div className={styles.filters}>
           FILTERS

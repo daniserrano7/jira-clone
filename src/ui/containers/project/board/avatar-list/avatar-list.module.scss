@@ -1,11 +1,9 @@
 @import "/src/ui/styles";
 
 .container {
-  position: relative;
+  display: flex;
 
   .avatar_container {
-    position: relative;
-    display: inline-block;
     cursor: pointer;
     z-index: 4;
 
@@ -17,7 +15,7 @@
       z-index: 5;
     }
 
-    img {
+    > * {
       border: 2px solid white;
     }
   }

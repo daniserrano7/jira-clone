@@ -17,7 +17,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       name: "",
       description: "",
       reporter: store.user,
-      asignee: null,
+      asignee: store.user,
       comments: [],
       priority: "low",
     });

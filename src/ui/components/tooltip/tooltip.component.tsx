@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "./tooltip.module.scss";
 
-export const Tooltip = ({ title, children }: TooltipProps): JSX.Element => {
+export const Tooltip = ({ title, show=true, children }: TooltipProps): JSX.Element => {
   const [ isVisible, setIsVisible ] = useState<boolean>(false);
 
   const showTooltip = () => setIsVisible(true);
   const hideTooltip = () => setIsVisible(false);
+
+  if (!show) return children;
 
   return (
     <div className={styles.container}>
@@ -26,5 +28,6 @@ export const Tooltip = ({ title, children }: TooltipProps): JSX.Element => {
 
 interface TooltipProps {
   title: string;
+  show?: boolean;
   children: JSX.Element;
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Comment } from "domain/comment";
 import { useStore } from "infrastructure/store";
-import { Avatar } from "ui/components/avatar";
+import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./view-comment.module.scss";
 
@@ -50,11 +50,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <Avatar 
-        size={32}
-        image="default-avatar.png"
-        tooltip={comment.user.name}
-      />
+      <UserAvatar {...comment.user} tooltip={false} />
       <div style={{ width: "100%"}}>
         <p className={styles.user_name}>
           {comment.user.name}

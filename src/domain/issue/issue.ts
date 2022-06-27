@@ -9,7 +9,7 @@ export interface IssueData {
   name: string;
   description?: string;
   reporter: User;
-  asignee: User | null;
+  asignee: User;
   comments: Comment[];
   priority: Priority;
   //TODO: epic: Epic

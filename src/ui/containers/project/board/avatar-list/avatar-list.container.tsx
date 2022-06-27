@@ -1,21 +1,17 @@
-import { Avatar, AvatarProps } from "ui/components/avatar";
-import { Tooltip } from "ui/components/tooltip";
+import { useStore } from "infrastructure/store";
+import { UserAvatar } from "ui/components/avatar";
 import styles from "./avatar-list.module.scss";
 
-export const AvatarList = ({ avatars }: AvatarListProps): JSX.Element => {
+export const UserAvatarList = (): JSX.Element => {
+  const store = useStore();
+
   return (
     <span className={styles.container}>
-      {avatars.map((avatar, index) => (
+      {store.project.users.map((user, index) => (
         <div key={index} className={styles.avatar_container}>
-          <Tooltip title={avatar.tooltip} >
-            <Avatar {...avatar} />
-          </Tooltip>
+          <UserAvatar {...user} size={40} tooltip />
         </div>
       ))}
     </span>
   )
-}
-
-export interface AvatarListProps {
-  avatars: AvatarProps[];
 }

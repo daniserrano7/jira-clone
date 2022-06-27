@@ -3,7 +3,7 @@ import * as Select from "@radix-ui/react-select";
 import { UserId } from "domain/user";
 import { Issue } from "domain/issue";
 import { useStore } from "infrastructure/store";
-import { Avatar } from "ui/components/avatar";
+import { UserAvatar } from "ui/components/avatar";
 import { Icon } from "ui/components/icon";
 import styles from "./select-asignee.module.scss";
 
@@ -25,10 +25,10 @@ export const SelectAsignee = ({ issue }: SelectAsigneeProps): JSX.Element => {
     <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
       <Select.Trigger className={`${styles.trigger} ${styles[selectValue]}`}>
         <div className={styles.avatar}>
-          <Avatar 
+          <UserAvatar
+            {...issue?.asignee} 
+            tooltip={false} 
             size={32}
-            image="default-avatar.png"
-            tooltip="User"
           />
         </div>
         <Select.Value />
@@ -46,11 +46,7 @@ export const SelectAsignee = ({ issue }: SelectAsigneeProps): JSX.Element => {
               className={`${styles.item} ${styles[user.id]}`}
             >
               <Select.ItemIndicator className={styles.indicator} />
-              <Avatar 
-                size={32}
-                image="default-avatar.png"
-                tooltip="User"
-              />
+              <UserAvatar {...user} tooltip={false} />
               <Select.ItemText>
                 {user.name}
               </Select.ItemText>
