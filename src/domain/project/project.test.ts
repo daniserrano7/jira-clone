@@ -3,17 +3,20 @@ import { todoCategory } from "domain/category";
 import { toPlainObject } from "domain/utils";
 import { createProject } from "./project";
 
+
+jest.mock("uuid", () => ({
+  v4: () => "mock-uuid",
+}));
+
 describe("Project entity module", () => {
   it("Set project name", () => {
     const name = "Project name test";
     const reference = createProject({
-      id: 1,
       name: "Original name",
       users: [userMock1],
       categories: [todoCategory],
     });
     const expected = createProject({
-      id: 1,
       name,
       users: [userMock1],
       categories: [todoCategory],
@@ -25,13 +28,11 @@ describe("Project entity module", () => {
 
   it("Add user to project", () => {
     const reference = createProject({
-      id: 1,
       name: "Original name",
       users: [],
       categories: [todoCategory],
     });
     const expected = createProject({
-      id: 1,
       name: "Original name",
       users: [userMock1],
       categories: [todoCategory],
@@ -44,13 +45,11 @@ describe("Project entity module", () => {
   it("Remove user from project", () => {
     const user = userMock1;
     const reference = createProject({
-      id: 1,
       name: "Original name",
       users: [user],
       categories: [todoCategory],
     });
     const expected = createProject({
-      id: 1,
       name: "Original name",
       users: [],
       categories: [todoCategory],
@@ -63,7 +62,6 @@ describe("Project entity module", () => {
 
   it("Remove undefined user from project", () => {
     const reference = createProject({
-      id: 1,
       name: "Original name",
       users: [userMock1],
       categories: [todoCategory],
