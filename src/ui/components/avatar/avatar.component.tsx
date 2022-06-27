@@ -5,7 +5,18 @@ import styles from "./avatar.module.scss";
 
 
 export const UserAvatar = ({ name, image, size=36, tooltip }: UserAvatarProps): JSX.Element => {
-  const acronym = name.split(" ").slice(0, 2).map(word => word[0].toUpperCase()).join("");
+  const acronym = name
+    .split(" ")
+    .slice(0, 2)
+    .map(word => word[0].toUpperCase())
+    .join("");
+
+  const getRandomPastelColor = () => {
+    const h = 360 * Math.random();
+    const s = 25 + 70 * Math.random();
+    const l = 85 + 10 * Math.random();
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
 
   return (
     <div className={styles.container}>
@@ -20,7 +31,11 @@ export const UserAvatar = ({ name, image, size=36, tooltip }: UserAvatarProps): 
           <Avatar.Fallback
             delayMs={0} 
             className={styles.fallback}
-            style={{ width: `${size}px`, height: `${size}px`}}
+            style={{ 
+              width: `${size}px`, 
+              height: `${size}px`,
+              backgroundColor: getRandomPastelColor(),
+            }}
           >
             {acronym}
           </Avatar.Fallback>

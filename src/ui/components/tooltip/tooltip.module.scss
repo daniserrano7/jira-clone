@@ -7,10 +7,10 @@
   .tooltip {
     position: absolute;
     left: 50%;
+    top: calc(100% + 5px);
     transform: translateX(-50%);
     display: none;
     justify-content: center;
-    width: 240px;
     overflow-wrap: break-word;
     z-index: 800;
 
@@ -24,6 +24,7 @@
       color: white;
       background-color: color(font-main);
       border-radius: 3px;
+      white-space: nowrap;
       font-size: 12px;
       font-weight: 400;
     }
