@@ -13,11 +13,13 @@ describe("Category entity module", () => {
       id,
       name: categoryIdDict[id],
       issues: [],
+      order: 1,
     });
     const expected: Category = createCategory({
       id,
       name: categoryIdDict[id],
       issues: [issue],
+      order: 1,
     });
     reference.addIssue(issue);
 
@@ -34,11 +36,13 @@ describe("Category entity module", () => {
       id,
       name: categoryIdDict[id],
       issues: [issue],
+      order: 1,
     });
     const expected: Category = createCategory({
       id,
       name: categoryIdDict[id],
       issues: [],
+      order: 1,
     });
     reference.removeIssue(issue.id);
 

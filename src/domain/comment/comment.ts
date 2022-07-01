@@ -4,17 +4,19 @@ import { User } from "../user";
 export type CommentId = string;
 
 export interface CommentData {
-  id: CommentId,
+  id?: CommentId,
   user: User;
   message: string;
-  createdAt: Date;
+  createdAt?: Date;
 }
 
 export interface Comment extends CommentData {
+  id: Readonly<CommentId>;
+  createdAt: Readonly<Date>;
   setMessage: (message: string) => void;
 }
 
-export const createComment = (data: Omit<CommentData, "id" | "createdAt">): Comment => ({
+export const createComment = (data: CommentData): Comment => ({
   id: uuidv4(),
   createdAt: new Date(),
   ...data,

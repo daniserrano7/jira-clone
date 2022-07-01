@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
 import { Comment } from "domain/comment";
-import { projectStore } from "infrastructure/store";
+import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -99,8 +99,8 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div>
                   <p className={styles.select_label}>Reporter</p>
                   <div className={styles.reporter}>
-                    <UserAvatar {...projectStore.user} tooltip={false} />
-                    <p>{projectStore.user.name}</p>
+                    <UserAvatar {...appStore.user} tooltip={false} />
+                    <p>{appStore.user.name}</p>
                   </div>
                 </div>
               </section>

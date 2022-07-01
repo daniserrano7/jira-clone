@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
-import { User } from "../user";
+import { User, UserId } from "../user";
 import { CategoryId } from "domain/category";
 import { Comment, CommentId } from "../comment";
 import { Priority } from "../priority";
 
 export type IssueId = string; 
 export interface IssueData {
+  id?: UserId;
   name: string;
   description?: string;
+  categoryId?: CategoryId;
   reporter: User;
   asignee: User;
   comments: Comment[];
@@ -70,6 +72,6 @@ export const createIssue = (data: CreateIssue): Issue => ({
   },
 });
 
-interface CreateIssue extends Omit<IssueData, "id"> {
+interface CreateIssue extends IssueData {
   categoryId: CategoryId;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Comment } from "domain/comment";
-import { projectStore } from "infrastructure/store";
+import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./view-comment.module.scss";
@@ -9,6 +9,8 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const formatDateTime = (): string => {
+    if (!comment.createdAt) return "DATE UNDEFINED";
+    
     const locale = "en-US";
     const date = comment.createdAt.toLocaleDateString(locale, {
       day: "2-digit",
@@ -25,7 +27,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
 
   const edit = () => setIsEditing(true);
   const remove = () => {
-    if (comment.user.id !== projectStore.user.id) {
+    if (comment.user.id !== appStore.user.id) {
       return
     }
     projectStore.editingIssue?.removeComment(comment.id);

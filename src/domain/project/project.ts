@@ -4,6 +4,7 @@ import { Category, CategoryId } from "domain/category";
 
 export type ProjectId = string;
 export interface ProjectData {
+  id?: ProjectId;
   name: string;
   description?: string;
   users: User[];
