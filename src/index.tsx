@@ -1,11 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import db from "infrastructure/db/db";
-import App from "./ui/App";
+import App from "./ui/app";
 import "./ui/styles/index.scss";
 
-
-db.projects.toArray().then(console.log)
 
 ReactDOM.render(
   <React.StrictMode>

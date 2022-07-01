@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { projectStore } from "infrastructure/store";
+import db from "infrastructure/db";
+import { appStore, projectStore } from "infrastructure/store";
 import { Header } from "./containers/header";
 import { Project } from "./containers/project";
 
 const App = observer((): JSX.Element => {
   const [ isLoaded, setIsLoaded ] = useState<boolean>(false);
-  console.log("RENDERING APP")
 
   useEffect(() => {
-    projectStore.fetchInitData()
-      .then(() => {
-        // console.log("PROJECT USERS: ", projectStore.users);
-        setIsLoaded(true);
-      });
+    db.open();
+    db.on("ready", () => {
+      Promise.all([
+        appStore.fetchInitData(),
+        projectStore.fetchInitData()
+      ])
+        .then(() => setIsLoaded(true));
+    });
   }, []);
+
   return (
-    <div className="App">
+    <div className="app">
       <Header />
       {isLoaded
         ? <Project />
