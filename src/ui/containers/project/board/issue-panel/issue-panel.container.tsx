@@ -1,6 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
-import { Comment } from "domain/comment";
 import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
@@ -42,10 +41,6 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   const close = () => projectStore.editingIssue = null;
 
-  const addComment = (comment: Comment): void => {
-    issue.addComment(comment);
-  }
-
   return (
     <Dialog.Root open={isOpen}>
       <Dialog.Portal>
@@ -72,7 +67,7 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
                   <div>
-                    <CreateComment addComment={addComment} />
+                    <CreateComment />
                   </div>
                   <ul className={styles.comment_list}>
                     {issue.comments.map((comment, index) => (

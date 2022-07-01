@@ -36,5 +36,5 @@ const issueDbPipe = (issue: Issue, categoryId: CategoryId): IssueDB => ({
 });
 
 export const fetchIssues = (categoryId: CategoryId): PromiseExtended<IssueDB[]> => {
-  return db.issues.where({ categoryId }).toArray();
+  return db.issues.where({ categoryId }).sortBy("createdAt");
 }

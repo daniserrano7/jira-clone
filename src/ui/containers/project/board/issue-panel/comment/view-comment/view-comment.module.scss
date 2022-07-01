@@ -37,6 +37,10 @@
     .buttons_container {
       margin-top: spacing(6);
 
+      &.hidden {
+        display: none;
+      }
+
       button {
         padding: 0;
         background-color: transparent;
