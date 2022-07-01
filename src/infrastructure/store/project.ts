@@ -64,7 +64,7 @@ const createProjectFromDb = (projectDb: ProjectDB): Project => {
 }
 
 // USER
-const createUserFromDb = (user: UserDB): User => {
+export const createUserFromDb = (user: UserDB): User => {
   return createUser({
     id: user.id,
     name: user.name,

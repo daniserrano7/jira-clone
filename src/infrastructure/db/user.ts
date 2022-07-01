@@ -1,7 +1,8 @@
 import { PromiseExtended } from "dexie";
 import { Project } from "domain/project";
-import { User, UserId } from "domain/user";
+import { User, UserId, userMock1 } from "domain/user";
 import db from "./db";
+import { setLocalStorageUserId } from "infrastructure/local-storage";
 
 
 export interface UserDB {
@@ -16,6 +17,7 @@ export const populateUsers = (project: Project): void => {
     const userDbData = userDbPipe(user);
     db.users.add(userDbData);
   });
+  setLocalStorageUserId(userMock1.id);
 }
 
 const userDbPipe = (user: User): UserDB => ({
