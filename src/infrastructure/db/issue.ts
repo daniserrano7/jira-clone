@@ -19,14 +19,14 @@ export interface IssueDB {
 
 export const populateIssues = (category: Category): void => {
   category.issues.forEach(issue => {
-    const issueDbData = issueDbPipe(issue, category.id);
+    const issueDbData = issueDbPipe(issue);
     db.issues.add(issueDbData);
     populateComments(issue);
   });
 }
 
-const issueDbPipe = (issue: Issue, categoryId: CategoryId): IssueDB => ({
-  categoryId,
+const issueDbPipe = (issue: Issue): IssueDB => ({
+  categoryId: issue.categoryId,
   id: issue.id,
   name: issue.name,
   description: issue.description,
@@ -37,4 +37,21 @@ const issueDbPipe = (issue: Issue, categoryId: CategoryId): IssueDB => ({
 
 export const fetchIssues = (categoryId: CategoryId): PromiseExtended<IssueDB[]> => {
   return db.issues.where({ categoryId }).sortBy("createdAt");
+}
+
+export const addIssueDb = (issue: Issue): void => {
+  const issueDbData = issueDbPipe(issue);
+  db.issues.add(issueDbData);
+  populateComments(issue);
+}
+
+export const updateIssueDb = (issue: Issue): void => {
+  const issueDbData = issueDbPipe(issue);
+  db.issues.update(issue.id, {...issueDbData});
+}
+
+export const removeIssueDb = (issue: Issue): void => {
+  const commentIds = issue.comments.map(comment => comment.id);
+  db.issues.delete(issue.id);
+  db.comments.bulkDelete(commentIds);
 }

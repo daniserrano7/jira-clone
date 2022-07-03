@@ -1,5 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
+import { addIssueDb, updateIssueDb, removeIssueDb } from "infrastructure/db/issue";
 import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
@@ -29,6 +30,9 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
     if (!foundIssue) {
       category?.addIssue(issue);
+      addIssueDb(issue);
+    } else {
+      updateIssueDb(issue);
     }
 
     close();
@@ -36,6 +40,7 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   const deleteIssue = () => {
     category?.removeIssue(issue.id);
+    removeIssueDb(issue);
     close();
   }
 

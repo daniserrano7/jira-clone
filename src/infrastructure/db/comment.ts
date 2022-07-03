@@ -5,6 +5,14 @@ import db from "./db";
 import { PromiseExtended, IndexableType } from "dexie";
 
 
+export interface CommentDB {
+  issueId: IssueId;
+  id: CommentId;
+  message: string;
+  userId: UserId;
+  createdAt: Date;
+}
+
 const commentDbPipe = (comment: Comment, issueId: IssueId): CommentDB => ({
   issueId,
   id: comment.id,
@@ -34,12 +42,4 @@ export const removeCommentDb = (commentId: CommentId): void => {
 
 export const updateCommentDb = (commentId: CommentId, message: string): void => {
   db.comments.update(commentId, { message });
-}
-
-export interface CommentDB {
-  issueId: IssueId;
-  id: CommentId;
-  message: string;
-  userId: UserId;
-  createdAt: Date;
 }
