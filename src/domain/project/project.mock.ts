@@ -8,3 +8,5 @@ export const projectMock: Project = createProject({
   users: usersMock,
   categories: categoriesMock,
 });
+
+export const projectsMock: Project[] = [projectMock];

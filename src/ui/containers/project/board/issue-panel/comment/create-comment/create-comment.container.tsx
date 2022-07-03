@@ -1,20 +1,28 @@
 import { useState } from "react";
-import { Comment, createComment } from "domain/comment";
-import { projectStore } from "infrastructure/store";
+import { createComment } from "domain/comment";
+import { addCommentDb } from "infrastructure/db/comment";
+import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./create-comment.module.scss";
 
 
-export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element => {
+export const CreateComment = (): JSX.Element => {
   const [ isEditing, setIsEditing ] = useState<boolean>(false);
 
   const save = (message: string) => {
+    const issue = projectStore.editingIssue;
+
+    if (!issue) {
+      throw new Error("No issue to edit");
+    }
+
     const comment = createComment({
-      user: projectStore.user,
+      user: appStore.user,
       message,
     });
-    addComment(comment);
+    issue.addComment(comment);
+    addCommentDb(comment, issue.id);
     setIsEditing(false);
   }
   const cancel = () => setIsEditing(false);
@@ -23,7 +31,7 @@ export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element =
 
   return (
     <div className={`${styles.container} ${editStyles}`}>
-      <UserAvatar {...projectStore.user} tooltip={false} />
+      <UserAvatar {...appStore.user} tooltip={false} />
       <EditBox
         defaultMessage=""
         save={save}
@@ -31,8 +39,4 @@ export const CreateComment = ({ addComment }: CreateCommentProps): JSX.Element =
       />
     </div>
   )
-}
-
-interface CreateCommentProps {
-  addComment: (comment: Comment) => void;
 }

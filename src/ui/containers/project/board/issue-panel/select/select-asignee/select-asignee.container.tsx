@@ -2,14 +2,14 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { UserId } from "domain/user";
 import { Issue } from "domain/issue";
-import { projectStore } from "infrastructure/store";
+import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { Icon } from "ui/components/icon";
 import styles from "./select-asignee.module.scss";
 
 export const SelectAsignee = ({ issue }: SelectAsigneeProps): JSX.Element => {
   const users = projectStore.project.users;
-  const defaultValue = issue.asignee?.id || projectStore.user.id;
+  const defaultValue = issue.asignee?.id || appStore.user.id;
   const [ selectValue, setSelectValue ] = useState<UserId>(defaultValue);
 
   const onValueChange = (userId: UserId) => {

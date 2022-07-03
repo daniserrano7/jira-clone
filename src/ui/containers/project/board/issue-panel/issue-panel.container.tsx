@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
-import { Comment } from "domain/comment";
-import { projectStore } from "infrastructure/store";
+import { addIssueDb, updateIssueDb, removeIssueDb } from "infrastructure/db/issue";
+import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -30,6 +30,9 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
     if (!foundIssue) {
       category?.addIssue(issue);
+      addIssueDb(issue);
+    } else {
+      updateIssueDb(issue);
     }
 
     close();
@@ -37,14 +40,11 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
 
   const deleteIssue = () => {
     category?.removeIssue(issue.id);
+    removeIssueDb(issue);
     close();
   }
 
   const close = () => projectStore.editingIssue = null;
-
-  const addComment = (comment: Comment): void => {
-    issue.addComment(comment);
-  }
 
   return (
     <Dialog.Root open={isOpen}>
@@ -72,7 +72,7 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div className={styles.comments}>
                   <p className={styles.label}>Comments</p>
                   <div>
-                    <CreateComment addComment={addComment} />
+                    <CreateComment />
                   </div>
                   <ul className={styles.comment_list}>
                     {issue.comments.map((comment, index) => (
@@ -99,8 +99,8 @@ export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.E
                 <div>
                   <p className={styles.select_label}>Reporter</p>
                   <div className={styles.reporter}>
-                    <UserAvatar {...projectStore.user} tooltip={false} />
-                    <p>{projectStore.user.name}</p>
+                    <UserAvatar {...appStore.user} tooltip={false} />
+                    <p>{appStore.user.name}</p>
                   </div>
                 </div>
               </section>

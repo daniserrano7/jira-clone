@@ -3,13 +3,15 @@ import { v4 as uuidv4 } from "uuid";
 
 export type UserId = string;
 export type UserData = {
+  id?: UserId;
   name: string;
   image?: string;
+  color?: string;
 }
 
 export interface User extends UserData {
   id: Readonly<UserId>;
-  color: string;
+  color: Readonly<string>;
 }
 
 export const createUser = (data: UserData): User => ({

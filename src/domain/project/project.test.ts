@@ -1,5 +1,5 @@
 import { userMock1 } from "domain/user";
-import { todoCategory } from "domain/category";
+import { categoriesMock } from "domain/category";
 import { toPlainObject } from "domain/utils";
 import { createProject } from "./project";
 
@@ -8,18 +8,19 @@ jest.mock("uuid", () => ({
   v4: () => "mock-uuid",
 }));
 
+const mockCategory = categoriesMock[0];
 describe("Project entity module", () => {
   it("Set project name", () => {
     const name = "Project name test";
     const reference = createProject({
       name: "Original name",
       users: [userMock1],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     const expected = createProject({
       name,
       users: [userMock1],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     reference.setName(name);
 
@@ -30,12 +31,12 @@ describe("Project entity module", () => {
     const reference = createProject({
       name: "Original name",
       users: [],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     const expected = createProject({
       name: "Original name",
       users: [userMock1],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     reference.addUser(userMock1);
 
@@ -47,12 +48,12 @@ describe("Project entity module", () => {
     const reference = createProject({
       name: "Original name",
       users: [user],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     const expected = createProject({
       name: "Original name",
       users: [],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     const removedUser = reference.removeUser(user.id);
 
@@ -64,7 +65,7 @@ describe("Project entity module", () => {
     const reference = createProject({
       name: "Original name",
       users: [userMock1],
-      categories: [todoCategory],
+      categories: [mockCategory],
     });
     const removedUser = reference.removeUser("abcxyz");
 

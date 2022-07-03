@@ -14,6 +14,7 @@ export interface CategoryData {
   id: CategoryId,
   name: string;
   issues: Issue[];
+  order: number;
 }
 
 export interface Category extends CategoryData {

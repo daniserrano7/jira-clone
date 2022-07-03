@@ -1,24 +1,24 @@
-import { Category, CategoryId, createCategory, categoryIdDict } from "domain/category";
+import { CategoryId, createCategory, categoryIdDict } from "domain/category";
 import { createIssue, todoIssues, inProgressIssues, doneIssues } from "domain/issue";
 import { IssueData } from "domain/issue";
 
-const createCategoryEntity = (categoryId: CategoryId, issues: IssueData[]): Category => {
+
+const categoriesDict: Record<CategoryId, IssueData[]> = {
+  "TODO": todoIssues,
+  "IN_PROGRESS": inProgressIssues,
+  "DONE": doneIssues,
+};
+
+export const categoriesMock = Object.entries(categoriesDict).map((pair, idx) => {
+  const categoryId = pair[0] as CategoryId;
+  const issueDataList = pair[1] as IssueData[];
   return createCategory({
     id: categoryId,
     name: categoryIdDict[categoryId],
-    issues: issues.map(issue => createIssue({
-      ...issue,
+    issues: issueDataList.map(issueData => createIssue({
+      ...issueData,
       categoryId: categoryId,
     })),
-  })
-}
-
-export const todoCategory: Category = createCategoryEntity("TODO", todoIssues);
-export const inProgressCategory: Category = createCategoryEntity("IN_PROGRESS", inProgressIssues);
-export const doneCategory: Category = createCategoryEntity("DONE", doneIssues);
-
-export const categoriesMock: Category[] = [
-  todoCategory,
-  inProgressCategory,
-  doneCategory
-];
+    order: idx,
+  });
+});
