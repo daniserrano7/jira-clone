@@ -35,7 +35,7 @@
       }
 
       &.clear {
-        border-radius: 3px;
+        border-radius: $border-radius-m;
         cursor: pointer;
 
         &:hover {
@@ -54,7 +54,7 @@
     outline: 2px solid color(grey-400);
     border: none;
     border-width: 2px;
-    border-radius: 3px;
+    border-radius: $border-radius-m;
     font-family: $font-light;
     transition: 0.2s ease-in-out 0s;
 
@@ -66,7 +66,7 @@
       width: 190px;
       outline-color: color(primary-main);
       background-color: white;
-      box-shadow: 5px 5px 20px 1px rgba(0, 82, 204, 0.2);
+      box-shadow: $box-shadow-blue;
     }
   }
 }

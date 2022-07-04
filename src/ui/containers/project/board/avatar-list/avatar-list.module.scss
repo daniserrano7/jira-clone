@@ -49,9 +49,9 @@
   $bg-color: white;
 
   padding: spacing(4) spacing(4);
-  border-radius: 6px;
+  border-radius: $border-radius-l;
   background-color: $bg-color;
-  box-shadow: 5px 5px 20px 1px rgba(0, 82, 204, 0.2);
+  box-shadow: $box-shadow-blue;
 
   .item {
     display: flex;

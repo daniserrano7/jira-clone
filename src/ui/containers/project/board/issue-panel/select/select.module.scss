@@ -6,7 +6,7 @@
   align-items: center;
   padding: 0 spacing(3) 0 spacing(5);
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius-m;
   background-color: color(grey-300);
   font-family: $font-bold;
   font-size: 14px;
@@ -27,7 +27,7 @@
 .content {
   background-color: white;
   border: 1px solid color(grey-400);
-  box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.5);
+  box-shadow: $box-shadow-m;
   margin-top: spacing(-1);
   padding: spacing(2) 0;
 
@@ -51,7 +51,7 @@
     > span:last-child {
       padding: 0 spacing(3);
       color: grey;
-      border-radius: 4px;
+      border-radius: $border-radius-m;
     }
 
     .indicator {
