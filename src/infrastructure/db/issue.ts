@@ -39,6 +39,10 @@ export const fetchIssues = (categoryId: CategoryId): PromiseExtended<IssueDB[]> 
   return db.issues.where({ categoryId }).sortBy("createdAt");
 }
 
+export const getIssueDb = (issueId: IssueId): PromiseExtended<IssueDB | undefined> => {
+  return db.issues.get(issueId);
+}
+
 export const addIssueDb = (issue: Issue): void => {
   const issueDbData = issueDbPipe(issue);
   db.issues.add(issueDbData);

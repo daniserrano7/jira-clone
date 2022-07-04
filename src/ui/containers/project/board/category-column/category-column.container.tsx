@@ -22,6 +22,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       priority: "low",
     });
     projectStore.editingIssue = issue;
+    category.addIssue(issue);
   }
 
   const filteredIssues = (): Issue[] => {

@@ -1,6 +1,12 @@
-import * as Dialog from "@radix-ui/react-dialog";
 import { observer } from "mobx-react-lite";
-import { addIssueDb, updateIssueDb, removeIssueDb } from "infrastructure/db/issue";
+import * as Dialog from "@radix-ui/react-dialog";
+import {
+  IssueDB,
+  getIssueDb, 
+  addIssueDb, 
+  updateIssueDb, 
+  removeIssueDb 
+} from "infrastructure/db/issue";
 import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { PanelHeader } from "./panel-header";
@@ -15,30 +21,28 @@ import { textAreOnlySpaces } from "./utils";
 import styles from "./issue-panel.module.scss";
 
 
-export const IssueEditPanel = observer( ({ isOpen }: IssueEditPanelProps): JSX.Element => {
+export const IssueEditPanel = observer(({ isOpen }: IssueEditPanelProps): JSX.Element => {
   const issue = projectStore.editingIssue;
 
   if (!issue) return <></>
-
-  const category = projectStore.project.getCategory(issue.categoryId);
 
   const applyChanges = () => {
     if (issue.name.length === 0 || textAreOnlySpaces(issue.name)) {
       return
     }
-    const foundIssue = category?.getIssue(issue.id);
 
-    if (!foundIssue) {
-      category?.addIssue(issue);
-      addIssueDb(issue);
-    } else {
-      updateIssueDb(issue);
-    }
+    getIssueDb(issue.id)
+      .then((issueDb: IssueDB | undefined) => {
+        issueDb
+          ? updateIssueDb(issue)
+          : addIssueDb(issue);
+      });
 
     close();
   }
 
   const deleteIssue = () => {
+    const category = projectStore.project.getCategory(issue.categoryId);
     category?.removeIssue(issue.id);
     removeIssueDb(issue);
     close();

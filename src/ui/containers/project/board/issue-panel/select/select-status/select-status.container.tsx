@@ -1,11 +1,12 @@
 import * as Select from "@radix-ui/react-select";
+import { observer } from "mobx-react-lite";
 import { CategoryId } from "domain/category";
 import { Issue } from "domain/issue";
 import { projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import styles from "./select-status.module.scss";
 
-export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
+export const SelectStatus = observer(({ issue }: SelectStatusProps): JSX.Element => {
   const categories = projectStore.project.categories;
   const statusClassname = issue.categoryId.toLowerCase();
 
@@ -19,7 +20,11 @@ export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
   }));
 
   const onValueChange = (value: CategoryId): void => {
+    const oldCategory = projectStore.project.getCategory(issue.categoryId);
+    const newCategory = projectStore.project.getCategory(value);
     issue.setCategoryId(value);
+    oldCategory?.removeIssue(issue.id);
+    newCategory?.addIssue(issue);
   }
 
   return (
@@ -51,7 +56,7 @@ export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
       </Select.Content>
     </Select.Root>
   )
-}
+});
 
 interface SelectStatusProps {
   issue: Issue;
