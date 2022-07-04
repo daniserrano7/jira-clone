@@ -28,6 +28,7 @@ const usersData: UserData[] = [
     name: "T-Rex",
   }, {
     name: "Andy Davis",
+    image: "andy-davis.png",
   }
 ];
 
