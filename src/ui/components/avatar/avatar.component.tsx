@@ -14,7 +14,13 @@ export const UserAvatar = ({ name, image, color, size=36, tooltip }: UserAvatarP
   return (
     <div className={styles.container}>
       <Tooltip title={name} show={tooltip}>
-        <Avatar.Root className={styles.root}>
+        <Avatar.Root
+          className={styles.root}
+          style={{
+            minWidth: `${size}px`,
+            minHeight: `${size}px`,
+          }}
+        >
           <Avatar.Image
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             src={image && require(`ui/assets/avatars/${image}`).default} 
