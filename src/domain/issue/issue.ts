@@ -14,6 +14,7 @@ export interface IssueData {
   asignee: User;
   comments: Comment[];
   priority: Priority;
+  createdAt?: Date;
   //TODO: epic: Epic
   //TODO: createdAt: timestamp
   //TODO: updatedAt: timestamp
@@ -22,6 +23,7 @@ export interface IssueData {
 export interface Issue extends IssueData {
   id: Readonly<IssueId>;
   categoryId: CategoryId;
+  createdAt: Readonly<Date>;
   setName: (name: string) => void;
   setDescription: (description: string) => void;
   setCategoryId: (categoryId: CategoryId) => void;
@@ -35,6 +37,7 @@ export interface Issue extends IssueData {
 export const createIssue = (data: CreateIssue): Issue => ({
   id: uuidv4(),
   description: "",
+  createdAt: new Date(),
   ...data,
 
   setName: function(name: string) {

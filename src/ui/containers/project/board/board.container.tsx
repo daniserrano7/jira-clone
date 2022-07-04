@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { projectStore } from "infrastructure/store";
 import { Search } from "ui/containers/project/board/search";
 import { UserAvatarList } from "./avatar-list";
+import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
 import { IssueEditPanel } from "./issue-panel";
 import styles from "./board.module.scss";
@@ -19,7 +20,7 @@ export const Board = observer((): JSX.Element => {
           <UserAvatarList />
         </div>
         <div className={styles.filters}>
-          FILTERS
+          <SelectSort />
         </div>
       </section>
       <section className={styles.categories}>

@@ -12,6 +12,8 @@ import { ReactComponent as PriorityIcon } from "ui/assets/icons/priority.svg";
 import { ReactComponent as AddIcon } from "ui/assets/icons/add.svg";
 import { ReactComponent as DeleteIcon } from "ui/assets/icons/delete.svg";
 import { ReactComponent as EmptyIcon } from "ui/assets/icons/empty.svg";
+import { ReactComponent as ClockIcon } from "ui/assets/icons/clock.svg";
+import { ReactComponent as SortIcon } from "ui/assets/icons/sort.svg";
 
 type IconModule = FunctionComponent<SVGProps<SVGSVGElement>>;
 export type IconName = 
@@ -27,7 +29,9 @@ export type IconName =
   | "priority"
   | "add"
   | "delete"
-  | "empty";
+  | "empty"
+  | "clock"
+  | "sort";
 
 const iconLibrary: Record<IconName, IconModule> = {
   question: QuestionIcon,
@@ -43,6 +47,8 @@ const iconLibrary: Record<IconName, IconModule> = {
   add: AddIcon,
   delete: DeleteIcon,
   empty: EmptyIcon,
+  clock: ClockIcon,
+  sort: SortIcon,
 }
 
 export const Icon = ({ name, size = 24, ...otherProps }: IconProps): JSX.Element => {

@@ -25,6 +25,11 @@
     font-size: 13px;
     color: color(font-light);
 
+    .title {
+      display: flex;
+      gap: spacing(4);
+    }
+
     .create_issue {
       display: flex;
       padding: 4px;

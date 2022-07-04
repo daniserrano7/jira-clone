@@ -1,7 +1,8 @@
 $palette: (
   'primary-main': #0052cc,
   'primary-light': #deebff,
-  'primary-hover': lighten($color: #0052cc, $amount: 5),
+  'primary-main-hover': lighten($color: #0052cc, $amount: 5),
+  'primary-light-hover': darken($color: #deebff, $amount: 5),
   'secondary-main': #403294,
   'secondary-light': #EAE6FF,
   'background-default': #fff,

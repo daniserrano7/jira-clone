@@ -6,6 +6,7 @@ import { Icon } from "ui/components/icon";
 import { IssueCard } from "./issue-card";
 import { ScrollArea } from "ui/components/scroll-area";
 import styles from "./category-column.module.scss";
+import { priorities } from "domain/priority";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const searchFilter = projectStore.filters.search.toLowerCase();
@@ -25,18 +26,33 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
     category.addIssue(issue);
   }
 
-  const filteredIssues = (): Issue[] => {
-    return category.issues.filter(issue => {
-      const name = issue.name.toLowerCase();
-      return name.includes(searchFilter);
-    });
-  }
+  const filteredIssues = (): Issue[] => category.issues
+      .filter(issue => {
+        const name = issue.name.toLowerCase();
+        return name.includes(searchFilter);
+      })
+      .sort((a, b) => {
+        const sortA = projectStore.filters.sort === "date"
+          ? a.createdAt
+          : priorities.indexOf(a.priority);
+
+        const sortB = projectStore.filters.sort === "date"
+          ? b.createdAt
+          : priorities.indexOf(b.priority);
+
+        if (sortA < sortB) return 1;
+        if (sortA > sortB) return -1;
+        return 0;
+      })
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <span>
-          {category.name}
+        <span className={styles.title}>
+          <span>{category.name}</span>
+          {!emptyCategory && (
+            <span>( {category.issues.length} )</span>
+          )}
         </span>
         <button 
           onClick={createCategoryIssue}

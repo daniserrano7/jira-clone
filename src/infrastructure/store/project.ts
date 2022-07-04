@@ -18,6 +18,7 @@ class ProjectStore {
   editingIssue: Issue | null = null;
   filters: Filters = {
     search: "",
+    sort: "date",
   };
 
   constructor() {
@@ -46,8 +47,10 @@ class ProjectStore {
 
 interface Filters {
   search: string;
+  sort: SortFilter;
 }
 
+export type SortFilter = "date" | "priority";
 
 export const projectStore = new ProjectStore();
 
@@ -113,6 +116,7 @@ const createIssueFromDb = async (issueDb: IssueDB): Promise<Issue> => {
     priority: issueDb.priority,
     reporter: createUserFromDb(reporterDb),
     asignee: createUserFromDb(asigneeDb),
+    createdAt: new Date(issueDb.createdAt),
   });
 } 
 

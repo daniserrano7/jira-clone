@@ -14,6 +14,8 @@ const commentMock = createComment({
 });
 
 describe("Issue entity module", () => {
+  const createdAt = new Date();
+
   it("Change issue name", () => {
     const name = "Issue name test";
     const reference = createIssue({
@@ -24,6 +26,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     const expected = createIssue({
       name,
@@ -33,6 +36,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     reference.setName(name);
 
@@ -49,6 +53,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     const expected = createIssue({
       name: "Refactor entities id to UUID",
@@ -58,6 +63,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     reference.setDescription(description);
 
@@ -74,6 +80,7 @@ describe("Issue entity module", () => {
       asignee: userMock1,
       comments: [],
       priority: "high",
+      createdAt,
     });
     const expected = createIssue({
       name: "Refactor entities id to UUID",
@@ -83,6 +90,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     reference.setAsignee(asignee);
 
@@ -98,6 +106,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     const expected = createIssue({
       name: "Refactor entities id to UUID",
@@ -107,6 +116,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [commentMock],
       priority: "high",
+      createdAt,
     });
     reference.addComment(commentMock);
     expect(toPlainObject(reference)).toEqual(toPlainObject(expected));
@@ -121,6 +131,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [commentMock],
       priority: "high",
+      createdAt,
     });
     const expected = createIssue({
       name: "Refactor entities id to UUID",
@@ -130,6 +141,7 @@ describe("Issue entity module", () => {
       asignee: userMock2,
       comments: [],
       priority: "high",
+      createdAt,
     });
     const removedComment = reference.removeComment(commentMock.id);
     expect(toPlainObject(reference)).toEqual(toPlainObject(expected));

@@ -15,6 +15,7 @@ export interface IssueDB {
   priority: Priority;
   reporter: UserId;
   asignee: UserId;
+  createdAt: number; // In miliseconds
 }
 
 export const populateIssues = (category: Category): void => {
@@ -33,6 +34,7 @@ const issueDbPipe = (issue: Issue): IssueDB => ({
   priority: issue.priority,
   reporter: issue.reporter.id,
   asignee: issue.asignee.id,
+  createdAt: issue.createdAt.getTime(),
 });
 
 export const fetchIssues = (categoryId: CategoryId): PromiseExtended<IssueDB[]> => {
