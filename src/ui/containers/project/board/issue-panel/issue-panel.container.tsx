@@ -1,8 +1,6 @@
 import { observer } from "mobx-react-lite";
 import * as Dialog from "@radix-ui/react-dialog";
-import {
-  IssueDB,
-  getIssueDb, 
+import { 
   addIssueDb, 
   updateIssueDb, 
   removeIssueDb 
@@ -31,12 +29,23 @@ export const IssueEditPanel = observer(({ isOpen }: IssueEditPanelProps): JSX.El
       return
     }
 
-    getIssueDb(issue.id)
-      .then((issueDb: IssueDB | undefined) => {
-        issueDb
-          ? updateIssueDb(issue)
-          : addIssueDb(issue);
-      });
+    const oldCategory = projectStore.project.categories.find(category => {
+      const foundIssue = category.getIssue(issue.id);
+
+      if (foundIssue) {
+        return category;
+      }
+    });
+
+    if (oldCategory) {
+      oldCategory.removeIssue(issue.id);
+      updateIssueDb(issue);
+    } else {
+      addIssueDb(issue);
+    }
+
+    const newCategory = projectStore.project.getCategory(issue.categoryId);
+    newCategory?.addIssue(issue);
 
     close();
   }

@@ -20,11 +20,11 @@ export const SelectStatus = observer(({ issue }: SelectStatusProps): JSX.Element
   }));
 
   const onValueChange = (value: CategoryId): void => {
-    const oldCategory = projectStore.project.getCategory(issue.categoryId);
-    const newCategory = projectStore.project.getCategory(value);
+    // const oldCategory = projectStore.project.getCategory(issue.categoryId);
+    // const newCategory = projectStore.project.getCategory(value);
     issue.setCategoryId(value);
-    oldCategory?.removeIssue(issue.id);
-    newCategory?.addIssue(issue);
+    // oldCategory?.removeIssue(issue.id);
+    // newCategory?.addIssue(issue);
   }
 
   return (
