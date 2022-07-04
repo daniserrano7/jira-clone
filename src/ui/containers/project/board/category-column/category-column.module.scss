@@ -1,7 +1,7 @@
 @import "/src/ui/styles/";
 
 
-.issue_category {
+.container {
   width: 260px;
   max-width: 260px;
   position: relative;
@@ -55,5 +55,19 @@
       }
     }
 
+  }
+}
+
+.empty_category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: spacing(8);
+  color: color(font-light);
+
+  p {
+    text-transform: uppercase;
+    font-family: $font-light;
+    font-size: 13px;
   }
 }

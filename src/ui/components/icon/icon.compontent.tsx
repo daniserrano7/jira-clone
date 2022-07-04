@@ -11,6 +11,7 @@ import { ReactComponent as TaskIcon } from "ui/assets/icons/issue-types/task.svg
 import { ReactComponent as PriorityIcon } from "ui/assets/icons/priority.svg";
 import { ReactComponent as AddIcon } from "ui/assets/icons/add.svg";
 import { ReactComponent as DeleteIcon } from "ui/assets/icons/delete.svg";
+import { ReactComponent as EmptyIcon } from "ui/assets/icons/empty.svg";
 
 type IconModule = FunctionComponent<SVGProps<SVGSVGElement>>;
 export type IconName = 
@@ -25,7 +26,8 @@ export type IconName =
   | "task"
   | "priority"
   | "add"
-  | "delete";
+  | "delete"
+  | "empty";
 
 const iconLibrary: Record<IconName, IconModule> = {
   question: QuestionIcon,
@@ -40,6 +42,7 @@ const iconLibrary: Record<IconName, IconModule> = {
   priority: PriorityIcon,
   add: AddIcon,
   delete: DeleteIcon,
+  empty: EmptyIcon,
 }
 
 export const Icon = ({ name, size = 24, ...otherProps }: IconProps): JSX.Element => {

@@ -9,6 +9,7 @@ import styles from "./category-column.module.scss";
 
 export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
   const searchFilter = projectStore.filters.search.toLowerCase();
+  const emptyCategory = category.issues.length === 0;
 
   const createCategoryIssue = () => {
     const issue = createIssue({
@@ -31,7 +32,7 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
   }
 
   return (
-    <div className={styles.issue_category}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <span>
           {category.name}
@@ -46,11 +47,16 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       <div className={styles.body}>
         <ScrollArea>
           <ul className={styles.issues_list}>
-            {filteredIssues().map((issue, index) => (
-              <li key={index} >
-                <IssueCard issue={issue} />
-              </li>
-            ))}
+            {emptyCategory
+              ? <EmptyCategory />
+              : (
+                filteredIssues().map((issue, index) => (
+                  <li key={index} >
+                    <IssueCard issue={issue} />
+                  </li>
+                ))
+              )
+            }
           </ul>
         </ScrollArea>
       </div>
@@ -61,3 +67,10 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
 interface CategoryColumnProps {
   category: Category;
 }
+
+const EmptyCategory = (): JSX.Element => (
+  <div className={styles.empty_category}>
+    <Icon name="empty" size={36} />
+    <p>No issues found</p>
+  </div>
+)
