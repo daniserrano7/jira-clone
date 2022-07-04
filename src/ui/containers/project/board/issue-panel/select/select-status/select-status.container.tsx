@@ -1,4 +1,3 @@
-import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { CategoryId } from "domain/category";
 import { Issue } from "domain/issue";
@@ -8,8 +7,7 @@ import styles from "./select-status.module.scss";
 
 export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
   const categories = projectStore.project.categories;
-  const defaultValue = issue.categoryId;
-  const [ selectValue, setSelectValue ] = useState<string>(defaultValue);
+  const statusClassname = issue.categoryId.toLowerCase();
 
   interface SelectItem {
     value: CategoryId;
@@ -21,13 +19,12 @@ export const SelectStatus = ({ issue }: SelectStatusProps): JSX.Element => {
   }));
 
   const onValueChange = (value: CategoryId): void => {
-    setSelectValue(value.toLowerCase());
     issue.setCategoryId(value);
   }
 
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
-      <Select.Trigger className={`${styles.trigger} ${styles[selectValue]}`}>
+    <Select.Root defaultValue={issue.categoryId} onValueChange={onValueChange}>
+      <Select.Trigger className={`${styles.trigger} ${styles[statusClassname]}`}>
         <Select.Value />
         <Select.Icon className={styles.icon}>
           <Icon name="arrow" size={28} />
