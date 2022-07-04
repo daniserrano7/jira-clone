@@ -1,44 +1,10 @@
-import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { IssueId } from "domain/issue";
 import { Icon } from "ui/components/icon";
-import deleteAnimatedIcon from "ui/assets/icons/delete-animated.gif";
 import styles from "./panel-header.module.scss";
 
 export const PanelHeader = ({ id, onDeleteIssue, onClose }: PanelHeaderProps): JSX.Element => {
-  const [ isDeleting, setIsDeleting ] = useState<boolean>(false);
-
-  const deleteIssue = () => {
-    const GIF_LOOP_TIMEOUT = 1180;
-    
-    setIsDeleting(true);
-    setTimeout(() => {
-      setIsDeleting(false);
-      onDeleteIssue();
-    }, GIF_LOOP_TIMEOUT);
-  }
-
-  const renderDeleteIcon = (): JSX.Element => {
-    const StaticIcon = () => (
-      <span style={{ display: isDeleting ? "none" : "flex"}}>
-        <Icon name="delete" size={24} />
-      </span>
-    );
-
-    const AnimatedIcon = () => (
-      <img
-        src={deleteAnimatedIcon}
-        width={24} 
-        height={24} 
-        style={{ display: isDeleting ? "flex" : "none"}}
-      />
-    );
-    
-    return isDeleting
-      ? <AnimatedIcon />
-      : <StaticIcon />
-  }
-
   return (
     <div className={styles.container}>
       <span className={styles.issue_type}>
@@ -49,12 +15,7 @@ export const PanelHeader = ({ id, onDeleteIssue, onClose }: PanelHeaderProps): J
           {id}
         </span>
       </span>
-      <button 
-        onClick={deleteIssue} 
-        className={`${styles.header_button} ${styles.delete_button}`}
-      >
-        {renderDeleteIcon()}
-      </button>
+      <CloseModalDialog action={onDeleteIssue} />
       <Dialog.Close onClick={onClose} className={styles.header_button}>
         <Icon name="close" size={24} />
       </Dialog.Close>
@@ -66,4 +27,42 @@ interface PanelHeaderProps {
   id: IssueId;
   onDeleteIssue: () => void;
   onClose: () => void;
+}
+
+
+const CloseModalDialog = ({ action }: CloseModalDialogProps): JSX.Element => {
+  return (
+    <AlertDialog.Root>
+      <AlertDialog.Trigger className={`
+        ${styles.header_button} 
+        ${styles.delete_button}
+      `}>
+        <Icon name="delete" size={24} />
+      </AlertDialog.Trigger>
+      <AlertDialog.Portal className={styles.alert_portal}>
+        <AlertDialog.Content className={styles.content}>
+          <AlertDialog.Title className={styles.title}>
+            Delete issue?
+          </AlertDialog.Title>
+          <AlertDialog.Description className={styles.description}>
+            This action is permanent and cannot be undone. Are you
+            sure you want to remove this issue completely?
+          </AlertDialog.Description>
+          <div className={styles.buttons}>
+            <AlertDialog.Cancel className={styles.cancel}>
+              Cancel
+            </AlertDialog.Cancel>
+            <AlertDialog.Action onClick={action} className={styles.action}>
+              Delete
+            </AlertDialog.Action>
+          </div>
+        </AlertDialog.Content>
+        <AlertDialog.Overlay className={styles.overlay} />
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
+  )
+}
+
+interface CloseModalDialogProps {
+  action: () => void;
 }
