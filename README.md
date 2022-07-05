@@ -23,7 +23,7 @@ For pragmatic purposes, many features are not included. Others have been modifie
 
 ## Setup<a name="overview"></a>
 ### Install<a name="install"></a>
-The app setup is as simple as any other NPM project. First, clone the repository on your local folder. 
+The app setup is as simple as any other Vite NPM project. First, clone the repository on your local folder. 
 
 ```
 git clone https://github.com/daniserrano7/jira-clone.git
@@ -34,9 +34,9 @@ cd jira-clone
 npm install
 ```
 ### Run<a name="run"></a>
-To run the application, execute the following command:
+To run the application in dev mode, execute the following command:
 ```
-npm start
+npm run dev
 ```
 
 ### Build<a name="build"></a>
@@ -49,7 +49,7 @@ To execute the test, execute the following command:
 ```
 npm test
 ```
-Alternatively, you can run ESLint linter, Typescript type checks and Jest tests all at once with the following command:
+Alternatively, you can run ESLint linter, Typescript type checks and Vitest tests all at once with the following command:
 ```
 npm run test-all
 ```
@@ -68,7 +68,7 @@ Within the issue editing panel you can manage the issue and see its information.
 ## Technologies<a name="technologies"></a>
 The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/) and [Radix](https://www.radix-ui.com/) fort the UI, [SASS](https://sass-lang.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. Regarding browser storage, I have used [Dexie.js](https://dexie.org/) to handle IndexedDb. I have implemented testing with [Jest](https://jestjs.io), focused on entities and use cases.
 
-The whole app is bootstrapped with Create React App, but thinking to migrate to Vite at some point. I've used [ESLint](https://eslint.org/) for linting with low restrictive rules. The app is deployed at [Netlify](https://www.netlify.com/)
+The whole app was originally bootstrapped with Create React App, but migrated lately to Vite. I've used [ESLint](https://eslint.org/) for linting with low restrictive rules. The app is deployed at [Netlify](https://www.netlify.com/)
 
 ## Project structure<a name="project_structure"></a>
 Following [Clean Architecture's concepts](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), the project's source folder is divided in three sections: domain, infrastructure and ui.
