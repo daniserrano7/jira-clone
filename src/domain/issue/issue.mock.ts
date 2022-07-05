@@ -5,22 +5,6 @@ import { userMock1, userMock2 } from "domain/user";
 
 export const todoIssues: IssueData[] = [
   {
-    name: "Implement IndexedDB local database",
-    description: "All the data must be store in the IndexedDB so it is persistent in the same device. All actions that currently modifies the store must be reflected on the local DB too. Thinking about implement an interface that handle both cases or just call two methods on the same user action.",
-    reporter: userMock1,
-    asignee: userMock1,
-    comments: [
-      createComment({
-        user: userMock2,
-        message: "This should be implemented ASAP",
-      }), 
-      createComment({
-        user: userMock1,
-        message: "Ok, I'm on it",
-      })
-    ],
-    priority: "high",
-  }, {
     name: "Add and display issue timestamps",
     description: "Is should be create automatically on createIssue(). It must be displayed on issue panel, as well as an updatedAt parameter",
     reporter: userMock1,
@@ -47,26 +31,12 @@ export const todoIssues: IssueData[] = [
     comments: [],
     priority: "low",
   }, {
-    name: "Add avatar images",
-    description: "Thinking about using local images or import remotely",
-    reporter: userMock1,
-    asignee: userMock1,
-    comments: [],
-    priority: "low",
-  }, {
     name: "Create quick guide about the app",
     description: "A dropdown panel with few steps about funcionalities. The first time it should be open by default. Control this through localStorage",
     reporter: userMock1,
     asignee: userMock1,
     comments: [],
     priority: "medium",
-  }, {
-    name: "Sort issues?",
-    description: "By date or by priority. Don't know if it is good UX",
-    reporter: userMock1,
-    asignee: userMock1,
-    comments: [],
-    priority: "low",
   }
 ];
 
@@ -81,4 +51,36 @@ export const inProgressIssues: IssueData[] = [
   }
 ];
 
-export const doneIssues: IssueData[] = [];
+export const doneIssues: IssueData[] = [
+  {
+    name: "Implement IndexedDB local database",
+    description: "All the data must be store in the IndexedDB so it is persistent in the same device. All actions that currently modifies the store must be reflected on the local DB too. Thinking about implement an interface that handle both cases or just call two methods on the same user action.",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [
+      createComment({
+        user: userMock2,
+        message: "This should be implemented ASAP",
+      }), 
+      createComment({
+        user: userMock1,
+        message: "Ok, I'm on it",
+      })
+    ],
+    priority: "high",
+  }, {
+    name: "Add avatar images",
+    description: "Thinking about using local images or import remotely",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }, {
+    name: "Sort issues",
+    description: "By date or by priority. Don't know if it is good UX",
+    reporter: userMock1,
+    asignee: userMock1,
+    comments: [],
+    priority: "low",
+  }
+];
