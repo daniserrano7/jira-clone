@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useDrop } from "react-dnd";
 import { Category, CategoryId } from "domain/category";
 import { Issue, IssueId, createIssue } from "domain/issue";
+import { updateIssueDb } from "infrastructure/db/issue";
 import { appStore, projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
 import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
@@ -39,6 +40,7 @@ export const CategoryColumn = observer((props: CategoryColumnProps): JSX.Element
     issue.setCategoryId(category.id);
     oldCategory.removeIssue(issueId);
     category.addIssue(issue);
+    updateIssueDb(issue);
   }
 
   const createCategoryIssue = () => {
