@@ -19,9 +19,14 @@
     background-color: color(primary-light);
   }
 
+  &.dragging {
+    opacity: 0.5;
+  }
+
   .title {
     width: 100%;
-    margin: 0 0 spacing(8);
+    margin: 0;
+    padding-bottom: spacing(8);
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

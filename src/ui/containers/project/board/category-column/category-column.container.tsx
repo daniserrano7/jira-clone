@@ -1,16 +1,45 @@
 import { observer } from "mobx-react-lite";
-import { Category } from "domain/category";
-import { Issue, createIssue } from "domain/issue";
+import { useDrop } from "react-dnd";
+import { Category, CategoryId } from "domain/category";
+import { Issue, IssueId, createIssue } from "domain/issue";
 import { appStore, projectStore } from "infrastructure/store";
 import { Icon } from "ui/components/icon";
-import { IssueCard } from "./issue-card";
+import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "ui/components/scroll-area";
 import styles from "./category-column.module.scss";
 import { priorities } from "domain/priority";
 
-export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.Element => {
+export const CategoryColumn = observer((props: CategoryColumnProps): JSX.Element => {
+  const { category, isDragging, handleDragging } = props;
   const searchFilter = projectStore.filters.search.toLowerCase();
   const emptyCategory = category.issues.length === 0;
+
+  const [{ isOver }, drop ] = useDrop(() => ({
+    accept: DRAG_ISSUE_CARD,
+    drop: (item: DropItem) => changeIssueCategory(item),
+    collect: monitor => ({
+      isOver: !!monitor.isOver(),
+    }),
+  }), [category.id]);
+
+  interface DropItem {
+    issueId: IssueId;
+    categoryId: CategoryId;
+  }
+
+  const changeIssueCategory = ({ issueId, categoryId }: DropItem) => {
+    const oldCategory = projectStore.project.getCategory(categoryId);
+
+    if (!oldCategory || oldCategory.id === category.id) return;
+    
+    const issue = oldCategory.getIssue(issueId);
+
+    if (!issue) return;
+
+    issue.setCategoryId(category.id);
+    oldCategory.removeIssue(issueId);
+    category.addIssue(issue);
+  }
 
   const createCategoryIssue = () => {
     const issue = createIssue({
@@ -45,7 +74,14 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
       })
 
   return (
-    <div className={styles.container}>
+    <div 
+      ref={drop}
+      className={`
+        ${styles.container}
+        ${isOver ? styles.hover_area : undefined}
+        ${(isDragging && !isOver) ? styles.dragging : undefined}
+      `}
+    >
       <div className={styles.header}>
         <span className={styles.title}>
           <span>{category.name}</span>
@@ -68,7 +104,10 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
               : (
                 filteredIssues().map((issue, index) => (
                   <li key={index} >
-                    <IssueCard issue={issue} />
+                    <IssueCard 
+                      issue={issue} 
+                      handleDragging={handleDragging}
+                    />
                   </li>
                 ))
               )
@@ -82,6 +121,8 @@ export const CategoryColumn = observer(({ category }: CategoryColumnProps): JSX.
 
 interface CategoryColumnProps {
   category: Category;
+  isDragging: boolean;
+  handleDragging: (isDragging: boolean) => void;
 }
 
 const EmptyCategory = (): JSX.Element => (

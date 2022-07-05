@@ -11,6 +11,44 @@
   border-radius: $border-radius-l;
   background-color: color(grey-200);
 
+  $padding: 6px;
+
+  &.hover_area::before,
+  &.dragging::before {
+    content: "";
+    position: absolute;
+    top: $padding;
+    left: $padding;
+    width: calc(100% - #{$padding}*2);
+    height: calc(100% - #{$padding}*2);
+    border-radius: $border-radius-m;
+    box-sizing: border-box;
+    z-index: 999;
+    transition: .2s;
+  }
+
+  &.dragging {
+    &::before {
+      border: 3px dashed color(primary-main);
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    &::after {
+      content: "DROP HERE";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: $font-bold;
+      z-index: 999;
+      transition: .2s;
+    }
+  }
+
+  &.hover_area::before {
+    border: 3px solid rgb(1, 217, 1);
+  }
+
   .header {
     position: sticky;
     top: 0;

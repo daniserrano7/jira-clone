@@ -23,6 +23,8 @@
     "node-sass": "^6.0.1",
     "queue-microtask": "^1.2.3",
     "react": "^17.0.2",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "react-select": "^5.3.2",
