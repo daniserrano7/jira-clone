@@ -1,8 +1,8 @@
 # Jira frontend clone
 
-A simplified Jira clone application with some custom modifications. This is a personal project for practicing skills and it is not intended to work as a real Jira application. It only includes the frontend - all the data lives only in runtime until IndexedDB storage is implemented. It is still in early development and a lot of features and improves are coming.
+A simplified Jira clone application with some custom modifications. This is a personal project for practicing skills and it is not intended to work as a real Jira application. It only includes the frontend - all the data is stored in the IndexedDb. It is still in early development and a lot of features and improves are coming.
 
-For pragmatic purposes, many features are not included. Others have been modified according to my tastes. The application should serve the basic functionalities of a project management software. I have take inspiration from the actual [Jira website](https://www.atlassian.com/es/software/jira), as well as from [Trello](https://trello.com/). Also, [Ivor's Jira clone](https://github.com/oldboyxx/jira_clone) has been a great inspiration for me (I have to admit I like his designs more than Jira's originals). I only took inspiration and resources (fonts and icons) from the original projects; I've developed everything from scratch and by myself.
+For pragmatic purposes, many features are not included. Others have been modified according to my tastes. The application should serve the basic functionalities of a project management software. I have taken inspiration from the actual [Jira website](https://www.atlassian.com/es/software/jira), as well as from [Trello](https://trello.com/). Also, [Ivor's Jira clone](https://github.com/oldboyxx/jira_clone) has been a great inspiration for me (I have to admit I like his designs more than Jira's originals). I only took ideas and resources (fonts and icons) from the original projects; I've developed everything from scratch and by myself.
 
 [LIVE DEMO](https://gleaming-sable-407787.netlify.app/)
 
@@ -56,7 +56,8 @@ npm run test-all
 
 
 ## Overview<a name="overview"></a>
-The app simulates Jira's project board. Related to that project, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and asign it to different users. 
+The app simulates Jira's project board. Related to that project, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and asign it to different users. Also, it is possible 
+to move an issue from one category to another by drag and drop.
 
 ![Board](./board.png)
 
@@ -65,7 +66,7 @@ Within the issue editing panel you can manage the issue and see its information.
 ![Issue panel](./issue-panel.png)
 
 ## Technologies<a name="technologies"></a>
-The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/) and [Radix](https://www.radix-ui.com/) fort the UI, [SASS](https://sass-lang.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. I have implemented testing with [Jest](https://jestjs.io), focused on entities and use cases.
+The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/) and [Radix](https://www.radix-ui.com/) fort the UI, [SASS](https://sass-lang.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. Regarding browser storage, I have used [Dexie.js](https://dexie.org/) to handle IndexedDb. I have implemented testing with [Jest](https://jestjs.io), focused on entities and use cases.
 
 The whole app is bootstrapped with Create React App, but thinking to migrate to Vite at some point. I've used [ESLint](https://eslint.org/) for linting with low restrictive rules. The app is deployed at [Netlify](https://www.netlify.com/)
 
@@ -95,7 +96,8 @@ project
 ### Infrastructure<a name="infrastructure"></a>
 By infrastructure I mean those pieces of the application that are not part of the UI, but serves as a logic support. Those are not framework-related, just like entities. Here we find store and db.
 * Store -> State management of the application, including interface and function to access it in the React components. It is made with MobX.
-* DB -> It will serve as the IndexedDB handler for device persistent storage. It is not implemented yet.
+* DB -> Everything related to browser persistent storage and IndexedDb. Includes functions to convert entity objects to DB data and execute CRUD operations. The DB is populated with initial mock data.
+* Local Storage -> Functions to handle local storage and store/retrieve the user id on the browser. It tries to emulate authenticated user storage.
 
 ### UI<a name="ui"></a>
 Everything relate to the visual part of the application. 
