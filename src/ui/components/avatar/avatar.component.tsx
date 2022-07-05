@@ -11,6 +11,8 @@ export const UserAvatar = ({ name, image, color, size=36, tooltip }: UserAvatarP
     .map(word => word[0].toUpperCase())
     .join("");
 
+  const imagePath = new URL(`/src/ui/assets/avatars/${image}`, import.meta.url).href;
+
   return (
     <div className={styles.container}>
       <Tooltip title={name} show={tooltip}>
@@ -22,8 +24,7 @@ export const UserAvatar = ({ name, image, color, size=36, tooltip }: UserAvatarP
           }}
         >
           <Avatar.Image
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            src={image && require(`ui/assets/avatars/${image}`).default} 
+            src={image && imagePath} 
             width={size}
             height={size}
           />
