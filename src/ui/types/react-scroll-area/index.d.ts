@@ -1,1 +1,0 @@
-declare module "@xico2k/react-scroll-area";

@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { createIssue, todoIssues } from "domain/issue";
 import { toPlainObject } from "domain/utils";
 import { Category, CategoryId, createCategory, categoryIdDict } from "./category";

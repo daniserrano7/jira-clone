@@ -1,9 +1,10 @@
+import { describe, it, expect, vi } from "vitest";
 import { userMock1 } from "domain/user";
 import { toPlainObject } from "domain/utils";
 import { createComment } from "./comment";
 
 
-jest.mock("uuid", () => ({
+vi.mock("uuid", () => ({
   v4: () => "mock-uuid",
 }));
 
