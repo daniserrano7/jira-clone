@@ -1,1 +1,1 @@
-export * from "./category-column.container";
+export * from './category-column.container'

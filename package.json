@@ -10,7 +10,8 @@
     "lint": "npx eslint --ext ts,tsx src",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
-    "test-all": "npm run type-check && npm run lint && npm run test"
+    "test-all": "npm run type-check && npm run lint && npm run test",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^0.1.7",

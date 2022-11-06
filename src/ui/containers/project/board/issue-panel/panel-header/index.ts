@@ -1,1 +1,1 @@
-export * from "./panel-header.container";
+export * from './panel-header.container'

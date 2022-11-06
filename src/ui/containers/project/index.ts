@@ -1,1 +1,1 @@
-export * from "./project.container";
+export * from './project.container'

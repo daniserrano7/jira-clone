@@ -1,1 +1,1 @@
-export * from "./scroll-area.container";
+export * from './scroll-area.container'

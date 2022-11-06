@@ -28,9 +28,5 @@ module.exports = {
       },
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "quotes": ["warn", "double"],
-        "comma-dangle": ["error", {
-            "objects": "always-multiline",
-        }],
     },
 };
