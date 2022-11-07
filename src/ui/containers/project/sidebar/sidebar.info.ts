@@ -1,4 +1,4 @@
-import { NavItemProps } from './sidebar.container';
+import { NavItemProps } from './sidebar';
 
 export const navItems: NavItemProps[] = [
   {

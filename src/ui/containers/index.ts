@@ -1,2 +1,2 @@
-export * from './header/header.container';
-export * from './project/project.container';
+export * from './header/header';
+export * from './project/project';

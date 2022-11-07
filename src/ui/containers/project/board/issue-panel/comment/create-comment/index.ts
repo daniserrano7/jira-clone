@@ -1,1 +1,1 @@
-export * from './create-comment.container';
+export * from './create-comment';

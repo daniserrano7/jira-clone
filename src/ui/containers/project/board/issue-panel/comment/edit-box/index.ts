@@ -1,1 +1,1 @@
-export * from './edit-box.container';
+export * from './edit-box';

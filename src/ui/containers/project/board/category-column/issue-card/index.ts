@@ -1,1 +1,1 @@
-export * from './issue-card.container';
+export * from './issue-card';

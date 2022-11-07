@@ -1,1 +1,1 @@
-export * from './priority-icon.component';
+export * from './priority-icon';

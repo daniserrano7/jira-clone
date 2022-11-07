@@ -1,4 +1,4 @@
-import { BreadcrumbsProps } from './breadcrumbs.component';
+import { BreadcrumbsProps } from './breadcrumbs';
 
 export const breadcrumbsInfo: BreadcrumbsProps = {
   breadcrumbs: [

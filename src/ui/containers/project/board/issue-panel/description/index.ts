@@ -1,1 +1,1 @@
-export * from './description.container';
+export * from './description';

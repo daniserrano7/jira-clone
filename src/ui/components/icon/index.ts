@@ -1,1 +1,1 @@
-export * from './icon.compontent';
+export * from './icon';

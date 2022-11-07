@@ -1,1 +1,1 @@
-export * from './select-sort.container';
+export * from './select-sort';

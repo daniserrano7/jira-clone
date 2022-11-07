@@ -1,2 +1,2 @@
-export * from './breadcrumbs.component';
+export * from './breadcrumbs';
 export * from './breadcrumbs.info';
