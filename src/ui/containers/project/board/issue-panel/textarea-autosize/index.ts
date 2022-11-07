@@ -1,1 +1,1 @@
-export * from './textarea-autosize.container'
+export * from './textarea-autosize.container';

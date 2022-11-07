@@ -1,1 +1,1 @@
-export * from './issue-panel.container'
+export * from './issue-panel.container';

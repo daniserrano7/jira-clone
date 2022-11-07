@@ -1,1 +1,1 @@
-export * from './select-priority.container'
+export * from './select-priority.container';

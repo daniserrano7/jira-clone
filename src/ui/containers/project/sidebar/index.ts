@@ -1,2 +1,2 @@
-export * from './sidebar.container'
-export * from './sidebar.info'
+export * from './sidebar.container';
+export * from './sidebar.info';

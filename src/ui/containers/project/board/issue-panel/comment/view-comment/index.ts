@@ -1,1 +1,1 @@
-export * from './view-comment.container'
+export * from './view-comment.container';

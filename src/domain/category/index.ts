@@ -1,2 +1,2 @@
-export * from './category'
-export * from './category.mock'
+export * from './category';
+export * from './category.mock';

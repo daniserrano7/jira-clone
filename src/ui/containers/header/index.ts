@@ -1,1 +1,1 @@
-export * from './header.container'
+export * from './header.container';
