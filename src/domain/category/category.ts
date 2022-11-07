@@ -16,26 +16,28 @@ export interface CategoryData {
     order: number
 }
 
-export interface Category extends CategoryData {
-    getIssue: (issueId: IssueId) => Issue | undefined
-    addIssue: (issue: Issue) => void
-    removeIssue: (issueId: IssueId) => void
-}
+export class Category implements CategoryData {
+    readonly id: CategoryId
+    name: string
+    issues: Issue[]
+    order: number
 
-export const createCategory = (data: CategoryData): Category => {
-    return {
-        ...data,
+    constructor(data: CategoryData) {
+        this.id = data.id
+        this.name = data.name
+        this.issues = data.issues
+        this.order = data.order
+    }
 
-        getIssue: function (issueId): Issue | undefined {
-            return this.issues.find((issue) => issue.id === issueId)
-        },
+    getIssue(issueId: IssueId) {
+        return this.issues.find((issue) => issue.id === issueId)
+    }
 
-        addIssue: function (issue: Issue) {
-            this.issues.push(issue)
-        },
+    addIssue(issue: Issue) {
+        this.issues.push(issue)
+    }
 
-        removeIssue: function (issueId: IssueId) {
-            this.issues = this.issues.filter((issue) => issue.id !== issueId)
-        },
+    removeIssue(issueId: IssueId) {
+        this.issues = this.issues.filter((issue) => issue.id !== issueId)
     }
 }

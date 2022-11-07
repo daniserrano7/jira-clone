@@ -1,27 +1,21 @@
 import { describe, it, expect } from 'vitest'
-import { createIssue, todoIssues } from 'domain/issue'
-import { toPlainObject } from 'domain/utils'
-import {
-    Category,
-    CategoryId,
-    createCategory,
-    categoryIdDict,
-} from './category'
+import { Issue, todoIssues } from 'domain/issue'
+import { Category, CategoryId, categoryIdDict } from './category'
 
 describe('Category entity module', () => {
     it('Add issue to category', () => {
         const id: CategoryId = 'TODO'
-        const issue = createIssue({
+        const issue = new Issue({
             ...todoIssues[0],
             categoryId: id,
         })
-        const reference: Category = createCategory({
+        const reference = new Category({
             id,
             name: categoryIdDict[id],
             issues: [],
             order: 1,
         })
-        const expected: Category = createCategory({
+        const expected = new Category({
             id,
             name: categoryIdDict[id],
             issues: [issue],
@@ -29,22 +23,22 @@ describe('Category entity module', () => {
         })
         reference.addIssue(issue)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 
     it('Remove issue from category', () => {
         const id: CategoryId = 'TODO'
-        const issue = createIssue({
+        const issue = new Issue({
             ...todoIssues[0],
             categoryId: id,
         })
-        const reference: Category = createCategory({
+        const reference = new Category({
             id,
             name: categoryIdDict[id],
             issues: [issue],
             order: 1,
         })
-        const expected: Category = createCategory({
+        const expected = new Category({
             id,
             name: categoryIdDict[id],
             issues: [],
@@ -52,6 +46,6 @@ describe('Category entity module', () => {
         })
         reference.removeIssue(issue.id)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 })

@@ -1,4 +1,4 @@
-import { User, UserData, createUser } from './user'
+import { User, UserData } from './user'
 
 const usersData: UserData[] = [
     {
@@ -41,7 +41,7 @@ const usersData: UserData[] = [
     },
 ]
 
-export const usersMock: User[] = usersData.map(createUser)
+export const usersMock: User[] = usersData.map((userData) => new User(userData))
 
 export const userMock1 = usersMock[0]
 export const userMock2 = usersMock[1]

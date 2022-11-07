@@ -10,18 +10,20 @@ export interface CommentData {
     createdAt?: Date
 }
 
-export interface Comment extends CommentData {
-    id: Readonly<CommentId>
-    createdAt: Readonly<Date>
-    setMessage: (message: string) => void
-}
+export class Comment implements CommentData {
+    readonly id: CommentId
+    user: User
+    message: string
+    createdAt: Date
 
-export const createComment = (data: CommentData): Comment => ({
-    id: uuidv4(),
-    createdAt: new Date(),
-    ...data,
+    constructor(data: CommentData) {
+        this.id = data.id || uuidv4()
+        this.user = data.user
+        this.message = data.message
+        this.createdAt = data.createdAt || new Date()
+    }
 
-    setMessage: function (message: string) {
+    setMessage(message: string) {
         this.message = message
-    },
-})
+    }
+}

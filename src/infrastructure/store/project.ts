@@ -1,9 +1,9 @@
 import { makeAutoObservable } from 'mobx'
-import { Project, createProject } from 'domain/project'
-import { User, createUser } from 'domain/user'
-import { Category, createCategory } from 'domain/category'
-import { Issue, createIssue } from 'domain/issue'
-import { Comment, createComment } from 'domain/comment'
+import { Project } from 'domain/project'
+import { User } from 'domain/user'
+import { Category } from 'domain/category'
+import { Issue } from 'domain/issue'
+import { Comment } from 'domain/comment'
 import db from 'infrastructure/db'
 import { ProjectDB, fetchProject } from 'infrastructure/db/project'
 import { UserDB, fetchUser, fetchUsers } from 'infrastructure/db/user'
@@ -57,7 +57,7 @@ export const projectStore = new ProjectStore()
 
 // PROJECT
 const createProjectFromDb = (projectDb: ProjectDB): Project => {
-    return createProject({
+    return new Project({
         id: projectDb.id,
         name: projectDb.name,
         description: projectDb.description,
@@ -68,7 +68,7 @@ const createProjectFromDb = (projectDb: ProjectDB): Project => {
 
 // USER
 export const createUserFromDb = (user: UserDB): User => {
-    return createUser({
+    return new User({
         id: user.id,
         name: user.name,
         image: user.image,
@@ -83,7 +83,7 @@ const createCategoryFromDb = async (
     const issuesDb = await fetchIssues(categoryDb.id)
     const issues = await Promise.all(issuesDb.map(createIssueFromDb))
 
-    return createCategory({
+    return new Category({
         id: categoryDb.id,
         name: categoryDb.name,
         issues: issues,
@@ -109,7 +109,7 @@ const createIssueFromDb = async (issueDb: IssueDB): Promise<Issue> => {
         throw new Error('User not found')
     }
 
-    return createIssue({
+    return new Issue({
         id: issueDb.id,
         name: issueDb.name,
         description: issueDb.description,
@@ -130,7 +130,7 @@ const createCommentFromDb = async (commentDb: CommentDB): Promise<Comment> => {
         throw new Error('Comment user not found')
     }
 
-    return createComment({
+    return new Comment({
         id: commentDb.id,
         user: createUserFromDb(user),
         message: commentDb.message,

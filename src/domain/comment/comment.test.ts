@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { userMock1 } from 'domain/user'
-import { toPlainObject } from 'domain/utils'
-import { createComment } from './comment'
+import { Comment } from './comment'
 
 vi.mock('uuid', () => ({
     v4: () => 'mock-uuid',
@@ -10,16 +9,16 @@ vi.mock('uuid', () => ({
 describe('Comment entity module', () => {
     it('Change comment message', () => {
         const message = 'Test new comment message'
-        const reference = createComment({
+        const reference = new Comment({
             user: userMock1,
             message: 'Original message',
         })
-        const expected = createComment({
+        const expected = new Comment({
             user: userMock1,
             message,
         })
         reference.setMessage(message)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 })

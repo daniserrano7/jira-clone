@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { createComment } from 'domain/comment'
+import { Comment } from 'domain/comment'
 import { addCommentDb } from 'infrastructure/db/comment'
 import { appStore, projectStore } from 'infrastructure/store'
 import { UserAvatar } from 'ui/components/avatar'
@@ -16,7 +16,7 @@ export const CreateComment = (): JSX.Element => {
             throw new Error('No issue to edit')
         }
 
-        const comment = createComment({
+        const comment = new Comment({
             user: appStore.user,
             message,
         })

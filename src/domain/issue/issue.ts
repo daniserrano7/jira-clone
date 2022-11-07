@@ -16,67 +16,65 @@ export interface IssueData {
     priority: Priority
     createdAt?: Date
     //TODO: epic: Epic
-    //TODO: createdAt: timestamp
     //TODO: updatedAt: timestamp
 }
 
-export interface Issue extends IssueData {
-    id: Readonly<IssueId>
+export class Issue implements IssueData {
+    readonly id: IssueId
+    name: string
+    description: string
     categoryId: CategoryId
-    createdAt: Readonly<Date>
-    setName: (name: string) => void
-    setDescription: (description: string) => void
-    setCategoryId: (categoryId: CategoryId) => void
-    setPriority: (priority: Priority) => void
-    setAsignee: (asignee: User) => void
-    getComment: (commentId: CommentId) => Comment | undefined
-    addComment: (comment: Comment) => void
-    removeComment: (commentId: CommentId) => Comment | undefined
-}
+    reporter: User
+    asignee: User
+    comments: Comment[]
+    priority: Priority
+    createdAt: Date
 
-export const createIssue = (data: CreateIssue): Issue => ({
-    id: uuidv4(),
-    description: '',
-    createdAt: new Date(),
-    ...data,
+    constructor(data: IssueData) {
+        this.id = data.id || uuidv4()
+        this.name = data.name
+        this.description = data.description || ''
+        this.categoryId = data.categoryId || 'TODO'
+        this.reporter = data.reporter
+        this.asignee = data.asignee
+        this.comments = data.comments || []
+        this.priority = data.priority
+        this.createdAt = data.createdAt || new Date()
+    }
 
-    setName: function (name: string) {
+    setName(name: string) {
         this.name = name
-    },
+    }
 
-    setDescription: function (description: string) {
+    setDescription(description: string) {
         this.description = description
-    },
+    }
 
-    setCategoryId: function (categoryId: CategoryId) {
+    setCategoryId(categoryId: CategoryId) {
         this.categoryId = categoryId
-    },
+    }
 
-    setPriority: function (priority: Priority) {
+    setPriority(priority: Priority) {
         this.priority = priority
-    },
+    }
 
-    setAsignee: function (asignee: User) {
+    setAsignee(asignee: User) {
         this.asignee = asignee
-    },
+    }
 
-    getComment: function (commentId: CommentId) {
+    getComment(commentId: CommentId) {
         return this.comments.find((comment) => comment.id === commentId)
-    },
+    }
 
-    addComment: function (comment: Comment) {
-        this.comments.unshift(comment)
-    },
+    addComment(comment: Comment) {
+        this.comments.push(comment)
+    }
 
-    removeComment: function (commentId: CommentId) {
+    removeComment(commentId: CommentId) {
         this.comments = this.comments.filter(
             (comment) => comment.id !== commentId
         )
         const removedComment = this.getComment(commentId)
         return removedComment
-    },
-})
-
-interface CreateIssue extends IssueData {
-    categoryId: CategoryId
+    }
 }

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { useDrop } from 'react-dnd'
 import { Category, CategoryId } from 'domain/category'
-import { Issue, IssueId, createIssue } from 'domain/issue'
+import { Issue, IssueId } from 'domain/issue'
 import { updateIssueDb } from 'infrastructure/db/issue'
 import { appStore, projectStore } from 'infrastructure/store'
 import { Icon } from 'ui/components/icon'
@@ -48,7 +48,7 @@ export const CategoryColumn = observer(
         }
 
         const createCategoryIssue = () => {
-            const issue = createIssue({
+            const issue = new Issue({
                 categoryId: category.id,
                 name: '',
                 description: '',

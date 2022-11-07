@@ -1,16 +1,16 @@
 import { IssueData } from './issue'
-import { createComment } from 'domain/comment'
+import { Comment } from 'domain/comment'
 import { userMock1, userMock2 } from 'domain/user'
 
 export const todoIssues: IssueData[] = [
     {
         name: 'Add and display issue timestamps',
         description:
-            'Is should be create automatically on createIssue(). It must be displayed on issue panel, as well as an updatedAt parameter',
+            'Is should be create automatically on new Issue(). It must be displayed on issue panel, as well as an updatedAt parameter',
         reporter: userMock1,
         asignee: userMock2,
         comments: [
-            createComment({
+            new Comment({
                 user: userMock2,
                 message:
                     'Adipisicing irure non voluptate id magna enim minim labore. Lorem deserunt velit sit ea ullamco laborum laboris culpa laborum. Minim cillum et dolore ipsum occaecat commodo. Sint esse sit consequat aute velit duis. Id et proident aute velit consectetur Lorem velit aliqua id. Duis sit proident veniam qui aliquip aute aliquip ad do. Duis deserunt veniam ipsum quis cupidatat voluptate dolor ullamco nisi duis occaecat ex non ad.',
@@ -65,11 +65,11 @@ export const doneIssues: IssueData[] = [
         reporter: userMock1,
         asignee: userMock1,
         comments: [
-            createComment({
+            new Comment({
                 user: userMock2,
                 message: 'This should be implemented ASAP',
             }),
-            createComment({
+            new Comment({
                 user: userMock1,
                 message: "Ok, I'm on it",
             }),

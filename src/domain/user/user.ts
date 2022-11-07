@@ -8,16 +8,19 @@ export type UserData = {
     color?: string
 }
 
-export interface User extends UserData {
-    id: Readonly<UserId>
-    color: Readonly<string>
-}
+export class User implements UserData {
+    id: UserId
+    name: string
+    image?: string
+    color: string
 
-export const createUser = (data: UserData): User => ({
-    id: uuidv4(),
-    color: getRandomPastelColor(),
-    ...data,
-})
+    constructor(data: UserData) {
+        this.id = data.id || uuidv4()
+        this.name = data.name
+        this.image = data.image
+        this.color = data.color || getRandomPastelColor()
+    }
+}
 
 const getRandomPastelColor = () => {
     const h = 360 * Math.random()

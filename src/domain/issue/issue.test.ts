@@ -1,14 +1,13 @@
 import { describe, it, expect, vi } from 'vitest'
 import { userMock1, userMock2 } from 'domain/user'
-import { createComment } from 'domain/comment'
-import { toPlainObject } from 'domain/utils'
-import { createIssue } from './issue'
+import { Comment } from 'domain/comment'
+import { Issue } from './issue'
 
 vi.mock('uuid', () => ({
     v4: () => 'mock-uuid',
 }))
 
-const commentMock = createComment({
+const commentMock = new Comment({
     user: userMock2,
     message: 'This should be implemented ASAP',
 })
@@ -18,7 +17,7 @@ describe('Issue entity module', () => {
 
     it('Change issue name', () => {
         const name = 'Issue name test'
-        const reference = createIssue({
+        const reference = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -29,7 +28,7 @@ describe('Issue entity module', () => {
             priority: 'high',
             createdAt,
         })
-        const expected = createIssue({
+        const expected = new Issue({
             name,
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -42,12 +41,12 @@ describe('Issue entity module', () => {
         })
         reference.setName(name)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 
     it('Change issue description', () => {
         const description = 'Issue description test'
-        const reference = createIssue({
+        const reference = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -58,7 +57,7 @@ describe('Issue entity module', () => {
             priority: 'high',
             createdAt,
         })
-        const expected = createIssue({
+        const expected = new Issue({
             name: 'Refactor entities id to UUID',
             description,
             categoryId: 'TODO',
@@ -70,12 +69,12 @@ describe('Issue entity module', () => {
         })
         reference.setDescription(description)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 
     it('Set issue asignee', () => {
         const asignee = userMock2
-        const reference = createIssue({
+        const reference = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -86,7 +85,7 @@ describe('Issue entity module', () => {
             priority: 'high',
             createdAt,
         })
-        const expected = createIssue({
+        const expected = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -99,11 +98,11 @@ describe('Issue entity module', () => {
         })
         reference.setAsignee(asignee)
 
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 
     it('Add comment to issue', () => {
-        const reference = createIssue({
+        const reference = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -114,7 +113,7 @@ describe('Issue entity module', () => {
             priority: 'high',
             createdAt,
         })
-        const expected = createIssue({
+        const expected = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -126,11 +125,11 @@ describe('Issue entity module', () => {
             createdAt,
         })
         reference.addComment(commentMock)
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
     })
 
     it('Remove comment from issue', () => {
-        const reference = createIssue({
+        const reference = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -141,7 +140,7 @@ describe('Issue entity module', () => {
             priority: 'high',
             createdAt,
         })
-        const expected = createIssue({
+        const expected = new Issue({
             name: 'Refactor entities id to UUID',
             description:
                 'Should be better to use UUID so ID duplication is less likely',
@@ -153,12 +152,10 @@ describe('Issue entity module', () => {
             createdAt,
         })
         const removedComment = reference.removeComment(commentMock.id)
-        expect(toPlainObject(reference)).toEqual(toPlainObject(expected))
+        expect(reference).toEqual(expected)
 
         if (removedComment) {
-            expect(toPlainObject(removedComment)).toEqual(
-                toPlainObject(commentMock)
-            )
+            expect(removedComment).toEqual(commentMock)
         }
     })
 })

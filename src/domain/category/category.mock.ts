@@ -1,10 +1,5 @@
-import { CategoryId, createCategory, categoryIdDict } from 'domain/category'
-import {
-    createIssue,
-    todoIssues,
-    inProgressIssues,
-    doneIssues,
-} from 'domain/issue'
+import { CategoryId, Category, categoryIdDict } from 'domain/category'
+import { Issue, todoIssues, inProgressIssues, doneIssues } from 'domain/issue'
 import { IssueData } from 'domain/issue'
 
 const categoriesDict: Record<CategoryId, IssueData[]> = {
@@ -17,14 +12,15 @@ export const categoriesMock = Object.entries(categoriesDict).map(
     (pair, idx) => {
         const categoryId = pair[0] as CategoryId
         const issueDataList = pair[1] as IssueData[]
-        return createCategory({
+        return new Category({
             id: categoryId,
             name: categoryIdDict[categoryId],
-            issues: issueDataList.map((issueData) =>
-                createIssue({
-                    ...issueData,
-                    categoryId: categoryId,
-                })
+            issues: issueDataList.map(
+                (issueData) =>
+                    new Issue({
+                        ...issueData,
+                        categoryId: categoryId,
+                    })
             ),
             order: idx,
         })
