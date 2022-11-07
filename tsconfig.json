@@ -1,7 +1,9 @@
 {
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "skipLibCheck": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -11,11 +13,11 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@domain": ["./src/domain"],
-      "@infrastructure": ["./src/infrastructure"],
-      "@app": ["./src/app"]
+      "@domain/*": ["./src/domain/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@app/*": ["./src/app/*"]
     },
 
     // Remix takes care of building everything in `remix build`.
