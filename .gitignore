@@ -4,3 +4,6 @@ node_modules
 /public/build
 /.netlify
 .env
+
+# testing
+/coverage
