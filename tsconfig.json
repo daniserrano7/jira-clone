@@ -11,9 +11,11 @@
     "strict": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "~/*": ["./app/*"]
+      "@domain": ["./src/domain"],
+      "@infrastructure": ["./src/infrastructure"],
+      "@app": ["./src/app"]
     },
 
     // Remix takes care of building everything in `remix build`.
