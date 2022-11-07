@@ -1,0 +1,25 @@
+@import "/src/ui/styles";
+@import "../select.module.scss";
+
+
+.trigger {
+  padding: spacing(3) spacing(4);
+
+  .avatar {
+    margin-right: spacing(4);
+  }
+}
+
+
+.content {
+  .item {
+    text-transform: none;
+    font-size: 14px;
+    
+    > span:last-child {
+      color: grey;
+      padding: 0 spacing(3);
+      border-radius: $border-radius-m;
+    }
+  }
+}

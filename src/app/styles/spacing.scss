@@ -1,0 +1,5 @@
+$spacing_base: 2px;
+
+@function spacing($spacing_factor) {
+  @return calc(#{$spacing_base} * #{$spacing_factor});
+}

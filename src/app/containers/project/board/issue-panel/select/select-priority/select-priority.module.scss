@@ -1,0 +1,19 @@
+@import "/src/ui/styles";
+@import "../select.module.scss";
+
+
+.trigger {
+  padding: spacing(2) spacing(4);
+
+  .flag {
+    display: flex;
+    margin-left: spacing(1);
+    margin-right: spacing(4);
+  }
+}
+
+.content .item {
+  > span:last-child {
+    margin-left: spacing(2);
+  }
+}

@@ -1,7 +1,7 @@
-import * as Avatar from '@radix-ui/react-avatar';
-import { User } from 'domain/user';
-import { Tooltip } from 'ui/components/tooltip';
-import styles from './avatar.module.scss';
+import * as Avatar from "@radix-ui/react-avatar";
+import { User } from "domain/user";
+import { Tooltip } from "@app/components/tooltip";
+import styles from "./avatar.module.scss";
 
 export const UserAvatar = ({
   name,
@@ -11,10 +11,10 @@ export const UserAvatar = ({
   tooltip,
 }: UserAvatarProps): JSX.Element => {
   const acronym = name
-    .split(' ')
+    .split(" ")
     .slice(0, 2)
     .map((word) => word[0].toUpperCase())
-    .join('');
+    .join("");
 
   const imagePath = new URL(`/src/ui/assets/avatars/${image}`, import.meta.url).href;
 

@@ -1,14 +1,14 @@
-import { observer } from 'mobx-react-lite';
-import { useDrop } from 'react-dnd';
-import { Category, CategoryId } from 'domain/category';
-import { Issue, IssueId } from 'domain/issue';
-import { updateIssueDb } from 'infrastructure/db/issue';
-import { appStore, projectStore } from 'infrastructure/store';
-import { Icon } from 'ui/components/icon';
-import { IssueCard, DRAG_ISSUE_CARD } from './issue-card';
-import { ScrollArea } from 'ui/components/scroll-area';
-import styles from './category-column.module.scss';
-import { priorities } from 'domain/priority';
+import { observer } from "mobx-react-lite";
+import { useDrop } from "react-dnd";
+import { Category, CategoryId } from "domain/category";
+import { Issue, IssueId } from "domain/issue";
+import { updateIssueDb } from "infrastructure/db/issue";
+import { appStore, projectStore } from "infrastructure/store";
+import { Icon } from "@app/components/icon";
+import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
+import { ScrollArea } from "@app/components/scroll-area";
+import styles from "./category-column.module.scss";
+import { priorities } from "domain/priority";
 
 export const CategoryColumn = observer((props: CategoryColumnProps): JSX.Element => {
   const { category, isDragging, handleDragging } = props;
@@ -49,12 +49,12 @@ export const CategoryColumn = observer((props: CategoryColumnProps): JSX.Element
   const createCategoryIssue = () => {
     const issue = new Issue({
       categoryId: category.id,
-      name: '',
-      description: '',
+      name: "",
+      description: "",
       reporter: appStore.user,
       asignee: appStore.user,
       comments: [],
-      priority: 'low',
+      priority: "low",
     });
     projectStore.editingIssue = issue;
   };
@@ -67,10 +67,10 @@ export const CategoryColumn = observer((props: CategoryColumnProps): JSX.Element
       })
       .sort((a, b) => {
         const sortA =
-          projectStore.filters.sort === 'date' ? a.createdAt : priorities.indexOf(a.priority);
+          projectStore.filters.sort === "date" ? a.createdAt : priorities.indexOf(a.priority);
 
         const sortB =
-          projectStore.filters.sort === 'date' ? b.createdAt : priorities.indexOf(b.priority);
+          projectStore.filters.sort === "date" ? b.createdAt : priorities.indexOf(b.priority);
 
         if (sortA < sortB) return 1;
         if (sortA > sortB) return -1;

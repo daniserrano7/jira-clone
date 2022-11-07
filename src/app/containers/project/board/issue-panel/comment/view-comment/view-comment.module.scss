@@ -1,0 +1,62 @@
+@import "/src/ui/styles";
+
+
+.container {
+  display: flex;
+  gap: spacing(12);
+
+  p {
+    margin: 0;
+  }
+
+  .user_name {
+    display: inline-block;
+    margin-right: spacing(8);
+    font-family: $font-bold;
+  }
+
+  .timestamp {
+    font-family: $font-light;
+    font-size: 13px;
+    font-weight: lighter;
+  }
+
+  p,
+  textarea,
+  .idle {
+    line-height: 1.4;
+    font-family: $font-light;
+    font-size: 16px;
+  }
+
+  .idle {
+    padding-top: spacing(6);
+  }
+
+  .idle {
+    .buttons_container {
+      margin-top: spacing(6);
+
+      &.hidden {
+        display: none;
+      }
+
+      button {
+        padding: 0;
+        background-color: transparent;
+        border: none;
+        color: color(font-light);
+        font-family: $font-light;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .separator {
+        margin-inline: spacing(4);
+      }
+    }
+  }
+}

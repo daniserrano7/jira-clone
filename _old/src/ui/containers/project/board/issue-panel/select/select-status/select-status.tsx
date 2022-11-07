@@ -1,10 +1,10 @@
-import * as Select from '@radix-ui/react-select';
-import { observer } from 'mobx-react-lite';
-import { CategoryId } from 'domain/category';
-import { Issue } from 'domain/issue';
-import { projectStore } from 'infrastructure/store';
-import { Icon } from 'ui/components/icon';
-import styles from './select-status.module.scss';
+import * as Select from "@radix-ui/react-select";
+import { observer } from "mobx-react-lite";
+import { CategoryId } from "domain/category";
+import { Issue } from "domain/issue";
+import { projectStore } from "infrastructure/store";
+import { Icon } from "@app/components/icon";
+import styles from "./select-status.module.scss";
 
 export const SelectStatus = observer(({ issue }: SelectStatusProps): JSX.Element => {
   const categories = projectStore.project.categories;

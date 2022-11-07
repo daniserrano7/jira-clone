@@ -1,0 +1,21 @@
+@import "/src/ui/styles";
+
+
+.container {
+  position: relative;
+  
+  textarea,
+  p {
+    padding: spacing(6);
+    box-sizing: border-box;
+    overflow-y: hidden;
+  }
+
+  p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+  }
+}

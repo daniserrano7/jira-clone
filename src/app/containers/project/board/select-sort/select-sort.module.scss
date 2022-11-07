@@ -1,0 +1,50 @@
+@import "/src/ui/styles";
+
+
+.trigger {
+  display: flex;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: $border-radius-m;
+  padding: spacing(3) spacing(6);
+  color: color(primary-main);
+  background-color: color(primary-light);
+  font-family: $font-normal;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color(primary-light-hover);
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    margin-right: spacing(3);
+  }
+}
+
+.content {
+  padding: spacing(3);
+  border-radius: $border-radius-m;
+  background-color: white;
+  box-shadow: $box-shadow-blue;
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: spacing(4);
+    padding: spacing(2) spacing(4);
+    border-radius: $border-radius-m;
+    color: color(primary-main);
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: color(primary-light);
+      outline: none;
+    }
+  }
+}

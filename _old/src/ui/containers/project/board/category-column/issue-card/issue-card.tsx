@@ -1,13 +1,13 @@
-import { Issue } from 'domain/issue';
-import { observer } from 'mobx-react-lite';
-import { useDrag } from 'react-dnd';
-import { projectStore } from 'infrastructure/store';
-import { Icon } from 'ui/components/icon';
-import { PriorityIcon } from 'ui/components/priority-icon';
-import styles from './issue-card.module.scss';
+import { Issue } from "domain/issue";
+import { observer } from "mobx-react-lite";
+import { useDrag } from "react-dnd";
+import { projectStore } from "infrastructure/store";
+import { Icon } from "@app/components/icon";
+import { PriorityIcon } from "@app/components/priority-icon";
+import styles from "./issue-card.module.scss";
 
 export const IssueCard = observer(({ issue, handleDragging }: IssueCardProps): JSX.Element => {
-  const issueIdPrefix = issue.id.split('-')[0];
+  const issueIdPrefix = issue.id.split("-")[0];
 
   const openIssue = () => {
     projectStore.editingIssue = issue;
@@ -57,4 +57,4 @@ interface IssueCardProps {
   handleDragging: (isDragging: boolean) => void;
 }
 
-export const DRAG_ISSUE_CARD = 'ISSUE_CARD';
+export const DRAG_ISSUE_CARD = "ISSUE_CARD";

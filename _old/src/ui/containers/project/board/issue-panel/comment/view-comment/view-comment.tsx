@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Comment } from 'domain/comment';
-import { updateCommentDb, removeCommentDb } from 'infrastructure/db/comment';
-import { appStore, projectStore } from 'infrastructure/store';
-import { UserAvatar } from 'ui/components/avatar';
-import { EditBox } from '../edit-box';
-import styles from './view-comment.module.scss';
+import { useState } from "react";
+import { Comment } from "domain/comment";
+import { updateCommentDb, removeCommentDb } from "infrastructure/db/comment";
+import { appStore, projectStore } from "infrastructure/store";
+import { UserAvatar } from "@app/components/avatar";
+import { EditBox } from "../edit-box";
+import styles from "./view-comment.module.scss";
 
 export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -26,17 +26,17 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   };
 
   const formatDateTime = (): string => {
-    if (!comment.createdAt) return 'DATE UNDEFINED';
+    if (!comment.createdAt) return "DATE UNDEFINED";
 
-    const locale = 'en-US';
+    const locale = "en-US";
     const date = comment.createdAt.toLocaleDateString(locale, {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
     });
     const time = comment.createdAt.toLocaleTimeString(locale, {
       hour12: false,
-      timeStyle: 'short',
+      timeStyle: "short",
     });
 
     return `${time} · ${date}`;
@@ -54,7 +54,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
         <button onClick={edit} disabled={isNotSelfComment}>
           Edit
         </button>
-        <span className={styles.separator}>{'·'}</span>
+        <span className={styles.separator}>{"·"}</span>
         <button onClick={remove} disabled={isNotSelfComment}>
           Delete
         </button>
@@ -65,7 +65,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   return (
     <div className={styles.container}>
       <UserAvatar {...comment.user} tooltip={false} />
-      <div style={{ width: '100%' }}>
+      <div style={{ width: "100%" }}>
         <p className={styles.user_name}>{comment.user.name}</p>
         <span className={styles.timestamp}>{formatDateTime()}</span>
         {isEditing ? (

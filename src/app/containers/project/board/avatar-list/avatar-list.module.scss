@@ -1,0 +1,71 @@
+@import "/src/ui/styles";
+
+.container {
+  $margin-left: 2.5;
+  $z-index: 4;
+
+  display: flex;
+  margin-left: spacing($margin-left);
+
+  .avatar_container {
+    z-index:  $z-index;
+    margin-left: spacing(-$margin-left);
+
+    &:hover {
+      z-index: 5;
+    }
+
+    > * {
+      border: 2px solid white;
+    }
+  }
+
+  .more_users {
+    z-index:  $z-index;
+
+    .trigger {
+      @extend .avatar_container;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: color(grey-500);
+      padding: 0;
+      border: 2px solid white;
+      border-radius: 50%;
+      box-sizing: content-box;
+      font-family: $font-normal;
+      font-size: 18px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.content {
+  $bg-color: white;
+
+  padding: spacing(4) spacing(4);
+  border-radius: $border-radius-l;
+  background-color: $bg-color;
+  box-shadow: $box-shadow-blue;
+
+  .item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: spacing(6);
+    outline: none;
+
+    &:not(:last-child) {
+      margin-bottom: spacing(4);
+    }
+  }
+
+  .arrow {
+    fill: $bg-color;
+  }
+}

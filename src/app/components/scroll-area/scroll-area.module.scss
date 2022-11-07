@@ -1,0 +1,55 @@
+@import "/src/ui/styles/";
+
+.root {
+    $scrollbar-border-radius: 12px;
+  
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding-right: inherit;
+    padding-left: inherit;
+    box-sizing: border-box;
+  
+    .viewport {
+      width: 100%;
+      height: 100%;
+    }
+  
+    .scrollbar {
+      display: 'flex';
+      // ensures no selection
+      user-select: 'none';
+      // disable browser handling of all panning and zooming gestures on touch devices
+      touch-action: 'none';
+      padding: 2;
+      background: color(grey-400);
+      border-radius: $scrollbar-border-radius;
+      transition: '160ms ease-out';
+      &:hover { background: lightgrey };
+      &[data-orientation="vertical"] { width: 8px };
+      &[data-orientation="horizontal"] {
+        flex-direction: 'column';
+        height: 0px;
+      }
+    }
+  
+    .thumb {
+      flex: 1;
+      background: rgb(103, 103, 103);
+      border-radius: $scrollbar-border-radius;
+      // increase target size for touch devices https://www.w3.org/WAI/WCAG21/Understanding/target-size.html
+      position: 'relative';
+      &::before {
+        content: '';
+        position: 'absolute';
+        top: '50%';
+        left: '50%';
+        transform: 'translate(-50%; -50%)';
+        width: '100%';
+        height: '100%';
+        min-width: 44;
+        min-height: 44;
+      }
+    }
+  }

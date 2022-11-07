@@ -1,6 +1,6 @@
-import { Priority } from 'domain/priority';
-import { Icon } from 'ui/components/icon';
-import styles from './priority-icon.module.scss';
+import { Priority } from "domain/priority";
+import { Icon } from "@app/components/icon";
+import styles from "./priority-icon.module.scss";
 
 export const PriorityIcon = ({ priority, size = 16 }: PriorityIconProps): JSX.Element => (
   <span className={`${styles.container} ${styles[priority]}`}>
