@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { projectStore } from "infrastructure/store";
+import { projectStore } from "@infrastructure/store";
 import { Icon, IconName } from "@app/components/icon";
 import { navItems } from "./sidebar.info";
 import imageProject from "@app/assets/images/default-project.png";

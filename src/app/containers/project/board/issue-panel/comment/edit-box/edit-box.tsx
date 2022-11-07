@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { TextareaAutosize } from '../../textarea-autosize';
-import { textAreOnlySpaces } from '../../utils';
-import styles from './edit-box.module.scss';
+import { useState } from "react";
+import { TextareaAutosize } from "../../textarea-autosize";
+import { textAreOnlySpaces } from "../../utils";
+import styles from "./edit-box.module.scss";
 
 export const EditBox = ({ defaultMessage, autofocus, save, cancel }: EditBoxProps): JSX.Element => {
   const [message, setMessage] = useState<string>(defaultMessage);
@@ -37,7 +37,7 @@ export const EditBox = ({ defaultMessage, autofocus, save, cancel }: EditBoxProp
   const isError = initError && !messageIsValid();
   const errorStyles = isError ? styles.error : undefined;
   const editingStyles = isEditing ? styles.editing : undefined;
-  const placeholder = isError ? 'Message cannot be empty' : 'Add your comment...';
+  const placeholder = isError ? "Message cannot be empty" : "Add your comment...";
 
   return (
     <div className={`${styles.container} ${errorStyles}`}>

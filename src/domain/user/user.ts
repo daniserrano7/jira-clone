@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export type UserId = string;
 export type UserData = {
@@ -39,7 +39,7 @@ const hslToHex = (h: number, s: number, l: number) => {
     // convert to Hex and prefix "0" if needed
     return Math.round(255 * color)
       .toString(16)
-      .padStart(2, '0');
+      .padStart(2, "0");
   };
   return `#${transformer(0)}${transformer(8)}${transformer(4)}`;
 };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import db from "infrastructure/db";
-import { appStore, projectStore } from "infrastructure/store";
+import db from "@infrastructure/db";
+import { appStore, projectStore } from "@infrastructure/store";
 import { Sidebar } from "@app/containers/project/sidebar";
 import { Board } from "./board";
 import styles from "./project.module.scss";

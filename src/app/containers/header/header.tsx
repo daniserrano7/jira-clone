@@ -7,7 +7,7 @@ export const Header = (): JSX.Element => {
     <header className={styles.container}>
       <section>
         <div className={styles.logo}>
-          <img src={jiraLogo} width={24} height={24} />
+          <img src={jiraLogo} width={24} height={24} alt="JIRA logo" />
           <span className={styles.app_title}>Jira Clone</span>
         </div>
       </section>

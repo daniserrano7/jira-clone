@@ -1,1 +1,1 @@
-export * from './select-priority';
+export * from "./select-priority";

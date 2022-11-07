@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './breadcrumbs.module.scss';
+import React from "react";
+import styles from "./breadcrumbs.module.scss";
 
 export const Breadcrumbs = ({ breadcrumbs }: BreadcrumbsProps): JSX.Element => {
   const lastElementIndex = breadcrumbs.length - 1;

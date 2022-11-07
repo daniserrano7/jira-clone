@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-import { User } from '../user';
+import { v4 as uuidv4 } from "uuid";
+import { User } from "../user";
 
 export type CommentId = string;
 

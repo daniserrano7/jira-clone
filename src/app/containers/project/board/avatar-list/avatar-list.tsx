@@ -1,5 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { projectStore } from "infrastructure/store";
+import { projectStore } from "@infrastructure/store";
 import { UserAvatar } from "@app/components/avatar";
 import { ScrollArea } from "@app/components/scroll-area";
 import styles from "./avatar-list.module.scss";

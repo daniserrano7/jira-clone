@@ -1,5 +1,5 @@
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
-import styles from './scroll-area.module.scss';
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import styles from "./scroll-area.module.scss";
 
 export const ScrollArea = ({ children }: ScrollAreaProps): JSX.Element => (
   <ScrollAreaPrimitive.Root type="hover" scrollHideDelay={400} className={styles.root}>

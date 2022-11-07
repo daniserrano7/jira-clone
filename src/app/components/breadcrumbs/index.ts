@@ -1,2 +1,2 @@
-export * from './breadcrumbs';
-export * from './breadcrumbs.info';
+export * from "./breadcrumbs";
+export * from "./breadcrumbs.info";

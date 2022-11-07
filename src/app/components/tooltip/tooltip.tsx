@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import styles from './tooltip.module.scss';
+import { useState } from "react";
+import styles from "./tooltip.module.scss";
 
 export const Tooltip = ({ title, show = true, children }: TooltipProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);

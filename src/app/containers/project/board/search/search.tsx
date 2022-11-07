@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
-import { projectStore } from "infrastructure/store";
+import { projectStore } from "@infrastructure/store";
 import { Icon } from "@app/components/icon";
 import styles from "./search.module.scss";
 

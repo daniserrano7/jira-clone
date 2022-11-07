@@ -2,8 +2,8 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { Issue } from "@domain/issue";
 import { Priority, priorityList } from "@domain/priority";
-import { Icon } from "ui/components/icon";
-import { PriorityIcon } from "ui/components/priority-icon";
+import { Icon } from "@app/components/icon";
+import { PriorityIcon } from "@app/components/priority-icon";
 import styles from "./select-priority.module.scss";
 
 export const SelectPriority = ({ issue }: SelectPriorityProps): JSX.Element => {

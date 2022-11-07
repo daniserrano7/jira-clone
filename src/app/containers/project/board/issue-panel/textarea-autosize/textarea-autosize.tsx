@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
-import styles from './textarea-autosize.module.scss';
+import { useEffect, useState, useRef } from "react";
+import styles from "./textarea-autosize.module.scss";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   const { value, setValue, placeholder, autofocus, onFocus, onBlur } = props;

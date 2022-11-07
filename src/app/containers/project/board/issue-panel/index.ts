@@ -1,1 +1,1 @@
-export * from './issue-panel';
+export * from "./issue-panel";

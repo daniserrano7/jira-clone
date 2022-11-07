@@ -1,9 +1,9 @@
 import { Issue } from "@domain/issue";
 import { observer } from "mobx-react-lite";
 import { useDrag } from "react-dnd";
-import { projectStore } from "infrastructure/store";
-import { Icon } from "ui/components/icon";
-import { PriorityIcon } from "ui/components/priority-icon";
+import { projectStore } from "@infrastructure/store";
+import { Icon } from "@app/components/icon";
+import { PriorityIcon } from "@app/components/priority-icon";
 import styles from "./issue-card.module.scss";
 
 export const IssueCard = observer(({ issue, handleDragging }: IssueCardProps): JSX.Element => {

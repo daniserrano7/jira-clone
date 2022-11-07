@@ -1,1 +1,1 @@
-export * from './select-asignee';
+export * from "./select-asignee";

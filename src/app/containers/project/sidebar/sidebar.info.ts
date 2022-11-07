@@ -1,13 +1,13 @@
-import { NavItemProps } from './sidebar';
+import { NavItemProps } from "./sidebar";
 
 export const navItems: NavItemProps[] = [
   {
-    icon: 'board',
-    name: 'Board',
+    icon: "board",
+    name: "Board",
   },
   {
-    icon: 'backlog',
-    name: 'Backlog',
+    icon: "backlog",
+    name: "Backlog",
     disabled: true,
   },
 ];

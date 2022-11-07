@@ -1,43 +1,43 @@
-import { User, UserData } from './user';
+import { User, UserData } from "./user";
 
 const usersData: UserData[] = [
   {
-    name: 'Daniel Serrano',
+    name: "Daniel Serrano",
   },
   {
-    name: 'Woody',
-    image: 'woody.png',
+    name: "Woody",
+    image: "woody.png",
   },
   {
-    name: 'Buzz Lightyear',
-    image: 'buzz-lightyear.png',
+    name: "Buzz Lightyear",
+    image: "buzz-lightyear.png",
   },
   {
-    name: 'Jessie',
-    image: 'jessie.png',
+    name: "Jessie",
+    image: "jessie.png",
   },
   {
-    name: 'Emperor Zurg',
-    image: 'emperor-zurg.png',
+    name: "Emperor Zurg",
+    image: "emperor-zurg.png",
   },
   {
-    name: 'Mr Potato',
-    image: 'mr-potato.png',
+    name: "Mr Potato",
+    image: "mr-potato.png",
   },
   {
-    name: 'Ms Potato',
-    image: 'ms-potato.png',
+    name: "Ms Potato",
+    image: "ms-potato.png",
   },
   {
-    name: 'Little Green Men',
-    image: 'little-green-men.png',
+    name: "Little Green Men",
+    image: "little-green-men.png",
   },
   {
-    name: 'T-Rex',
+    name: "T-Rex",
   },
   {
-    name: 'Andy Davis',
-    image: 'andy-davis.png',
+    name: "Andy Davis",
+    image: "andy-davis.png",
   },
 ];
 

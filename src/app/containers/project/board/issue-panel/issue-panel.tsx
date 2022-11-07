@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import * as Dialog from "@radix-ui/react-dialog";
-import { addIssueDb, updateIssueDb, removeIssueDb } from "infrastructure/db/issue";
-import { appStore, projectStore } from "infrastructure/store";
+import { addIssueDb, updateIssueDb, removeIssueDb } from "@infrastructure/db/issue";
+import { appStore, projectStore } from "@infrastructure/store";
 import { UserAvatar } from "@app/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -27,9 +27,7 @@ export const IssueEditPanel = observer(({ isOpen }: IssueEditPanelProps): JSX.El
     const oldCategory = projectStore.project.categories.find((category) => {
       const foundIssue = category.getIssue(issue.id);
 
-      if (foundIssue) {
-        return category;
-      }
+      return foundIssue ? category : undefined;
     });
 
     if (oldCategory) {

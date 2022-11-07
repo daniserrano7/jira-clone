@@ -1,12 +1,12 @@
-import { BreadcrumbsProps } from './breadcrumbs';
+import { BreadcrumbsProps } from "./breadcrumbs";
 
 export const breadcrumbsInfo: BreadcrumbsProps = {
   breadcrumbs: [
     {
-      name: 'Projects',
+      name: "Projects",
     },
     {
-      name: 'My project',
+      name: "My project",
     },
   ],
 };

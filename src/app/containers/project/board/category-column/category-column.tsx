@@ -2,11 +2,11 @@ import { observer } from "mobx-react-lite";
 import { useDrop } from "react-dnd";
 import { Category, CategoryId } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { updateIssueDb } from "infrastructure/db/issue";
-import { appStore, projectStore } from "infrastructure/store";
-import { Icon } from "ui/components/icon";
+import { updateIssueDb } from "@infrastructure/db/issue";
+import { appStore, projectStore } from "@infrastructure/store";
+import { Icon } from "@app/components/icon";
 import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
-import { ScrollArea } from "ui/components/scroll-area";
+import { ScrollArea } from "@app/components/scroll-area";
 import styles from "./category-column.module.scss";
 import { priorities } from "@domain/priority";
 

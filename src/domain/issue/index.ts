@@ -1,2 +1,2 @@
-export * from './issue';
-export * from './issue.mock';
+export * from "./issue";
+export * from "./issue.mock";

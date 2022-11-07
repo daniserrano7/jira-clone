@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Comment } from "@domain/comment";
-import { addCommentDb } from "infrastructure/db/comment";
-import { appStore, projectStore } from "infrastructure/store";
-import { UserAvatar } from "ui/components/avatar";
+import { addCommentDb } from "@infrastructure/db/comment";
+import { appStore, projectStore } from "@infrastructure/store";
+import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "../edit-box";
 import styles from "./create-comment.module.scss";
 

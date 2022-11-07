@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { projectStore, SortFilter } from "infrastructure/store";
+import { projectStore, SortFilter } from "@infrastructure/store";
 import { Icon, IconName } from "@app/components/icon";
 import styles from "./select-sort.module.scss";
 

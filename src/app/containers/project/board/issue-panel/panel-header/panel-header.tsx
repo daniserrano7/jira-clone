@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { IssueId } from "@domain/issue";
-import { Icon } from "ui/components/icon";
+import { Icon } from "@app/components/icon";
 import styles from "./panel-header.module.scss";
 
 export const PanelHeader = ({ id, onDeleteIssue, onClose }: PanelHeaderProps): JSX.Element => {
