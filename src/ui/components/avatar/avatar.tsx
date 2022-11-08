@@ -1,7 +1,6 @@
 import * as Avatar from '@radix-ui/react-avatar';
 import { User } from 'domain/user';
 import { Tooltip } from 'ui/components/tooltip';
-import styles from './avatar.module.scss';
 
 export const UserAvatar = ({
   name,
@@ -19,19 +18,24 @@ export const UserAvatar = ({
   const imagePath = new URL(`/src/ui/assets/avatars/${image}`, import.meta.url).href;
 
   return (
-    <div className={styles.container}>
+    <div className="rounded-full">
       <Tooltip title={name} show={tooltip}>
         <Avatar.Root
-          className={styles.root}
+          className="flex items-center"
           style={{
             minWidth: `${size}px`,
             minHeight: `${size}px`,
           }}
         >
-          <Avatar.Image src={image && imagePath} width={size} height={size} />
+          <Avatar.Image
+            className="rounded-full"
+            src={image && imagePath}
+            width={size}
+            height={size}
+          />
           <Avatar.Fallback
             delayMs={0}
-            className={styles.fallback}
+            className="flex justify-center items-center rounded-full"
             style={{
               width: `${size}px`,
               height: `${size}px`,
