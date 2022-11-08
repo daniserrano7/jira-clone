@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import styles from './tooltip.module.scss';
+import { useState } from "react";
+import cx from "classix";
 
-export const Tooltip = ({ title, show = true, children }: TooltipProps): JSX.Element => {
+export const Tooltip = ({
+  title,
+  show = true,
+  children,
+}: TooltipProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   const showTooltip = () => setIsVisible(true);
@@ -10,12 +14,19 @@ export const Tooltip = ({ title, show = true, children }: TooltipProps): JSX.Ele
   if (!show) return children;
 
   return (
-    <div className={styles.container}>
+    <div className="relative w-fit">
       <div onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
         {children}
       </div>
-      <div className={`${styles.tooltip} ${isVisible && styles.visible}`}>
-        <div className={styles.content}>{title}</div>
+      <div
+        className={cx(
+          "z-80 absolute top-full left-1/2 mt-1.5 -translate-x-1/2 transform justify-center break-words",
+          isVisible ? "flex" : "hidden"
+        )}
+      >
+        <div className="w-fit whitespace-nowrap rounded bg-font-main py-0.5 px-1.5 text-xs text-white">
+          {title}
+        </div>
       </div>
     </div>
   );
