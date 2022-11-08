@@ -16,7 +16,9 @@ export const Board = observer((): JSX.Element => {
   return (
     <div className={styles.container}>
       <section className={styles.header}>
-        Projects / {projectStore.project.name}
+        <span>Projects</span>
+        <span className="mx-2">/</span>
+        <span>{projectStore.project.name}</span>
         <h1 className={styles.title}>Sprint board</h1>
       </section>
       <section className={styles.tools}>
