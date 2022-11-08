@@ -16,6 +16,7 @@ module.exports = {
       "focus": "#4c9aff",
       "success-main": "#00875A",
       "sucess-hover": "green",
+      "warn-main": "#FFAB00",
       "error-main": "red",
       "error-light": "pink",
       "error-dark": "purple",
