@@ -2,8 +2,19 @@ import { useState } from "react";
 import cx from "classix";
 import { projectStore } from "infrastructure/store";
 import { Icon, IconName } from "ui/components/icon";
-import { navItems } from "./sidebar.info";
 import imageProject from "ui/assets/images/default-project.png";
+
+const navItems: NavItemProps[] = [
+  {
+    icon: "board",
+    name: "Board",
+  },
+  {
+    icon: "backlog",
+    name: "Backlog",
+    disabled: true,
+  },
+];
 
 export const Sidebar = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
