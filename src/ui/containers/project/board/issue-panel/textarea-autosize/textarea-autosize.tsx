@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import styles from './textarea-autosize.module.scss';
+import { useEffect, useState, useRef } from "react";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   const { value, setValue, placeholder, autofocus, onFocus, onBlur } = props;
@@ -31,8 +30,9 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   }, [value]);
 
   return (
-    <div className={styles.container}>
+    <div className="relative">
       <textarea
+        className="box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main"
         value={value}
         onChange={handleTitleChange}
         placeholder={placeholder}
@@ -41,7 +41,12 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
         style={{ height: `${textareaHeight}px` }}
         autoFocus={autofocus}
       />
-      <p ref={textareaRef}>{(valueIsNotOnlySpaces() && value) || placeholder}</p>
+      <p
+        ref={textareaRef}
+        className="absolute top-0 left-0 -z-10 box-border overflow-y-hidden p-3 opacity-0"
+      >
+        {(valueIsNotOnlySpaces() && value) || placeholder}
+      </p>
     </div>
   );
 };
