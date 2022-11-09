@@ -1,36 +1,35 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { projectStore } from 'infrastructure/store';
-import { Search } from 'ui/containers/project/board/search';
-import { UserAvatarList } from './avatar-list';
-import { SelectSort } from './select-sort';
-import { CategoryColumn } from './category-column';
-import { IssueEditPanel } from './issue-panel';
-import styles from './board.module.scss';
+import { useState } from "react";
+import { observer } from "mobx-react-lite";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { projectStore } from "infrastructure/store";
+import { Search } from "ui/containers/project/board/search";
+import { UserAvatarList } from "./avatar-list";
+import { SelectSort } from "./select-sort";
+import { CategoryColumn } from "./category-column";
+import { IssueEditPanel } from "./issue-panel";
 
 export const Board = observer((): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   return (
-    <div className={styles.container}>
-      <section className={styles.header}>
+    <div className="box-border flex h-full flex-col bg-white">
+      <section>
         <span>Projects</span>
         <span className="mx-2">/</span>
         <span>{projectStore.project.name}</span>
-        <h1 className={styles.title}>Sprint board</h1>
+        <h1 className="mt-4 mb-5 font-primary-black text-2xl">Sprint board</h1>
       </section>
-      <section className={styles.tools}>
+      <section className="flex items-center">
         <Search />
-        <div className={styles.users}>
+        <div className="my-0 mx-4 inline">
           <UserAvatarList />
         </div>
-        <div className={styles.filters}>
+        <div className="inline">
           <SelectSort />
         </div>
       </section>
-      <section className={styles.categories}>
+      <section className="mt-12 flex h-full gap-3">
         <DndProvider backend={HTML5Backend}>
           {projectStore.project.categories.map((category) => (
             <CategoryColumn
