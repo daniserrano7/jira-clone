@@ -20,6 +20,7 @@
     "@radix-ui/react-dropdown-menu": "^0.1.6",
     "@radix-ui/react-scroll-area": "^0.1.4",
     "@radix-ui/react-select": "^0.1.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
