@@ -9,7 +9,7 @@ module.exports = {
       "primary-main": "#0052cc",
       "primary-light": "#deebff",
       "primary-main-hover": "lighten(#0052cc, 10%)",
-      "primary-light-hover": "darken(#deebff, 5%)",
+      "primary-light-hover": "#c5dcff",
       "secondary-main": "#403294",
       "secondary-light": "#EAE6FF",
       "white": "#fff",
