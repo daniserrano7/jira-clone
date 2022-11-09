@@ -13,6 +13,7 @@ module.exports = {
       "secondary-main": "#403294",
       "secondary-light": "#EAE6FF",
       "white": "#fff",
+      "black": "#000",
       "focus": "#4c9aff",
       "success-main": "#00875A",
       "sucess-hover": "green",

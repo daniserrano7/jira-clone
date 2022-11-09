@@ -32,7 +32,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   return (
     <div className="relative">
       <textarea
-        className="box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main"
+        className="box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main hover:bg-grey-300 focus:bg-white focus:outline-primary-main"
         value={value}
         onChange={handleTitleChange}
         placeholder={placeholder}
