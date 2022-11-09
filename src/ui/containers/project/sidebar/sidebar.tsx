@@ -107,7 +107,7 @@ const NavItem = ({
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
       <span
         className={cx(
-          "itmes-center -ml-2 hidden rounded bg-grey-300 py-1 px-2 text-xs uppercase disabled:hover:flex",
+          "itmes-center -ml-2 hidden rounded bg-grey-300 py-1 px-2 text-2xs uppercase disabled:hover:flex",
           disabled && "group-hover:block"
         )}
       >

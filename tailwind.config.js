@@ -44,7 +44,12 @@ module.exports = {
       "blue": "5px 5px 20px 1px rgba(0, 82, 204, 0.2)",
       "dialog-overlay": "rgba(0,0,0,0.45)",
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        "2xs": ["0.75rem", "1rem"],
+        "xs": ["0.8125rem", "1rem"],
+      }
+    },
   },
   plugins: [],
 }
