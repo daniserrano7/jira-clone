@@ -9,7 +9,7 @@ import { Select } from "./select";
 export const SelectAsignee = ({ issue }: Props): JSX.Element => {
   const defaultUser = issue.asignee || appStore.user;
 
-  const [selectedUser, setSelectedUser] = useState<User>(defaultUser);
+  const [selectedValue, setSelectedValue] = useState<User>(defaultUser);
 
   const users = projectStore.project.users;
   const items = users.map((user) => ({
@@ -17,29 +17,27 @@ export const SelectAsignee = ({ issue }: Props): JSX.Element => {
     element: (
       <div className="flex items-center gap-2">
         <UserAvatar {...user} tooltip={false} />
-        <SelectPrimitive.ItemText className="ml-2">
-          {user.name}
-        </SelectPrimitive.ItemText>
+        <SelectPrimitive.ItemText>{user.name}</SelectPrimitive.ItemText>
       </div>
     ),
   }));
-  const Avatar = () => (
+  const TriggerAvatar = () => (
     <div className="mr-2">
-      <UserAvatar {...selectedUser} tooltip={false} size={32} />
+      <UserAvatar {...selectedValue} tooltip={false} size={32} />
     </div>
   );
 
   const onChange = (userId: UserId) => {
     const asignee = projectStore.project.getUser(userId);
     if (asignee) {
-      setSelectedUser(asignee);
+      setSelectedValue(asignee);
       issue.setAsignee(asignee);
     }
   };
 
   return (
     <Select
-      trigger={<Avatar />}
+      triggerSymbol={<TriggerAvatar />}
       items={items}
       defaultValue={defaultUser.id}
       onChange={onChange}
