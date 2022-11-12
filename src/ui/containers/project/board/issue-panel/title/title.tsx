@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
 import { Issue } from "domain/issue";
-import { TextareaAutosize } from "../textarea-autosize";
+import { TextareaAutosize } from "../../../../../components/textarea-autosize";
 import { textAreOnlySpaces } from "../utils";
 
 export const Title = ({ issue }: TitleProps): JSX.Element => {
@@ -24,19 +24,17 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
   };
 
   return (
-    <div
-      className={cx(
-        "relative [&_textarea]:font-primary-black [&_textarea]:text-2xl [&_p]:font-primary-black [&_p]:text-2xl",
-        requireError &&
-          "[&_textarea]:outline [&_textarea]:outline-2 [&_textarea]:outline-error-main"
-      )}
-    >
+    <div className="relative">
       <TextareaAutosize
         value={title}
         setValue={updateTitle}
         placeholder="Write the title"
         onFocus={onFocus}
         onBlur={onBlur}
+        textareaClassName={cx(
+          "font-primary-black text-2xl",
+          requireError && "outline outline-2 outline-error-main"
+        )}
         autofocus
       />
       {requireError && (
