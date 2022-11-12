@@ -1,7 +1,16 @@
 import { useEffect, useState, useRef } from "react";
+import cx from "classix";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
-  const { value, setValue, placeholder, autofocus, onFocus, onBlur } = props;
+  const {
+    value,
+    setValue,
+    placeholder,
+    autofocus,
+    textareaClassName,
+    onFocus,
+    onBlur,
+  } = props;
 
   const [textareaHeight, setTextareaHeight] = useState<number>(40);
   const textareaRef = useRef<HTMLParagraphElement>(null);
@@ -32,7 +41,10 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   return (
     <div className="relative">
       <textarea
-        className="box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main hover:bg-grey-300 focus:bg-white focus:outline-primary-main"
+        className={cx(
+          "box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main outline-2 hover:bg-grey-300 focus:bg-white focus:outline-2 focus:outline-primary-main",
+          textareaClassName
+        )}
         value={value}
         onChange={handleTitleChange}
         placeholder={placeholder}
@@ -43,7 +55,10 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
       />
       <p
         ref={textareaRef}
-        className="absolute top-0 left-0 -z-10 box-border overflow-y-hidden p-3 opacity-0"
+        className={cx(
+          "absolute top-0 left-0 -z-10 box-border overflow-y-hidden p-3 opacity-0",
+          textareaClassName
+        )}
       >
         {(valueIsNotOnlySpaces() && value) || placeholder}
       </p>
@@ -56,6 +71,7 @@ interface TitleProps {
   setValue: (value: string) => void;
   placeholder: string;
   autofocus?: boolean;
+  textareaClassName?: string;
   onFocus?: () => void;
   onBlur?: () => void;
 }

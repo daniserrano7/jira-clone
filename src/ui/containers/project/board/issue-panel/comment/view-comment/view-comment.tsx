@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Comment } from 'domain/comment';
-import { updateCommentDb, removeCommentDb } from 'infrastructure/db/comment';
-import { appStore, projectStore } from 'infrastructure/store';
-import { UserAvatar } from 'ui/components/avatar';
-import { EditBox } from '../edit-box';
-import styles from './view-comment.module.scss';
+import { useState } from "react";
+import cx from "classix";
+import { Comment } from "domain/comment";
+import { updateCommentDb, removeCommentDb } from "infrastructure/db/comment";
+import { appStore, projectStore } from "infrastructure/store";
+import { UserAvatar } from "ui/components/avatar";
+import { EditBox } from "../edit-box";
 
 export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -26,36 +26,39 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   };
 
   const formatDateTime = (): string => {
-    if (!comment.createdAt) return 'DATE UNDEFINED';
+    if (!comment.createdAt) return "DATE UNDEFINED";
 
-    const locale = 'en-US';
+    const locale = "en-US";
     const date = comment.createdAt.toLocaleDateString(locale, {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
     });
     const time = comment.createdAt.toLocaleTimeString(locale, {
       hour12: false,
-      timeStyle: 'short',
+      timeStyle: "short",
     });
 
     return `${time} · ${date}`;
   };
 
   const IdleComment = (): JSX.Element => (
-    <div className={styles.idle}>
+    <div className="font-primary-light">
       <p>{comment.message}</p>
-      <div
-        className={`
-        ${styles.buttons_container}
-        ${isNotSelfComment ? styles.hidden : undefined}
-      `}
-      >
-        <button onClick={edit} disabled={isNotSelfComment}>
+      <div className={cx("mt-3", isNotSelfComment ? "hidden" : "visible")}>
+        <button
+          onClick={edit}
+          disabled={isNotSelfComment}
+          className="font-primary-light text-xs text-font-light hover:underline"
+        >
           Edit
         </button>
-        <span className={styles.separator}>{'·'}</span>
-        <button onClick={remove} disabled={isNotSelfComment}>
+        <span className="mx-2">{"·"}</span>
+        <button
+          onClick={remove}
+          disabled={isNotSelfComment}
+          className="font-primary-light text-xs text-font-light hover:underline"
+        >
           Delete
         </button>
       </div>
@@ -63,16 +66,25 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   );
 
   return (
-    <div className={styles.container}>
+    <div className="flex gap-6">
       <UserAvatar {...comment.user} tooltip={false} />
-      <div style={{ width: '100%' }}>
-        <p className={styles.user_name}>{comment.user.name}</p>
-        <span className={styles.timestamp}>{formatDateTime()}</span>
-        {isEditing ? (
-          <EditBox defaultMessage={comment.message} save={save} cancel={cancel} autofocus />
-        ) : (
-          <IdleComment />
-        )}
+      <div style={{ width: "100%" }}>
+        <p className="mr-4 inline-block font-primary-bold">
+          {comment.user.name}
+        </p>
+        <span className="font-primary-light text-xs">{formatDateTime()}</span>
+        <div className="mt-3">
+          {isEditing ? (
+            <EditBox
+              defaultMessage={comment.message}
+              save={save}
+              cancel={cancel}
+              autofocus
+            />
+          ) : (
+            <IdleComment />
+          )}
+        </div>
       </div>
     </div>
   );
