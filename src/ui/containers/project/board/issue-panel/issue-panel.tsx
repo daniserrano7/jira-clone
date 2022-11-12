@@ -14,7 +14,6 @@ import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select/select-status";
 import { SelectPriority } from "./select/select-priority";
-// import { SelectAsignee } from "./select/select-asignee";
 import { SelectAsignee } from "./select/select-asignee";
 import { textAreOnlySpaces } from "./utils";
 
