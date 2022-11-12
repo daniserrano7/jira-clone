@@ -4,7 +4,9 @@ import { appStore, projectStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 
-export const CreateComment = (): JSX.Element => {
+export const CreateComment = ({
+  addComment,
+}: CreateCommentProps): JSX.Element => {
   const save = (message: string) => {
     const issue = projectStore.editingIssue;
 
@@ -16,7 +18,7 @@ export const CreateComment = (): JSX.Element => {
       user: appStore.user,
       message,
     });
-    issue.addComment(comment);
+    addComment(comment);
     addCommentDb(comment, issue.id);
   };
 
@@ -27,3 +29,7 @@ export const CreateComment = (): JSX.Element => {
     </div>
   );
 };
+
+interface CreateCommentProps {
+  addComment: (comment: Comment) => void;
+}

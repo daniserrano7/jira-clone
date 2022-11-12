@@ -33,7 +33,7 @@ export const EditBox = ({
   };
 
   const onCancel = () => {
-    cancel();
+    if (cancel) cancel();
     resetValues();
   };
   const onFocus = () => setIsEditing(true);
@@ -88,5 +88,5 @@ interface EditBoxProps {
   defaultMessage: string;
   autofocus?: boolean;
   save: (commentText: string) => void;
-  cancel: () => void;
+  cancel?: () => void;
 }

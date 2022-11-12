@@ -1,12 +1,15 @@
 import { useState } from "react";
 import cx from "classix";
-import { Comment } from "domain/comment";
+import { Comment, CommentId } from "domain/comment";
 import { updateCommentDb, removeCommentDb } from "infrastructure/db/comment";
-import { appStore, projectStore } from "infrastructure/store";
+import { appStore } from "infrastructure/store";
 import { UserAvatar } from "ui/components/avatar";
 import { EditBox } from "../edit-box";
 
-export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
+export const ViewComment = ({
+  comment,
+  removeComment,
+}: ViewCommentProps): JSX.Element => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const isNotSelfComment = comment.user.id !== appStore.user.id;
@@ -15,7 +18,7 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
   const cancel = () => setIsEditing(false);
 
   const remove = () => {
-    projectStore.editingIssue?.removeComment(comment.id);
+    removeComment(comment.id);
     removeCommentDb(comment.id);
   };
 
@@ -92,4 +95,5 @@ export const ViewComment = ({ comment }: ViewCommentProps): JSX.Element => {
 
 interface ViewCommentProps {
   comment: Comment;
+  removeComment: (commentId: CommentId) => void;
 }

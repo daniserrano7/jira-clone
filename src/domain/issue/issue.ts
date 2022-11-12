@@ -1,8 +1,8 @@
-import { v4 as uuidv4 } from 'uuid';
-import { User, UserId } from '../user';
-import { CategoryId } from 'domain/category';
-import { Comment, CommentId } from '../comment';
-import { Priority } from '../priority';
+import { v4 as uuidv4 } from "uuid";
+import { User, UserId } from "../user";
+import { CategoryId } from "domain/category";
+import { Comment, CommentId } from "../comment";
+import { Priority } from "../priority";
 
 export type IssueId = string;
 export interface IssueData {
@@ -33,8 +33,8 @@ export class Issue implements IssueData {
   constructor(data: IssueData) {
     this.id = data.id || uuidv4();
     this.name = data.name;
-    this.description = data.description || '';
-    this.categoryId = data.categoryId || 'TODO';
+    this.description = data.description || "";
+    this.categoryId = data.categoryId || "TODO";
     this.reporter = data.reporter;
     this.asignee = data.asignee;
     this.comments = data.comments || [];
@@ -74,5 +74,9 @@ export class Issue implements IssueData {
     this.comments = this.comments.filter((comment) => comment.id !== commentId);
     const removedComment = this.getComment(commentId);
     return removedComment;
+  }
+
+  setComments(comments: Comment[]) {
+    this.comments = comments;
   }
 }
