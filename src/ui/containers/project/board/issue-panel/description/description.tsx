@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Issue } from "domain/issue";
-import { TextareaAutosize } from "../textarea-autosize";
+import { TextareaAutosize } from "../../../../../components/textarea-autosize";
 
 export const Description = ({ issue }: DescriptionProps): JSX.Element => {
   const [description, setDescription] = useState<string>(

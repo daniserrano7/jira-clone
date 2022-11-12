@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
   SelectItemIndicator,
-} from "./select-base";
+} from "ui/components/select/select-base";
 
 export const SelectPriority = ({ issue }: Props): JSX.Element => {
   const defaultValue = issue.priority;
