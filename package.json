@@ -2,15 +2,18 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "npm run build:css && remix build",
+    "build:css": "tailwindcss -m -i ./src/app/styles/app.css -o ./src/app/styles/app-compiled.css",
+    "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "dev:css": "tailwindcss -w -i ./src/app/app.css -o ./src/app/styles/app.css",
     "start": "cross-env NODE_ENV=production netlify dev",
     "type-check": "tsc --pretty --noEmit",
     "lint": "npx eslint --ext ts,tsx src",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
     "test-all": "npm run type-check && npm run lint && npm run test",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "icons": "npx @svgr/cli --out-dir ./public/icons --filename-case kebab -- ./public/icons/svg"
   },
   "dependencies": {
     "@netlify/functions": "^1.0.0",
@@ -23,6 +26,7 @@
     "@remix-run/netlify": "^1.7.5",
     "@remix-run/node": "^1.7.5",
     "@remix-run/react": "^1.7.5",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -30,6 +34,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "classix": "^2.1.17",
     "cross-env": "^7.0.3",
     "dexie": "^3.2.2",
     "mobx": "^6.5.0",
@@ -48,10 +53,15 @@
     "@remix-run/dev": "^1.7.5",
     "@remix-run/eslint-config": "^1.7.5",
     "@remix-run/serve": "^1.7.5",
+    "@svgr/cli": "^6.5.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/uuid": "^8.3.4",
+    "autoprefixer": "^10.4.13",
+    "concurrently": "^7.5.0",
     "eslint": "^8.23.1",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
     "typescript": "^4.7.4"
   },
   "engines": {

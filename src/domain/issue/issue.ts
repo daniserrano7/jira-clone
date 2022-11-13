@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, UserId } from "../user";
-import { CategoryId } from "domain/category";
+import { CategoryId } from "@domain/category";
 import { Comment, CommentId } from "../comment";
 import { Priority } from "../priority";
 
