@@ -4,5 +4,13 @@
   "semi": true,
   "singleQuote": false,
   "useTabs": false,
-  "printWidth": 100
+  "printWidth": 100,
+  "overrides": [
+    {
+      "files": "*.tsx",
+      "options": {
+        "printWidth": 80
+      }
+    }
+  ]
 }

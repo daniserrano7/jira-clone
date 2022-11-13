@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, UserId } from "../user";
-import { CategoryId } from "@domain/category";
+import { CategoryId } from "domain/category";
 import { Comment, CommentId } from "../comment";
 import { Priority } from "../priority";
 
@@ -74,5 +74,9 @@ export class Issue implements IssueData {
     this.comments = this.comments.filter((comment) => comment.id !== commentId);
     const removedComment = this.getComment(commentId);
     return removedComment;
+  }
+
+  setComments(comments: Comment[]) {
+    this.comments = comments;
   }
 }
