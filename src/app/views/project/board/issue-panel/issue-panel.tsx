@@ -16,7 +16,7 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
-import { textAreOnlySpaces } from "./utils";
+import { textAreOnlySpaces } from "@app/utils";
 
 export const IssueEditPanel = ({
   isOpen,

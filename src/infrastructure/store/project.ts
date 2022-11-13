@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Project } from "@domain/project";
+import { Project, projectMock } from "@domain/project";
 import { User } from "@domain/user";
 import { Category } from "@domain/category";
 import { Issue } from "@domain/issue";
@@ -12,8 +12,7 @@ import { IssueDB, fetchIssues } from "@infrastructure/db/issue";
 import { CommentDB } from "@infrastructure/db/comment";
 
 class ProjectStore {
-  /* @ts-expect-error: null checking will be at component lebel  */
-  project: Project = null;
+  project: Project = projectMock;
   editingIssue: Issue | null = null;
   filters: Filters = {
     search: "",
@@ -52,6 +51,7 @@ interface Filters {
 export type SortFilter = "date" | "priority";
 
 export const projectStore = new ProjectStore();
+projectStore.project = projectMock;
 
 // PROJECT
 const createProjectFromDb = (projectDb: ProjectDB): Project => {

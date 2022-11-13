@@ -1,21 +1,21 @@
 import { FunctionComponent, SVGProps } from "react";
-import QuestionIcon from "public/icons/question.js";
-import GithubIcon from "public/icons/github.js";
-import SettingsIcon from "public/icons/settings.js";
-import BacklogIcon from "public/icons/backlog.js";
-import BoardIcon from "public/icons/board.js";
-import ArrowIcon from "public/icons/arrow.js";
-import LensIcon from "public/icons/lens.js";
-import CloseIcon from "public/icons/close.js";
-import TaskIcon from "public/icons/issue-task.js";
-import PriorityIcon from "public/icons/priority.js";
-import AddIcon from "public/icons/add.js";
-import DeleteIcon from "public/icons/delete.js";
-import EmptyIcon from "public/icons/empty.js";
-import ClockIcon from "public/icons/clock.js";
-import SortIcon from "public/icons/sort.js";
+import QuestionIcon from "public/icons/question";
+import GithubIcon from "public/icons/github";
+import SettingsIcon from "public/icons/settings";
+import BacklogIcon from "public/icons/backlog";
+import BoardIcon from "public/icons/board";
+import ArrowIcon from "public/icons/arrow";
+import LensIcon from "public/icons/lens";
+import CloseIcon from "public/icons/close";
+import TaskIcon from "public/icons/issue-task";
+import PriorityIcon from "public/icons/priority";
+import AddIcon from "public/icons/add";
+import DeleteIcon from "public/icons/delete";
+import EmptyIcon from "public/icons/empty";
+import ClockIcon from "public/icons/clock";
+import SortIcon from "public/icons/sort";
 
-type ImportedIcon = () => JSX.Element;
+type ImportedIcon = (props: SVGProps<SVGSVGElement>) => JSX.Element;
 export type IconName =
   | "question"
   | "github"
@@ -58,7 +58,7 @@ export const Icon = ({
   ...otherProps
 }: IconProps): JSX.Element => {
   const IconComponent = iconLibrary[name];
-  return <IconComponent {...otherProps} />;
+  return <IconComponent width={size} height={size} {...otherProps} />;
 };
 
 interface IconProps {

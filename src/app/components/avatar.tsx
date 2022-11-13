@@ -15,8 +15,8 @@ export const UserAvatar = ({
     .map((word) => word[0].toUpperCase())
     .join("");
 
-  const imagePath = new URL(`/src/ui/assets/avatars/${image}`, import.meta.url)
-    .href;
+  // const imagePath = new URL(`/src/ui/assets/avatars/${image}`, import.meta.url)
+  //   .href;
 
   return (
     <div className="rounded-full">
@@ -30,7 +30,7 @@ export const UserAvatar = ({
         >
           <Avatar.Image
             className="rounded-full"
-            src={image && imagePath}
+            src={image && `/src/ui/assets/avatars/${image}`}
             width={size}
             height={size}
           />

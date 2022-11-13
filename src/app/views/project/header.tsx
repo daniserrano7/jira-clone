@@ -1,4 +1,4 @@
-import jiraLogo from "/images/logo.png";
+import jiraLogo from "public/images/logo.png";
 import { Icon } from "@app/components/icon";
 
 export const Header = (): JSX.Element => {

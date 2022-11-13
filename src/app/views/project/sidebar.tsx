@@ -104,7 +104,7 @@ const NavItem = ({
       disabled={disabled}
       onClick={onClick}
     >
-      {/* <Icon name={icon} /> */}
+      <Icon name={icon} />
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
       <span
         className={cx(

@@ -1,10 +1,12 @@
 import * as React from "react";
-const SvgClock = (props) => (
+import { SVGProps } from "react";
+const SvgClock = (props: SVGProps<SVGSVGElement>) => (
   <svg
     fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
-    width={465.2}
-    height={465.2}
+    width="1em"
+    height="1em"
+    viewBox="0 0 465.2 465.2"
     style={{
       enableBackground: "new 0 0 465.2 465.2",
     }}

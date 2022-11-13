@@ -1,6 +1,7 @@
 import * as React from "react";
-const SvgQuestion = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} {...props}>
+import { SVGProps } from "react";
+const SvgQuestion = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
     <g fillRule="evenodd">
       <circle fill="currentColor" cx={12} cy={12} r={10} />
       <circle fill="inherit" cx={12} cy={18} r={1} />
