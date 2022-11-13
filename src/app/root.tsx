@@ -8,9 +8,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import styles from "./styles/app-compiled.css";
+import fonts from "./styles/fonts.css";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: fonts },
+    { rel: "stylesheet", href: styles },
+  ];
 }
 
 export const meta: MetaFunction = () => ({
@@ -21,12 +25,12 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-full font-primary text-font-main">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

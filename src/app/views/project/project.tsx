@@ -26,7 +26,7 @@ export const Project = (): JSX.Element => {
     );
 
   return (
-    <div>
+    <div className="h-full flex flex-col overflow-y-hidden">
       <Header />
       <div className="flex h-full flex-grow bg-white">
         <Sidebar />

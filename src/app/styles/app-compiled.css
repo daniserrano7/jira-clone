@@ -1379,6 +1379,10 @@ video {
   font-family: CircularStdBlack, sans-serif;
 }
 
+.font-primary {
+  font-family: CircularStdMedium, sans-serif;
+}
+
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
