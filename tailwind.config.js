@@ -28,6 +28,7 @@ module.exports = {
       "grey-300": "#ebecf0",
       "grey-400": "#e0e1e6",
       "grey-500": "#dddddd",
+      "grey-600": "#d3d3d3",
       "font-main": "#172b4d",
       "font-light": "#5e6c84",
       "font-grey": "#676767",
