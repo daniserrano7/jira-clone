@@ -13,9 +13,9 @@ import { Title } from "./title";
 import { Description } from "./description";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
-import { SelectStatus } from "./select/select-status";
-import { SelectPriority } from "./select/select-priority";
-import { SelectAsignee } from "./select/select-asignee";
+import { SelectStatus } from "./select-status";
+import { SelectPriority } from "./select-priority";
+import { SelectAsignee } from "./select-asignee";
 import { textAreOnlySpaces } from "./utils";
 
 export const IssueEditPanel = ({

@@ -10,9 +10,10 @@ export const Project = (): JSX.Element => {
   useEffect(() => {
     db.open();
     db.on("ready", () => {
-      Promise.all([appStore.fetchInitData(), projectStore.fetchInitData()]).then(() =>
-        setIsLoaded(true)
-      );
+      Promise.all([
+        appStore.fetchInitData(),
+        projectStore.fetchInitData(),
+      ]).then(() => setIsLoaded(true));
     });
   }, []);
 

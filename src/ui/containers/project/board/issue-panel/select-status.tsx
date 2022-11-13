@@ -10,7 +10,7 @@ import {
   SelectContent,
   SelectItem,
   SelectItemIndicator,
-} from "ui/components/select/select-base";
+} from "ui/components/select";
 
 export const SelectStatus = ({ issue }: Props): JSX.Element => {
   const defaultValue = issue.categoryId;

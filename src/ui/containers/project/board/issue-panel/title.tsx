@@ -1,8 +1,8 @@
 import { useState } from "react";
 import cx from "classix";
 import { Issue } from "domain/issue";
-import { TextareaAutosize } from "../../../../../components/textarea-autosize";
-import { textAreOnlySpaces } from "../utils";
+import { TextareaAutosize } from "../../../../components/textarea-autosize";
+import { textAreOnlySpaces } from "./utils";
 
 export const Title = ({ issue }: TitleProps): JSX.Element => {
   const [title, setTitle] = useState<string>(issue.name);
