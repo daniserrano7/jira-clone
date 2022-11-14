@@ -6,3 +6,4 @@
 /public/build
 /.netlify
 .env
+src/app/styles/app-compiled.css

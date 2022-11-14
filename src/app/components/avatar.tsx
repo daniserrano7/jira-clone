@@ -9,6 +9,10 @@ export const UserAvatar = ({
   size = 36,
   tooltip,
 }: UserAvatarProps): JSX.Element => {
+  const imageDimensions = {
+    width: `${size}px`,
+    height: `${size}px`,
+  };
   const acronym = name
     .split(" ")
     .slice(0, 2)
@@ -18,18 +22,11 @@ export const UserAvatar = ({
   return (
     <div className="rounded-full">
       <Tooltip title={name} show={tooltip}>
-        <Avatar.Root
-          className="flex items-center"
-          style={{
-            minWidth: `${size}px`,
-            minHeight: `${size}px`,
-          }}
-        >
+        <Avatar.Root className="flex items-center" style={imageDimensions}>
           <Avatar.Image
-            className="rounded-full"
+            className="rounded-full object-cover"
             src={image && `/avatars/${image}`}
-            width={size}
-            height={size}
+            style={imageDimensions}
           />
           <Avatar.Fallback
             delayMs={0}
