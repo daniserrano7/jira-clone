@@ -106,7 +106,7 @@ export const CategoryColumn = observer(
             {!isOver && <span className="rounded bg-white">DROP HERE</span>}
           </div>
         </div>
-        <div className="sticky top-0 left-0 z-20 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out">
+        <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out">
           <span className="flex gap-2">
             <span>{category.name}</span>
             {!emptyCategory && <span>( {category.issues.length} )</span>}
