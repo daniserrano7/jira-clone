@@ -12,7 +12,8 @@ import { IssueDB, fetchIssues } from "@infrastructure/db/issue";
 import { CommentDB } from "@infrastructure/db/comment";
 
 class ProjectStore {
-  project: Project = projectMock;
+  /* @ts-expect-error: null checking will be at component lebel  */
+  project: Project = null;
   editingIssue: Issue | null = null;
   filters: Filters = {
     search: "",

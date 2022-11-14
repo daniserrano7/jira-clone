@@ -35,10 +35,7 @@ export const IssueEditPanel = ({
 
     const oldCategory = projectStore.project.categories.find((category) => {
       const foundIssue = category.getIssue(issue.id);
-
-      if (foundIssue) {
-        return category;
-      }
+      return foundIssue ? category : undefined;
     });
 
     if (oldCategory) {

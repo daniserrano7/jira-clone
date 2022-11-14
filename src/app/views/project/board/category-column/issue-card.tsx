@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Issue } from "@domain/issue";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
@@ -8,6 +9,9 @@ import { PriorityIcon } from "@app/components/priority-icon";
 
 export const IssueCard = observer(
   ({ issue, handleDragging }: IssueCardProps): JSX.Element => {
+    // TODO: Reduce the number of re-renders
+    console.log("RENDERING ISSUE CARD");
+
     const issueIdPrefix = issue.id.split("-")[0];
 
     const openIssue = () => {
@@ -28,7 +32,9 @@ export const IssueCard = observer(
       [issue.id]
     );
 
-    handleDragging(isDragging);
+    useEffect(() => {
+      handleDragging(isDragging);
+    }, [isDragging, handleDragging]);
 
     return (
       <button
