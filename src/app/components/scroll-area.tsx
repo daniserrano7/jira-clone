@@ -1,14 +1,17 @@
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import cx from "classix";
 
-export const ScrollArea = ({ children }: ScrollAreaProps): JSX.Element => (
+export const ScrollArea = ({
+  className,
+  children,
+}: ScrollAreaProps): JSX.Element => (
   <ScrollAreaPrimitive.Root
     type="hover"
     scrollHideDelay={400}
     style={{ scrollbarWidth: "none" }}
-    className="h-[400px] w-full overflow-y-scroll"
+    className="h-full w-full overflow-y-scroll"
   >
-    <ScrollAreaPrimitive.Viewport className="h-full w-full">
+    <ScrollAreaPrimitive.Viewport className={cx("h-full w-full", className)}>
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollAreaPrimitive.Scrollbar
@@ -29,5 +32,6 @@ export const ScrollArea = ({ children }: ScrollAreaProps): JSX.Element => (
 );
 
 interface ScrollAreaProps {
+  className?: string;
   children: JSX.Element | JSX.Element[];
 }

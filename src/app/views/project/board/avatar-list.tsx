@@ -38,8 +38,8 @@ const MoreUsers = ({ users }: MoreUsersProps): JSX.Element => (
       >
         {users.length - MAX_DISPLAY_USERS}+
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="rounded-md bg-white p-2 pr-3 shadow-blue z-50">
-        <ScrollArea>
+      <DropdownMenu.Content className="rounded-md h-[400px] bg-white p-2 shadow-blue z-50">
+        <ScrollArea className="pr-4">
           {users.map((user) => (
             <DropdownMenu.Item
               key={user.id}
