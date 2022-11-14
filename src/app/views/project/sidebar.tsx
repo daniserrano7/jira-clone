@@ -4,19 +4,6 @@ import { projectStore } from "@infrastructure/store";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
-const navItems: NavItemProps[] = [
-  {
-    icon: "board",
-    name: "Board",
-    active: true,
-  },
-  {
-    icon: "backlog",
-    name: "Backlog",
-    disabled: true,
-  },
-];
-
 export const Sidebar = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
@@ -42,24 +29,19 @@ export const Sidebar = (): JSX.Element => {
             width={28}
             height={28}
             alt="project"
-            className="mt-0.5 rounded-[3px]"
+            className="rounded-[3px]"
           />
           <div className="ml-4">
-            <p className="font-primary-bold text-lg">{projectName}</p>
-            <p className="font-primary-light text-sm">{projectDescription}</p>
+            <p className="font-primary-bold text-lg leading-4">{projectName}</p>
+            <p className="font-primary-light text-sm mt-0.5">
+              {projectDescription}
+            </p>
           </div>
         </section>
         <section className="p-3">
           <nav>
-            {navItems.map(({ icon, name, active, disabled }, index) => (
-              <NavItem
-                key={name}
-                icon={icon}
-                name={name}
-                disabled={disabled}
-                active={active}
-              />
-            ))}
+            <NavItem icon="board" name="Board" active />
+            <NavItem icon="backlog" name="Backlog" disabled />
           </nav>
         </section>
       </div>
