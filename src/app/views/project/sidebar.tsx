@@ -8,6 +8,7 @@ const navItems: NavItemProps[] = [
   {
     icon: "board",
     name: "Board",
+    active: true,
   },
   {
     icon: "backlog",
@@ -18,7 +19,6 @@ const navItems: NavItemProps[] = [
 
 export const Sidebar = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [currentItem, setCurrentItem] = useState<number>(0);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -51,14 +51,13 @@ export const Sidebar = (): JSX.Element => {
         </section>
         <section className="p-3">
           <nav>
-            {navItems.map(({ icon, name, disabled }, index) => (
+            {navItems.map(({ icon, name, active, disabled }, index) => (
               <NavItem
                 key={name}
                 icon={icon}
                 name={name}
                 disabled={disabled}
-                active={index === currentItem}
-                onClick={() => setCurrentItem(index)}
+                active={active}
               />
             ))}
           </nav>
@@ -90,19 +89,17 @@ const NavItem = ({
   name,
   disabled,
   active,
-  onClick,
 }: NavItemProps): JSX.Element => {
   return (
     <button
       className={cx(
-        "bg-transparent group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
+        "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
         active ? "bg-grey-300 text-primary-main" : "text-font-light",
         disabled
           ? "hover:bg-transparent hover:cursor-not-allowed"
           : "hover:bg-grey-300"
       )}
       disabled={disabled}
-      onClick={onClick}
     >
       <Icon name={icon} />
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
@@ -123,5 +120,4 @@ export interface NavItemProps {
   name: string;
   disabled?: boolean;
   active?: boolean;
-  onClick?: () => void;
 }
