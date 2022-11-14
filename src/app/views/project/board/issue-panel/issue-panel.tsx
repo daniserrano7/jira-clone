@@ -22,10 +22,9 @@ export const IssueEditPanel = ({
   isOpen,
 }: IssueEditPanelProps): JSX.Element => {
   const issue = projectStore.editingIssue;
+  const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
 
   if (!issue) return <></>;
-
-  const [comments, setComments] = useState<Comment[]>(issue.comments);
 
   const applyChanges = () => {
     if (issue.name.length === 0 || textAreOnlySpaces(issue.name)) {

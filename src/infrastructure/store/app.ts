@@ -1,13 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import { Project, ProjectId } from "@domain/project";
-import { User } from "@domain/user";
+import { User, userMock1 } from "@domain/user";
 import { fetchUser } from "@infrastructure/db/user";
 import { getLocalStorageUserId } from "@infrastructure/local-storage";
 import { createUserFromDb } from "./project";
 
 class AppStore {
-  /* @ts-expect-error: null checking will be at component lebel  */
-  user: User = null;
+  user: User = userMock1;
   projects: Project[] = [];
 
   constructor() {
