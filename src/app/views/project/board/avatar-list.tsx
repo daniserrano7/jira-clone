@@ -30,7 +30,7 @@ const MoreUsers = ({ users }: MoreUsersProps): JSX.Element => (
   <div className="z-10">
     <DropdownMenu.Root>
       <DropdownMenu.Trigger
-        className="border-1 -ml-[5px] flex cursor-pointer items-center justify-center rounded-full border-primary-light bg-grey-500 text-lg hover:underline"
+        className="box-content border-2 -ml-[5px] flex cursor-pointer items-center justify-center rounded-full border-primary-light bg-grey-500 text-lg hover:underline"
         style={{
           width: `${AVATAR_SIZE}px`,
           height: `${AVATAR_SIZE}px`,
@@ -38,8 +38,7 @@ const MoreUsers = ({ users }: MoreUsersProps): JSX.Element => (
       >
         {users.length - MAX_DISPLAY_USERS}+
       </DropdownMenu.Trigger>
-
-      <DropdownMenu.Content className="rounded-md bg-white p-2 pr-3 shadow-blue">
+      <DropdownMenu.Content className="rounded-md bg-white p-2 pr-3 shadow-blue z-50">
         <ScrollArea>
           {users.map((user) => (
             <DropdownMenu.Item

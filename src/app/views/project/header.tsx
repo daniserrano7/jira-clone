@@ -1,5 +1,4 @@
 import cx from "classix";
-import jiraLogo from "public/images/logo.png";
 import { Icon } from "@app/components/icon";
 
 export const Header = (): JSX.Element => {
@@ -11,7 +10,7 @@ export const Header = (): JSX.Element => {
     <header className="relative z-10 flex w-full items-center justify-between bg-white py-2 px-5 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">
       <section>
         <div className="flex cursor-pointer items-center rounded py-2 px-3 hover:bg-primary-light">
-          <img src={jiraLogo} width={24} height={24} />
+          <img src="/images/logo.png" width={24} height={24} alt="Logo" />
           <span className="ml-2">Jira Clone</span>
         </div>
       </section>
