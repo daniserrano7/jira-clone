@@ -1,21 +1,21 @@
-import { Project } from "./project";
-import { usersMock } from "@domain/user";
+import { ProjectData } from "./project";
+import { User, usersMock } from "@domain/user";
 import { categoriesMock } from "@domain/category";
 
-export const projectMock: Project = new Project({
+const users = usersMock.map((user) => new User(user));
+
+export const projectMockData1: ProjectData = {
   id: "jira-clone",
   name: "JIRA Clone",
   description: "Software project",
-  users: usersMock,
+  users: users,
   categories: categoriesMock,
-});
+};
 
-export const projectMock2: Project = new Project({
+export const projectMockData2: ProjectData = {
   id: "second-project",
   name: "Second project",
   description: "For routing purposes",
-  users: usersMock,
+  users: users,
   categories: categoriesMock,
-});
-
-export const projectsMock: Project[] = [projectMock, projectMock2];
+};

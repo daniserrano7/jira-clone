@@ -1,14 +1,14 @@
 import { v4 as uuidv4 } from "uuid";
-import { User, UserId } from "@domain/user";
-import { Category, CategoryId } from "@domain/category";
+import { User, UserData, UserId } from "@domain/user";
+import { Category, CategoryData, CategoryId } from "@domain/category";
 
 export type ProjectId = string;
 export interface ProjectData {
-  id?: ProjectId;
+  id: ProjectId;
   name: string;
   description?: string;
-  users: User[];
-  categories: Category[];
+  users: UserData[];
+  categories: CategoryData[];
 }
 
 export class Project {
@@ -22,8 +22,8 @@ export class Project {
     this.id = data.id || uuidv4();
     this.name = data.name;
     this.description = data.description || "";
-    this.users = data.users || [];
-    this.categories = data.categories || [];
+    this.users = data.users.map((user) => new User(user));
+    this.categories = data.categories.map((category) => new Category(category));
   }
 
   setName(name: string) {

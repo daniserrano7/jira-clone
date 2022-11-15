@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { Issue, todoIssues } from "@domain/issue";
+import { Issue, todoIssuesMock } from "@domain/issue";
 import { Category, CategoryId, categoryIdDict } from "./category";
 
 describe("Category entity module", () => {
   it("Add issue to category", () => {
     const id: CategoryId = "TODO";
     const issue = new Issue({
-      ...todoIssues[0],
+      ...todoIssuesMock[0],
       categoryId: id,
     });
     const reference = new Category({
@@ -29,7 +29,7 @@ describe("Category entity module", () => {
   it("Remove issue from category", () => {
     const id: CategoryId = "TODO";
     const issue = new Issue({
-      ...todoIssues[0],
+      ...todoIssuesMock[0],
       categoryId: id,
     });
     const reference = new Category({

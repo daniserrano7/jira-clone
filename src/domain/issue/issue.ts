@@ -1,18 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
-import { User, UserId } from "../user";
+import { User, UserData, UserId } from "../user";
 import { CategoryId } from "@domain/category";
-import { Comment, CommentId } from "../comment";
+import { Comment, CommentData, CommentId } from "../comment";
 import { Priority } from "../priority";
 
 export type IssueId = string;
 export interface IssueData {
-  id?: UserId;
+  id: UserId;
   name: string;
   description?: string;
   categoryId?: CategoryId;
-  reporter: User;
-  asignee: User;
-  comments: Comment[];
+  reporter: UserData;
+  asignee: UserData;
+  comments: CommentData[];
   priority: Priority;
   createdAt?: Date;
   //TODO: epic: Epic
@@ -35,9 +35,9 @@ export class Issue implements IssueData {
     this.name = data.name;
     this.description = data.description || "";
     this.categoryId = data.categoryId || "TODO";
-    this.reporter = data.reporter;
-    this.asignee = data.asignee;
-    this.comments = data.comments || [];
+    this.reporter = new User(data.reporter);
+    this.asignee = new User(data.asignee);
+    this.comments = data.comments.map((comment) => new Comment(comment));
     this.priority = data.priority;
     this.createdAt = data.createdAt || new Date();
   }

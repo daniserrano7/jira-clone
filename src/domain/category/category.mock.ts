@@ -1,26 +1,21 @@
-import { CategoryId, Category, categoryIdDict } from "@domain/category";
-import { Issue, todoIssues, inProgressIssues, doneIssues } from "@domain/issue";
-import { IssueData } from "@domain/issue";
+import { CategoryData, CategoryId, categoryIdDict } from "@domain/category";
+import { IssueData, todoIssuesMock, inProgressIssuesMock, doneIssuesMock } from "@domain/issue";
 
 const categoriesDict: Record<CategoryId, IssueData[]> = {
-  TODO: todoIssues,
-  IN_PROGRESS: inProgressIssues,
-  DONE: doneIssues,
+  TODO: todoIssuesMock,
+  IN_PROGRESS: inProgressIssuesMock,
+  DONE: doneIssuesMock,
 };
 
-export const categoriesMock = Object.entries(categoriesDict).map((pair, idx) => {
-  const categoryId = pair[0] as CategoryId;
-  const issueDataList = pair[1] as IssueData[];
-  return new Category({
+export const categoriesMock: CategoryData[] = Object.keys(categoriesDict).map((key, idx) => {
+  const categoryId = key as CategoryId;
+  const categoryName = categoryIdDict[categoryId];
+  const issueData = categoriesDict[categoryId];
+
+  return {
     id: categoryId,
-    name: categoryIdDict[categoryId],
-    issues: issueDataList.map(
-      (issueData) =>
-        new Issue({
-          ...issueData,
-          categoryId: categoryId,
-        })
-    ),
+    name: categoryName,
+    issues: issueData,
     order: idx,
-  });
+  };
 });

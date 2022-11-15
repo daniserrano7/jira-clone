@@ -1,38 +1,35 @@
-import { describe, it, expect, vi } from "vitest";
-import { userMock1, userMock2 } from "@domain/user";
-import { Comment } from "@domain/comment";
+import { describe, it, expect } from "vitest";
+import { User, userMock1, userMock2 } from "@domain/user";
+import { Comment, commentMock1 } from "@domain/comment";
 import { Issue } from "./issue";
 
-vi.mock("uuid", () => ({
-  v4: () => "mock-uuid",
-}));
-
-const commentMock = new Comment({
-  user: userMock2,
-  message: "This should be implemented ASAP",
-});
-
 describe("Issue entity module", () => {
+  const issueId = "1";
   const createdAt = new Date();
+  const user1 = new User(userMock1);
+  const user2 = new User(userMock2);
+  const commentMock = new Comment(commentMock1);
 
   it("Change issue name", () => {
     const name = "Issue name test";
     const reference = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
     });
     const expected = new Issue({
+      id: issueId,
       name,
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
@@ -45,21 +42,23 @@ describe("Issue entity module", () => {
   it("Change issue description", () => {
     const description = "Issue description test";
     const reference = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
     });
     const expected = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description,
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
@@ -70,23 +69,25 @@ describe("Issue entity module", () => {
   });
 
   it("Set issue asignee", () => {
-    const asignee = userMock2;
+    const asignee = user2;
     const reference = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock1,
+      reporter: user1,
+      asignee: user1,
       comments: [],
       priority: "high",
       createdAt,
     });
     const expected = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
@@ -98,21 +99,23 @@ describe("Issue entity module", () => {
 
   it("Add comment to issue", () => {
     const reference = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,
     });
     const expected = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [commentMock],
       priority: "high",
       createdAt,
@@ -123,21 +126,23 @@ describe("Issue entity module", () => {
 
   it("Remove comment from issue", () => {
     const reference = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [commentMock],
       priority: "high",
       createdAt,
     });
     const expected = new Issue({
+      id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
       categoryId: "TODO",
-      reporter: userMock1,
-      asignee: userMock2,
+      reporter: user1,
+      asignee: user2,
       comments: [],
       priority: "high",
       createdAt,

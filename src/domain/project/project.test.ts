@@ -1,22 +1,22 @@
-import { describe, it, expect, vi } from "vitest";
-import { userMock1 } from "@domain/user";
+import { describe, it, expect } from "vitest";
+import { User, userMock1 } from "@domain/user";
 import { categoriesMock } from "@domain/category";
 import { Project } from "./project";
 
-vi.mock("uuid", () => ({
-  v4: () => "mock-uuid",
-}));
-
-const mockCategory = categoriesMock[0];
 describe("Project entity module", () => {
+  const mockCategory = categoriesMock[0];
+  const projectId = "1";
+
   it("Set project name", () => {
     const name = "Project name test";
     const reference = new Project({
+      id: projectId,
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],
     });
     const expected = new Project({
+      id: projectId,
       name,
       users: [userMock1],
       categories: [mockCategory],
@@ -28,16 +28,18 @@ describe("Project entity module", () => {
 
   it("Add user to project", () => {
     const reference = new Project({
+      id: projectId,
       name: "Original name",
       users: [],
       categories: [mockCategory],
     });
     const expected = new Project({
+      id: projectId,
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],
     });
-    reference.addUser(userMock1);
+    reference.addUser(new User(userMock1));
 
     expect(reference).toEqual(expected);
   });
@@ -45,11 +47,13 @@ describe("Project entity module", () => {
   it("Remove user from project", () => {
     const user = userMock1;
     const reference = new Project({
+      id: projectId,
       name: "Original name",
       users: [user],
       categories: [mockCategory],
     });
     const expected = new Project({
+      id: projectId,
       name: "Original name",
       users: [],
       categories: [mockCategory],
@@ -62,6 +66,7 @@ describe("Project entity module", () => {
 
   it("Remove undefined user from project", () => {
     const reference = new Project({
+      id: projectId,
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],

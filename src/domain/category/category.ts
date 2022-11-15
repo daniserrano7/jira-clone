@@ -1,4 +1,4 @@
-import type { Issue, IssueId } from "@domain/issue";
+import { Issue, IssueData, IssueId } from "@domain/issue";
 
 export const categoryIds = ["TODO", "IN_PROGRESS", "DONE"] as const;
 export type CategoryId = typeof categoryIds[number];
@@ -12,7 +12,7 @@ export const categoryIdDict: Record<CategoryId, string> = {
 export interface CategoryData {
   id: CategoryId;
   name: string;
-  issues: Issue[];
+  issues: IssueData[];
   order: number;
 }
 
@@ -25,7 +25,7 @@ export class Category implements CategoryData {
   constructor(data: CategoryData) {
     this.id = data.id;
     this.name = data.name;
-    this.issues = data.issues;
+    this.issues = data.issues.map((issue) => new Issue(issue));
     this.order = data.order;
   }
 

@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export type UserId = string;
 export type UserData = {
-  id?: UserId;
+  id: UserId;
   name: string;
   image?: string;
   color?: string;

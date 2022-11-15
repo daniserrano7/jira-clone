@@ -1,11 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
-import { User } from "../user";
+import { User, UserData } from "../user";
 
 export type CommentId = string;
-
 export interface CommentData {
-  id?: CommentId;
-  user: User;
+  id: CommentId;
+  user: UserData;
   message: string;
   createdAt?: Date;
 }
@@ -18,7 +17,7 @@ export class Comment implements CommentData {
 
   constructor(data: CommentData) {
     this.id = data.id || uuidv4();
-    this.user = data.user;
+    this.user = new User(data.user);
     this.message = data.message;
     this.createdAt = data.createdAt || new Date();
   }
