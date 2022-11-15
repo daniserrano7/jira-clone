@@ -1,6 +1,6 @@
 import { useState } from "react";
 import cx from "classix";
-import { TextareaAutosize } from "../../../../../components/textarea-autosize";
+import { TextareaAutosize } from "../../../../../../components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
 export const EditBox = ({

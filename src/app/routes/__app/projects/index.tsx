@@ -25,7 +25,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-export default function ProjectPage() {
+export default function ProjectsPage() {
   const loaderData = useLoaderData();
   const { projects } = loaderData as LoaderData;
 

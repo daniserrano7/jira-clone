@@ -10,7 +10,6 @@ import { PriorityIcon } from "@app/components/priority-icon";
 export const IssueCard = observer(
   ({ issue, handleDragging }: IssueCardProps): JSX.Element => {
     // TODO: Reduce the number of re-renders
-    console.log("RENDERING ISSUE CARD");
 
     const issueIdPrefix = issue.id.split("-")[0];
 

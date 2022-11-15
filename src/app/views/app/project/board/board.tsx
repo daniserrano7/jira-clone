@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { projectStore } from "@infrastructure/store";
-import { Search } from "@app/views/project/board/search";
+import { Search } from "@app/views/app/project/board/search";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";

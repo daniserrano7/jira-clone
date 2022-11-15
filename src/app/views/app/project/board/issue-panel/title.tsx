@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
 import { Issue } from "@domain/issue";
-import { TextareaAutosize } from "../../../../components/textarea-autosize";
+import { TextareaAutosize } from "../../../../../components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
 export const Title = ({ issue }: TitleProps): JSX.Element => {
