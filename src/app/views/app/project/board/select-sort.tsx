@@ -1,10 +1,11 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { projectStore, SortFilter } from "@infrastructure/store";
+import { useProjectStore, SortFilter } from "@infrastructure/store";
 import { Icon, IconName } from "@app/components/icon";
 
 export const SelectSort = (): JSX.Element => {
-  const [value, setValue] = useState<SortFilter>(projectStore.filters.sort);
+  const { filters } = useProjectStore();
+  const [value, setValue] = useState<SortFilter>(filters.sort);
 
   const options: SortFilter[] = ["date", "priority"];
   const optionIcon: Record<SortFilter, IconName> = {
@@ -23,7 +24,7 @@ export const SelectSort = (): JSX.Element => {
   }));
 
   const onValueChange = (value: SortFilter): void => {
-    projectStore.filters.sort = value;
+    filters.sort = value;
     setValue(value);
   };
 

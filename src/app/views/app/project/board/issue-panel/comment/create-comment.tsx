@@ -1,12 +1,15 @@
 import { Comment } from "@domain/comment";
 import { addCommentDb } from "@infrastructure/db/comment";
-import { appStore, projectStore } from "@infrastructure/store";
+import { appStore, useProjectStore } from "@infrastructure/store";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 
 export const CreateComment = ({
   addComment,
 }: CreateCommentProps): JSX.Element => {
+  const user = appStore.user;
+  const projectStore = useProjectStore();
+
   const save = (message: string) => {
     const issue = projectStore.editingIssue;
 
@@ -15,7 +18,7 @@ export const CreateComment = ({
     }
 
     const comment = new Comment({
-      user: appStore.user,
+      user,
       message,
     });
     addComment(comment);
@@ -24,7 +27,7 @@ export const CreateComment = ({
 
   return (
     <div className="mt-4 flex items-start gap-6">
-      <UserAvatar {...appStore.user} tooltip={false} />
+      <UserAvatar {...user} tooltip={false} />
       <EditBox defaultMessage="" save={save} />
     </div>
   );

@@ -1,14 +1,15 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import { Icon } from "@app/components/icon";
 
 export const Search = observer((): JSX.Element => {
-  const search = projectStore.filters.search;
+  const { filters } = useProjectStore();
+  const search = filters.search;
 
   const setSearch = (value: string) => {
-    projectStore.filters.search = value;
+    filters.search = value;
   };
 
   const clearSearch = () => setSearch("");
@@ -31,7 +32,7 @@ export const Search = observer((): JSX.Element => {
         type="text"
         placeholder="Filter issues"
         onChange={handleChange}
-        className="border-1 box-border h-[40px] w-[120px] rounded border-none bg-grey-100 py-2 pr-8 pl-2 outline outline-2 outline-grey-400 duration-200 ease-in-out placeholder:font-primary-light placeholder:text-sm placeholder:text-xs placeholder:text-font-light placeholder:duration-200 placeholder:ease-in-out hover:bg-grey-300 focus:w-[190px] focus:bg-white focus:shadow-blue focus:outline-primary-main"
+        className="border-1 box-border h-[40px] w-[120px] rounded border-none bg-grey-100 py-2 pr-8 pl-2 outline outline-2 outline-grey-400 duration-200 ease-in-out placeholder:font-primary-light placeholder:text-xs placeholder:text-font-light placeholder:duration-200 placeholder:ease-in-out hover:bg-grey-300 focus:w-[190px] focus:bg-white focus:shadow-blue focus:outline-primary-main"
       />
       <span className="absolute right-0 top-1/2 -translate-y-1/2 px-2">
         {renderIcon()}

@@ -3,7 +3,7 @@ import { Project, ProjectId } from "@domain/project";
 import { User } from "@domain/user";
 import { fetchUser } from "@infrastructure/db/user";
 import { getLocalStorageUserId } from "@infrastructure/local-storage";
-import { createUserFromDb } from "./project";
+import { createUserFromDb } from "../../app/views/app/project/project.store";
 
 class AppStore {
   /* @ts-expect-error: null checking will be at component lebel  */

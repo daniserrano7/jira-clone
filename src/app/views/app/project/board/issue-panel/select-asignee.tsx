@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { User, UserId } from "@domain/user";
 import { Issue } from "@domain/issue";
-import { appStore, projectStore } from "@infrastructure/store";
+import { appStore, useProjectStore } from "@infrastructure/store";
 import { UserAvatar } from "@app/components/avatar";
 import {
   SelectTrigger,
@@ -14,6 +14,7 @@ import {
 
 export const SelectAsignee = ({ issue }: Props): JSX.Element => {
   const defaultValue = issue.asignee || appStore.user;
+  const projectStore = useProjectStore();
   const users = projectStore.project.users;
 
   const [selectedValue, setSelectedValue] = useState<User>(defaultValue);

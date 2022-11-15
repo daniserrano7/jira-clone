@@ -1,3 +1,4 @@
+import { createContext, useContext } from "react";
 import { makeAutoObservable } from "mobx";
 import { Project, projectMock } from "@domain/project";
 import { User } from "@domain/user";
@@ -11,16 +12,16 @@ import { CategoryDB, fetchCategories } from "@infrastructure/db/category";
 import { IssueDB, fetchIssues } from "@infrastructure/db/issue";
 import { CommentDB } from "@infrastructure/db/comment";
 
-class ProjectStore {
-  /* @ts-expect-error: null checking will be at component lebel  */
-  project: Project = null;
+export class ProjectStore {
+  project: Project;
   editingIssue: Issue | null = null;
   filters: Filters = {
     search: "",
     sort: "date",
   };
 
-  constructor() {
+  constructor(project: Project) {
+    this.project = project;
     makeAutoObservable(this);
   }
 
@@ -51,8 +52,17 @@ interface Filters {
 
 export type SortFilter = "date" | "priority";
 
-export const projectStore = new ProjectStore();
-projectStore.project = projectMock;
+export const ProjectContext = createContext<ProjectStore | undefined>(undefined);
+export const useProjectStore = (): ProjectStore => {
+  const projectStore = useContext(ProjectContext);
+  if (!projectStore) {
+    throw new Error("Project context not found");
+  }
+  return projectStore;
+};
+
+export const projectStore = new ProjectStore(projectMock);
+// projectStore.project = projectMock;
 
 // PROJECT
 const createProjectFromDb = (projectDb: ProjectDB): Project => {

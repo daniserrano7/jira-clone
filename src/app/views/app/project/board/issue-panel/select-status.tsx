@@ -3,7 +3,7 @@ import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId } from "@domain/category";
 import { Issue } from "@domain/issue";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import {
   SelectTrigger,
   SelectTriggerIcon,
@@ -14,6 +14,7 @@ import {
 
 export const SelectStatus = ({ issue }: Props): JSX.Element => {
   const defaultValue = issue.categoryId;
+  const projectStore = useProjectStore();
   const categories = projectStore.project.categories;
 
   const [selectedValue, setSelectedValue] = useState<CategoryId>(defaultValue);

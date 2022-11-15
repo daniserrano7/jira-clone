@@ -3,14 +3,15 @@ import { Issue } from "@domain/issue";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
 import { useDrag } from "react-dnd";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import { Icon } from "@app/components/icon";
 import { PriorityIcon } from "@app/components/priority-icon";
 
 export const IssueCard = observer(
   ({ issue, handleDragging }: IssueCardProps): JSX.Element => {
-    // TODO: Reduce the number of re-renders
+    const projectStore = useProjectStore();
 
+    // TODO: Reduce the number of re-renders
     const issueIdPrefix = issue.id.split("-")[0];
 
     const openIssue = () => {

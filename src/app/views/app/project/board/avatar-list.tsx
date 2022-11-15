@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { User } from "@domain/user";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import { UserAvatar } from "@app/components/avatar";
 import { ScrollArea } from "@app/components/scroll-area";
 
@@ -8,6 +8,7 @@ const AVATAR_SIZE = 40;
 const MAX_DISPLAY_USERS = 4;
 
 export const UserAvatarList = (): JSX.Element => {
+  const projectStore = useProjectStore();
   const users = projectStore.project.users;
   const displayUsers = users.slice(0, MAX_DISPLAY_USERS);
 

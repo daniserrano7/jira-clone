@@ -3,7 +3,7 @@ import { useLoaderData } from "@remix-run/react";
 import { User, userMock1 } from "@domain/user";
 import { Project, ProjectId } from "@domain/project";
 import { fetchProject } from "@infrastructure/db/project";
-import { Project as ProjectView } from "@app/views/app/project";
+import { ProjectView as ProjectView } from "@app/views/app/project";
 
 type LoaderData = {
   user: User;

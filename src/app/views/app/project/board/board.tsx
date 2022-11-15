@@ -2,7 +2,7 @@ import { useState } from "react";
 import { observer } from "mobx-react-lite";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import { Search } from "@app/views/app/project/board/search";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
@@ -11,6 +11,7 @@ import { IssueEditPanel } from "./issue-panel";
 
 export const Board = observer((): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const projectStore = useProjectStore();
 
   return (
     <div className="box-border flex h-full flex-col bg-white">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import cx from "classix";
-import { projectStore } from "@infrastructure/store";
+import { useProjectStore } from "@infrastructure/store";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
@@ -11,9 +11,9 @@ export const Sidebar = (): JSX.Element => {
     setIsOpen(!isOpen);
   };
 
-  const projectName = projectStore?.project?.name || "Project Name";
-  const projectDescription =
-    projectStore?.project?.description || "Description";
+  const projectStore = useProjectStore();
+  const projectName = projectStore.project.name || "Project Name";
+  const projectDescription = projectStore.project.description || "Description";
 
   return (
     <aside className="relative z-0 flex">

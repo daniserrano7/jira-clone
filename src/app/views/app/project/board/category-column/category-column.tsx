@@ -4,7 +4,7 @@ import { useDrop } from "react-dnd";
 import { Category, CategoryId } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { updateIssueDb } from "@infrastructure/db/issue";
-import { appStore, projectStore } from "@infrastructure/store";
+import { appStore, useProjectStore } from "@infrastructure/store";
 import { Icon } from "@app/components/icon";
 import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "@app/components/scroll-area";
@@ -13,6 +13,7 @@ import { priorities } from "@domain/priority";
 export const CategoryColumn = observer(
   (props: CategoryColumnProps): JSX.Element => {
     const { category, isDragging, handleDragging } = props;
+    const projectStore = useProjectStore();
     const searchFilter = projectStore.filters.search.toLowerCase();
     const emptyCategory = category.issues.length === 0;
 
