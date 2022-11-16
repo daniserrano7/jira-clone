@@ -95,6 +95,11 @@ const navItems: NavItemProps[] = [
     icon: "backlog",
     disabled: true,
   },
+  {
+    href: "server-error",
+    name: "Server error",
+    icon: "empty",
+  },
 ];
 
 const NavItem = ({
