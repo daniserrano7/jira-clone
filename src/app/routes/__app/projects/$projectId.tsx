@@ -1,8 +1,9 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useCatch } from "@remix-run/react";
 import { ProjectData, ProjectId } from "@domain/project";
 import { fetchProject } from "@infrastructure/db/project";
+import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/views/app/project";
 
 // TODO: Ensure type safety for params
@@ -34,14 +35,23 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
+  const errorMessage = "The Project page failed. Navigate to the projects page";
 
   return (
-    <div className="h-full w-full text-center">
-      <h1 className="text-lg mt-[200px] mb-6">/projects/$projectId ERROR</h1>
-      <a href="/projects" className="text-primary-main hover:underline">
-        Navigate to the projects page
-      </a>
+    <div className="pt-[100px]">
+      <Error500 message={errorMessage} href="/projects" />
     </div>
+  );
+}
+
+// TODO: 404 catch boundary only for this nested route
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <h1>
+      {caught.status} {caught.statusText} asdfasdf
+    </h1>
   );
 }
 

@@ -6,6 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from "@remix-run/react";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
@@ -22,6 +23,26 @@ export const meta: MetaFunction = () => ({
   title: "Jira clone",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export function CatchBoundary() {
+  const caught = useCatch();
+
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <h1>
+          {caught.status} {caught.statusText} asdfasdf
+        </h1>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 export default function App() {
   return (

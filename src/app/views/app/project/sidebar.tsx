@@ -100,6 +100,11 @@ const navItems: NavItemProps[] = [
     name: "Server error",
     icon: "empty",
   },
+  {
+    href: "not-found",
+    name: "Not found",
+    icon: "lens",
+  },
 ];
 
 const NavItem = ({
