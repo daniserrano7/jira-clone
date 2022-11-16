@@ -15,6 +15,7 @@ export const todoIssuesMock: IssueData[] = [
     asignee: user2,
     comments: [commentMock1],
     priority: "medium",
+    categoryId: "TODO",
     createdAt: new Date("2020-10-11"),
   },
   {
@@ -26,6 +27,7 @@ export const todoIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "low",
+    categoryId: "TODO",
   },
   {
     id: "3",
@@ -35,6 +37,7 @@ export const todoIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "low",
+    categoryId: "TODO",
   },
   {
     id: "4",
@@ -45,6 +48,7 @@ export const todoIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "medium",
+    categoryId: "TODO",
   },
 ];
 
@@ -57,6 +61,7 @@ export const inProgressIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "high",
+    categoryId: "IN_PROGRESS",
   },
 ];
 
@@ -70,6 +75,7 @@ export const doneIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [commentMock1, commentMock2],
     priority: "high",
+    categoryId: "DONE",
   },
   {
     id: "7",
@@ -79,6 +85,7 @@ export const doneIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "low",
+    categoryId: "DONE",
   },
   {
     id: "8",
@@ -88,5 +95,6 @@ export const doneIssuesMock: IssueData[] = [
     asignee: user1,
     comments: [],
     priority: "low",
+    categoryId: "DONE",
   },
 ];
