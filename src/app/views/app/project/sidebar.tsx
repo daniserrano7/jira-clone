@@ -23,7 +23,7 @@ export const Sidebar = (): JSX.Element => {
           isOpen && "w-[240px] max-w-[240px] whitespace-normal opacity-100"
         )}
       >
-        <section className="flex items-start py-6 px-5">
+        <section className="flex items-start py-6 px-5 w-full">
           <img
             src={imageProject}
             width={28}
@@ -31,9 +31,9 @@ export const Sidebar = (): JSX.Element => {
             alt="project"
             className="rounded-[3px]"
           />
-          <div className="ml-4">
+          <div className="ml-4 w-full">
             <p className="font-primary-bold text-lg leading-4">{projectName}</p>
-            <p className="font-primary-light text-sm mt-0.5">
+            <p className="font-primary-light text-sm mt-2 line-clamp-2 whitespace-normal leading-4">
               {projectDescription}
             </p>
           </div>
