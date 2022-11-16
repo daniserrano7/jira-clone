@@ -2,7 +2,7 @@ import { useState } from "react";
 import cx from "classix";
 import { Comment, CommentId } from "@domain/comment";
 import { updateCommentDb, removeCommentDb } from "@infrastructure/db/comment";
-import { appStore } from "@infrastructure/store";
+import { useAppStore } from "@app/views/app";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 
@@ -10,6 +10,7 @@ export const ViewComment = ({
   comment,
   removeComment,
 }: ViewCommentProps): JSX.Element => {
+  const appStore = useAppStore();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const isNotSelfComment = comment.user.id !== appStore.user.id;

@@ -1,11 +1,27 @@
-import { Outlet } from "@remix-run/react";
-import { Header } from "@app/views/app/header";
+import type { LoaderFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { UserData } from "@domain/user";
+import { fetchUser } from "@infrastructure/db/user";
+import { AppLayout } from "@app/views/app";
 
-export default function App() {
-  return (
-    <div>
-      <Header />
-      <Outlet />
-    </div>
-  );
+type LoaderData = {
+  user: UserData;
+};
+
+export const loader: LoaderFunction = async () => {
+  const user = await fetchUser();
+
+  if (!user) {
+    throw new Error("Project not found");
+  }
+
+  return {
+    user: user,
+  };
+};
+
+export default function AppRoute() {
+  const loaderData = useLoaderData();
+  const { user } = loaderData as LoaderData;
+  return <AppLayout userData={user} />;
 }

@@ -6,7 +6,8 @@ import {
   updateIssueDb,
   removeIssueDb,
 } from "@infrastructure/db/issue";
-import { appStore, useProjectStore } from "@infrastructure/store";
+import { useAppStore } from "@app/views/app";
+import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -21,6 +22,7 @@ import { textAreOnlySpaces } from "@app/utils";
 export const IssueEditPanel = ({
   isOpen,
 }: IssueEditPanelProps): JSX.Element => {
+  const appStore = useAppStore();
   const projectStore = useProjectStore();
   const issue = projectStore.editingIssue;
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);

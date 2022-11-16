@@ -3,7 +3,7 @@ import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId } from "@domain/category";
 import { Issue } from "@domain/issue";
-import { useProjectStore } from "@infrastructure/store";
+import { useProjectStore } from "@app/views/app/project";
 import {
   SelectTrigger,
   SelectTriggerIcon,

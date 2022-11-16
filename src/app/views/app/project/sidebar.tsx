@@ -1,6 +1,6 @@
 import { useState } from "react";
 import cx from "classix";
-import { useProjectStore } from "@infrastructure/store";
+import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 

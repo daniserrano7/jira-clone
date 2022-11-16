@@ -3,7 +3,7 @@ import { Issue } from "@domain/issue";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
 import { useDrag } from "react-dnd";
-import { useProjectStore } from "@infrastructure/store";
+import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
 import { PriorityIcon } from "@app/components/priority-icon";
 

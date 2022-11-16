@@ -1,13 +1,12 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { User, userMock1 } from "@domain/user";
-import { Project, ProjectId } from "@domain/project";
+import { ProjectData, ProjectId } from "@domain/project";
 import { fetchProject } from "@infrastructure/db/project";
-import { ProjectView as ProjectView } from "@app/views/app/project";
+import { ProjectView } from "@app/views/app/project";
 
+// TODO: Ensure type safety between the loader and the view
 type LoaderData = {
-  user: User;
-  project: Project;
+  project: ProjectData;
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -19,7 +18,6 @@ export const loader: LoaderFunction = async ({ params }) => {
   }
 
   return {
-    user: userMock1,
     project: project,
   };
 };
@@ -37,6 +35,6 @@ export function ErrorBoundary() {
 
 export default function ProjectPage() {
   const loaderData = useLoaderData();
-  const { user, project } = loaderData as LoaderData;
-  return <ProjectView user={user} project={project} />;
+  const { project } = loaderData as LoaderData;
+  return <ProjectView projectData={project} />;
 }

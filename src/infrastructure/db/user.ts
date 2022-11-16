@@ -1,6 +1,6 @@
 import { PromiseExtended } from "dexie";
 import { Project } from "@domain/project";
-import { User, UserId, userMock1 } from "@domain/user";
+import { User, UserData, UserId, userMock1 } from "@domain/user";
 import db from "./db";
 import { setLocalStorageUserId } from "@infrastructure/local-storage";
 
@@ -30,6 +30,9 @@ export const fetchUsers = (): PromiseExtended<UserDB[]> => {
   return db.users.orderBy("name").toArray();
 };
 
-export const fetchUser = (userId: UserId): PromiseExtended<UserDB | undefined> => {
-  return db.users.get(userId);
+// export const fetchUser = (userId: UserId): PromiseExtended<UserDB | undefined> => {
+//   return db.users.get(userId);
+// };
+export const fetchUser = async (): Promise<UserData> => {
+  return userMock1;
 };

@@ -1,15 +1,10 @@
-import { Project } from "@domain/project";
-import { User } from "@domain/user";
-import { appStore } from "@infrastructure/store";
+import { Project, ProjectData } from "@domain/project";
 import { Sidebar } from "@app/views/app/project/sidebar";
-import {
-  ProjectContext,
-  ProjectStore,
-} from "@app/views/app/project/project.store";
+import { ProjectContext, ProjectStore } from "./project.store";
 import { Board } from "./board";
 
-export const ProjectView = ({ user, project }: Props): JSX.Element => {
-  appStore.user = user;
+export const ProjectView = ({ projectData }: Props): JSX.Element => {
+  const project = new Project(projectData);
 
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
@@ -24,6 +19,5 @@ export const ProjectView = ({ user, project }: Props): JSX.Element => {
 };
 
 interface Props {
-  user: User;
-  project: Project;
+  projectData: ProjectData;
 }

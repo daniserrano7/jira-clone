@@ -1,4 +1,4 @@
-import { Project, ProjectId, projectsMock } from "@domain/project";
+import { Project, ProjectData, ProjectId, projectsMock } from "@domain/project";
 import db from "./db";
 import { populateUsers } from "./user";
 import { populateCategories } from "./category";
@@ -28,10 +28,10 @@ const projectDbPipe = (project: Project): ProjectDB => ({
 //   return db.projects.get(projectId);
 // };
 
-export const fetchProject = async (projectId: ProjectId): Promise<Project | undefined> => {
+export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | undefined> => {
   return projectsMock.find((project) => project.id === projectId);
 };
 
-export const fetchProjects = async (): Promise<Project[]> => {
+export const fetchProjects = async (): Promise<ProjectData[]> => {
   return projectsMock;
 };

@@ -1,13 +1,14 @@
 import { Comment } from "@domain/comment";
 import { addCommentDb } from "@infrastructure/db/comment";
-import { appStore, useProjectStore } from "@infrastructure/store";
+import { useAppStore } from "@app/views/app";
+import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 
 export const CreateComment = ({
   addComment,
 }: CreateCommentProps): JSX.Element => {
-  const user = appStore.user;
+  const { user } = useAppStore();
   const projectStore = useProjectStore();
 
   const save = (message: string) => {
@@ -18,6 +19,7 @@ export const CreateComment = ({
     }
 
     const comment = new Comment({
+      id: "1",
       user,
       message,
     });
