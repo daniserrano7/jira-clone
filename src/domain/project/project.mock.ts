@@ -15,7 +15,8 @@ export const projectMock1: ProjectData = {
 export const projectMock2: ProjectData = {
   id: "second-project",
   name: "Second project",
-  description: "For routing purposes",
+  description:
+    "For routing purposes. Super long description to test how it clamps on project card in the projects page",
   users: users,
   categories: categoriesMock,
 };
