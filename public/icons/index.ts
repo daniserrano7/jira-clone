@@ -1,4 +1,5 @@
 export { default as Add } from "./add";
+export { default as Analytics } from "./analytics";
 export { default as Arrow } from "./arrow";
 export { default as Backlog } from "./backlog";
 export { default as Board } from "./board";

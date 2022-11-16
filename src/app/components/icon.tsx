@@ -1,9 +1,10 @@
-import { FunctionComponent, SVGProps } from "react";
+import { SVGProps } from "react";
 import QuestionIcon from "public/icons/question";
 import GithubIcon from "public/icons/github";
 import SettingsIcon from "public/icons/settings";
-import BacklogIcon from "public/icons/backlog";
 import BoardIcon from "public/icons/board";
+import AnalyticsIcon from "public/icons/analytics";
+import BacklogIcon from "public/icons/backlog";
 import ArrowIcon from "public/icons/arrow";
 import LensIcon from "public/icons/lens";
 import CloseIcon from "public/icons/close";
@@ -20,8 +21,9 @@ export type IconName =
   | "question"
   | "github"
   | "settings"
-  | "backlog"
   | "board"
+  | "analytics"
+  | "backlog"
   | "arrow"
   | "lens"
   | "close"
@@ -37,8 +39,9 @@ const iconLibrary: Record<IconName, ImportedIcon> = {
   question: QuestionIcon,
   github: GithubIcon,
   settings: SettingsIcon,
-  backlog: BacklogIcon,
   board: BoardIcon,
+  analytics: AnalyticsIcon,
+  backlog: BacklogIcon,
   arrow: ArrowIcon,
   lens: LensIcon,
   close: CloseIcon,

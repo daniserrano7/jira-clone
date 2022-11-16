@@ -4,7 +4,7 @@ import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
-export const Sidebar = (): JSX.Element => {
+export const Sidebar = ({ activeItem }: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
@@ -40,8 +40,16 @@ export const Sidebar = (): JSX.Element => {
         </section>
         <section className="p-3">
           <nav>
-            <NavItem icon="board" name="Board" active />
-            <NavItem icon="backlog" name="Backlog" disabled />
+            {navItems.map(({ href, name, icon, disabled }) => (
+              <NavItem
+                key={href}
+                href={href}
+                name={name}
+                icon={icon}
+                disabled={disabled}
+                active={activeItem === href}
+              />
+            ))}
           </nav>
         </section>
       </div>
@@ -66,22 +74,48 @@ export const Sidebar = (): JSX.Element => {
   );
 };
 
+interface Props {
+  activeItem: string;
+}
+
+const navItems: NavItemProps[] = [
+  {
+    href: "board",
+    name: "Board",
+    icon: "board",
+  },
+  {
+    href: "analytics",
+    name: "Analytics",
+    icon: "analytics",
+  },
+  {
+    href: "backlog",
+    name: "Backlog",
+    icon: "backlog",
+    disabled: true,
+  },
+];
+
 const NavItem = ({
   icon,
   name,
+  href,
   disabled,
   active,
 }: NavItemProps): JSX.Element => {
   return (
-    <button
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <a
+      // eslint-disable-next-line no-script-url
+      href={disabled ? "javascript:void(0)" : href}
       className={cx(
         "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
         active ? "bg-grey-300 text-primary-main" : "text-font-light",
         disabled
-          ? "hover:bg-transparent hover:cursor-not-allowed"
+          ? "hover:bg-transparent !cursor-not-allowed"
           : "hover:bg-grey-300"
       )}
-      disabled={disabled}
     >
       <Icon name={icon} />
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
@@ -93,13 +127,14 @@ const NavItem = ({
       >
         Not implemented
       </span>
-    </button>
+    </a>
   );
 };
 
 export interface NavItemProps {
   icon: IconName;
   name: string;
+  href: string;
   disabled?: boolean;
   active?: boolean;
 }

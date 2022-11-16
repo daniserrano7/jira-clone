@@ -8,12 +8,16 @@ import { ProjectView } from "@app/views/app/project";
 // TODO: Ensure type safety between the loader and the view
 type LoaderData = {
   project: ProjectData;
+  section: string;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  const projectId = params.projectId as ProjectId;
-
   const url = new URL(request.url);
+  const projectId = params.projectId as ProjectId;
+  const projectSection = url.pathname.split("/").slice(-1)[0];
+  console.log("PARAMS: ", params);
+  console.log("REQUEST: ", request);
+
   if (url.pathname === `/projects/${projectId}`) {
     return redirect(`${projectId}/board`);
   }
@@ -26,6 +30,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   return {
     project: project,
+    section: projectSection,
   };
 };
 
@@ -44,6 +49,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
 
 export default function ProjectRoute() {
   const loaderData = useLoaderData();
-  const { project } = loaderData as LoaderData;
-  return <ProjectView projectData={project} />;
+  const { project, section } = loaderData as LoaderData;
+  return <ProjectView projectData={project} section={section} />;
 }
