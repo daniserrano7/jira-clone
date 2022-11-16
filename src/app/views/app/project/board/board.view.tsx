@@ -15,7 +15,9 @@ export const BoardView = (): JSX.Element => {
   return (
     <div className="box-border flex h-full flex-col bg-white">
       <section>
-        <span>Projects</span>
+        <a href="/projects" className="underline underline-offset-[3px]">
+          Projects
+        </a>
         <span className="mx-2">/</span>
         <span>{projectStore.project.name}</span>
         <h1 className="mt-4 mb-5 font-primary-black text-2xl">Sprint board</h1>
