@@ -9,7 +9,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 // Currently there is no landing. Just redirecting to /projects
-export default function Index() {
+export default function IndexRoute() {
   return (
     <div>
       <h1>LANDING</h1>

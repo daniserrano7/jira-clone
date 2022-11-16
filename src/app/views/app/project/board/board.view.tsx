@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { observer } from "mobx-react-lite";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useProjectStore } from "@app/views/app/project";
@@ -9,7 +8,7 @@ import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
 import { IssueEditPanel } from "./issue-panel";
 
-export const Board = observer((): JSX.Element => {
+export const BoardView = (): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const projectStore = useProjectStore();
 
@@ -45,4 +44,4 @@ export const Board = observer((): JSX.Element => {
       <IssueEditPanel isOpen={Boolean(projectStore.editingIssue)} />
     </div>
   );
-});
+};

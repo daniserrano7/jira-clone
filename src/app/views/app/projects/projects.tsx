@@ -1,6 +1,6 @@
 import { Project } from "@domain/project";
 
-export const Projects = ({ projects }: Props): JSX.Element => {
+export const ProjectsView = ({ projects }: Props): JSX.Element => {
   return (
     <div className="p-6">
       <h1 className="text-lg">PROJECTS</h1>

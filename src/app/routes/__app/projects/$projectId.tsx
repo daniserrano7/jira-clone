@@ -42,7 +42,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-export default function ProjectPage() {
+export default function ProjectRoute() {
   const loaderData = useLoaderData();
   const { project } = loaderData as LoaderData;
   return <ProjectView projectData={project} />;

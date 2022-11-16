@@ -2,7 +2,9 @@ import type { LoaderFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { Project } from "@domain/project";
 import { fetchProjects } from "@infrastructure/db/project";
+import { ProjectsView } from "@app/views/app/projects";
 
+// TODO: Ensure type safety between the loader and the view
 type LoaderData = {
   projects: Project[];
 };
@@ -25,20 +27,9 @@ export function ErrorBoundary({ error }: { error: Error }) {
   );
 }
 
-export default function ProjectsPage() {
+export default function ProjectsRoute() {
   const loaderData = useLoaderData();
   const { projects } = loaderData as LoaderData;
 
-  return (
-    <div className="p-6">
-      <h1 className="text-lg">PROJECTS</h1>
-      <ul className="mt-4">
-        {projects.map((project) => (
-          <li key={project.id} className="text-primary-main hover:underline">
-            <a href={`/projects/${project.id}`}>{project.name}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <ProjectsView projects={projects} />;
 }

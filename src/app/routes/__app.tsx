@@ -4,6 +4,7 @@ import { UserData } from "@domain/user";
 import { fetchUser } from "@infrastructure/db/user";
 import { AppLayout } from "@app/views/app";
 
+// TODO: Ensure type safety between the loader and the view
 type LoaderData = {
   user: UserData;
 };
