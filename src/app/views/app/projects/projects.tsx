@@ -18,8 +18,8 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
             <a
               href={`/projects/${project.id}`}
               className={cx(
-                "group flex rounded outline outline-1 outline-grey-500",
-                "hover:bg-primary-light hover:text-primary-main hover:outline-2 hover:outline-primary-main"
+                "group flex rounded outline outline-transparent outline-2 shadow-sm ease-linear duration-100",
+                "hover:bg-primary-light hover:text-primary-main hover:outline-primary-main hover:shadow-md hover:-translate-y-0.5"
               )}
             >
               <img
