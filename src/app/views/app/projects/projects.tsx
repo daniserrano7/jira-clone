@@ -1,8 +1,10 @@
 import cx from "classix";
-import { Project } from "@domain/project";
+import { Project, ProjectData } from "@domain/project";
 import { Icon } from "@app/components/icon";
 
-export const ProjectsView = ({ projects }: Props): JSX.Element => {
+export const ProjectsView = ({ projectsData }: Props): JSX.Element => {
+  const projects = projectsData.map((projectData) => new Project(projectData));
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-primary-black">PROJECTS</h1>
@@ -42,5 +44,5 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
 };
 
 interface Props {
-  projects: Project[];
+  projectsData: ProjectData[];
 }

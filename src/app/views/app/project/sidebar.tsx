@@ -108,7 +108,7 @@ const NavItem = ({
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <a
       // eslint-disable-next-line no-script-url
-      href={disabled ? "javascript:void(0)" : href}
+      href={disabled ? "#" : href}
       className={cx(
         "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
         active ? "bg-grey-300 text-primary-main" : "text-font-light",

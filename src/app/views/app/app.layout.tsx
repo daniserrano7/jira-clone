@@ -9,7 +9,7 @@ export const AppLayout = ({ userData }: Props) => {
 
   return (
     <AppContext.Provider value={appStore}>
-      <div>
+      <div className="h-full flex flex-col">
         <Header />
         <Outlet />
       </div>
