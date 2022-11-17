@@ -8,7 +8,6 @@ import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/views/app/project";
 
-// TODO: Ensure type safety for params
 type LoaderData = {
   project: ProjectData;
   section: string;

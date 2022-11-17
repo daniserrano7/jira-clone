@@ -23,7 +23,7 @@ export const Sidebar = ({ activeItem }: Props): JSX.Element => {
           isOpen && "w-[240px] max-w-[240px] whitespace-normal opacity-100"
         )}
       >
-        <section className="flex items-start py-6 px-5 w-full">
+        <section className="flex w-full items-start py-6 px-5">
           <img
             src={imageProject}
             width={28}
@@ -33,7 +33,7 @@ export const Sidebar = ({ activeItem }: Props): JSX.Element => {
           />
           <div className="ml-4 w-full">
             <p className="font-primary-bold text-lg leading-4">{projectName}</p>
-            <p className="font-primary-light text-sm mt-2 line-clamp-2 whitespace-normal leading-4">
+            <p className="mt-2 whitespace-normal font-primary-light text-sm leading-4 line-clamp-2">
               {projectDescription}
             </p>
           </div>
@@ -98,12 +98,12 @@ const navItems: NavItemProps[] = [
   {
     href: "server-error",
     name: "Server error",
-    icon: "empty",
+    icon: "server-error",
   },
   {
     href: "not-found",
     name: "Not found",
-    icon: "lens",
+    icon: "not-found",
   },
 ];
 
@@ -123,7 +123,7 @@ const NavItem = ({
         "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
         active ? "bg-grey-300 text-primary-main" : "text-font-light",
         disabled
-          ? "hover:bg-transparent !cursor-not-allowed"
+          ? "!cursor-not-allowed hover:bg-transparent"
           : "hover:bg-grey-300"
       )}
     >

@@ -15,6 +15,8 @@ import DeleteIcon from "public/icons/delete";
 import EmptyIcon from "public/icons/empty";
 import ClockIcon from "public/icons/clock";
 import SortIcon from "public/icons/sort";
+import ServerError from "public/icons/server-error";
+import NotFound from "public/icons/not-found";
 
 type ImportedIcon = (props: SVGProps<SVGSVGElement>) => JSX.Element;
 export type IconName =
@@ -33,7 +35,9 @@ export type IconName =
   | "delete"
   | "empty"
   | "clock"
-  | "sort";
+  | "sort"
+  | "server-error"
+  | "not-found";
 
 const iconLibrary: Record<IconName, ImportedIcon> = {
   question: QuestionIcon,
@@ -52,6 +56,8 @@ const iconLibrary: Record<IconName, ImportedIcon> = {
   empty: EmptyIcon,
   clock: ClockIcon,
   sort: SortIcon,
+  "server-error": ServerError,
+  "not-found": NotFound,
 };
 
 // TODO: Pass width and height props to SVG component
