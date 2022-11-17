@@ -10,7 +10,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
     "The Server error page failed. Navigate to the board page";
 
   return (
-    <div className="pt-[100px]">
+    <div className="flex h-full items-center justify-center">
       <Error500 message={errorMessage} href="board" />
     </div>
   );
@@ -19,3 +19,8 @@ export function ErrorBoundary({ error }: { error: Error }) {
 export default function Error500Route() {
   return <div>This will never show because of the server error 500</div>;
 }
+
+//  -^-
+//   O
+//  /|\  -> Felicidad
+//  / \

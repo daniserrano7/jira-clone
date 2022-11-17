@@ -6,7 +6,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   const errorMessage = "The analytics page failed. Navigate to the board page";
 
   return (
-    <div className="pt-[100px]">
+    <div className="flex h-full items-center justify-center">
       <Error500 message={errorMessage} href="board" />
     </div>
   );

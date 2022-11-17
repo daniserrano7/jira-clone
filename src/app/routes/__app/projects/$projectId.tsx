@@ -1,8 +1,10 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { useLoaderData, useCatch } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
 import { ProjectData, ProjectId } from "@domain/project";
 import { fetchProject } from "@infrastructure/db/project";
+import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/views/app/project";
 
@@ -17,14 +19,18 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   const projectId = params.projectId as ProjectId;
   const projectSection = url.pathname.split("/").slice(-1)[0];
 
-  if (url.pathname === `/projects/${projectId}`) {
-    return redirect(`${projectId}/board`);
-  }
+  invariant(params.projectId, `params.projectId is required`);
 
   const project = await fetchProject(projectId);
 
   if (!project) {
-    throw new Error("Project not found");
+    throw new Response("Not Found", {
+      status: 404,
+    });
+  }
+
+  if (url.pathname === `/projects/${projectId}`) {
+    return redirect(`${projectId}/board`);
   }
 
   return json<LoaderData>({
@@ -38,20 +44,18 @@ export function ErrorBoundary({ error }: { error: Error }) {
   const errorMessage = "The Project page failed. Navigate to the projects page";
 
   return (
-    <div className="pt-[100px]">
+    <div className="flex h-full items-center justify-center">
       <Error500 message={errorMessage} href="/projects" />
     </div>
   );
 }
 
-// TODO: 404 catch boundary only for this nested route
 export function CatchBoundary() {
-  const caught = useCatch();
-
+  const errorMessage = "Project not found. Navigate to the projects page";
   return (
-    <h1>
-      {caught.status} {caught.statusText} asdfasdf
-    </h1>
+    <div className="flex h-full items-center justify-center">
+      <Error404 message={errorMessage} href="/projects" />
+    </div>
   );
 }
 
