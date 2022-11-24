@@ -3,7 +3,6 @@ import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category, CategoryType } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { updateIssueDb } from "@infrastructure/db/issue";
 import { useAppStore } from "@app/views/app";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
@@ -47,7 +46,7 @@ export const CategoryColumn = observer(
       issue.setCategoryId(category.type);
       oldCategory.removeIssue(issueId);
       category.addIssue(issue);
-      updateIssueDb(issue);
+      // updateIssueDb(issue);
     };
 
     const createCategoryIssue = () => {

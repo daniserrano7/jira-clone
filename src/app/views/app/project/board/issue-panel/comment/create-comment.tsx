@@ -1,5 +1,4 @@
 import { Comment } from "@domain/comment";
-import { addCommentDb } from "@infrastructure/db/comment";
 import { useAppStore } from "@app/views/app";
 import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
@@ -24,7 +23,7 @@ export const CreateComment = ({
       message,
     });
     addComment(comment);
-    addCommentDb(comment, issue.id);
+    // addCommentDb(comment, issue.id);
   };
 
   return (

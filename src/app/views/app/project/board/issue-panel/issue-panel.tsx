@@ -1,11 +1,6 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Comment, CommentId } from "@domain/comment";
-import {
-  addIssueDb,
-  updateIssueDb,
-  removeIssueDb,
-} from "@infrastructure/db/issue";
 import { useAppStore } from "@app/views/app";
 import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
@@ -43,9 +38,9 @@ export const IssueEditPanel = ({
 
     if (oldCategory) {
       oldCategory.removeIssue(issue.id);
-      updateIssueDb(issue);
+      // updateIssueDb(issue);
     } else {
-      addIssueDb(issue);
+      // addIssueDb(issue);
     }
 
     const newCategory = projectStore.project.getCategory(issue.categoryType);
@@ -57,7 +52,7 @@ export const IssueEditPanel = ({
   const deleteIssue = () => {
     const category = projectStore.project.getCategory(issue.categoryType);
     category?.removeIssue(issue.id);
-    removeIssueDb(issue);
+    // removeIssueDb(issue);
     close();
   };
 

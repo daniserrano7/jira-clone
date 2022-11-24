@@ -1,7 +1,6 @@
 import { useState } from "react";
 import cx from "classix";
 import { Comment, CommentId } from "@domain/comment";
-import { updateCommentDb, removeCommentDb } from "@infrastructure/db/comment";
 import { useAppStore } from "@app/views/app";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
@@ -20,12 +19,12 @@ export const ViewComment = ({
 
   const remove = () => {
     removeComment(comment.id);
-    removeCommentDb(comment.id);
+    // removeCommentDb(comment.id);
   };
 
   const save = (commentText: string): void => {
     comment.setMessage(commentText);
-    updateCommentDb(comment.id, commentText);
+    // updateCommentDb(comment.id, commentText);
     setIsEditing(false);
   };
 
