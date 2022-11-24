@@ -6,11 +6,11 @@ import {
   Category as CategoryDB,
   Issue as IssueDB,
 } from "@prisma/client";
-import { UserData, usersMock, getRandomPastelColor } from "../src/domain/user";
-import { ProjectData, ProjectId, projectsMock } from "../src/domain/project";
-import { CategoryData, CategoryId } from "../src/domain/category";
-import { IssueData, IssueId } from "../src/domain/issue";
-import { CommentData } from "../src/domain/comment";
+import { UserData, usersMock, getRandomPastelColor } from "@domain/user";
+import { ProjectData, ProjectId, projectsMock } from "@domain/project";
+import { CategoryData, CategoryId } from "@domain/category";
+import { IssueData, IssueId } from "@domain/issue";
+import { CommentData } from "@domain/comment";
 
 const db = new PrismaClient();
 

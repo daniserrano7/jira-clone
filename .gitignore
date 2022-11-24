@@ -7,4 +7,4 @@
 /.netlify
 .env
 src/app/styles/app-compiled.css
-prisma/dev.db
+src/infrastructure/db/dev.db

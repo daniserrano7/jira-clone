@@ -15,6 +15,10 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "icons": "npx @svgr/cli --out-dir ./public/icons --filename-case kebab --typescript --icon -- ./public/icons/svg"
   },
+  "prisma": {
+    "schema": "src/infrastructure/db/schema.prisma",
+    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"CommonJS\"} src/infrastructure/db/seed.ts"
+  },
   "dependencies": {
     "@netlify/functions": "^1.0.0",
     "@prisma/client": "^4.6.1",
@@ -73,8 +77,5 @@
   },
   "engines": {
     "node": ">=14"
-  },
-  "prisma": {
-    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
