@@ -5,7 +5,7 @@ import { Issue } from "./issue";
 
 describe("Issue entity module", () => {
   const issueId = "1";
-  const createdAt = new Date();
+  const createdAt = new Date().valueOf();
   const user1 = new User(userMock1);
   const user2 = new User(userMock2);
   const commentMock = new Comment(commentMock1);
@@ -16,7 +16,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -27,7 +27,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name,
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -45,7 +45,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -56,7 +56,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description,
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -74,7 +74,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user1,
       comments: [],
@@ -85,7 +85,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -102,7 +102,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],
@@ -113,7 +113,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [commentMock],
@@ -129,7 +129,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [commentMock],
@@ -140,7 +140,7 @@ describe("Issue entity module", () => {
       id: issueId,
       name: "Refactor entities id to UUID",
       description: "Should be better to use UUID so ID duplication is less likely",
-      categoryId: "TODO",
+      categoryType: "TODO",
       reporter: user1,
       asignee: user2,
       comments: [],

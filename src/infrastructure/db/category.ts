@@ -1,12 +1,12 @@
 import { PromiseExtended } from "dexie";
 import { Project, ProjectId } from "@domain/project";
-import { Category, CategoryId } from "@domain/category";
+import { Category, CategoryType } from "@domain/category";
 import db from "./db";
 import { populateIssues } from "./issue";
 
 export interface CategoryDB {
   projectId: ProjectId;
-  id: CategoryId;
+  id: CategoryType;
   name: string;
   order: number;
 }

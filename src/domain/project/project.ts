@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, UserData, UserId } from "@domain/user";
-import { Category, CategoryData, CategoryId } from "@domain/category";
+import { Category, CategoryData, CategoryType } from "@domain/category";
 
 export type ProjectId = string;
 export interface ProjectData {
@@ -48,7 +48,7 @@ export class Project {
     return user;
   }
 
-  getCategory(categoryId: CategoryId): Category | undefined {
+  getCategory(categoryId: CategoryType): Category | undefined {
     return this.categories.find((category) => category.id === categoryId);
   }
 }

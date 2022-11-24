@@ -1,6 +1,6 @@
 import { ProjectData } from "./project";
 import { User, usersMock } from "@domain/user";
-import { categoriesMock } from "@domain/category";
+import { categoriesMock1, categoriesMock2 } from "@domain/category";
 
 const users = usersMock.map((user) => new User(user));
 
@@ -9,7 +9,7 @@ export const projectMock1: ProjectData = {
   name: "JIRA Clone",
   description: "Software project",
   users: users,
-  categories: categoriesMock,
+  categories: categoriesMock1,
 };
 
 export const projectMock2: ProjectData = {
@@ -17,8 +17,8 @@ export const projectMock2: ProjectData = {
   name: "Second project",
   description:
     "For routing purposes. Super long description to test how it clamps on project card in the projects page",
-  users: users,
-  categories: categoriesMock,
+  users: users.slice(0, 3), // Only the first 3 users
+  categories: categoriesMock2,
 };
 
 export const projectsMock: ProjectData[] = [projectMock1, projectMock2];

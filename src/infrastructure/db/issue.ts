@@ -1,5 +1,5 @@
 import { PromiseExtended } from "dexie";
-import { Category, CategoryId } from "@domain/category";
+import { Category, CategoryType } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { UserId } from "@domain/user";
 import { Priority } from "@domain/priority";
@@ -7,7 +7,7 @@ import db from "./db";
 import { populateComments } from "./comment";
 
 export interface IssueDB {
-  categoryId: CategoryId;
+  categoryId: CategoryType;
   id: IssueId;
   name: string;
   description?: string;
@@ -26,7 +26,7 @@ export const populateIssues = (category: Category): void => {
 };
 
 const issueDbPipe = (issue: Issue): IssueDB => ({
-  categoryId: issue.categoryId,
+  categoryId: issue.categoryType,
   id: issue.id,
   name: issue.name,
   description: issue.description,
@@ -36,7 +36,7 @@ const issueDbPipe = (issue: Issue): IssueDB => ({
   createdAt: issue.createdAt.getTime(),
 });
 
-export const fetchIssues = (categoryId: CategoryId): PromiseExtended<IssueDB[]> => {
+export const fetchIssues = (categoryId: CategoryType): PromiseExtended<IssueDB[]> => {
   return db.issues.where({ categoryId }).sortBy("createdAt");
 };
 

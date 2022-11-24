@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, UserData, UserId } from "../user";
-import { CategoryId } from "@domain/category";
+import { CategoryType } from "@domain/category";
 import { Comment, CommentData, CommentId } from "../comment";
 import { Priority } from "../priority";
 
@@ -9,37 +9,35 @@ export interface IssueData {
   id: UserId;
   name: string;
   description?: string;
-  categoryId?: CategoryId;
+  categoryType?: CategoryType;
   reporter: UserData;
   asignee: UserData;
   comments: CommentData[];
   priority: Priority;
-  createdAt?: Date;
-  //TODO: epic: Epic
-  //TODO: updatedAt: timestamp
+  createdAt?: number; // timestamp
 }
 
 export class Issue implements IssueData {
   readonly id: IssueId;
   name: string;
   description: string;
-  categoryId: CategoryId;
+  categoryType: CategoryType;
   reporter: User;
   asignee: User;
   comments: Comment[];
   priority: Priority;
-  createdAt: Date;
+  createdAt: number;
 
   constructor(data: IssueData) {
     this.id = data.id || uuidv4();
     this.name = data.name;
     this.description = data.description || "";
-    this.categoryId = data.categoryId || "TODO";
+    this.categoryType = data.categoryType || "TODO";
     this.reporter = new User(data.reporter);
     this.asignee = new User(data.asignee);
     this.comments = data.comments.map((comment) => new Comment(comment));
     this.priority = data.priority;
-    this.createdAt = data.createdAt || new Date();
+    this.createdAt = data.createdAt || Date.now().valueOf();
   }
 
   setName(name: string) {
@@ -50,8 +48,8 @@ export class Issue implements IssueData {
     this.description = description;
   }
 
-  setCategoryId(categoryId: CategoryId) {
-    this.categoryId = categoryId;
+  setCategoryId(categoryId: CategoryType) {
+    this.categoryType = categoryId;
   }
 
   setPriority(priority: Priority) {

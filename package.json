@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -w -i ./src/app/styles/app.css -o ./src/app/styles/app-compiled.css",
     "start": "cross-env NODE_ENV=production netlify dev",
-    "type-check": "tsc --pretty --noEmit",
+    "type-check": "tsc --pretty --noEmit -p tsconfig.json",
     "lint": "npx eslint --ext ts,tsx src",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@netlify/functions": "^1.0.0",
+    "@prisma/client": "^4.6.1",
     "@radix-ui/react-alert-dialog": "^1.0.2",
     "@radix-ui/react-avatar": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
@@ -31,7 +32,6 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.24",
-    "@types/node": "^18.11.9",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "classix": "^2.1.17",
@@ -55,6 +55,7 @@
     "@remix-run/eslint-config": "^1.7.5",
     "@remix-run/serve": "^1.7.5",
     "@svgr/cli": "^6.5.1",
+    "@types/node": "^18.11.9",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/uuid": "^8.3.4",
@@ -64,11 +65,16 @@
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
+    "prisma": "^4.6.1",
     "tailwindcss": "^3.2.4",
     "tailwindcss-radix-ui": "^0.0.4",
-    "typescript": "^4.7.4"
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
   },
   "engines": {
     "node": ">=14"
+  },
+  "prisma": {
+    "seed": "ts-node -r tsconfig-paths/register --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }

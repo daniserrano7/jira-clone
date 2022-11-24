@@ -1,10 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { User, userMock1 } from "@domain/user";
-import { categoriesMock } from "@domain/category";
+import { categoriesMock1 } from "@domain/category";
 import { Project } from "./project";
 
 describe("Project entity module", () => {
-  const mockCategory = categoriesMock[0];
+  const mockCategory = categoriesMock1[0];
   const projectId = "1";
 
   it("Set project name", () => {

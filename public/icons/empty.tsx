@@ -12,7 +12,6 @@ const SvgEmpty = (props: SVGProps<SVGSVGElement>) => (
         textDecorationStyle: "solid",
         textDecorationColor: "#000",
         textTransform: "none",
-        blockProgression: "tb",
         isolation: "auto",
         mixBlendMode: "normal",
       }}

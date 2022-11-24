@@ -48,14 +48,14 @@ export const IssueEditPanel = ({
       addIssueDb(issue);
     }
 
-    const newCategory = projectStore.project.getCategory(issue.categoryId);
+    const newCategory = projectStore.project.getCategory(issue.categoryType);
     newCategory?.addIssue(issue);
 
     close();
   };
 
   const deleteIssue = () => {
-    const category = projectStore.project.getCategory(issue.categoryId);
+    const category = projectStore.project.getCategory(issue.categoryType);
     category?.removeIssue(issue.id);
     removeIssueDb(issue);
     close();

@@ -22,7 +22,7 @@ export class User implements UserData {
   }
 }
 
-const getRandomPastelColor = () => {
+export const getRandomPastelColor = () => {
   const h = 360 * Math.random();
   const s = 25 + 70 * Math.random();
   const l = 85 + 10 * Math.random();

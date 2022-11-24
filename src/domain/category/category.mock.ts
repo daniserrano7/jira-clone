@@ -1,21 +1,51 @@
-import { CategoryData, CategoryId, categoryIdDict } from "@domain/category";
-import { IssueData, todoIssuesMock, inProgressIssuesMock, doneIssuesMock } from "@domain/issue";
+import { CategoryData, categoryTypes, categoryTypeDict } from "@domain/category";
+import {
+  todoIssuesMock1,
+  inProgressIssuesMock1,
+  doneIssuesMock1,
+  todoIssuesMock2,
+  inProgressIssuesMock2,
+  doneIssuesMock2,
+} from "@domain/issue";
 
-const categoriesDict: Record<CategoryId, IssueData[]> = {
-  TODO: todoIssuesMock,
-  IN_PROGRESS: inProgressIssuesMock,
-  DONE: doneIssuesMock,
-};
+const ids1 = [
+  "1e8877a7-91dc-46de-bce0-f077ad922fc8",
+  "46964edd-62e0-4c2f-90bf-e275ee087433",
+  "c1278ad3-29b3-422c-8219-54bb66b26ff4",
+];
+const issuesMock1 = [todoIssuesMock1, inProgressIssuesMock1, doneIssuesMock1];
 
-export const categoriesMock: CategoryData[] = Object.keys(categoriesDict).map((key, idx) => {
-  const categoryId = key as CategoryId;
-  const categoryName = categoryIdDict[categoryId];
-  const issueData = categoriesDict[categoryId];
+const ids2 = [
+  "bbb348d5-ef02-447c-94f5-5fbf1ceeac07",
+  "14055a19-1a79-4b16-90fb-811652e33128",
+  "aa102bcb-335c-4d82-8392-058f6172ebe8",
+];
+const issuesMock2 = [todoIssuesMock2, inProgressIssuesMock2, doneIssuesMock2];
+
+export const categoriesMock1: CategoryData[] = categoryTypes.map((categoryType, index) => {
+  const id = ids1[index];
+  const name = categoryTypeDict[categoryType];
+  const issues = issuesMock1[index];
 
   return {
-    id: categoryId,
-    name: categoryName,
-    issues: issueData,
-    order: idx,
+    id,
+    type: categoryType,
+    name,
+    issues,
+    order: index,
+  };
+});
+
+export const categoriesMock2: CategoryData[] = categoryTypes.map((categoryType, index) => {
+  const id = ids2[index];
+  const name = categoryTypeDict[categoryType];
+  const issues = issuesMock2[index];
+
+  return {
+    id,
+    type: categoryType,
+    name,
+    issues,
+    order: index,
   };
 });

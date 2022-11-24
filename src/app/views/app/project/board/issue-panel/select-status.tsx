@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
-import { CategoryId } from "@domain/category";
+import { CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { useProjectStore } from "@app/views/app/project";
 import {
@@ -13,14 +13,15 @@ import {
 } from "@app/components/select";
 
 export const SelectStatus = ({ issue }: Props): JSX.Element => {
-  const defaultValue = issue.categoryId;
+  const defaultValue = issue.categoryType;
   const projectStore = useProjectStore();
   const categories = projectStore.project.categories;
 
-  const [selectedValue, setSelectedValue] = useState<CategoryId>(defaultValue);
+  const [selectedValue, setSelectedValue] =
+    useState<CategoryType>(defaultValue);
 
   const onValueChange = (value: string): void => {
-    const categoryId = value as CategoryId;
+    const categoryId = value as CategoryType;
     issue.setCategoryId(categoryId);
     setSelectedValue(categoryId);
   };

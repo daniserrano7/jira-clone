@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import cx from "classix";
 import { useDrop } from "react-dnd";
-import { Category, CategoryId } from "@domain/category";
+import { Category, CategoryType } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { updateIssueDb } from "@infrastructure/db/issue";
 import { useAppStore } from "@app/views/app";
@@ -32,7 +32,7 @@ export const CategoryColumn = observer(
 
     interface DropItem {
       issueId: IssueId;
-      categoryId: CategoryId;
+      categoryId: CategoryType;
     }
 
     const changeIssueCategory = ({ issueId, categoryId }: DropItem) => {
@@ -44,7 +44,7 @@ export const CategoryColumn = observer(
 
       if (!issue) return;
 
-      issue.setCategoryId(category.id);
+      issue.setCategoryId(category.type);
       oldCategory.removeIssue(issueId);
       category.addIssue(issue);
       updateIssueDb(issue);
@@ -53,13 +53,14 @@ export const CategoryColumn = observer(
     const createCategoryIssue = () => {
       const issue = new Issue({
         id: "1",
-        categoryId: category.id,
+        categoryType: category.type,
         name: "",
         description: "",
         reporter: appStore.user,
         asignee: appStore.user,
         comments: [],
         priority: "low",
+        createdAt: new Date().valueOf(),
       });
       projectStore.editingIssue = issue;
     };
@@ -125,9 +126,9 @@ export const CategoryColumn = observer(
           </button>
         </div>
         {/* Column body items */}
-        <div className="h-[300px] box-content">
+        <div className="box-content h-[300px]">
           <ScrollArea>
-            <ul className="max-w-[260px] px-3 mt-1">
+            <ul className="mt-1 max-w-[260px] px-3">
               {emptyCategory ? (
                 <EmptyCategory />
               ) : (

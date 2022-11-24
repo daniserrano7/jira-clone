@@ -23,7 +23,7 @@ export const IssueCard = observer(
         type: DRAG_ISSUE_CARD,
         item: {
           issueId: issue.id,
-          categoryId: issue.categoryId,
+          categoryId: issue.categoryType,
         },
         collect: (monitor) => ({
           isDragging: !!monitor.isDragging(),

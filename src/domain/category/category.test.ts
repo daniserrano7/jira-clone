@@ -1,23 +1,27 @@
 import { describe, it, expect } from "vitest";
-import { Issue, todoIssuesMock } from "@domain/issue";
-import { Category, CategoryId, categoryIdDict } from "./category";
+import { v4 as uuid } from "uuid";
+import { Issue, todoIssuesMock1 } from "@domain/issue";
+import { Category, CategoryType, categoryTypeDict } from "./category";
 
 describe("Category entity module", () => {
   it("Add issue to category", () => {
-    const id: CategoryId = "TODO";
+    const id = uuid();
+    const type: CategoryType = "TODO";
     const issue = new Issue({
-      ...todoIssuesMock[0],
-      categoryId: id,
+      ...todoIssuesMock1[0],
+      categoryType: type,
     });
     const reference = new Category({
       id,
-      name: categoryIdDict[id],
+      type,
+      name: categoryTypeDict[type],
       issues: [],
       order: 1,
     });
     const expected = new Category({
       id,
-      name: categoryIdDict[id],
+      type,
+      name: categoryTypeDict[type],
       issues: [issue],
       order: 1,
     });
@@ -27,20 +31,23 @@ describe("Category entity module", () => {
   });
 
   it("Remove issue from category", () => {
-    const id: CategoryId = "TODO";
+    const id = uuid();
+    const type: CategoryType = "TODO";
     const issue = new Issue({
-      ...todoIssuesMock[0],
-      categoryId: id,
+      ...todoIssuesMock1[0],
+      categoryType: type,
     });
     const reference = new Category({
       id,
-      name: categoryIdDict[id],
+      type,
+      name: categoryTypeDict[type],
       issues: [issue],
       order: 1,
     });
     const expected = new Category({
       id,
-      name: categoryIdDict[id],
+      type,
+      name: categoryTypeDict[type],
       issues: [],
       order: 1,
     });

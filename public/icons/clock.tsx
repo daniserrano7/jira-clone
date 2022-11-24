@@ -7,9 +7,6 @@ const SvgClock = (props: SVGProps<SVGSVGElement>) => (
     width="1em"
     height="1em"
     viewBox="0 0 465.2 465.2"
-    style={{
-      enableBackground: "new 0 0 465.2 465.2",
-    }}
     xmlSpace="preserve"
     {...props}
   >
