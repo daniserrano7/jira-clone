@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  name           String
+  image          String?
+  color          String
+  projects       Project[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  issueReporters Issue[]   @relation("issue_reporter")
+  issueAssignees Issue[]   @relation("issue_assignee")
+  issueComments  Comment[]
+}
+
+model Project {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  users       User[]
+  categories  Category[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  type      String   @default("TODO") // TODO: apply check constraint to emulate enum
+  name      String
+  order     Int
+  issues    Issue[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Issue {
+  id           String    @id @default(uuid())
+  category     Category  @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  name         String
+  description  String?
+  categoryType String    @default("TODO") // TODO: apply check constraint to emulate enum
+  priority     String    @default("low") // TODO: apply check constraint to emulate enum
+  reporter     User      @relation("issue_reporter", fields: [reporterId], references: [id])
+  reporterId   String
+  asignee      User      @relation("issue_assignee", fields: [asigneeId], references: [id])
+  asigneeId    String
+  comments     Comment[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  issue     Issue    @relation(fields: [issueId], references: [id])
+  issueId   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
