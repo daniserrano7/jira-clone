@@ -4,6 +4,7 @@ import { IssueData } from "./issue";
 
 const user1 = new User(userMock1);
 const user2 = new User(userMock2);
+const createdAt = new Date().valueOf();
 
 // PROJECT 1
 export const todoIssuesMock1: IssueData[] = [
@@ -17,6 +18,7 @@ export const todoIssuesMock1: IssueData[] = [
     comments: [commentMock1],
     priority: "medium",
     categoryType: "TODO",
+    createdAt,
   },
   {
     id: "23717058-379a-447a-a215-e425a124154f",
@@ -28,6 +30,7 @@ export const todoIssuesMock1: IssueData[] = [
     comments: [],
     priority: "low",
     categoryType: "TODO",
+    createdAt,
   },
   {
     id: "cb3eb5e6-299d-4e1a-8521-a5541f8403e4",
@@ -38,6 +41,7 @@ export const todoIssuesMock1: IssueData[] = [
     comments: [],
     priority: "low",
     categoryType: "TODO",
+    createdAt,
   },
   {
     id: "8264e3fc-dd97-4abe-9612-deee6472e5c4",
@@ -49,6 +53,7 @@ export const todoIssuesMock1: IssueData[] = [
     comments: [],
     priority: "medium",
     categoryType: "TODO",
+    createdAt,
   },
 ];
 
@@ -62,6 +67,7 @@ export const inProgressIssuesMock1: IssueData[] = [
     comments: [],
     priority: "high",
     categoryType: "IN_PROGRESS",
+    createdAt,
   },
 ];
 
@@ -76,6 +82,7 @@ export const doneIssuesMock1: IssueData[] = [
     comments: [commentMock2, commentMock3],
     priority: "high",
     categoryType: "DONE",
+    createdAt,
   },
   {
     id: "e3839865-357d-4a6e-8865-8089040c4649",
@@ -86,6 +93,7 @@ export const doneIssuesMock1: IssueData[] = [
     comments: [],
     priority: "low",
     categoryType: "DONE",
+    createdAt,
   },
   {
     id: "13f60b73-c38e-4921-886a-48c6a93ea2b7",
@@ -96,6 +104,7 @@ export const doneIssuesMock1: IssueData[] = [
     comments: [],
     priority: "low",
     categoryType: "DONE",
+    createdAt,
   },
 ];
 
@@ -111,6 +120,7 @@ export const todoIssuesMock2: IssueData[] = [
     comments: [],
     priority: "medium",
     categoryType: "TODO",
+    createdAt,
   },
   {
     id: "6bf6a1f4-20bb-492b-8ea4-4aa18efeb062",
@@ -122,6 +132,7 @@ export const todoIssuesMock2: IssueData[] = [
     comments: [],
     priority: "low",
     categoryType: "TODO",
+    createdAt,
   },
 ];
 
@@ -135,6 +146,7 @@ export const inProgressIssuesMock2: IssueData[] = [
     comments: [],
     priority: "high",
     categoryType: "IN_PROGRESS",
+    createdAt,
   },
 ];
 
