@@ -1,8 +1,53 @@
-import { ProjectData, ProjectPreview, ProjectId, projectsMock } from "@domain/project";
+import { Project as ProjectDB } from "@prisma/client";
+import { ProjectData, ProjectPreview, ProjectId } from "@domain/project";
 import { db } from "./db.server";
 
-export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | undefined> => {
-  return projectsMock.find((project) => project.id === projectId);
+export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | null> => {
+  const project: ProjectDB | null = await db.project.findUnique({
+    where: {
+      id: projectId,
+    },
+    include: {
+      users: true,
+      categories: {
+        include: {
+          issues: {
+            select: {
+              id: true,
+              name: true,
+              description: true,
+              categoryType: true,
+              priority: true,
+              asignee: true,
+              reporter: true,
+              createdAt: true,
+              updatedAt: true,
+              comments: {
+                select: {
+                  id: true,
+                  message: true,
+                  user: true,
+                  createdAt: true,
+                  updatedAt: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!project) {
+    return null;
+  }
+
+  return {
+    categories: [],
+    users: [],
+    ...project,
+    description: project.description || undefined, // To convert 'null' to 'undefined'
+  };
 };
 
 export const fetchProjects = async (): Promise<ProjectPreview[]> => {

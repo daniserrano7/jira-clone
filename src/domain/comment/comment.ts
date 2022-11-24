@@ -17,9 +17,15 @@ export class Comment implements CommentData {
 
   constructor(data: CommentData) {
     this.id = data.id || uuidv4();
-    this.user = new User(data.user);
     this.message = data.message;
     this.createdAt = data.createdAt || new Date();
+
+    try {
+      this.user = new User(data.user);
+    } catch (error) {
+      console.error(`Error in comment ${data.id} creating user: ${data.user.id}`, data.user, error);
+      this.user = new User({ id: "error", name: "error" });
+    }
   }
 
   setMessage(message: string) {

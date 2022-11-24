@@ -29,8 +29,16 @@ export class Category implements CategoryData {
     this.id = data.id;
     this.type = data.type;
     this.name = data.name;
-    this.issues = data.issues.map((issue) => new Issue(issue));
+    this.issues = [];
     this.order = data.order;
+
+    data.issues.forEach((issue) => {
+      try {
+        this.issues.push(new Issue(issue));
+      } catch (error) {
+        console.error(`Error in category ${data.id} creating issue: ${issue.id}`, issue, error);
+      }
+    });
   }
 
   getIssue(issueId: IssueId) {

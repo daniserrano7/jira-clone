@@ -22,8 +22,28 @@ export class Project {
     this.id = data.id || uuidv4();
     this.name = data.name;
     this.description = data.description || "";
-    this.users = data.users.map((user) => new User(user));
-    this.categories = data.categories.map((category) => new Category(category));
+    this.users = [];
+    this.categories = [];
+
+    data.users.forEach((user) => {
+      try {
+        this.users.push(new User(user));
+      } catch (error) {
+        console.error(`Error in project ${data.id} creating user: ${user.id}`, user, error);
+      }
+    });
+
+    data.categories.forEach((category) => {
+      try {
+        this.categories.push(new Category(category));
+      } catch (error) {
+        console.error(
+          `Error in project ${data.id} creating category: ${category.id}`,
+          category,
+          error
+        );
+      }
+    });
   }
 
   setName(name: string) {

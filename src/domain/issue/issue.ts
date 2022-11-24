@@ -35,9 +35,17 @@ export class Issue implements IssueData {
     this.categoryType = data.categoryType || "TODO";
     this.reporter = new User(data.reporter);
     this.asignee = new User(data.asignee);
-    this.comments = data.comments.map((comment) => new Comment(comment));
+    this.comments = [];
     this.priority = data.priority;
     this.createdAt = data.createdAt || Date.now().valueOf();
+
+    data.comments.forEach((comment) => {
+      try {
+        this.comments.push(new Comment(comment));
+      } catch (error) {
+        console.error(`Error in issue ${data.id} creating comment: ${comment.id}`, comment, error);
+      }
+    });
   }
 
   setName(name: string) {
