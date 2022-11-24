@@ -52,3 +52,5 @@ export class Project {
     return this.categories.find((category) => category.id === categoryId);
   }
 }
+
+export type ProjectPreview = Pick<ProjectData, "id" | "name" | "description">;
