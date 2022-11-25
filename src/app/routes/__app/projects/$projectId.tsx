@@ -29,7 +29,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   }
 
   if (url.pathname === `/projects/${projectId}`) {
-    return redirect(`${projectId}/board`);
+    console.log("PATH: ", url.pathname);
+    return redirect(`/projects/${projectId}/board`);
   }
 
   return json<LoaderData>({

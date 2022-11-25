@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "@remix-run/react";
 import cx from "classix";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
-export const Sidebar = ({ activeItem }: Props): JSX.Element => {
+export const Sidebar = ({ initialActiveItem }: Props): JSX.Element => {
+  const [activeItem, setActiveItem] = useState(initialActiveItem);
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
@@ -41,14 +43,18 @@ export const Sidebar = ({ activeItem }: Props): JSX.Element => {
         <section className="p-3">
           <nav>
             {navItems.map(({ href, name, icon, disabled }) => (
-              <NavItem
+              <Link
                 key={href}
-                href={href}
-                name={name}
-                icon={icon}
-                disabled={disabled}
-                active={activeItem === href}
-              />
+                to={disabled ? "#" : href}
+                onClick={() => !disabled && setActiveItem(href)}
+              >
+                <NavItem
+                  name={name}
+                  icon={icon}
+                  disabled={disabled}
+                  active={activeItem === href}
+                />
+              </Link>
             ))}
           </nav>
         </section>
@@ -75,10 +81,10 @@ export const Sidebar = ({ activeItem }: Props): JSX.Element => {
 };
 
 interface Props {
-  activeItem: string;
+  initialActiveItem: string;
 }
 
-const navItems: NavItemProps[] = [
+const navItems: NavItemData[] = [
   {
     href: "board",
     name: "Board",
@@ -107,18 +113,18 @@ const navItems: NavItemProps[] = [
   },
 ];
 
+type NavItemData = NavItemProps & {
+  href: string;
+};
+
 const NavItem = ({
   icon,
   name,
-  href,
   disabled,
   active,
 }: NavItemProps): JSX.Element => {
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a
-      // eslint-disable-next-line no-script-url
-      href={disabled ? "#" : href}
+    <div
       className={cx(
         "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
         active ? "bg-grey-300 text-primary-main" : "text-font-light",
@@ -137,14 +143,13 @@ const NavItem = ({
       >
         Not implemented
       </span>
-    </a>
+    </div>
   );
 };
 
 export interface NavItemProps {
   icon: IconName;
   name: string;
-  href: string;
   disabled?: boolean;
   active?: boolean;
 }

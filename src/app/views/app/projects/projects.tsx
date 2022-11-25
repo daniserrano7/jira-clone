@@ -1,3 +1,4 @@
+import { Link } from "@remix-run/react";
 import cx from "classix";
 import { ProjectPreview } from "@domain/project";
 import { Icon } from "@app/components/icon";
@@ -15,8 +16,8 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
       <ul className="mt-4 w-[400px] space-y-6">
         {projects.map((project) => (
           <li key={project.id}>
-            <a
-              href={`/projects/${project.id}`}
+            <Link
+              to={project.id}
               className={cx(
                 "group flex rounded shadow-sm outline outline-2 outline-transparent duration-100 ease-linear",
                 "hover:-translate-y-0.5 hover:bg-primary-light hover:text-primary-main hover:shadow-md hover:outline-primary-main"
@@ -33,7 +34,7 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
                   {project.description}
                 </h3>
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

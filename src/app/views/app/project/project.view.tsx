@@ -9,7 +9,7 @@ export const ProjectView = ({ projectData, section }: Props): JSX.Element => {
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
       <div className="relative flex h-full flex-grow bg-white">
-        <Sidebar activeItem={section} />
+        <Sidebar initialActiveItem={section} />
         <div className="z-10 h-full w-full flex-grow py-6 px-5">
           <Outlet />
         </div>
