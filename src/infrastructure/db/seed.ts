@@ -9,7 +9,7 @@ import {
 import { UserData, usersMock, getRandomPastelColor } from "@domain/user";
 import { ProjectData, ProjectId, projectsMock } from "@domain/project";
 import { CategoryData, CategoryId } from "@domain/category";
-import { IssueData, IssueId } from "@domain/issue";
+import { IssueData } from "@domain/issue";
 import { CommentData } from "@domain/comment";
 
 const db = new PrismaClient();
@@ -71,28 +71,37 @@ const createOrUpdateIssue = async (
     name: issueData.name,
     description: issueData.description,
     categoryType: issueData.categoryType,
+    category: { connect: { id: categoryId } },
     asignee: { connect: { id: issueData.asignee.id } },
     reporter: { connect: { id: issueData.reporter.id } },
-    category: { connect: { id: categoryId } },
   };
+
+  const getCommentInput = (commentData: CommentData): Omit<Prisma.CommentCreateInput, "issue"> => {
+    return {
+      id: commentData.id,
+      message: commentData.message,
+      user: { connect: { id: commentData.user.id } },
+    };
+  };
+
   return db.issue.upsert({
     where: { id: issueData.id },
-    create: issueInput,
-    update: issueInput,
-  });
-};
-
-const createOrUpdateComment = async (commentData: CommentData, issueId: IssueId) => {
-  const commentInput: Prisma.CommentCreateInput = {
-    id: commentData.id,
-    message: commentData.message,
-    user: { connect: { id: commentData.user.id } },
-    issue: { connect: { id: issueId } },
-  };
-  return db.comment.upsert({
-    where: { id: commentData.id },
-    create: commentInput,
-    update: commentInput,
+    create: {
+      ...issueInput,
+      comments: {
+        create: issueData.comments.map(getCommentInput),
+      },
+    },
+    update: {
+      ...issueInput,
+      comments: {
+        upsert: issueData.comments.map((commentData) => ({
+          where: { id: commentData.id },
+          create: getCommentInput(commentData),
+          update: getCommentInput(commentData),
+        })),
+      },
+    },
   });
 };
 
@@ -114,12 +123,7 @@ const seedProjects = async () => {
 
       for (const issueData of categoryData.issues) {
         console.log(`Seeding ISSUE: ${issueData.name}`);
-        const issue = await createOrUpdateIssue(issueData, category.id);
-
-        for (const commentData of issueData.comments) {
-          console.log(`Seeding COMMENT: ${commentData.message}`);
-          await createOrUpdateComment(commentData, issue.id);
-        }
+        await createOrUpdateIssue(issueData, category.id);
       }
     }
   }
