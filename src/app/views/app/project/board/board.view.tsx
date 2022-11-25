@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Outlet } from "@remix-run/react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project, ProjectData } from "@domain/project";
@@ -16,6 +17,9 @@ export const BoardView = ({ projectData }: Props): JSX.Element => {
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
       <div className="box-border flex h-full flex-col bg-white">
+        {/* <Form method="post">
+          <button type="submit">Submit</button>
+        </Form> */}
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">
@@ -37,7 +41,7 @@ export const BoardView = ({ projectData }: Props): JSX.Element => {
             ))}
           </DndProvider>
         </section>
-        {/* <IssueEditPanel isOpen={Boolean(project.editingIssue)} /> */}
+        <Outlet />
       </div>
     </ProjectContext.Provider>
   );

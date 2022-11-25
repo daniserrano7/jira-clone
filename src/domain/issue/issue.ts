@@ -14,7 +14,7 @@ export interface IssueData {
   asignee: UserData;
   comments: CommentData[];
   priority: Priority;
-  createdAt?: number; // timestamp
+  createdAt?: Date;
 }
 
 export class Issue implements IssueData {
@@ -26,7 +26,7 @@ export class Issue implements IssueData {
   asignee: User;
   comments: Comment[];
   priority: Priority;
-  createdAt: number;
+  createdAt: Date;
 
   constructor(data: IssueData) {
     this.id = data.id || uuidv4();
@@ -37,7 +37,7 @@ export class Issue implements IssueData {
     this.asignee = new User(data.asignee);
     this.comments = [];
     this.priority = data.priority;
-    this.createdAt = data.createdAt || Date.now().valueOf();
+    this.createdAt = data.createdAt || new Date();
 
     data.comments.forEach((comment) => {
       try {

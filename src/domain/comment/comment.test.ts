@@ -3,6 +3,7 @@ import { User, userMock1 } from "@domain/user";
 import { Comment } from "./comment";
 
 const user = new User(userMock1);
+const createdAt = new Date();
 
 describe("Comment entity module", () => {
   it("Change comment message", () => {
@@ -11,11 +12,13 @@ describe("Comment entity module", () => {
       id: "1",
       user: user,
       message: "Original message",
+      createdAt,
     });
     const expected = new Comment({
       id: "1",
       user: user,
       message,
+      createdAt,
     });
     reference.setMessage(message);
 

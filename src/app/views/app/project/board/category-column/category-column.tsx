@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import { Link } from "@remix-run/react";
 import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category, CategoryType } from "@domain/category";
@@ -59,7 +60,7 @@ export const CategoryColumn = observer(
         asignee: appStore.user,
         comments: [],
         priority: "low",
-        createdAt: new Date().valueOf(),
+        createdAt: new Date(),
       });
       projectStore.editingIssue = issue;
     };
@@ -133,7 +134,12 @@ export const CategoryColumn = observer(
               ) : (
                 filteredIssues().map((issue, index) => (
                   <li key={index} className="mb-2">
-                    <IssueCard issue={issue} handleDragging={handleDragging} />
+                    <Link to={`${issue.id}`}>
+                      <IssueCard
+                        issue={issue}
+                        handleDragging={handleDragging}
+                      />
+                    </Link>
                   </li>
                 ))
               )}

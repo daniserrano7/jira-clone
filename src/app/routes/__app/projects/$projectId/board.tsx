@@ -17,7 +17,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const projectData = await fetchProject(projectId);
+  const projectData: ProjectData | null = await fetchProject(projectId);
 
   if (!projectData) {
     throw new Response("Not Found", {
@@ -29,6 +29,14 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     console.log("PATH: ", url.pathname);
     return redirect(`/projects/${projectId}/board`);
   }
+
+  const mockIssue = projectData.categories[0].issues[0];
+  console.log("PROJECT ISSUE DATA: ", mockIssue);
+  console.log("ISSUE CREATED AT TYPE: ", typeof mockIssue.createdAt);
+  console.log(
+    "COMMENT CREATED AT TYPE: ",
+    typeof mockIssue.comments[0].createdAt
+  );
 
   return json<LoaderData>({ projectData });
 };
