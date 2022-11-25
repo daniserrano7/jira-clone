@@ -7,7 +7,7 @@ export const loader = async () => {
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   const errorMessage =
-    "The Server error page failed. Navigate to the board page";
+    "The Server error page failed. This is an example of a server error page (check network tab). Navigate to the board page";
 
   return (
     <div className="flex h-full items-center justify-center">

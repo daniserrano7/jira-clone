@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "@remix-run/react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useProjectStore } from "@app/views/app/project";
@@ -15,14 +14,6 @@ export const BoardView = (): JSX.Element => {
 
   return (
     <div className="box-border flex h-full flex-col bg-white">
-      <section>
-        <Link to="/projects" className="underline underline-offset-[3px]">
-          Projects
-        </Link>
-        <span className="mx-2">/</span>
-        <span>{projectStore.project.name}</span>
-        <h1 className="mt-4 mb-5 font-primary-black text-2xl">Sprint board</h1>
-      </section>
       <section className="flex items-center">
         <Search />
         <div className="my-0 mx-4 inline">

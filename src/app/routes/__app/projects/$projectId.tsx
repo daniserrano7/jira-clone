@@ -9,20 +9,18 @@ import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/views/app/project";
 
 type LoaderData = {
-  project: ProjectData;
-  section: string;
+  projectData: ProjectData;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const url = new URL(request.url);
   const projectId = params.projectId as ProjectId;
-  const projectSection = url.pathname.split("/").slice(-1)[0];
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const project = await fetchProject(projectId);
+  const projectData = await fetchProject(projectId);
 
-  if (!project) {
+  if (!projectData) {
     throw new Response("Not Found", {
       status: 404,
     });
@@ -33,10 +31,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     return redirect(`/projects/${projectId}/board`);
   }
 
-  return json<LoaderData>({
-    project: project,
-    section: projectSection,
-  });
+  return json<LoaderData>({ projectData });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -60,6 +55,6 @@ export function CatchBoundary() {
 }
 
 export default function ProjectRoute() {
-  const { project, section } = useLoaderData() as LoaderData;
-  return <ProjectView projectData={project} section={section} />;
+  const { projectData } = useLoaderData() as LoaderData;
+  return <ProjectView projectData={projectData} />;
 }
