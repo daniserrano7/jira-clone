@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Form } from "@remix-run/react";
+import { Form, useSubmit } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { User, userMock1 } from "@domain/user";
 import { Issue, IssueData } from "@domain/issue";
-import { Comment, CommentId } from "@domain/comment";
+import { CommentData, CommentId } from "@domain/comment";
 import { UserAvatar } from "@app/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -18,7 +18,10 @@ import { SelectAsignee } from "./select-asignee";
 export const IssuePanel = ({ issueData }: Props): JSX.Element => {
   const user = new User(userMock1);
   const issue = new Issue(issueData);
-  const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
+  const [comments, setComments] = useState<CommentData[]>(
+    issue?.comments || []
+  );
+  const submit = useSubmit();
 
   const applyChanges = () => {
     console.log("applyChanges");
@@ -26,6 +29,16 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
 
   const deleteIssue = () => {
     console.log("deleteIssue");
+  };
+
+  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.set("comments", JSON.stringify(comments));
+
+    submit(formData, {
+      method: "post",
+    });
   };
   // if (!issue) return <></>;
 
@@ -63,7 +76,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
 
   // const close = () => (projectStore.editingIssue = null);
 
-  const addComment = (newComment: Comment): void => {
+  const addComment = (newComment: CommentData): void => {
     setComments([...comments, newComment]);
   };
 
@@ -84,7 +97,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
             <PanelHeader id={issue.id} onDeleteIssue={deleteIssue} />
-            <Form method="post">
+            <Form method="post" onSubmit={handleSumbit}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">
@@ -134,6 +147,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
                       <UserAvatar {...user} tooltip={false} />
                       <p className="m-0">{user.name}</p>
                     </div>
+                    <input type="hidden" name="reporter" value={user.id} />
                   </div>
                 </section>
               </div>

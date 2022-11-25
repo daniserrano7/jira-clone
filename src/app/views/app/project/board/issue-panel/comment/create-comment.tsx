@@ -1,6 +1,6 @@
-import { Comment } from "@domain/comment";
+import { v4 as uuid } from "uuid";
+import { CommentData } from "@domain/comment";
 import { useAppStore } from "@app/views/app";
-import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 
@@ -8,22 +8,13 @@ export const CreateComment = ({
   addComment,
 }: CreateCommentProps): JSX.Element => {
   const { user } = useAppStore();
-  const projectStore = useProjectStore();
 
   const save = (message: string) => {
-    const issue = projectStore.editingIssue;
-
-    if (!issue) {
-      throw new Error("No issue to edit");
-    }
-
-    const comment = new Comment({
-      id: "1",
+    addComment({
+      id: uuid(),
       user,
       message,
     });
-    addComment(comment);
-    // addCommentDb(comment, issue.id);
   };
 
   return (
@@ -35,5 +26,5 @@ export const CreateComment = ({
 };
 
 interface CreateCommentProps {
-  addComment: (comment: Comment) => void;
+  addComment: (comment: CommentData) => void;
 }

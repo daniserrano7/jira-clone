@@ -3,6 +3,7 @@ import cx from "classix";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   const {
+    name,
     value,
     setValue,
     placeholder,
@@ -41,6 +42,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
   return (
     <div className="relative">
       <textarea
+        name={name}
         className={cx(
           "box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main outline-2 hover:bg-grey-300 focus:bg-white focus:outline-2 focus:outline-primary-main",
           textareaClassName
@@ -67,6 +69,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
 };
 
 interface TitleProps {
+  name: string;
   value: string;
   setValue: (value: string) => void;
   placeholder: string;

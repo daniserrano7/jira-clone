@@ -1,6 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
-import { Comment, CommentId } from "@domain/comment";
+import { User, userMock1 } from "@domain/user";
+import { CommentData, CommentId } from "@domain/comment";
 import { useAppStore } from "@app/views/app";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
@@ -19,12 +20,10 @@ export const ViewComment = ({
 
   const remove = () => {
     removeComment(comment.id);
-    // removeCommentDb(comment.id);
   };
 
   const save = (commentText: string): void => {
-    comment.setMessage(commentText);
-    // updateCommentDb(comment.id, commentText);
+    comment.message = commentText;
     setIsEditing(false);
   };
 
@@ -32,12 +31,12 @@ export const ViewComment = ({
     if (!comment.createdAt) return "DATE UNDEFINED";
 
     const locale = "en-US";
-    const date = comment.createdAt.toLocaleDateString(locale, {
+    const date = new Date(comment.createdAt).toLocaleDateString(locale, {
       day: "2-digit",
       month: "short",
       year: "numeric",
     });
-    const time = comment.createdAt.toLocaleTimeString(locale, {
+    const time = new Date(comment.createdAt).toLocaleTimeString(locale, {
       hour12: false,
       timeStyle: "short",
     });
@@ -70,7 +69,7 @@ export const ViewComment = ({
 
   return (
     <div className="flex gap-6">
-      <UserAvatar {...comment.user} tooltip={false} />
+      <UserAvatar {...new User(userMock1)} tooltip={false} />
       <div style={{ width: "100%" }}>
         <p className="mr-4 inline-block font-primary-bold">
           {comment.user.name}
@@ -94,6 +93,6 @@ export const ViewComment = ({
 };
 
 interface ViewCommentProps {
-  comment: Comment;
+  comment: CommentData;
   removeComment: (commentId: CommentId) => void;
 }

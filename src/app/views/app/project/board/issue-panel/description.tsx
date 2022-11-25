@@ -15,6 +15,7 @@ export const Description = ({ issue }: DescriptionProps): JSX.Element => {
   return (
     <div className="mt-1 [&_textarea]:font-primary-light [&_textarea]:leading-6 [&_p]:font-primary-light [&_p]:leading-6">
       <TextareaAutosize
+        name="description"
         value={description}
         setValue={updateDescription}
         placeholder="Add a description"

@@ -26,6 +26,7 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
   return (
     <div className="relative">
       <TextareaAutosize
+        name="title"
         value={title}
         setValue={updateTitle}
         placeholder="Write the title"

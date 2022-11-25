@@ -30,7 +30,11 @@ export const SelectAsignee = ({ issue }: Props): JSX.Element => {
   };
 
   return (
-    <Select.Root defaultValue={defaultValue.id} onValueChange={onValueChange}>
+    <Select.Root
+      name="asignee"
+      defaultValue={defaultValue.id}
+      onValueChange={onValueChange}
+    >
       <SelectTrigger>
         <div className="mr-2">
           <UserAvatar {...selectedValue} tooltip={false} size={32} />

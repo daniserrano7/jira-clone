@@ -25,7 +25,11 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
   };
 
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
+    <Select.Root
+      name="status"
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+    >
       <SelectTrigger
         className={cx(
           selectedValue === "IN_PROGRESS" &&

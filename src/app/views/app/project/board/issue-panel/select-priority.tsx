@@ -22,7 +22,11 @@ export const SelectPriority = ({ issue }: Props): JSX.Element => {
   };
 
   return (
-    <Select.Root defaultValue={defaultValue} onValueChange={onValueChange}>
+    <Select.Root
+      name="priority"
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+    >
       <SelectTrigger>
         <div className="mr-2">
           <PriorityIcon priority={selectValue} size={14} />

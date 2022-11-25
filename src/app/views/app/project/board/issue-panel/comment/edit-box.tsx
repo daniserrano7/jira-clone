@@ -1,6 +1,6 @@
 import { useState } from "react";
 import cx from "classix";
-import { TextareaAutosize } from "../../../../../../components/textarea-autosize";
+import { TextareaAutosize } from "@app/components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
 export const EditBox = ({
@@ -47,6 +47,7 @@ export const EditBox = ({
   return (
     <div className="w-full">
       <TextareaAutosize
+        name="comment"
         value={message}
         setValue={setMessage}
         placeholder={placeholder}
@@ -62,6 +63,7 @@ export const EditBox = ({
         className={cx("space-x-2 text-sm", isEditing ? "visible" : "hidden")}
       >
         <button
+          type="button"
           className={cx(
             buttonStyle,
             "bg-primary-main text-white hover:bg-primary-main-hover"
