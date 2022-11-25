@@ -1,11 +1,8 @@
-import {
-  redirect,
-  json,
-  ActionFunction,
-  LoaderFunction,
-} from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import { redirect, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { IssueData } from "@domain/issue";
+import invariant from "tiny-invariant";
+import { IssueData, IssueId } from "@domain/issue";
 import { createIssue, getIssue } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/views/app/project/board/issue-panel";
 
@@ -14,18 +11,16 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const { issueId } = params;
+  const issueId = params.issueId as IssueId;
 
-  // TODO: Return 404
-  if (!issueId) {
-    return redirect(`/projects/${params.projectId}/board`);
-  }
+  invariant(params.projectId, `params.projectId is required`);
 
   const issueData = await getIssue(issueId);
 
-  // TODO: Return 404
   if (!issueData) {
-    return null;
+    throw new Response("Not Found", {
+      status: 404,
+    });
   }
 
   return json<LoaderData>({ issueData });

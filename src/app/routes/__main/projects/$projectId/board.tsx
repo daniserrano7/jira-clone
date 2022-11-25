@@ -26,17 +26,8 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   }
 
   if (url.pathname === `/projects/${projectId}`) {
-    console.log("PATH: ", url.pathname);
     return redirect(`/projects/${projectId}/board`);
   }
-
-  const mockIssue = projectData.categories[0].issues[0];
-  console.log("PROJECT ISSUE DATA: ", mockIssue);
-  console.log("ISSUE CREATED AT TYPE: ", typeof mockIssue.createdAt);
-  console.log(
-    "COMMENT CREATED AT TYPE: ",
-    typeof mockIssue.comments[0].createdAt
-  );
 
   return json<LoaderData>({ projectData });
 };
