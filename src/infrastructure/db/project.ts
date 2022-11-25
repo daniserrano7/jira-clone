@@ -50,7 +50,27 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
   };
 };
 
-export const fetchProjects = async (): Promise<ProjectPreview[]> => {
+export const fetchProjectPreview = async (projectId: ProjectId): Promise<ProjectPreview | null> => {
+  const project = await db.project.findUnique({
+    where: { id: projectId },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+    },
+  });
+
+  if (!project) {
+    return null;
+  }
+
+  return {
+    ...project,
+    description: project.description || undefined, // To convert 'null' to 'undefined'
+  };
+};
+
+export const fetchProjectsPreview = async (): Promise<ProjectPreview[]> => {
   const projects = await db.project.findMany({
     select: {
       id: true,

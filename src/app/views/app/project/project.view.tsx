@@ -1,7 +1,5 @@
 import { Outlet, Link, useLocation } from "@remix-run/react";
-import { Project, ProjectData } from "@domain/project";
 import { Sidebar } from "@app/views/app/project/sidebar";
-import { ProjectContext, ProjectStore } from "./project.store";
 
 const sectionTitles: Record<string, string> = {
   board: "Board",
@@ -11,33 +9,34 @@ const sectionTitles: Record<string, string> = {
   "not-found": "Not Found",
 };
 
-export const ProjectView = ({ projectData }: Props): JSX.Element => {
-  const project = new Project(projectData);
+export const ProjectView = ({ name, description }: Props): JSX.Element => {
   const location = useLocation();
   const section = location.pathname.split("/").slice(-1)[0];
 
   return (
-    <ProjectContext.Provider value={new ProjectStore(project)}>
-      <div className="relative flex h-full flex-grow bg-white">
-        <Sidebar initialActiveItem={section} />
-        <div className="z-10 flex h-full w-full flex-grow flex-col py-6 px-5">
-          <section>
-            <Link to="/projects" className="underline underline-offset-[3px]">
-              Projects
-            </Link>
-            <span className="mx-2">/</span>
-            <span>{project.name}</span>
-            <h1 className="mt-4 mb-5 font-primary-black text-2xl">
-              {sectionTitles[section]}
-            </h1>
-          </section>
-          <Outlet />
-        </div>
+    <div className="relative flex h-full flex-grow bg-white">
+      <Sidebar
+        projectName={name}
+        projectDescription={description || "Description undefined"}
+      />
+      <div className="z-10 flex h-full w-full flex-grow flex-col py-6 px-5">
+        <section>
+          <Link to="/projects" className="underline underline-offset-[3px]">
+            Projects
+          </Link>
+          <span className="mx-2">/</span>
+          <span>{name}</span>
+          <h1 className="mt-4 mb-5 font-primary-black text-2xl">
+            {sectionTitles[section]}
+          </h1>
+        </section>
+        <Outlet />
       </div>
-    </ProjectContext.Provider>
+    </div>
   );
 };
 
 interface Props {
-  projectData: ProjectData;
+  name: string;
+  description?: string;
 }

@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { NavLink } from "@remix-run/react";
 import cx from "classix";
-import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
-export const Sidebar = (): JSX.Element => {
+export const Sidebar = (props: Props): JSX.Element => {
+  const { projectName, projectDescription } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
-  const projectStore = useProjectStore();
-  const projectName = projectStore.project.name || "Project Name";
-  const projectDescription = projectStore.project.description || "Description";
 
   return (
     <aside className="relative z-0 flex">
@@ -73,6 +69,11 @@ export const Sidebar = (): JSX.Element => {
     </aside>
   );
 };
+
+interface Props {
+  projectName: string;
+  projectDescription: string;
+}
 
 const navItems: NavItemProps[] = [
   {

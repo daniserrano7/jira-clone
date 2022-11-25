@@ -3,7 +3,7 @@ import cx from "classix";
 import { ProjectPreview } from "@domain/project";
 import { Icon } from "@app/components/icon";
 
-export const ProjectsView = ({ projects }: Props): JSX.Element => {
+export const ProjectsView = ({ projectsPreview }: Props): JSX.Element => {
   return (
     <div className="p-6">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
@@ -14,7 +14,7 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
         <span className="ml-2 leading-4">Add Project</span>
       </button>
       <ul className="mt-4 w-[400px] space-y-6">
-        {projects.map((project) => (
+        {projectsPreview.map((project) => (
           <li key={project.id}>
             <Link
               to={project.id}
@@ -43,5 +43,5 @@ export const ProjectsView = ({ projects }: Props): JSX.Element => {
 };
 
 interface Props {
-  projects: ProjectPreview[];
+  projectsPreview: ProjectPreview[];
 }
