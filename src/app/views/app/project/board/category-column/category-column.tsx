@@ -134,7 +134,7 @@ export const CategoryColumn = observer(
               ) : (
                 filteredIssues().map((issue, index) => (
                   <li key={index} className="mb-2">
-                    <Link to={`${issue.id}`}>
+                    <Link to={`issue/${issue.id}`}>
                       <IssueCard
                         issue={issue}
                         handleDragging={handleDragging}

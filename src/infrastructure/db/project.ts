@@ -1,9 +1,9 @@
-import { Project as ProjectDB } from "@prisma/client";
 import { ProjectData, ProjectPreview, ProjectId } from "@domain/project";
 import { db } from "./db.server";
+import { dnull } from "@infrastructure/utils/dnull";
 
 export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | null> => {
-  const project: ProjectDB | null = await db.project.findUnique({
+  const project = await db.project.findUnique({
     where: {
       id: projectId,
     },
@@ -42,12 +42,10 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
     return null;
   }
 
-  return {
-    categories: [],
-    users: [],
-    ...project,
-    description: project.description || undefined, // To convert 'null' to 'undefined'
-  };
+  // TODO: fix this
+  // Dificult to type cast all nested objects
+  // The error comes from ENUMS (categoryType, priority)
+  return dnull(project) as unknown as ProjectData;
 };
 
 export const fetchProjectPreview = async (projectId: ProjectId): Promise<ProjectPreview | null> => {
