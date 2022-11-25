@@ -83,11 +83,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
             onPointerDownOutside={applyChanges}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
-            <PanelHeader
-              id={issue.id}
-              onDeleteIssue={deleteIssue}
-              onClose={applyChanges}
-            />
+            <PanelHeader id={issue.id} onDeleteIssue={deleteIssue} />
             <Form method="post">
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">

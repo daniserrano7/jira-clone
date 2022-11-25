@@ -1,3 +1,4 @@
+import { Link, useLocation } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import cx from "classix";
@@ -7,8 +8,10 @@ import { Icon } from "@app/components/icon";
 export const PanelHeader = ({
   id,
   onDeleteIssue,
-  onClose,
 }: PanelHeaderProps): JSX.Element => {
+  const location = useLocation();
+  const previousUrl = location.pathname.split("/issue")[0];
+
   return (
     <div className="flex">
       <span className="flex flex-grow items-center">
@@ -18,12 +21,11 @@ export const PanelHeader = ({
         <span className="ml-1 text-font-light text-opacity-80">{id}</span>
       </span>
       <DeleteIssueModalDialog action={onDeleteIssue} />
-      <Dialog.Close
-        onClick={onClose}
-        className="ml-3 flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300"
-      >
-        <Icon name="close" size={24} />
-      </Dialog.Close>
+      <Link to={previousUrl}>
+        <Dialog.Close className="ml-3 flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300">
+          <Icon name="close" size={24} />
+        </Dialog.Close>
+      </Link>
     </div>
   );
 };
@@ -31,7 +33,6 @@ export const PanelHeader = ({
 interface PanelHeaderProps {
   id: IssueId;
   onDeleteIssue: () => void;
-  onClose: () => void;
 }
 
 const DeleteIssueModalDialog = ({

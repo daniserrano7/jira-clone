@@ -20,10 +20,8 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
   const [selectedValue, setSelectedValue] =
     useState<CategoryType>(defaultValue);
 
-  const onValueChange = (value: string): void => {
-    const categoryId = value as CategoryType;
-    issue.setCategoryId(categoryId);
-    setSelectedValue(categoryId);
+  const onValueChange = (value: CategoryType): void => {
+    setSelectedValue(value);
   };
 
   return (
@@ -43,7 +41,7 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
         <Select.ScrollUpButton />
         <Select.Viewport>
           {categories.map((category, index) => (
-            <SelectItem key={index} value={category.id}>
+            <SelectItem key={index} value={category.type}>
               <SelectItemIndicator />
               <span
                 className={cx(
