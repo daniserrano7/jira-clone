@@ -7,6 +7,7 @@ export interface CommentData {
   user: UserData;
   message: string;
   createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class Comment implements CommentData {
@@ -14,11 +15,13 @@ export class Comment implements CommentData {
   user: User;
   message: string;
   createdAt: Date;
+  updatedAt: Date;
 
   constructor(data: CommentData) {
     this.id = data.id || uuidv4();
     this.message = data.message;
     this.createdAt = data.createdAt || new Date();
+    this.updatedAt = data.updatedAt || new Date();
 
     try {
       this.user = new User(data.user);

@@ -8,6 +8,8 @@ import {
   doneIssuesMock2,
 } from "@domain/issue";
 
+const createdAt = new Date();
+const updatedAt = new Date();
 const ids1 = [
   "1e8877a7-91dc-46de-bce0-f077ad922fc8",
   "46964edd-62e0-4c2f-90bf-e275ee087433",
@@ -25,27 +27,35 @@ const issuesMock2 = [todoIssuesMock2, inProgressIssuesMock2, doneIssuesMock2];
 export const categoriesMock1: CategoryData[] = categoryTypes.map((categoryType, index) => {
   const id = ids1[index];
   const name = categoryTypeDict[categoryType];
+  const type = categoryType;
+  const order = index;
   const issues = issuesMock1[index];
 
   return {
     id,
-    type: categoryType,
     name,
     issues,
-    order: index,
+    type,
+    order,
+    createdAt,
+    updatedAt,
   };
 });
 
 export const categoriesMock2: CategoryData[] = categoryTypes.map((categoryType, index) => {
   const id = ids2[index];
   const name = categoryTypeDict[categoryType];
+  const type = categoryType;
+  const order = index;
   const issues = issuesMock2[index];
 
   return {
     id,
-    type: categoryType,
     name,
+    type,
     issues,
-    order: index,
+    order,
+    createdAt,
+    updatedAt,
   };
 });

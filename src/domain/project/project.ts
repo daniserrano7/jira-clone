@@ -9,6 +9,8 @@ export interface ProjectData {
   description?: string;
   users: UserData[];
   categories: CategoryData[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class Project {
@@ -17,6 +19,8 @@ export class Project {
   description: string;
   users: User[];
   categories: Category[];
+  createdAt: Date;
+  updatedAt: Date;
 
   constructor(data: ProjectData) {
     this.id = data.id || uuidv4();
@@ -24,6 +28,8 @@ export class Project {
     this.description = data.description || "";
     this.users = [];
     this.categories = [];
+    this.createdAt = data.createdAt || new Date();
+    this.updatedAt = data.updatedAt || new Date();
 
     data.users.forEach((user) => {
       try {

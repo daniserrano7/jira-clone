@@ -16,6 +16,8 @@ export interface CategoryData {
   name: string;
   issues: IssueData[];
   order: number;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export class Category implements CategoryData {
@@ -24,6 +26,8 @@ export class Category implements CategoryData {
   name: string;
   issues: Issue[];
   order: number;
+  createdAt: Date;
+  updatedAt: Date;
 
   constructor(data: CategoryData) {
     this.id = data.id;
@@ -31,6 +35,8 @@ export class Category implements CategoryData {
     this.name = data.name;
     this.issues = [];
     this.order = data.order;
+    this.createdAt = data.createdAt || new Date();
+    this.updatedAt = data.updatedAt || new Date();
 
     data.issues.forEach((issue) => {
       try {

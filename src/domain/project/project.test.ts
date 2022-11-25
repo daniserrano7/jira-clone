@@ -6,6 +6,8 @@ import { Project } from "./project";
 describe("Project entity module", () => {
   const mockCategory = categoriesMock1[0];
   const projectId = "1";
+  const createdAt = new Date();
+  const updatedAt = new Date();
 
   it("Set project name", () => {
     const name = "Project name test";
@@ -14,12 +16,16 @@ describe("Project entity module", () => {
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     const expected = new Project({
       id: projectId,
       name,
       users: [userMock1],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     reference.setName(name);
 
@@ -32,12 +38,16 @@ describe("Project entity module", () => {
       name: "Original name",
       users: [],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     const expected = new Project({
       id: projectId,
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     reference.addUser(new User(userMock1));
 
@@ -51,12 +61,16 @@ describe("Project entity module", () => {
       name: "Original name",
       users: [user],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     const expected = new Project({
       id: projectId,
       name: "Original name",
       users: [],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     const removedUser = reference.removeUser(user.id);
 
@@ -70,6 +84,8 @@ describe("Project entity module", () => {
       name: "Original name",
       users: [userMock1],
       categories: [mockCategory],
+      createdAt,
+      updatedAt,
     });
     const removedUser = reference.removeUser("abcxyz");
 

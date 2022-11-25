@@ -2,11 +2,14 @@ import { userMock1, userMock2 } from "@domain/user";
 import { CommentData } from "./comment";
 
 const createdAt = new Date();
+const updatedAt = new Date();
+
 export const commentMock1: CommentData = {
   id: "92149ee5-0459-4286-8323-1542e1295154",
   user: userMock1,
   message: "Ok, I'm on it",
   createdAt,
+  updatedAt,
 };
 
 export const commentMock2: CommentData = {
@@ -14,6 +17,7 @@ export const commentMock2: CommentData = {
   user: userMock2,
   message: "This should be implemented ASAP",
   createdAt,
+  updatedAt,
 };
 
 export const commentMock3: CommentData = {
@@ -22,4 +26,5 @@ export const commentMock3: CommentData = {
   message:
     "Adipisicing irure non voluptate id magna enim minim labore. Lorem deserunt velit sit ea ullamco laborum laboris culpa laborum. Minim cillum et dolore ipsum occaecat commodo. Sint esse sit consequat aute velit duis. Id et proident aute velit consectetur Lorem velit aliqua id. Duis sit proident veniam qui aliquip aute aliquip ad do. Duis deserunt veniam ipsum quis cupidatat voluptate dolor ullamco nisi duis occaecat ex non ad.",
   createdAt,
+  updatedAt,
 };

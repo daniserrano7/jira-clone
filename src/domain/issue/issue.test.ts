@@ -5,7 +5,7 @@ import { Issue } from "./issue";
 
 describe("Issue entity module", () => {
   const issueId = "1";
-  const createdAt = new Date().valueOf();
+  const createdAt = new Date();
   const user1 = new User(userMock1);
   const user2 = new User(userMock2);
   const commentMock = new Comment(commentMock1);
