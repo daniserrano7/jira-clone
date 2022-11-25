@@ -5,8 +5,6 @@ const sectionTitles: Record<string, string> = {
   board: "Board",
   analytics: "Analytics",
   backlog: "Backlog",
-  "server-error": "Server Error",
-  "not-found": "Not Found",
 };
 
 export const ProjectView = ({ name, description }: Props): JSX.Element => {
