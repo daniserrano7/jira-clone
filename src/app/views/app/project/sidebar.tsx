@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Link } from "@remix-run/react";
+import { NavLink } from "@remix-run/react";
 import cx from "classix";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
-export const Sidebar = ({ initialActiveItem }: Props): JSX.Element => {
-  const [activeItem, setActiveItem] = useState(initialActiveItem);
+export const Sidebar = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleSidebar = () => {
@@ -43,18 +42,13 @@ export const Sidebar = ({ initialActiveItem }: Props): JSX.Element => {
         <section className="p-3">
           <nav>
             {navItems.map(({ href, name, icon, disabled }) => (
-              <Link
+              <NavItem
                 key={href}
-                to={disabled ? "#" : href}
-                onClick={() => !disabled && setActiveItem(href)}
-              >
-                <NavItem
-                  name={name}
-                  icon={icon}
-                  disabled={disabled}
-                  active={activeItem === href}
-                />
-              </Link>
+                href={href}
+                icon={icon}
+                name={name}
+                disabled={disabled}
+              />
             ))}
           </nav>
         </section>
@@ -80,58 +74,50 @@ export const Sidebar = ({ initialActiveItem }: Props): JSX.Element => {
   );
 };
 
-interface Props {
-  initialActiveItem: string;
-}
-
-const navItems: NavItemData[] = [
+const navItems: NavItemProps[] = [
   {
     href: "board",
-    name: "Board",
     icon: "board",
+    name: "Board",
   },
   {
     href: "analytics",
-    name: "Analytics",
     icon: "analytics",
+    name: "Analytics",
   },
   {
     href: "backlog",
-    name: "Backlog",
     icon: "backlog",
+    name: "Backlog",
     disabled: true,
   },
   {
     href: "server-error",
-    name: "Server error",
     icon: "server-error",
+    name: "Server error",
   },
   {
     href: "not-found",
-    name: "Not found",
     icon: "not-found",
+    name: "Not found",
   },
 ];
 
-type NavItemData = NavItemProps & {
-  href: string;
-};
-
-const NavItem = ({
-  icon,
-  name,
-  disabled,
-  active,
-}: NavItemProps): JSX.Element => {
+const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
   return (
-    <div
-      className={cx(
-        "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
-        active ? "bg-grey-300 text-primary-main" : "text-font-light",
-        disabled
-          ? "!cursor-not-allowed hover:bg-transparent"
-          : "hover:bg-grey-300"
-      )}
+    <NavLink
+      to={disabled ? "#" : href}
+      className={({ isActive }) =>
+        cx(
+          "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
+          isActive && !disabled
+            ? "bg-grey-300 text-primary-main"
+            : "text-font-light",
+          disabled
+            ? "!cursor-not-allowed hover:bg-transparent"
+            : "hover:bg-grey-300"
+        )
+      }
     >
       <Icon name={icon} />
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
@@ -143,13 +129,13 @@ const NavItem = ({
       >
         Not implemented
       </span>
-    </div>
+    </NavLink>
   );
 };
 
 export interface NavItemProps {
+  href: string;
   icon: IconName;
   name: string;
   disabled?: boolean;
-  active?: boolean;
 }
