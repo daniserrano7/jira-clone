@@ -16,7 +16,7 @@ export const projectMock2: ProjectData = {
   id: "second-project",
   name: "Second project",
   description:
-    "For routing purposes. Super long description to test how it clamps on project card in the projects page",
+    "Super long description to test how it clamps on project card in the projects page and in the project sidebar",
   users: users.slice(0, 3), // Only the first 3 users
   categories: categoriesMock2,
 };
