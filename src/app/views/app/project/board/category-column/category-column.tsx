@@ -4,7 +4,6 @@ import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category, CategoryType } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { useAppStore } from "@app/views/app";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
 import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
@@ -14,7 +13,6 @@ import { priorities } from "@domain/priority";
 export const CategoryColumn = observer(
   (props: CategoryColumnProps): JSX.Element => {
     const { category, isDragging, handleDragging } = props;
-    const appStore = useAppStore();
     const projectStore = useProjectStore();
     const searchFilter = projectStore.filters.search.toLowerCase();
     const emptyCategory = category.issues.length === 0;
@@ -50,20 +48,20 @@ export const CategoryColumn = observer(
       // updateIssueDb(issue);
     };
 
-    const createCategoryIssue = () => {
-      const issue = new Issue({
-        id: "1",
-        categoryType: category.type,
-        name: "",
-        description: "",
-        reporter: appStore.user,
-        asignee: appStore.user,
-        comments: [],
-        priority: "low",
-        createdAt: new Date(),
-      });
-      projectStore.editingIssue = issue;
-    };
+    // const createCategoryIssue = () => {
+    //   const issue = new Issue({
+    //     id: "1",
+    //     categoryType: category.type,
+    //     name: "",
+    //     description: "",
+    //     reporter: appStore.user,
+    //     asignee: appStore.user,
+    //     comments: [],
+    //     priority: "low",
+    //     createdAt: new Date(),
+    //   });
+    //   projectStore.editingIssue = issue;
+    // };
 
     const filteredIssues = (): Issue[] =>
       category.issues
@@ -119,7 +117,7 @@ export const CategoryColumn = observer(
             {!emptyCategory && <span>( {category.issues.length} )</span>}
           </span>
           <button
-            onClick={createCategoryIssue}
+            // onClick={createCategoryIssue}
             className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
           >
             <Icon name="add" size={24} />

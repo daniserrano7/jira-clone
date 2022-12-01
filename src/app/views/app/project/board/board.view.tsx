@@ -8,7 +8,6 @@ import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
 import { ProjectContext, ProjectStore } from "../project.store";
-// import { IssueEditPanel } from "./issue-panel";
 
 export const BoardView = ({ projectData }: Props): JSX.Element => {
   const project = new Project(projectData);
@@ -17,13 +16,10 @@ export const BoardView = ({ projectData }: Props): JSX.Element => {
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
       <div className="box-border flex h-full flex-col bg-white">
-        {/* <Form method="post">
-          <button type="submit">Submit</button>
-        </Form> */}
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">
-            <UserAvatarList />
+            <UserAvatarList users={project.users} />
           </div>
           <div className="inline">
             <SelectSort />

@@ -3,20 +3,13 @@ import { Issue } from "@domain/issue";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
 import { useDrag } from "react-dnd";
-import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
 import { PriorityIcon } from "@app/components/priority-icon";
 
 export const IssueCard = observer(
   ({ issue, handleDragging }: IssueCardProps): JSX.Element => {
-    const projectStore = useProjectStore();
-
     // TODO: Reduce the number of re-renders
     const issueIdPrefix = issue.id.split("-")[0];
-
-    const openIssue = () => {
-      projectStore.editingIssue = issue;
-    };
 
     const [{ isDragging }, drag] = useDrag(
       () => ({
@@ -37,9 +30,8 @@ export const IssueCard = observer(
     }, [isDragging, handleDragging]);
 
     return (
-      <button
+      <div
         ref={drag}
-        onClick={openIssue}
         className={cx(
           "flex w-full cursor-pointer flex-col rounded border-none bg-white p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-primary-light",
           isDragging && "opacity-50"
@@ -57,7 +49,7 @@ export const IssueCard = observer(
           </span>
           <PriorityIcon priority={issue.priority} size={14} />
         </div>
-      </button>
+      </div>
     );
   }
 );
