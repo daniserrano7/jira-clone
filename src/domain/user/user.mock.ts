@@ -1,6 +1,6 @@
-import { UserData } from "./user";
+import { User } from "./user";
 
-export const usersMock: UserData[] = [
+export const usersMock: User[] = [
   {
     id: "1c6855bf-9a0f-4a45-9641-7b7c7855c570",
     name: "Daniel Serrano",

@@ -1,4 +1,4 @@
-import { UserData, UserId } from "../user";
+import { User, UserId } from "../user";
 import { CategoryType } from "@domain/category";
 import { Comment } from "../comment";
 import { Priority } from "../priority";
@@ -9,8 +9,8 @@ export interface Issue {
   name: string;
   description?: string;
   categoryType?: CategoryType;
-  reporter: UserData;
-  asignee: UserData;
+  reporter: User;
+  asignee: User;
   comments: Comment[];
   priority: Priority;
   createdAt?: number;

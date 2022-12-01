@@ -1,26 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
-
 export type UserId = string;
-export type UserData = {
+export type User = {
   id: UserId;
   name: string;
   image?: string;
   color?: string;
 };
-
-export class User implements UserData {
-  id: UserId;
-  name: string;
-  image?: string;
-  color: string;
-
-  constructor(data: UserData) {
-    this.id = data.id || uuidv4();
-    this.name = data.name;
-    this.image = data.image;
-    this.color = data.color || getRandomPastelColor();
-  }
-}
 
 export const getRandomPastelColor = () => {
   const h = 360 * Math.random();

@@ -1,4 +1,4 @@
-import { UserData } from "@domain/user";
+import { User } from "@domain/user";
 import { Category } from "@domain/category";
 
 export type ProjectId = string;
@@ -6,7 +6,7 @@ export interface Project {
   id: ProjectId;
   name: string;
   description?: string;
-  users: UserData[];
+  users: User[];
   categories: Category[];
   createdAt?: Date;
   updatedAt?: Date;
