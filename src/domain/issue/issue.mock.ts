@@ -1,14 +1,14 @@
 import { User, userMock1, userMock2 } from "@domain/user";
 import { commentMock1, commentMock2, commentMock3 } from "@domain/comment";
-import { IssueData } from "./issue";
+import { Issue } from "./issue";
 
 const user1 = new User(userMock1);
 const user2 = new User(userMock2);
-const createdAt = new Date();
-const updatedAt = new Date();
+const createdAt = Date.now();
+const updatedAt = Date.now();
 
 // PROJECT 1
-export const todoIssuesMock1: IssueData[] = [
+export const todoIssuesMock1: Issue[] = [
   {
     id: "ea07f7ca-13e9-4143-b623-f5713adef81a",
     name: "Add and display issue timestamps",
@@ -62,7 +62,7 @@ export const todoIssuesMock1: IssueData[] = [
   },
 ];
 
-export const inProgressIssuesMock1: IssueData[] = [
+export const inProgressIssuesMock1: Issue[] = [
   {
     id: "812664aa-82be-418b-9ba3-1d7acdcd6be2",
     name: "Update and improve Github repo README",
@@ -77,7 +77,7 @@ export const inProgressIssuesMock1: IssueData[] = [
   },
 ];
 
-export const doneIssuesMock1: IssueData[] = [
+export const doneIssuesMock1: Issue[] = [
   {
     id: "109c6972-962e-42e5-8832-f03a4d72748a",
     name: "Implement IndexedDB local database",
@@ -118,7 +118,7 @@ export const doneIssuesMock1: IssueData[] = [
 ];
 
 // PROJECT 2
-export const todoIssuesMock2: IssueData[] = [
+export const todoIssuesMock2: Issue[] = [
   {
     id: "f3efefcf-7859-4241-8b03-4ae815183355",
     name: "Add and display issue timestamps",
@@ -147,7 +147,7 @@ export const todoIssuesMock2: IssueData[] = [
   },
 ];
 
-export const inProgressIssuesMock2: IssueData[] = [
+export const inProgressIssuesMock2: Issue[] = [
   {
     id: "812664aa-82be-418b-9ba3-1d7acdcd6be2",
     name: "Add dark mode",
@@ -162,4 +162,4 @@ export const inProgressIssuesMock2: IssueData[] = [
   },
 ];
 
-export const doneIssuesMock2: IssueData[] = [];
+export const doneIssuesMock2: Issue[] = [];
