@@ -90,7 +90,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal>
-        <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 px-[40px]">
+        <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
           <Dialog.Content
             onEscapeKeyDown={applyChanges}
             onPointerDownOutside={applyChanges}

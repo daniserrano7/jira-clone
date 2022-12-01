@@ -16,12 +16,16 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
               id: true,
               name: true,
               description: true,
-              categoryType: true,
               priority: true,
               asignee: true,
               reporter: true,
               createdAt: true,
               updatedAt: true,
+              category: {
+                select: {
+                  type: true,
+                },
+              },
               comments: {
                 select: {
                   id: true,
@@ -41,6 +45,15 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
   if (!project) {
     return null;
   }
+
+  project.categories.forEach((category) => {
+    category.issues.forEach((issue) => {
+      // @ts-expect-error - To adjust Prisma schema to the domain model
+      issue.categoryType = issue.category.type;
+      // @ts-expect-error - To adjust Prisma schema to the domain model
+      delete issue.category;
+    });
+  });
 
   // TODO: fix this
   // Dificult to type cast all nested objects

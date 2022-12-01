@@ -70,7 +70,6 @@ const createOrUpdateIssue = async (
     id: issueData.id,
     name: issueData.name,
     description: issueData.description,
-    categoryType: issueData.categoryType,
     category: { connect: { id: categoryId } },
     asignee: { connect: { id: issueData.asignee.id } },
     reporter: { connect: { id: issueData.reporter.id } },
@@ -135,8 +134,3 @@ const seedDb = async () => {
 };
 
 seedDb();
-
-// const userDbToUserData = (userDb: UserDB): UserData => ({
-//   ...userDb,
-//   image: userDb.image || undefined,
-// });

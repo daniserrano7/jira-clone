@@ -3,7 +3,7 @@ import { redirect, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { UserId } from "@domain/user";
-import { CategoryId, CategoryType } from "@domain/category";
+import { CategoryId } from "@domain/category";
 import { IssueData, IssueId } from "@domain/issue";
 import { CommentData } from "@domain/comment";
 import { Priority } from "@domain/priority";
@@ -35,13 +35,11 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  // TODO: get categoryId from issue panel status select
-  const categoryId = "1e8877a7-91dc-46de-bce0-f077ad922fc8" as CategoryId;
   const id = params.issueId as IssueId;
   const formData = await request.formData();
   const name = formData.get("title") as string;
   const description = formData.get("description") as string;
-  const categoryType = formData.get("status") as CategoryType;
+  const categoryId = formData.get("status") as CategoryId;
   const priority = formData.get("priority") as Priority;
   const asigneeId = formData.get("asignee") as UserId;
   const reporterId = formData.get("reporter") as UserId;
@@ -53,7 +51,6 @@ export const action: ActionFunction = async ({ request, params }) => {
     name,
     description,
     categoryId,
-    categoryType,
     priority,
     asigneeId,
     reporterId,

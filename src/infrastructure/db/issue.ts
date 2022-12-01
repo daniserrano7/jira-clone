@@ -1,34 +1,44 @@
 import { Prisma } from "@prisma/client";
-import { UserId } from "@domain/user";
+import { User, UserId } from "@domain/user";
 import { CategoryType, CategoryId } from "@domain/category";
-import { IssueId, IssueData } from "@domain/issue";
+import { IssueId } from "@domain/issue";
 import { Priority } from "@domain/priority";
-import { CommentData } from "@domain/comment";
+import { CommentData, CommentId } from "@domain/comment";
 import { dnull } from "@infrastructure/utils/dnull";
 import { db } from "./db.server";
 
-export const getIssue = async (issueId: IssueId): Promise<IssueData | null> => {
+type GetIssue = {
+  id: IssueId;
+  name: string;
+  description?: string;
+  categoryId: CategoryId;
+  categoryType: CategoryType;
+  priority: Priority;
+  asignee: User;
+  reporter: User;
+  createdAt: Date;
+  updatedAt: Date;
+  comments: {
+    id: CommentId;
+    message: string;
+    user: User;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+};
+
+export const getIssue = async (issueId: IssueId): Promise<GetIssue | null> => {
   const issueDb = await db.issue.findUnique({
     where: {
       id: issueId,
     },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      categoryType: true,
-      priority: true,
+    include: {
       asignee: true,
       reporter: true,
-      createdAt: true,
-      updatedAt: true,
+      category: true,
       comments: {
-        select: {
-          id: true,
-          message: true,
+        include: {
           user: true,
-          createdAt: true,
-          updatedAt: true,
         },
       },
     },
@@ -38,43 +48,34 @@ export const getIssue = async (issueId: IssueId): Promise<IssueData | null> => {
     return null;
   }
 
-  const categoryType = issueDb.categoryType as CategoryType;
-  const priority = issueDb.priority as Priority;
+  const issue: GetIssue = {
+    id: issueDb.id,
+    name: issueDb.name,
+    description: issueDb.description || undefined,
+    categoryId: issueDb.category.type,
+    categoryType: issueDb.category.type as CategoryType,
+    priority: issueDb.priority as Priority,
+    asignee: dnull(issueDb.asignee),
+    reporter: dnull(issueDb.reporter),
+    comments: issueDb.comments.map((comment) => ({
+      ...comment,
+      user: dnull(comment.user),
+    })),
+    createdAt: issueDb.createdAt,
+    updatedAt: issueDb.updatedAt,
+  };
 
-  // TODO: fix this
-  // Dificult to type cast all nested objects
-  // The error comes from user image and date functions
-  return dnull({
-    ...issueDb,
-    categoryType,
-    priority,
-  }) as unknown as IssueData;
+  return issue;
 };
 
 export type CreateIssueInputData = {
   name: string;
   description: string;
   categoryId: CategoryId;
-  categoryType: CategoryType;
   priority: Priority;
   asigneeId: UserId;
   reporterId: UserId;
   comments: CommentData[];
-};
-
-export const createIssue = async () => {
-  const issueNumber = Math.floor(Math.random() * 1000);
-  await db.issue.create({
-    data: {
-      name: `Issue ${issueNumber}`,
-      description: "Issue 1 description",
-      categoryId: "1e8877a7-91dc-46de-bce0-f077ad922fc8",
-      categoryType: "TODO",
-      priority: "low",
-      asigneeId: "1c6855bf-9a0f-4a45-9641-7b7c7855c570",
-      reporterId: "1c6855bf-9a0f-4a45-9641-7b7c7855c570",
-    },
-  });
 };
 
 export type UpdateIssueInputData = CreateIssueInputData & { id: IssueId };

@@ -43,20 +43,19 @@ model Category {
 }
 
 model Issue {
-  id           String    @id @default(uuid())
-  category     Category  @relation(fields: [categoryId], references: [id])
-  categoryId   String
-  name         String
-  description  String?
-  categoryType String    @default("TODO") // TODO: apply check constraint to emulate enum
-  priority     String    @default("low") // TODO: apply check constraint to emulate enum
-  reporter     User      @relation("issue_reporter", fields: [reporterId], references: [id])
-  reporterId   String
-  asignee      User      @relation("issue_assignee", fields: [asigneeId], references: [id])
-  asigneeId    String
-  comments     Comment[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id          String    @id @default(uuid())
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  name        String
+  description String?
+  priority    String    @default("low") // TODO: apply check constraint to emulate enum
+  reporter    User      @relation("issue_reporter", fields: [reporterId], references: [id])
+  reporterId  String
+  asignee     User      @relation("issue_assignee", fields: [asigneeId], references: [id])
+  asigneeId   String
+  comments    Comment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Comment {

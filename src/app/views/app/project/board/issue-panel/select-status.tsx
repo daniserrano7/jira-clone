@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
-import { CategoryType } from "@domain/category";
+import { CategoryId, CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { useProjectStore } from "@app/views/app/project";
 import {
@@ -13,14 +13,24 @@ import {
 } from "@app/components/select";
 
 export const SelectStatus = ({ issue }: Props): JSX.Element => {
-  const defaultValue = issue.categoryType;
   const projectStore = useProjectStore();
   const categories = projectStore.project.categories;
+  // TODO: Get category id from issue
+  const defaultCategory = categories.find(
+    (category) => category.type === issue.categoryId
+  );
 
-  const [selectedValue, setSelectedValue] =
-    useState<CategoryType>(defaultValue);
+  if (!defaultCategory) {
+    throw new Error("No default category found");
+  }
 
-  const onValueChange = (value: CategoryType): void => {
+  const defaultValue = defaultCategory.id;
+  const [selectedValue, setSelectedValue] = useState<CategoryId>(defaultValue);
+  const selectedStatus = categories.find(
+    (category) => category.id === selectedValue
+  )?.type as CategoryType;
+
+  const onValueChange = (value: CategoryId): void => {
     setSelectedValue(value);
   };
 
@@ -32,9 +42,9 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
     >
       <SelectTrigger
         className={cx(
-          selectedValue === "IN_PROGRESS" &&
+          selectedStatus === "IN_PROGRESS" &&
             "!bg-primary-main !text-white hover:!bg-primary-main-hover",
-          selectedValue === "DONE" &&
+          selectedStatus === "DONE" &&
             "!bg-success-main !text-white hover:!bg-sucess-hover"
         )}
       >
@@ -45,15 +55,15 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
         <Select.ScrollUpButton />
         <Select.Viewport>
           {categories.map((category, index) => (
-            <SelectItem key={index} value={category.type}>
+            <SelectItem key={index} value={category.id}>
               <SelectItemIndicator />
               <span
                 className={cx(
                   "flex w-fit items-center gap-2 rounded p-0.5 text-2xs uppercase",
-                  category.id === "TODO" && "bg-grey-300 text-font-grey",
-                  category.id === "IN_PROGRESS" &&
+                  category.type === "TODO" && "bg-grey-300 text-font-grey",
+                  category.type === "IN_PROGRESS" &&
                     "bg-primary-light text-primary-main",
-                  category.id === "DONE" &&
+                  category.type === "DONE" &&
                     "bg-font-success-light text-font-success-main"
                 )}
               >

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { User, UserData, UserId } from "../user";
-import { CategoryType } from "@domain/category";
+import { CategoryId, CategoryType } from "@domain/category";
 import { Comment, CommentData, CommentId } from "../comment";
 import { Priority } from "../priority";
 
@@ -9,6 +9,7 @@ export interface IssueData {
   id: UserId;
   name: string;
   description?: string;
+  categoryId: CategoryId;
   categoryType?: CategoryType;
   reporter: UserData;
   asignee: UserData;
@@ -22,6 +23,7 @@ export class Issue implements IssueData {
   readonly id: IssueId;
   name: string;
   description: string;
+  categoryId: CategoryId;
   categoryType: CategoryType;
   reporter: User;
   asignee: User;
@@ -34,6 +36,7 @@ export class Issue implements IssueData {
     this.id = data.id || uuidv4();
     this.name = data.name;
     this.description = data.description || "";
+    this.categoryId = data.categoryId;
     this.categoryType = data.categoryType || "TODO";
     this.reporter = new User(data.reporter);
     this.asignee = new User(data.asignee);
