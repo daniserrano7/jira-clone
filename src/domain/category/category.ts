@@ -1,3 +1,5 @@
+import { Issue } from "@domain/issue";
+
 export type CategoryId = string;
 export type CategoryType = typeof categoryTypes[number];
 export const categoryTypes = ["TODO", "IN_PROGRESS", "DONE"] as const;
@@ -8,11 +10,11 @@ export const categoryTypeDict: Record<CategoryType, string> = {
   DONE: "Done",
 };
 
-export interface Category<IssueVariant> {
+export interface Category {
   id: CategoryId;
   type: CategoryType;
   name: string;
-  issues: IssueVariant[];
+  issues: Issue[];
   order: number;
   createdAt?: number;
   updatedAt?: number;

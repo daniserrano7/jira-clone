@@ -16,9 +16,3 @@ export interface Issue {
   createdAt?: number;
   updatedAt?: number;
 }
-
-export interface IssueSummary {
-  id: IssueId;
-  name: string;
-  priority: Priority;
-}
