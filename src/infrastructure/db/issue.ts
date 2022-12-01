@@ -1,33 +1,13 @@
 import { Prisma } from "@prisma/client";
-import { User, UserId } from "@domain/user";
+import { UserId } from "@domain/user";
 import { CategoryType, CategoryId } from "@domain/category";
-import { IssueId } from "@domain/issue";
+import { IssueId, Issue } from "@domain/issue";
 import { Priority } from "@domain/priority";
-import { CommentData, CommentId } from "@domain/comment";
+import { Comment } from "@domain/comment";
 import { dnull } from "@infrastructure/utils/dnull";
 import { db } from "./db.server";
 
-type GetIssue = {
-  id: IssueId;
-  name: string;
-  description?: string;
-  categoryId: CategoryId;
-  categoryType: CategoryType;
-  priority: Priority;
-  asignee: User;
-  reporter: User;
-  createdAt: Date;
-  updatedAt: Date;
-  comments: {
-    id: CommentId;
-    message: string;
-    user: User;
-    createdAt: Date;
-    updatedAt: Date;
-  }[];
-};
-
-export const getIssue = async (issueId: IssueId): Promise<GetIssue | null> => {
+export const getIssue = async (issueId: IssueId): Promise<Issue | null> => {
   const issueDb = await db.issue.findUnique({
     where: {
       id: issueId,
@@ -48,21 +28,26 @@ export const getIssue = async (issueId: IssueId): Promise<GetIssue | null> => {
     return null;
   }
 
-  const issue: GetIssue = {
+  const issue: Issue = {
     id: issueDb.id,
     name: issueDb.name,
     description: issueDb.description || undefined,
-    categoryId: issueDb.category.type,
     categoryType: issueDb.category.type as CategoryType,
     priority: issueDb.priority as Priority,
     asignee: dnull(issueDb.asignee),
     reporter: dnull(issueDb.reporter),
     comments: issueDb.comments.map((comment) => ({
       ...comment,
-      user: dnull(comment.user),
+      createdAt: comment.createdAt.getTime(),
+      updatedAt: comment.updatedAt.getTime(),
+      user: dnull({
+        ...comment.user,
+        createdAt: comment.user.createdAt.getTime(),
+        updatedAt: comment.user.updatedAt.getTime(),
+      }),
     })),
-    createdAt: issueDb.createdAt,
-    updatedAt: issueDb.updatedAt,
+    createdAt: issueDb.createdAt.getTime(),
+    updatedAt: issueDb.updatedAt.getTime(),
   };
 
   return issue;
@@ -75,7 +60,7 @@ export type CreateIssueInputData = {
   priority: Priority;
   asigneeId: UserId;
   reporterId: UserId;
-  comments: CommentData[];
+  comments: Comment[];
 };
 
 export type UpdateIssueInputData = CreateIssueInputData & { id: IssueId };

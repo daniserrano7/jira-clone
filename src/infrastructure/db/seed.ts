@@ -6,15 +6,15 @@ import {
   Category as CategoryDB,
   Issue as IssueDB,
 } from "@prisma/client";
-import { UserData, usersMock, getRandomPastelColor } from "@domain/user";
-import { ProjectData, ProjectId, projectsMock } from "@domain/project";
-import { CategoryData, CategoryId } from "@domain/category";
-import { IssueData } from "@domain/issue";
-import { CommentData } from "@domain/comment";
+import { User, usersMock, getRandomPastelColor } from "@domain/user";
+import { Project, ProjectId, projectsMock } from "@domain/project";
+import { Category, CategoryId } from "@domain/category";
+import { Issue } from "@domain/issue";
+import { Comment } from "@domain/comment";
 
 const db = new PrismaClient();
 
-const createOrUpdateUser = async (userData: UserData): Promise<UserDB> => {
+const createOrUpdateUser = async (userData: User): Promise<UserDB> => {
   const userInput: Prisma.UserCreateInput = {
     id: userData.id,
     name: userData.name,
@@ -28,7 +28,7 @@ const createOrUpdateUser = async (userData: UserData): Promise<UserDB> => {
   });
 };
 
-const createOrUpdateProject = async (projectData: ProjectData): Promise<ProjectDB> => {
+const createOrUpdateProject = async (projectData: Project): Promise<ProjectDB> => {
   const projectInput: Prisma.ProjectCreateInput = {
     id: projectData.id,
     name: projectData.name,
@@ -45,7 +45,7 @@ const createOrUpdateProject = async (projectData: ProjectData): Promise<ProjectD
 };
 
 const createOrUpdateCategory = async (
-  categoryData: CategoryData,
+  categoryData: Category<Issue>,
   projectId: ProjectId
 ): Promise<CategoryDB> => {
   const categoryInput: Prisma.CategoryCreateInput = {
@@ -62,10 +62,7 @@ const createOrUpdateCategory = async (
   });
 };
 
-const createOrUpdateIssue = async (
-  issueData: IssueData,
-  categoryId: CategoryId
-): Promise<IssueDB> => {
+const createOrUpdateIssue = async (issueData: Issue, categoryId: CategoryId): Promise<IssueDB> => {
   const issueInput: Prisma.IssueCreateInput = {
     id: issueData.id,
     name: issueData.name,
@@ -75,7 +72,7 @@ const createOrUpdateIssue = async (
     reporter: { connect: { id: issueData.reporter.id } },
   };
 
-  const getCommentInput = (commentData: CommentData): Omit<Prisma.CommentCreateInput, "issue"> => {
+  const getCommentInput = (commentData: Comment): Omit<Prisma.CommentCreateInput, "issue"> => {
     return {
       id: commentData.id,
       message: commentData.message,

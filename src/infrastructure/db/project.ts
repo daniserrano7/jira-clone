@@ -1,10 +1,11 @@
-import { ProjectData, ProjectSummary, ProjectId } from "@domain/project";
+import { Project, ProjectSummary, ProjectId } from "@domain/project";
+import { CategoryType } from "@domain/category";
+import { Priority } from "@domain/priority";
 import { db } from "./db.server";
 import { dnull } from "@infrastructure/utils/dnull";
 
-// TODO: Fetch only the needed data
-export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | null> => {
-  const project = await db.project.findUnique({
+export const getProject = async (projectId: ProjectId): Promise<Project | null> => {
+  const projectDb = await db.project.findUnique({
     where: {
       id: projectId,
     },
@@ -16,26 +17,8 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
             select: {
               id: true,
               name: true,
-              description: true,
               priority: true,
-              asignee: true,
-              reporter: true,
               createdAt: true,
-              updatedAt: true,
-              category: {
-                select: {
-                  type: true,
-                },
-              },
-              comments: {
-                select: {
-                  id: true,
-                  message: true,
-                  user: true,
-                  createdAt: true,
-                  updatedAt: true,
-                },
-              },
             },
           },
         },
@@ -43,56 +26,78 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
     },
   });
 
-  if (!project) {
+  if (!projectDb) {
     return null;
   }
 
-  project.categories.forEach((category) => {
-    category.issues.forEach((issue) => {
-      // @ts-expect-error - To adjust Prisma schema to the domain model
-      issue.categoryType = issue.category.type;
-      // @ts-expect-error - To adjust Prisma schema to the domain model
-      delete issue.category;
-    });
-  });
+  const project: Project = {
+    id: projectDb.id,
+    users: projectDb.users.map(dnull),
+    name: projectDb.name,
+    description: projectDb.description || "",
+    categories: projectDb.categories.map((category) => ({
+      id: category.id,
+      name: category.name,
+      type: category.type as CategoryType,
+      order: category.order,
+      issues: category.issues.map((issue) => ({
+        id: issue.id,
+        name: issue.name,
+        priority: issue.priority as Priority,
+        // createdAt: issue.createdAt,
+      })),
+    })),
+    createdAt: projectDb.createdAt,
+    updatedAt: projectDb.updatedAt,
+  };
 
-  // TODO: fix this
-  // Dificult to type cast all nested objects
-  // The error comes from ENUMS (categoryType, priority)
-  return dnull(project) as unknown as ProjectData;
+  return project;
 };
 
-export const fetchProjectSummary = async (projectId: ProjectId): Promise<ProjectSummary | null> => {
-  const project = await db.project.findUnique({
+export const getProjectSummary = async (projectId: ProjectId): Promise<ProjectSummary | null> => {
+  const projectSummaryDb = await db.project.findUnique({
     where: { id: projectId },
     select: {
       id: true,
       name: true,
       description: true,
+      createdAt: true,
     },
   });
 
-  if (!project) {
+  if (!projectSummaryDb) {
     return null;
   }
 
-  return {
-    ...project,
-    description: project.description || undefined, // To convert 'null' to 'undefined'
+  const projectSummary: ProjectSummary = {
+    id: projectSummaryDb.id,
+    name: projectSummaryDb.name,
+    description: projectSummaryDb.description || "",
+    createdAt: projectSummaryDb.createdAt,
   };
+
+  return projectSummary;
 };
 
-export const fetchProjectsSummary = async (): Promise<ProjectSummary[]> => {
-  const projects = await db.project.findMany({
+export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
+  const projectsSummaryDb = await db.project.findMany({
     select: {
       id: true,
       name: true,
       description: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: "asc",
     },
   });
 
-  return projects.map((project) => ({
-    ...project,
-    description: project.description || undefined, // To convert 'null' to 'undefined'
+  const projectsSummary: ProjectSummary[] = projectsSummaryDb.map((projectSummaryDb) => ({
+    id: projectSummaryDb.id,
+    name: projectSummaryDb.name,
+    description: projectSummaryDb.description || "",
+    createdAt: projectSummaryDb.createdAt,
   }));
+
+  return projectsSummary;
 };
