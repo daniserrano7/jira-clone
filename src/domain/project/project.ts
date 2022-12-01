@@ -79,4 +79,4 @@ export class Project {
   }
 }
 
-export type ProjectPreview = Pick<ProjectData, "id" | "name" | "description">;
+export type ProjectSummary = Pick<ProjectData, "id" | "name" | "description">;

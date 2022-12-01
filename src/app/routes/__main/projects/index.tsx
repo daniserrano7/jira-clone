@@ -1,18 +1,18 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { ProjectPreview } from "@domain/project";
-import { fetchProjectsPreview } from "@infrastructure/db/project";
+import { ProjectSummary } from "@domain/project";
+import { fetchProjectsSummary } from "@infrastructure/db/project";
 import { ProjectsView } from "@app/views/app/projects";
 
 type LoaderData = {
-  projectsPreview: ProjectPreview[];
+  projectsSummary: ProjectSummary[];
 };
 
 export const loader: LoaderFunction = async () => {
-  const projectsPreview = await fetchProjectsPreview();
+  const projectsSummary = await fetchProjectsSummary();
 
-  return json<LoaderData>({ projectsPreview });
+  return json<LoaderData>({ projectsSummary });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -28,6 +28,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export default function ProjectsRoute() {
-  const { projectsPreview } = useLoaderData() as LoaderData;
-  return <ProjectsView projectsPreview={projectsPreview} />;
+  const { projectsSummary } = useLoaderData() as LoaderData;
+  return <ProjectsView projectsSummary={projectsSummary} />;
 }

@@ -1,7 +1,8 @@
-import { ProjectData, ProjectPreview, ProjectId } from "@domain/project";
+import { ProjectData, ProjectSummary, ProjectId } from "@domain/project";
 import { db } from "./db.server";
 import { dnull } from "@infrastructure/utils/dnull";
 
+// TODO: Fetch only the needed data
 export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | null> => {
   const project = await db.project.findUnique({
     where: {
@@ -61,7 +62,7 @@ export const fetchProject = async (projectId: ProjectId): Promise<ProjectData | 
   return dnull(project) as unknown as ProjectData;
 };
 
-export const fetchProjectPreview = async (projectId: ProjectId): Promise<ProjectPreview | null> => {
+export const fetchProjectSummary = async (projectId: ProjectId): Promise<ProjectSummary | null> => {
   const project = await db.project.findUnique({
     where: { id: projectId },
     select: {
@@ -81,7 +82,7 @@ export const fetchProjectPreview = async (projectId: ProjectId): Promise<Project
   };
 };
 
-export const fetchProjectsPreview = async (): Promise<ProjectPreview[]> => {
+export const fetchProjectsSummary = async (): Promise<ProjectSummary[]> => {
   const projects = await db.project.findMany({
     select: {
       id: true,
