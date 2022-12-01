@@ -1,82 +1,16 @@
-import { v4 as uuidv4 } from "uuid";
-import { User, UserData, UserId } from "@domain/user";
-import { Category, CategoryData, CategoryType } from "@domain/category";
+import { UserData } from "@domain/user";
+import { Category } from "@domain/category";
 
 export type ProjectId = string;
-export interface ProjectData {
+export interface Project {
   id: ProjectId;
   name: string;
   description?: string;
   users: UserData[];
-  categories: CategoryData[];
+  categories: Category[];
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-export class Project {
-  readonly id: ProjectId;
-  name: string;
-  description: string;
-  users: User[];
-  categories: Category[];
-  createdAt: Date;
-  updatedAt: Date;
-
-  constructor(data: ProjectData) {
-    this.id = data.id || uuidv4();
-    this.name = data.name;
-    this.description = data.description || "";
-    this.users = [];
-    this.categories = [];
-    this.createdAt = data.createdAt || new Date();
-    this.updatedAt = data.updatedAt || new Date();
-
-    data.users.forEach((user) => {
-      try {
-        this.users.push(new User(user));
-      } catch (error) {
-        console.error(`Error in project ${data.id} creating user: ${user.id}`, user, error);
-      }
-    });
-
-    data.categories.forEach((category) => {
-      try {
-        this.categories.push(new Category(category));
-      } catch (error) {
-        console.error(
-          `Error in project ${data.id} creating category: ${category.id}`,
-          category,
-          error
-        );
-      }
-    });
-  }
-
-  setName(name: string) {
-    this.name = name;
-  }
-
-  setDescription(description: string) {
-    this.description = description;
-  }
-
-  getUser(userId: UserId): User | undefined {
-    return this.users.find((user) => user.id === userId);
-  }
-
-  addUser(user: User) {
-    this.users.push(user);
-  }
-
-  removeUser(userId: UserId) {
-    const user = this.users.find((user) => user.id === userId);
-    this.users = this.users.filter((user) => user.id !== userId);
-    return user;
-  }
-
-  getCategory(categoryId: CategoryType): Category | undefined {
-    return this.categories.find((category) => category.id === categoryId);
-  }
-}
-
-export type ProjectSummary = Pick<ProjectData, "id" | "name" | "description">;
+// TODO: Make createdAt and updatedAt mandatory
+export type ProjectSummary = Pick<Project, "id" | "name" | "description" | "createdAt">;

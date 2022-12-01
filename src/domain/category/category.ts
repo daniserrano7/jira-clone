@@ -10,7 +10,7 @@ export const categoryTypeDict: Record<CategoryType, string> = {
   DONE: "Done",
 };
 
-export interface CategoryData {
+export interface Category {
   id: CategoryId;
   type: CategoryType;
   name: string;

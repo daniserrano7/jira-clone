@@ -1,4 +1,4 @@
-import { CategoryData, categoryTypes, categoryTypeDict } from "@domain/category";
+import { Category, categoryTypes, categoryTypeDict } from "@domain/category";
 import {
   todoIssuesMock1,
   inProgressIssuesMock1,
@@ -25,7 +25,7 @@ const ids2 = [
 ];
 const issuesMock2 = [todoIssuesMock2, inProgressIssuesMock2, doneIssuesMock2];
 
-export const categoriesMock1: CategoryData[] = categoryTypes.map((categoryType, index) => {
+export const categoriesMock1: Category[] = categoryTypes.map((categoryType, index) => {
   const id = ids1[index];
   const name = categoryTypeDict[categoryType];
   const type = categoryType;
@@ -43,7 +43,7 @@ export const categoriesMock1: CategoryData[] = categoryTypes.map((categoryType, 
   };
 });
 
-export const categoriesMock2: CategoryData[] = categoryTypes.map((categoryType, index) => {
+export const categoriesMock2: Category[] = categoryTypes.map((categoryType, index) => {
   const id = ids2[index];
   const name = categoryTypeDict[categoryType];
   const type = categoryType;
