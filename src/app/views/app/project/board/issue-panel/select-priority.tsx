@@ -18,7 +18,7 @@ export const SelectPriority = ({ issue }: Props): JSX.Element => {
   const onValueChange = (value: string) => {
     const priority = value as Priority;
     setSelectValue(priority);
-    issue.setPriority(priority);
+    // issue.setPriority(priority);
   };
 
   return (

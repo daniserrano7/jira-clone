@@ -3,13 +3,13 @@ import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { ProjectSummary, ProjectId } from "@domain/project";
-import { fetchProjectSummary } from "@infrastructure/db/project";
+import { getProjectSummary } from "@infrastructure/db/project";
 import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/views/app/project";
 
 type LoaderData = {
-  projectPreview: ProjectSummary;
+  projectSummary: ProjectSummary;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -18,7 +18,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const projectData = await fetchProjectSummary(projectId);
+  const projectData = await getProjectSummary(projectId);
 
   if (!projectData) {
     throw new Response("Not Found", {
@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     return redirect(`/projects/${projectId}/board`);
   }
 
-  return json<LoaderData>({ projectPreview: projectData });
+  return json<LoaderData>({ projectSummary: projectData });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -54,7 +54,7 @@ export function CatchBoundary() {
 }
 
 export default function ProjectRoute() {
-  const { projectPreview } = useLoaderData() as LoaderData;
-  const { name, description } = projectPreview;
+  const { projectSummary } = useLoaderData() as LoaderData;
+  const { name, description } = projectSummary;
   return <ProjectView name={name} description={description} />;
 }

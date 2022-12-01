@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Form, useSubmit } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { User, userMock1 } from "@domain/user";
-import { Issue, IssueData } from "@domain/issue";
-import { CommentData, CommentId } from "@domain/comment";
+import { userMock1 } from "@domain/user";
+import { Issue } from "@domain/issue";
+import { Comment, CommentId } from "@domain/comment";
 import { UserAvatar } from "@app/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "./title";
@@ -16,10 +16,8 @@ import { SelectAsignee } from "./select-asignee";
 // import { textAreOnlySpaces } from "@app/utils";
 
 export const IssuePanel = ({ issueData }: Props): JSX.Element => {
-  const user = new User(userMock1);
-  const issue = new Issue(issueData);
-  const [comments, setComments] = useState<CommentData[]>(
-    issue?.comments || []
+  const [comments, setComments] = useState<Comment[]>(
+    issueData?.comments || []
   );
   const submit = useSubmit();
 
@@ -76,7 +74,7 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
 
   // const close = () => (projectStore.editingIssue = null);
 
-  const addComment = (newComment: CommentData): void => {
+  const addComment = (newComment: Comment): void => {
     setComments([...comments, newComment]);
   };
 
@@ -96,18 +94,18 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
             onPointerDownOutside={applyChanges}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
-            <PanelHeader id={issue.id} onDeleteIssue={deleteIssue} />
+            <PanelHeader id={issueData.id} onDeleteIssue={deleteIssue} />
             <Form method="post" onSubmit={handleSumbit}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">
-                    <Title issue={issue} />
+                    <Title issue={issueData} />
                   </Dialog.Title>
                   <p className="font-primary-black text-font-main">
                     Description
                   </p>
                   <div className="-ml-3">
-                    <Description issue={issue} />
+                    <Description issue={issueData} />
                   </div>
                   <div className="mt-6">
                     <p className="font-primary-black text-font-main">
@@ -131,23 +129,23 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
                 <section className="col-span-2 space-y-10">
                   <div>
                     <p className="mb-1">Status</p>
-                    <SelectStatus issue={issue} />
+                    <SelectStatus issue={issueData} />
                   </div>
                   <div>
                     <p className="mb-1">Priority</p>
-                    <SelectPriority issue={issue} />
+                    <SelectPriority issue={issueData} />
                   </div>
                   <div>
                     <p className="mb-1">Asignee</p>
-                    <SelectAsignee issue={issue} />
+                    <SelectAsignee issue={issueData} />
                   </div>
                   <div>
                     <p className="mb-1">Reporter</p>
                     <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1">
-                      <UserAvatar {...user} tooltip={false} />
-                      <p className="m-0">{user.name}</p>
+                      <UserAvatar {...userMock1} tooltip={false} />
+                      <p className="m-0">{userMock1.name}</p>
                     </div>
-                    <input type="hidden" name="reporter" value={user.id} />
+                    <input type="hidden" name="reporter" value={userMock1.id} />
                   </div>
                 </section>
               </div>
@@ -175,5 +173,5 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
 };
 
 interface Props {
-  issueData: IssueData;
+  issueData: Issue;
 }

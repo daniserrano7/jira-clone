@@ -4,8 +4,8 @@ import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { UserId } from "@domain/user";
 import { CategoryId } from "@domain/category";
-import { IssueData, IssueId } from "@domain/issue";
-import { CommentData } from "@domain/comment";
+import { Issue, IssueId } from "@domain/issue";
+import { Comment } from "@domain/comment";
 import { Priority } from "@domain/priority";
 import {
   getIssue,
@@ -15,7 +15,7 @@ import {
 import { IssuePanel } from "@app/views/app/project/board/issue-panel";
 
 type LoaderData = {
-  issueData: IssueData;
+  issueData: Issue;
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -43,9 +43,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   const priority = formData.get("priority") as Priority;
   const asigneeId = formData.get("asignee") as UserId;
   const reporterId = formData.get("reporter") as UserId;
-  const comments = JSON.parse(
-    formData.get("comments") as string
-  ) as CommentData[];
+  const comments = JSON.parse(formData.get("comments") as string) as Comment[];
   const issueInputData: UpdateIssueInputData = {
     id,
     name,

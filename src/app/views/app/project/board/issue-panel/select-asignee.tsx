@@ -22,10 +22,12 @@ export const SelectAsignee = ({ issue }: Props): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<User>(defaultValue);
 
   const onValueChange = (userId: UserId) => {
-    const asignee = projectStore.project.getUser(userId);
+    const asignee = projectStore.project.users.find(
+      (user) => user.id === userId
+    );
     if (asignee) {
       setSelectedValue(asignee);
-      issue.setAsignee(asignee);
+      // issue.setAsignee(asignee);
     }
   };
 

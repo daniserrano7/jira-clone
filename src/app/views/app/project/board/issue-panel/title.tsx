@@ -20,7 +20,7 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
     if (newTitle.length > MAX_LENGTH) return;
 
     setTitle(newTitle);
-    issue.setName(newTitle);
+    // issue.setName(newTitle);
   };
 
   return (

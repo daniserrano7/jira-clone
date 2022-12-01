@@ -1,15 +1,14 @@
 import { Outlet } from "@remix-run/react";
-import { User, UserData } from "@domain/user";
+import { User } from "@domain/user";
 import { AppStore, AppContext } from "./app.store";
 import { Header } from "./header";
 
 export const AppLayout = ({ userData }: Props) => {
-  const user = new User(userData);
-  const appStore = new AppStore(user);
+  const appStore = new AppStore(userData);
 
   return (
     <AppContext.Provider value={appStore}>
-      <div className="h-full flex flex-col">
+      <div className="flex h-full flex-col">
         <Header />
         <Outlet />
       </div>
@@ -18,5 +17,5 @@ export const AppLayout = ({ userData }: Props) => {
 };
 
 interface Props {
-  userData: UserData;
+  userData: User;
 }

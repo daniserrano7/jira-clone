@@ -45,7 +45,7 @@ const createOrUpdateProject = async (projectData: Project): Promise<ProjectDB> =
 };
 
 const createOrUpdateCategory = async (
-  categoryData: Category<Issue>,
+  categoryData: Category,
   projectId: ProjectId
 ): Promise<CategoryDB> => {
   const categoryInput: Prisma.CategoryCreateInput = {

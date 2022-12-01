@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
-import { User, userMock1 } from "@domain/user";
-import { CommentData, CommentId } from "@domain/comment";
+import { userMock1 } from "@domain/user";
+import { Comment, CommentId } from "@domain/comment";
 import { useAppStore } from "@app/views/app";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
@@ -69,7 +69,7 @@ export const ViewComment = ({
 
   return (
     <div className="flex gap-6">
-      <UserAvatar {...new User(userMock1)} tooltip={false} />
+      <UserAvatar {...userMock1} tooltip={false} />
       <div style={{ width: "100%" }}>
         <p className="mr-4 inline-block font-primary-bold">
           {comment.user.name}
@@ -93,6 +93,6 @@ export const ViewComment = ({
 };
 
 interface ViewCommentProps {
-  comment: CommentData;
+  comment: Comment;
   removeComment: (commentId: CommentId) => void;
 }

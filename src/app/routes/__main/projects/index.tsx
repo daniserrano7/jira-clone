@@ -2,7 +2,7 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { ProjectSummary } from "@domain/project";
-import { fetchProjectsSummary } from "@infrastructure/db/project";
+import { getProjectsSummary } from "@infrastructure/db/project";
 import { ProjectsView } from "@app/views/app/projects";
 
 type LoaderData = {
@@ -10,7 +10,7 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async () => {
-  const projectsSummary = await fetchProjectsSummary();
+  const projectsSummary = await getProjectsSummary();
 
   return json<LoaderData>({ projectsSummary });
 };

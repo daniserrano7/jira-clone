@@ -20,7 +20,7 @@ export const CategoryColumn = observer(
     const [{ isOver }, drop] = useDrop(
       () => ({
         accept: DRAG_ISSUE_CARD,
-        drop: (item: DropItem) => changeIssueCategory(item),
+        drop: (item: DropItem) => console.log("Droped item: ", item),
         collect: (monitor) => ({
           isOver: !!monitor.isOver(),
         }),
@@ -33,20 +33,20 @@ export const CategoryColumn = observer(
       categoryId: CategoryType;
     }
 
-    const changeIssueCategory = ({ issueId, categoryId }: DropItem) => {
-      const oldCategory = projectStore.project.getCategory(categoryId);
+    // const changeIssueCategory = ({ issueId, categoryId }: DropItem) => {
+    //   const oldCategory = projectStore.project.getCategory(categoryId);
 
-      if (!oldCategory || oldCategory.id === category.id) return;
+    //   if (!oldCategory || oldCategory.id === category.id) return;
 
-      const issue = oldCategory.getIssue(issueId);
+    //   const issue = oldCategory.getIssue(issueId);
 
-      if (!issue) return;
+    //   if (!issue) return;
 
-      issue.setCategoryId(category.type);
-      oldCategory.removeIssue(issueId);
-      category.addIssue(issue);
-      // updateIssueDb(issue);
-    };
+    //   issue.setCategoryId(category.type);
+    //   oldCategory.removeIssue(issueId);
+    //   category.addIssue(issue);
+    //   // updateIssueDb(issue);
+    // };
 
     // const createCategoryIssue = () => {
     //   const issue = new Issue({
@@ -79,6 +79,8 @@ export const CategoryColumn = observer(
             projectStore.filters.sort === "date"
               ? b.createdAt
               : priorities.indexOf(b.priority);
+
+          if (!sortA || !sortB) return 0;
 
           if (sortA < sortB) return 1;
           if (sortA > sortB) return -1;

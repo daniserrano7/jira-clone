@@ -2,13 +2,13 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
-import { ProjectData, ProjectId } from "@domain/project";
-import { fetchProject } from "@infrastructure/db/project";
+import { Project, ProjectId } from "@domain/project";
+import { getProject } from "@infrastructure/db/project";
 import { Error500 } from "@app/components/error-500";
 import { BoardView } from "@app/views/app/project/board";
 
 type LoaderData = {
-  projectData: ProjectData;
+  projectData: Project;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -17,8 +17,9 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const projectData: ProjectData | null = await fetchProject(projectId);
+  const projectData: Project | null = await getProject(projectId);
 
+  // TODO: Should this be a 404 or a 500?
   if (!projectData) {
     throw new Response("Not Found", {
       status: 404,

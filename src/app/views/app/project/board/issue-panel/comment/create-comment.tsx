@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { CommentData } from "@domain/comment";
+import { Comment } from "@domain/comment";
 import { useAppStore } from "@app/views/app";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
@@ -26,5 +26,5 @@ export const CreateComment = ({
 };
 
 interface CreateCommentProps {
-  addComment: (comment: CommentData) => void;
+  addComment: (comment: Comment) => void;
 }

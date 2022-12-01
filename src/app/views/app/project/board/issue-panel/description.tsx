@@ -9,7 +9,7 @@ export const Description = ({ issue }: DescriptionProps): JSX.Element => {
 
   const updateDescription = (newDescription: string) => {
     setDescription(newDescription);
-    issue.setDescription(newDescription);
+    // issue.setDescription(newDescription);
   };
 
   return (
