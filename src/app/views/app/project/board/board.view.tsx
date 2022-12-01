@@ -9,16 +9,16 @@ import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
 import { ProjectContext, ProjectStore } from "../project.store";
 
-export const BoardView = ({ projectData }: Props): JSX.Element => {
+export const BoardView = ({ project }: Props): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   return (
-    <ProjectContext.Provider value={new ProjectStore(projectData)}>
+    <ProjectContext.Provider value={new ProjectStore(project)}>
       <div className="box-border flex h-full flex-col bg-white">
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">
-            <UserAvatarList users={projectData.users} />
+            <UserAvatarList users={project.users} />
           </div>
           <div className="inline">
             <SelectSort />
@@ -26,7 +26,7 @@ export const BoardView = ({ projectData }: Props): JSX.Element => {
         </section>
         <section className="mt-12 flex h-full gap-3">
           <DndProvider backend={HTML5Backend}>
-            {projectData.categories.map((category) => (
+            {project.categories.map((category) => (
               <CategoryColumn
                 key={category.id}
                 category={category}
@@ -43,5 +43,5 @@ export const BoardView = ({ projectData }: Props): JSX.Element => {
 };
 
 interface Props {
-  projectData: Project;
+  project: Project;
 }

@@ -18,9 +18,9 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const projectData = await getProjectSummary(projectId);
+  const projectSummary = await getProjectSummary(projectId);
 
-  if (!projectData) {
+  if (!projectSummary) {
     throw new Response("Not Found", {
       status: 404,
     });
@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     return redirect(`/projects/${projectId}/board`);
   }
 
-  return json<LoaderData>({ projectSummary: projectData });
+  return json<LoaderData>({ projectSummary: projectSummary });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {

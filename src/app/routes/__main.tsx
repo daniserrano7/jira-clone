@@ -23,5 +23,5 @@ export const loader: LoaderFunction = async () => {
 
 export default function AppRoute() {
   const { user } = useLoaderData() as LoaderData;
-  return <AppLayout userData={user} />;
+  return <AppLayout user={user} />;
 }

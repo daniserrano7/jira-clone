@@ -15,7 +15,7 @@ import {
 import { IssuePanel } from "@app/views/app/project/board/issue-panel";
 
 type LoaderData = {
-  issueData: Issue;
+  issue: Issue;
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -23,15 +23,15 @@ export const loader: LoaderFunction = async ({ params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const issueData = await getIssue(issueId);
+  const issue = await getIssue(issueId);
 
-  if (!issueData) {
+  if (!issue) {
     throw new Response("Not Found", {
       status: 404,
     });
   }
 
-  return json<LoaderData>({ issueData });
+  return json<LoaderData>({ issue });
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
@@ -60,6 +60,6 @@ export const action: ActionFunction = async ({ request, params }) => {
 };
 
 export default function IssuePanelRoute() {
-  const { issueData } = useLoaderData() as LoaderData;
-  return <IssuePanel issueData={issueData} />;
+  const { issue } = useLoaderData() as LoaderData;
+  return <IssuePanel issue={issue} />;
 }

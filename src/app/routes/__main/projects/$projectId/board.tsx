@@ -8,7 +8,7 @@ import { Error500 } from "@app/components/error-500";
 import { BoardView } from "@app/views/app/project/board";
 
 type LoaderData = {
-  projectData: Project;
+  project: Project;
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -17,10 +17,10 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const projectData: Project | null = await getProject(projectId);
+  const project: Project | null = await getProject(projectId);
 
   // TODO: Should this be a 404 or a 500?
-  if (!projectData) {
+  if (!project) {
     throw new Response("Not Found", {
       status: 404,
     });
@@ -30,7 +30,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
     return redirect(`/projects/${projectId}/board`);
   }
 
-  return json<LoaderData>({ projectData });
+  return json<LoaderData>({ project });
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
@@ -45,6 +45,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export default function BoardRoute() {
-  const { projectData } = useLoaderData() as LoaderData;
-  return <BoardView projectData={projectData} />;
+  const { project } = useLoaderData() as LoaderData;
+  return <BoardView project={project} />;
 }

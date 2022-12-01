@@ -15,10 +15,8 @@ import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
 // import { textAreOnlySpaces } from "@app/utils";
 
-export const IssuePanel = ({ issueData }: Props): JSX.Element => {
-  const [comments, setComments] = useState<Comment[]>(
-    issueData?.comments || []
-  );
+export const IssuePanel = ({ issue }: Props): JSX.Element => {
+  const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const submit = useSubmit();
 
   const applyChanges = () => {
@@ -94,18 +92,18 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
             onPointerDownOutside={applyChanges}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
-            <PanelHeader id={issueData.id} onDeleteIssue={deleteIssue} />
+            <PanelHeader id={issue.id} onDeleteIssue={deleteIssue} />
             <Form method="post" onSubmit={handleSumbit}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">
-                    <Title issue={issueData} />
+                    <Title issue={issue} />
                   </Dialog.Title>
                   <p className="font-primary-black text-font-main">
                     Description
                   </p>
                   <div className="-ml-3">
-                    <Description issue={issueData} />
+                    <Description issue={issue} />
                   </div>
                   <div className="mt-6">
                     <p className="font-primary-black text-font-main">
@@ -129,15 +127,15 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
                 <section className="col-span-2 space-y-10">
                   <div>
                     <p className="mb-1">Status</p>
-                    <SelectStatus issue={issueData} />
+                    <SelectStatus issue={issue} />
                   </div>
                   <div>
                     <p className="mb-1">Priority</p>
-                    <SelectPriority issue={issueData} />
+                    <SelectPriority issue={issue} />
                   </div>
                   <div>
                     <p className="mb-1">Asignee</p>
-                    <SelectAsignee issue={issueData} />
+                    <SelectAsignee issue={issue} />
                   </div>
                   <div>
                     <p className="mb-1">Reporter</p>
@@ -173,5 +171,5 @@ export const IssuePanel = ({ issueData }: Props): JSX.Element => {
 };
 
 interface Props {
-  issueData: Issue;
+  issue: Issue;
 }
