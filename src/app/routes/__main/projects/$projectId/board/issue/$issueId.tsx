@@ -14,9 +14,16 @@ import {
   UpdateIssueInputData,
 } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/views/app/project/board/issue-panel";
+import { textAreOnlySpaces } from "@app/utils";
 
 type LoaderData = {
   issue: Issue;
+};
+
+export type ActionData = {
+  errors: {
+    name?: string;
+  };
 };
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -39,7 +46,6 @@ export const action: ActionFunction = async ({ request, params }) => {
   const id = params.issueId as IssueId;
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
-  console.log("ACTION: ", _action);
 
   if (_action === "upsert") {
     const name = formData.get("title") as string;
@@ -61,6 +67,13 @@ export const action: ActionFunction = async ({ request, params }) => {
       reporterId,
       comments,
     };
+
+    if (!name || textAreOnlySpaces(name)) {
+      return json<ActionData>(
+        { errors: { name: "Title is required" } },
+        { status: 400 }
+      );
+    }
 
     await updateIssue(issueInputData);
   }

@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useActionData } from "@remix-run/react";
 import cx from "classix";
-import { TextareaAutosize } from "../../../../../components/textarea-autosize";
+import { ActionData as IssueActionData } from "@app/routes/__main/projects/$projectId/board/issue/$issueId";
+import { TextareaAutosize } from "@app/components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
 export const Title = ({ initTitle }: TitleProps): JSX.Element => {
   const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
+  const actionData = useActionData() as IssueActionData;
 
   const MAX_LENGTH = 80;
   const isMaxLength = title.length >= MAX_LENGTH;
+  // Handle server and client name error
   const requireError =
-    !isFocus && (title.length === 0 || textAreOnlySpaces(title));
+    (actionData?.errors.name || !isFocus) &&
+    (title.length === 0 || textAreOnlySpaces(title));
 
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);
