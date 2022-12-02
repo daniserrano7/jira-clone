@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@remix-run/react";
+import { Form, Link, useLocation } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import cx from "classix";
@@ -57,22 +57,24 @@ const DeleteIssueModalDialog = ({
             This action is permanent and cannot be undone. Are you sure you want
             to remove this issue completely?
           </AlertDialog.Description>
-          <div className="mt-8 flex w-full justify-end gap-4">
-            <AlertDialog.Cancel
-              className={cx("hover:bg-grey-400", buttonBaseClass)}
-            >
-              Cancel
-            </AlertDialog.Cancel>
-            <AlertDialog.Action
-              onClick={action}
+          <AlertDialog.Cancel
+            className={cx("hover:bg-grey-400", buttonBaseClass)}
+          >
+            Cancel
+          </AlertDialog.Cancel>
+          <Form method="delete" className="mt-8 flex w-full justify-end gap-4">
+            <button
+              name="_action"
+              value="delete"
+              type="submit"
               className={cx(
                 "bg-error-light text-error-dark hover:bg-error-hover",
                 buttonBaseClass
               )}
             >
               Delete
-            </AlertDialog.Action>
-          </div>
+            </button>
+          </Form>
         </AlertDialog.Content>
       </AlertDialog.Portal>
     </AlertDialog.Root>

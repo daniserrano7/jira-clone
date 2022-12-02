@@ -93,3 +93,11 @@ export const updateIssue = async (issue: UpdateIssueInputData) => {
     },
   });
 };
+
+export const deleteIssue = async (issueId: IssueId) => {
+  await db.issue.delete({
+    where: {
+      id: issueId,
+    },
+  });
+};

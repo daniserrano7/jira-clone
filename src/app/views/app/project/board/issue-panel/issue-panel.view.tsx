@@ -31,46 +31,12 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     formData.set("comments", JSON.stringify(comments));
+    formData.set("_action", "upsert");
 
     submit(formData, {
       method: "post",
     });
   };
-  // if (!issue) return <></>;
-
-  // const applyChanges = () => {
-  //   if (issue.name.length === 0 || textAreOnlySpaces(issue.name)) {
-  //     return;
-  //   }
-
-  //   issue.setComments(comments);
-
-  //   const oldCategory = projectStore.project.categories.find((category) => {
-  //     const foundIssue = category.getIssue(issue.id);
-  //     return foundIssue ? category : undefined;
-  //   });
-
-  //   if (oldCategory) {
-  //     oldCategory.removeIssue(issue.id);
-  //     // updateIssueDb(issue);
-  //   } else {
-  //     // addIssueDb(issue);
-  //   }
-
-  //   const newCategory = projectStore.project.getCategory(issue.categoryType);
-  //   newCategory?.addIssue(issue);
-
-  //   close();
-  // };
-
-  // const deleteIssue = () => {
-  //   const category = projectStore.project.getCategory(issue.categoryType);
-  //   category?.removeIssue(issue.id);
-  //   // removeIssueDb(issue);
-  //   close();
-  // };
-
-  // const close = () => (projectStore.editingIssue = null);
 
   const addComment = (newComment: Comment): void => {
     setComments([...comments, newComment]);
