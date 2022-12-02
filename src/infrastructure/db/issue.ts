@@ -62,9 +62,29 @@ export type CreateIssueInputData = {
   reporterId: UserId;
   comments: Comment[];
 };
+export const createIssue = async (issue: CreateIssueInputData): Promise<void> => {
+  await db.issue.create({
+    data: {
+      ...issue,
+      comments: {
+        create: issue.comments.map((comment) => {
+          const commentInput: Omit<Prisma.CommentCreateInput, "issue"> = {
+            id: comment.id,
+            message: comment.message,
+            user: { connect: { id: comment.user.id } },
+          };
+
+          return {
+            ...commentInput,
+            id: undefined,
+          };
+        }),
+      },
+    },
+  });
+};
 
 export type UpdateIssueInputData = CreateIssueInputData & { id: IssueId };
-
 export const updateIssue = async (issue: UpdateIssueInputData) => {
   await db.issue.update({
     where: {

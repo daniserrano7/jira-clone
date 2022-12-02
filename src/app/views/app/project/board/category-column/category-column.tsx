@@ -33,36 +33,6 @@ export const CategoryColumn = observer(
       categoryId: CategoryType;
     }
 
-    // const changeIssueCategory = ({ issueId, categoryId }: DropItem) => {
-    //   const oldCategory = projectStore.project.getCategory(categoryId);
-
-    //   if (!oldCategory || oldCategory.id === category.id) return;
-
-    //   const issue = oldCategory.getIssue(issueId);
-
-    //   if (!issue) return;
-
-    //   issue.setCategoryId(category.type);
-    //   oldCategory.removeIssue(issueId);
-    //   category.addIssue(issue);
-    //   // updateIssueDb(issue);
-    // };
-
-    // const createCategoryIssue = () => {
-    //   const issue = new Issue({
-    //     id: "1",
-    //     categoryType: category.type,
-    //     name: "",
-    //     description: "",
-    //     reporter: appStore.user,
-    //     asignee: appStore.user,
-    //     comments: [],
-    //     priority: "low",
-    //     createdAt: new Date(),
-    //   });
-    //   projectStore.editingIssue = issue;
-    // };
-
     const filteredIssues = (): Issue[] =>
       category.issues
         .filter((issue) => {
@@ -118,12 +88,12 @@ export const CategoryColumn = observer(
             <span>{category.name}</span>
             {!emptyCategory && <span>( {category.issues.length} )</span>}
           </span>
-          <button
-            // onClick={createCategoryIssue}
+          <Link
+            to="issue/new"
             className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
           >
             <Icon name="add" size={24} />
-          </button>
+          </Link>
         </div>
         {/* Column body items */}
         <div className="box-content h-[300px]">

@@ -1,5 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useParams } from "@remix-run/react";
+import { ProjectId } from "@domain/project";
 import { Error404 } from "@app/components/error-404";
 
 export const loader: LoaderFunction = async () => {
@@ -10,11 +11,12 @@ export const loader: LoaderFunction = async () => {
 
 export function CatchBoundary() {
   const params = useParams();
+  const projectId = params.projectId as ProjectId;
   const slug = params["*"] as string;
   const errorMessage = `The URL "/${slug}" does not exists, so a fallback 404 is shown. Navigate to boards page`;
   return (
-    <div className="flex justify-center items-center h-full">
-      <Error404 message={errorMessage} href="board" />
+    <div className="flex h-full items-center justify-center">
+      <Error404 message={errorMessage} href={`/projects/${projectId}/board`} />
     </div>
   );
 }
