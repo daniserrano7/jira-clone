@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, useSubmit } from "@remix-run/react";
+import { Form, useSubmit, useSearchParams } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { userMock1 } from "@domain/user";
 import { Issue } from "@domain/issue";
@@ -14,12 +14,15 @@ import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
 import { useAppStore } from "@app/views/app/app.store";
+import { CategoryType } from "@domain/category";
 // import { textAreOnlySpaces } from "@app/utils";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const submit = useSubmit();
   const { user } = useAppStore();
+  const params = useSearchParams();
+  const initStatus = (params[0].get("category") as CategoryType) || "TODO";
 
   const applyChanges = () => {
     console.log("applyChanges");
@@ -95,7 +98,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                 <section className="col-span-2 space-y-10">
                   <div>
                     <p className="mb-1">Status</p>
-                    <SelectStatus initStatus={issue?.categoryType || "TODO"} />
+                    <SelectStatus
+                      initStatus={issue?.categoryType || initStatus}
+                    />
                   </div>
                   <div>
                     <p className="mb-1">Priority</p>

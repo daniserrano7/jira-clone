@@ -89,7 +89,7 @@ export const CategoryColumn = observer(
             {!emptyCategory && <span>( {category.issues.length} )</span>}
           </span>
           <Link
-            to="issue/new"
+            to={`issue/new?category=${category.type}`}
             className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
           >
             <Icon name="add" size={24} />

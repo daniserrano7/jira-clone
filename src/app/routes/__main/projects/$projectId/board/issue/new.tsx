@@ -2,21 +2,18 @@ import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { UserId } from "@domain/user";
 import { CategoryId } from "@domain/category";
-import { IssueId } from "@domain/issue";
 import { Comment } from "@domain/comment";
 import { Priority } from "@domain/priority";
-import { createIssue, UpdateIssueInputData } from "@infrastructure/db/issue";
+import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/views/app/project/board/issue-panel";
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async () => {
   return json(null);
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
-  const id = params.issueId as IssueId;
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
-  console.log("ACTION: ", _action);
 
   if (_action === "upsert") {
     const name = formData.get("title") as string;
@@ -28,8 +25,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     const comments = JSON.parse(
       formData.get("comments") as string
     ) as Comment[];
-    const issueInputData: UpdateIssueInputData = {
-      id,
+    const issueInputData: CreateIssueInputData = {
       name,
       description,
       categoryId,
