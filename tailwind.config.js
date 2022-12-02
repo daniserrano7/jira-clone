@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     colors: {
       "primary-main": "#0052cc",
@@ -13,6 +14,8 @@ module.exports = {
       "secondary-light": "#EAE6FF",
       "white": "#fff",
       "black": "#000",
+      "dark": "#333",
+      "dark-200": "#666",
       "transparent": "transparent",
       "focus": "#4c9aff",
       "success-main": "#00875A",
@@ -31,6 +34,7 @@ module.exports = {
       "font-main": "#172b4d",
       "font-light": "#5e6c84",
       "font-grey": "#676767",
+      "font-main-dark": "red",
       "font-success-main": "#006644",
       "font-success-light": "#E3FCEF",
       "icon": "#344563",
