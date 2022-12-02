@@ -15,7 +15,6 @@ import {
 export const SelectStatus = ({ issue }: Props): JSX.Element => {
   const projectStore = useProjectStore();
   const categories = projectStore.project.categories;
-  // TODO: Get category id from issue
   const defaultCategory = categories.find(
     (category) => category.type === issue.categoryType
   );

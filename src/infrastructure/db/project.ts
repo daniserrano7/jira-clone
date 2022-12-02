@@ -49,11 +49,12 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
         reporter: dnull(issue.reporter),
         asignee: dnull(issue.asignee),
         comments: [],
-        // createdAt: issue.createdAt,
+        createdAt: issue.createdAt.getDate(),
+        updatedAt: issue.createdAt.getDate(),
       })),
     })),
-    createdAt: projectDb.createdAt,
-    updatedAt: projectDb.updatedAt,
+    createdAt: projectDb.createdAt.getDate(),
+    updatedAt: projectDb.updatedAt.getDate(),
   };
 
   return project;
@@ -78,7 +79,7 @@ export const getProjectSummary = async (projectId: ProjectId): Promise<ProjectSu
     id: projectSummaryDb.id,
     name: projectSummaryDb.name,
     description: projectSummaryDb.description || "",
-    createdAt: projectSummaryDb.createdAt,
+    createdAt: projectSummaryDb.createdAt.getDate(),
   };
 
   return projectSummary;
@@ -101,7 +102,7 @@ export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
     id: projectSummaryDb.id,
     name: projectSummaryDb.name,
     description: projectSummaryDb.description || "",
-    createdAt: projectSummaryDb.createdAt,
+    createdAt: projectSummaryDb.createdAt.getDate(),
   }));
 
   return projectsSummary;

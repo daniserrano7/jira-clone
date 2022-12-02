@@ -13,6 +13,6 @@ export interface Issue {
   asignee: User;
   comments: Comment[];
   priority: Priority;
-  createdAt?: number;
-  updatedAt?: number;
+  createdAt: number;
+  updatedAt: number;
 }

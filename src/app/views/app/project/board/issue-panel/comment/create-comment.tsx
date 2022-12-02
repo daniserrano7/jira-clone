@@ -14,6 +14,8 @@ export const CreateComment = ({
       id: uuid(),
       user,
       message,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
     });
   };
 

@@ -111,15 +111,15 @@ const seedUsers = async () => {
 const seedProjects = async () => {
   for (const project of projectsMock) {
     console.log(`Seeding PROJECT: ${project.name}`);
-    const project = await createOrUpdateProject(project);
+    const projectDb = await createOrUpdateProject(project);
 
     for (const category of project.categories) {
       console.log(`Seeding CATEGORY: ${category.name}`);
-      const category = await createOrUpdateCategory(category, project.id);
+      const categoryDb = await createOrUpdateCategory(category, projectDb.id);
 
       for (const issue of category.issues) {
         console.log(`Seeding ISSUE: ${issue.name}`);
-        await createOrUpdateIssue(issue, category.id);
+        await createOrUpdateIssue(issue, categoryDb.id);
       }
     }
   }

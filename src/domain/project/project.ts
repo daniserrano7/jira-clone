@@ -8,8 +8,8 @@ export interface Project {
   description?: string;
   users: User[];
   categories: Category[];
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: number;
+  updatedAt?: number;
 }
 
 // TODO: Make createdAt and updatedAt mandatory
