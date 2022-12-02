@@ -2,7 +2,6 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId, CategoryType } from "@domain/category";
-import { Issue } from "@domain/issue";
 import { useProjectStore } from "@app/views/app/project";
 import {
   SelectTrigger,
@@ -12,18 +11,18 @@ import {
   SelectItemIndicator,
 } from "@app/components/select";
 
-export const SelectStatus = ({ issue }: Props): JSX.Element => {
+export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
   const projectStore = useProjectStore();
   const categories = projectStore.project.categories;
-  const defaultCategory = categories.find(
-    (category) => category.type === issue.categoryType
+  const initCategory = categories.find(
+    (category) => category.type === initStatus
   );
 
-  if (!defaultCategory) {
+  if (!initCategory) {
     throw new Error("No default category found");
   }
 
-  const defaultValue = defaultCategory.id;
+  const defaultValue = initCategory.id;
   const [selectedValue, setSelectedValue] = useState<CategoryId>(defaultValue);
   const selectedStatus = categories.find(
     (category) => category.id === selectedValue
@@ -79,5 +78,5 @@ export const SelectStatus = ({ issue }: Props): JSX.Element => {
 };
 
 interface Props {
-  issue: Issue;
+  initStatus: CategoryType;
 }

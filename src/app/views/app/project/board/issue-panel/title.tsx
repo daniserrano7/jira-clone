@@ -1,11 +1,10 @@
 import { useState } from "react";
 import cx from "classix";
-import { Issue } from "@domain/issue";
 import { TextareaAutosize } from "../../../../../components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
-export const Title = ({ issue }: TitleProps): JSX.Element => {
-  const [title, setTitle] = useState<string>(issue.name);
+export const Title = ({ initTitle }: TitleProps): JSX.Element => {
+  const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
 
   const MAX_LENGTH = 80;
@@ -20,7 +19,6 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
     if (newTitle.length > MAX_LENGTH) return;
 
     setTitle(newTitle);
-    // issue.setName(newTitle);
   };
 
   return (
@@ -58,5 +56,5 @@ export const Title = ({ issue }: TitleProps): JSX.Element => {
 };
 
 interface TitleProps {
-  issue: Issue;
+  initTitle: string;
 }

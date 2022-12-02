@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { Issue } from "@domain/issue";
-import { TextareaAutosize } from "../../../../../components/textarea-autosize";
+import { TextareaAutosize } from "@app/components/textarea-autosize";
 
-export const Description = ({ issue }: DescriptionProps): JSX.Element => {
-  const [description, setDescription] = useState<string>(
-    issue.description || ""
-  );
+export const Description = ({
+  initDescription,
+}: DescriptionProps): JSX.Element => {
+  const [description, setDescription] = useState<string>(initDescription);
 
   const updateDescription = (newDescription: string) => {
     setDescription(newDescription);
-    // issue.setDescription(newDescription);
   };
 
   return (
@@ -25,5 +23,5 @@ export const Description = ({ issue }: DescriptionProps): JSX.Element => {
 };
 
 interface DescriptionProps {
-  issue: Issue;
+  initDescription: string;
 }

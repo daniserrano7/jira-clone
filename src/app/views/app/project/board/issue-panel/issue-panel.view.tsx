@@ -13,11 +13,13 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
+import { useAppStore } from "@app/views/app/app.store";
 // import { textAreOnlySpaces } from "@app/utils";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const submit = useSubmit();
+  const { user } = useAppStore();
 
   const applyChanges = () => {
     console.log("applyChanges");
@@ -58,18 +60,18 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
             onPointerDownOutside={applyChanges}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
-            <PanelHeader id={issue.id} onDeleteIssue={deleteIssue} />
+            <PanelHeader id={issue?.id || "[ID]"} onDeleteIssue={deleteIssue} />
             <Form method="post" onSubmit={handleSumbit}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">
-                    <Title issue={issue} />
+                    <Title initTitle={issue?.name || ""} />
                   </Dialog.Title>
                   <p className="font-primary-black text-font-main">
                     Description
                   </p>
                   <div className="-ml-3">
-                    <Description issue={issue} />
+                    <Description initDescription={issue?.description || ""} />
                   </div>
                   <div className="mt-6">
                     <p className="font-primary-black text-font-main">
@@ -93,15 +95,15 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                 <section className="col-span-2 space-y-10">
                   <div>
                     <p className="mb-1">Status</p>
-                    <SelectStatus issue={issue} />
+                    <SelectStatus initStatus={issue?.categoryType || "TODO"} />
                   </div>
                   <div>
                     <p className="mb-1">Priority</p>
-                    <SelectPriority issue={issue} />
+                    <SelectPriority initPriority={issue?.priority || "low"} />
                   </div>
                   <div>
                     <p className="mb-1">Asignee</p>
-                    <SelectAsignee issue={issue} />
+                    <SelectAsignee initAsignee={issue?.asignee || user} />
                   </div>
                   <div>
                     <p className="mb-1">Reporter</p>
@@ -137,5 +139,5 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
 };
 
 interface Props {
-  issue: Issue;
+  issue?: Issue;
 }

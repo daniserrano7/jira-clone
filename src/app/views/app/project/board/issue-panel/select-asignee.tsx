@@ -1,8 +1,6 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { User, UserId } from "@domain/user";
-import { Issue } from "@domain/issue";
-import { useAppStore } from "@app/views/app";
 import { useProjectStore } from "@app/views/app/project";
 import { UserAvatar } from "@app/components/avatar";
 import {
@@ -13,28 +11,26 @@ import {
   SelectItemIndicator,
 } from "@app/components/select";
 
-export const SelectAsignee = ({ issue }: Props): JSX.Element => {
-  const appStore = useAppStore();
+export const SelectAsignee = ({ initAsignee }: Props): JSX.Element => {
   const projectStore = useProjectStore();
-  const defaultValue = issue.asignee || appStore.user;
   const users = projectStore.project.users;
 
-  const [selectedValue, setSelectedValue] = useState<User>(defaultValue);
+  const [selectedValue, setSelectedValue] = useState<User>(initAsignee);
 
   const onValueChange = (userId: UserId) => {
     const asignee = projectStore.project.users.find(
       (user) => user.id === userId
     );
+
     if (asignee) {
       setSelectedValue(asignee);
-      // issue.setAsignee(asignee);
     }
   };
 
   return (
     <Select.Root
       name="asignee"
-      defaultValue={defaultValue.id}
+      defaultValue={initAsignee.id}
       onValueChange={onValueChange}
     >
       <SelectTrigger>
@@ -63,5 +59,5 @@ export const SelectAsignee = ({ issue }: Props): JSX.Element => {
 };
 
 interface Props {
-  issue: Issue;
+  initAsignee: User;
 }
