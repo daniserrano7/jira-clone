@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Form, useSubmit, useSearchParams } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { userMock1 } from "@domain/user";
@@ -19,22 +19,25 @@ import { CategoryType } from "@domain/category";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
-  const submit = useSubmit();
   const { user } = useAppStore();
+  const formRef = useRef<HTMLFormElement>(null);
+  const submit = useSubmit();
   const params = useSearchParams();
   const initStatus = (params[0].get("category") as CategoryType) || "TODO";
 
-  const applyChanges = () => {
-    console.log("applyChanges");
-  };
-
-  const deleteIssue = () => {
-    console.log("deleteIssue");
-  };
-
-  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    postData(e.currentTarget);
+  };
+
+  const handleProgrammaticSubmit = (): void => {
+    if (formRef.current) {
+      postData(formRef.current);
+    }
+  };
+
+  const postData = (formTarget: HTMLFormElement) => {
+    const formData = new FormData(formTarget);
     formData.set("comments", JSON.stringify(comments));
     formData.set("_action", "upsert");
 
@@ -59,12 +62,12 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
       <Dialog.Portal>
         <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
           <Dialog.Content
-            onEscapeKeyDown={applyChanges}
-            onPointerDownOutside={applyChanges}
+            onEscapeKeyDown={handleProgrammaticSubmit}
+            onPointerDownOutside={handleProgrammaticSubmit}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
           >
-            <PanelHeader id={issue?.id || "[ID]"} onDeleteIssue={deleteIssue} />
-            <Form method="post" onSubmit={handleSumbit}>
+            <PanelHeader id={issue?.id || "Create new issue"} />
+            <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">

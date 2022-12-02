@@ -5,10 +5,7 @@ import cx from "classix";
 import { IssueId } from "@domain/issue";
 import { Icon } from "@app/components/icon";
 
-export const PanelHeader = ({
-  id,
-  onDeleteIssue,
-}: PanelHeaderProps): JSX.Element => {
+export const PanelHeader = ({ id }: PanelHeaderProps): JSX.Element => {
   const location = useLocation();
   const previousUrl = location.pathname.split("/issue")[0];
 
@@ -20,7 +17,7 @@ export const PanelHeader = ({
         </span>
         <span className="ml-1 text-font-light text-opacity-80">{id}</span>
       </span>
-      <DeleteIssueModalDialog action={onDeleteIssue} />
+      <DeleteIssueModalDialog />
       <Link to={previousUrl}>
         <Dialog.Close className="ml-3 flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300">
           <Icon name="close" size={24} />
@@ -32,12 +29,9 @@ export const PanelHeader = ({
 
 interface PanelHeaderProps {
   id: IssueId;
-  onDeleteIssue: () => void;
 }
 
-const DeleteIssueModalDialog = ({
-  action,
-}: CloseModalDialogProps): JSX.Element => {
+const DeleteIssueModalDialog = (): JSX.Element => {
   const buttonBaseClass = cx(
     "border-none py-1.5 px-3.5 rounded bg-grey-300 font-primary-bold cursor-pointer"
   );
@@ -57,12 +51,12 @@ const DeleteIssueModalDialog = ({
             This action is permanent and cannot be undone. Are you sure you want
             to remove this issue completely?
           </AlertDialog.Description>
-          <AlertDialog.Cancel
-            className={cx("hover:bg-grey-400", buttonBaseClass)}
-          >
-            Cancel
-          </AlertDialog.Cancel>
           <Form method="delete" className="mt-8 flex w-full justify-end gap-4">
+            <AlertDialog.Cancel
+              className={cx("hover:bg-grey-400", buttonBaseClass)}
+            >
+              Cancel
+            </AlertDialog.Cancel>
             <button
               name="_action"
               value="delete"
@@ -80,7 +74,3 @@ const DeleteIssueModalDialog = ({
     </AlertDialog.Root>
   );
 };
-
-interface CloseModalDialogProps {
-  action: () => void;
-}
