@@ -1,12 +1,20 @@
 import { Link } from "@remix-run/react";
 import cx from "classix";
 import { ProjectSummary } from "@domain/project";
+import { useTheme } from "@app/theme.store";
 import { Icon } from "@app/components/icon";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
+  const { setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
   return (
-    <div className="dark:bg-dark-300 bg-white p-6">
+    <div className="bg-white p-6 dark:bg-dark-300">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
+      <button onClick={toggleTheme}>Switch theme</button>
       <button className="mt-8 flex items-center rounded bg-grey-300 p-3 hover:bg-primary-light hover:text-primary-main">
         <span>
           <Icon name="add" size={20} />

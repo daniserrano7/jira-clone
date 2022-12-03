@@ -1,25 +1,21 @@
 import { useState } from "react";
 import { NavLink } from "@remix-run/react";
 import cx from "classix";
-import { useAppStore, Theme } from "@app/views/app/app.store";
+import { useTheme } from "@app/theme.store";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
 export const Sidebar = (props: Props): JSX.Element => {
   const { projectName, projectDescription } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const appStore = useAppStore();
+  const { theme, setTheme } = useTheme();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const getButtonClass = (mode: Theme) => {
-    const isSelected = appStore.theme === mode;
-    const baseClass = cx("p-1 rounded-lg");
-    const selectedClass = cx("dark:bg-dark-100 bg-grey-100");
-    return cx(baseClass, isSelected && selectedClass);
-  };
+  const basebuttonClass = cx("p-1 rounded-lg");
+  const selectedButtonClass = cx("dark:bg-dark-100 bg-grey-100");
 
   return (
     <aside className="relative z-0 flex">
@@ -60,14 +56,20 @@ export const Sidebar = (props: Props): JSX.Element => {
         <section className="px-5 py-3">
           <div className="grid w-full grid-cols-2 gap-2 rounded-lg bg-grey-400 p-1 dark:bg-dark-300">
             <button
-              className={getButtonClass("light")}
-              onClick={() => appStore.setTheme("light")}
+              className={cx(
+                basebuttonClass,
+                theme === "light" && selectedButtonClass
+              )}
+              onClick={() => setTheme("light")}
             >
               Light
             </button>
             <button
-              className={getButtonClass("dark")}
-              onClick={() => appStore.setTheme("dark")}
+              className={cx(
+                basebuttonClass,
+                theme === "dark" && selectedButtonClass
+              )}
+              onClick={() => setTheme("dark")}
             >
               Dark
             </button>

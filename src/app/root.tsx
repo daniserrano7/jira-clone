@@ -8,6 +8,8 @@ import {
   ScrollRestoration,
   useCatch,
 } from "@remix-run/react";
+import cx from "classix";
+import { ThemeProvider, useTheme } from "./theme.store";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
 
@@ -44,10 +46,19 @@ export function CatchBoundary() {
   );
 }
 
-export default function App() {
-  // TODO: Where to handle dark theme modification?
+export const AppWithProviders = () => (
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+);
+
+const App = (): JSX.Element => {
+  // TODO: Get theme from OS settings
+  const { theme } = useTheme();
+  const isDarkTheme = theme === "dark";
+
   return (
-    <html lang="en" className="dark h-full">
+    <html lang="en" className={cx("h-full", isDarkTheme && "dark")}>
       <head>
         <Meta />
         <Links />
@@ -60,4 +71,6 @@ export default function App() {
       </body>
     </html>
   );
-}
+};
+
+export default AppWithProviders;
