@@ -14,7 +14,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
 
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
-      <div className="box-border flex h-full flex-col bg-white">
+      <div className="box-border flex h-full flex-col">
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">

@@ -12,7 +12,7 @@ export const ProjectView = ({ name, description }: Props): JSX.Element => {
   const section = location.pathname.split("/").slice(-1)[0];
 
   return (
-    <div className="relative flex h-full flex-grow bg-white">
+    <div className="relative flex h-full flex-grow">
       <Sidebar
         projectName={name}
         projectDescription={description || "Description undefined"}

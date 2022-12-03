@@ -17,6 +17,7 @@ export const Description = ({
         value={description}
         setValue={updateDescription}
         placeholder="Add a description"
+        textareaClassName="dark:text-font-main-dark"
       />
     </div>
   );

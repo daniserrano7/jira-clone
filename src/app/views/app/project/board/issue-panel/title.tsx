@@ -16,6 +16,7 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
   const requireError =
     (actionData?.errors.name || !isFocus) &&
     (title.length === 0 || textAreOnlySpaces(title));
+  console.log("REQUIRE ERROR: ", requireError);
 
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);
@@ -36,13 +37,14 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
         onFocus={onFocus}
         onBlur={onBlur}
         textareaClassName={cx(
-          "font-primary-black text-2xl",
-          requireError && "outline outline-2 outline-error-main"
+          "font-primary-black text-2xl dark:text-font-main-dark",
+          requireError &&
+            "focus-visible:outline-error-main outline outline-2 outline-error-main dark:outline-error-main-dark dark:focus-visible:outline-error-main-dark"
         )}
         autofocus
       />
       {requireError && (
-        <span className="ml-3 font-primary-light text-sm text-error-main">
+        <span className="ml-3 font-primary-light text-sm text-error-main dark:text-error-main-dark">
           This field is required
         </span>
       )}
@@ -50,7 +52,9 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
         <span
           className={cx(
             "absolute right-0 top-full font-primary-light",
-            isMaxLength ? "text-error-main" : "text-font-light"
+            isMaxLength
+              ? "text-error-main dark:text-error-main-dark"
+              : "text-font-light dark:text-font-light-dark"
           )}
         >
           {title.length} / {MAX_LENGTH}

@@ -33,7 +33,7 @@ export const IssueCard = observer(
       <div
         ref={drag}
         className={cx(
-          "flex w-full cursor-pointer flex-col rounded border-none bg-white p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-primary-light",
+          "flex w-full cursor-pointer flex-col rounded border-none bg-white p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-primary-light dark:bg-dark-300 dark:text-font-main-dark dark:hover:bg-dark-100",
           isDragging && "opacity-50"
         )}
       >
@@ -43,7 +43,7 @@ export const IssueCard = observer(
             <span className="flex items-center">
               <Icon name="task" size={16} />
             </span>
-            <span className="ml-1.5 text-2xs text-font-light">
+            <span className="ml-1.5 text-2xs text-font-light dark:text-font-light-dark">
               {issueIdPrefix}
             </span>
           </span>

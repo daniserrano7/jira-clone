@@ -43,7 +43,7 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
           selectedStatus === "IN_PROGRESS" &&
             "!bg-primary-main !text-white hover:!bg-primary-main-hover",
           selectedStatus === "DONE" &&
-            "!bg-success-main !text-white hover:!bg-sucess-hover"
+            "!bg-success-main !text-white hover:!bg-success-light"
         )}
       >
         <Select.Value className="pt-1" />
@@ -57,12 +57,13 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
               <SelectItemIndicator />
               <span
                 className={cx(
-                  "flex w-fit items-center gap-2 rounded p-0.5 text-2xs uppercase",
-                  category.type === "TODO" && "bg-grey-300 text-font-grey",
+                  "flex w-fit items-center gap-2 rounded p-0.5 text-2xs uppercase dark:bg-dark-300",
+                  category.type === "TODO" &&
+                    "bg-grey-300 text-font-grey dark:text-font-light-dark",
                   category.type === "IN_PROGRESS" &&
-                    "bg-primary-light text-primary-main",
+                    "bg-primary-light text-primary-main dark:text-primary-main-dark",
                   category.type === "DONE" &&
-                    "bg-font-success-light text-font-success-main"
+                    "bg-font-success-light text-font-success-main dark:text-font-success-main-dark"
                 )}
               >
                 <Select.ItemText>{category.name}</Select.ItemText>

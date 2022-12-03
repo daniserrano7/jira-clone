@@ -5,7 +5,7 @@ import { Icon } from "@app/components/icon";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
   return (
-    <div className="p-6">
+    <div className="dark:bg-dark-300 bg-white p-6">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
       <button className="mt-8 flex items-center rounded bg-grey-300 p-3 hover:bg-primary-light hover:text-primary-main">
         <span>

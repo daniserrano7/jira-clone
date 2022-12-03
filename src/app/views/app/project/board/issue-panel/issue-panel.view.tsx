@@ -70,7 +70,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
           <Dialog.Content
             onEscapeKeyDown={handleProgrammaticSubmit}
             onPointerDownOutside={handleProgrammaticSubmit}
-            className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg"
+            className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
           >
             <PanelHeader id={issue?.id || "Create new issue"} />
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
@@ -79,14 +79,14 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   <Dialog.Title className="my-5 -ml-3">
                     <Title initTitle={issue?.name || ""} />
                   </Dialog.Title>
-                  <p className="font-primary-black text-font-main">
+                  <p className="font-primary-black text-font-main dark:text-font-main-dark">
                     Description
                   </p>
                   <div className="-ml-3">
                     <Description initDescription={issue?.description || ""} />
                   </div>
                   <div className="mt-6">
-                    <p className="font-primary-black text-font-main">
+                    <p className="font-primary-black text-font-main dark:text-font-main-dark">
                       Comments
                     </p>
                     <div>
@@ -104,7 +104,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                     </ul>
                   </div>
                 </section>
-                <section className="col-span-2 space-y-10">
+                <section className="col-span-2 space-y-10 dark:text-font-light-dark">
                   <div>
                     <p className="mb-1">Status</p>
                     <SelectStatus
@@ -121,7 +121,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   </div>
                   <div>
                     <p className="mb-1">Reporter</p>
-                    <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1">
+                    <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1 dark:bg-dark-500">
                       <UserAvatar {...userMock1} tooltip={false} />
                       <p className="m-0">{userMock1.name}</p>
                     </div>
@@ -130,9 +130,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                 </section>
               </div>
               <div className="grid grid-cols-3 items-end">
-                <span className="font-primary-light text-2xs text-font-light text-opacity-80">
+                <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
                   Press{" "}
-                  <kbd className="rounded bg-grey-300 p-1 font-primary-light text-icon">
+                  <kbd className="rounded bg-grey-300  p-1 font-primary-light text-icon dark:bg-dark-500 dark:text-font-light-dark">
                     Esc
                   </kbd>{" "}
                   to apply changes

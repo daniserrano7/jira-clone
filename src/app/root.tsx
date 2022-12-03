@@ -45,13 +45,14 @@ export function CatchBoundary() {
 }
 
 export default function App() {
+  // TODO: Where to handle dark theme modification?
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="dark h-full">
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main">
+      <body className="h-full font-primary text-font-main dark:text-font-main-dark">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

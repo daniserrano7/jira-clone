@@ -60,7 +60,7 @@ export const CategoryColumn = observer(
     return (
       <div
         ref={drop}
-        className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200"
+        className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200 dark:bg-dark-500"
       >
         {/* Column drop area */}
         <div
@@ -83,14 +83,14 @@ export const CategoryColumn = observer(
           </div>
         </div>
         {/* Column header */}
-        <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out">
+        <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out dark:text-font-light-dark">
           <span className="flex gap-2">
             <span>{category.name}</span>
             {!emptyCategory && <span>( {category.issues.length} )</span>}
           </span>
           <Link
             to={`issue/new?category=${category.type}`}
-            className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
+            className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-100"
           >
             <Icon name="add" size={24} />
           </Link>
@@ -128,7 +128,7 @@ interface CategoryColumnProps {
 }
 
 const EmptyCategory = (): JSX.Element => (
-  <div className="mt-4 flex flex-col items-center text-font-light">
+  <div className="mt-4 flex flex-col items-center text-font-light dark:text-font-light-dark">
     <Icon name="empty" size={36} />
     <p className="mt-4 font-primary-light text-xs uppercase">No issues found</p>
   </div>
