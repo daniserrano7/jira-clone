@@ -43,7 +43,7 @@ export const SelectSort = (): JSX.Element => {
             <Select.Item
               key={index}
               value={option.id}
-              className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light dark:text-primary-main-dark dark:hover:bg-dark-300"
+              className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
             >
               <Icon name={optionIcon[option.id]} size={12} />
               <Select.ItemText>{option.label}</Select.ItemText>

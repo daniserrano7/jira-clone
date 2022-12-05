@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { NavLink } from "@remix-run/react";
+import * as Select from "@radix-ui/react-select";
 import cx from "classix";
+import {
+  ThemePreference,
+  setLocalStorageThemePreference,
+} from "@infrastructure/local-storage/theme";
 import { useTheme } from "@app/theme.store";
+import { SelectItemIndicator } from "@app/components/select";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
@@ -18,7 +24,7 @@ export const Sidebar = (props: Props): JSX.Element => {
   const selectedButtonClass = cx("dark:bg-dark-100 bg-grey-100");
 
   return (
-    <aside className="relative z-0 flex">
+    <aside className="relative flex">
       <div
         className={cx(
           "flex h-full max-w-0 flex-col whitespace-nowrap bg-grey-100 opacity-0 duration-300 ease-out dark:bg-dark-500",
@@ -53,7 +59,7 @@ export const Sidebar = (props: Props): JSX.Element => {
             ))}
           </nav>
         </section>
-        <section className="px-5 py-3">
+        <section className="flex gap-2 px-5 py-3">
           <div className="grid w-full grid-cols-2 gap-2 rounded-lg bg-grey-400 p-1 dark:bg-dark-300">
             <button
               className={cx(
@@ -74,6 +80,7 @@ export const Sidebar = (props: Props): JSX.Element => {
               Dark
             </button>
           </div>
+          <SelectTheme />
         </section>
       </div>
       <div
@@ -164,3 +171,56 @@ export interface NavItemProps {
   name: string;
   disabled?: boolean;
 }
+
+const SelectTheme = (): JSX.Element => {
+  const { preference } = useTheme();
+
+  interface Option {
+    value: ThemePreference;
+    label: string;
+  }
+  const options: Option[] = [
+    {
+      value: "selected",
+      label: "Selected",
+    },
+    {
+      value: "system",
+      label: "System",
+    },
+  ];
+
+  const onValueChange = (value: ThemePreference) => {
+    console.log(value);
+    setLocalStorageThemePreference(value);
+  };
+
+  return (
+    <Select.Root
+      // open={true}
+      defaultValue={preference}
+      onValueChange={onValueChange}
+    >
+      <Select.Trigger className="flex cursor-pointer items-center justify-center rounded-lg border-none bg-primary-light p-2 text-xs text-primary-main hover:bg-primary-light-hover dark:border-2 dark:border-solid dark:border-primary-main-dark dark:bg-transparent dark:text-primary-main-dark dark:hover:bg-primary-main-dark dark:hover:bg-opacity-20 dark:focus-visible:outline-white">
+        <Icon name="settings" size={24} />
+        <Select.Value>{""}</Select.Value>
+      </Select.Trigger>
+      <Select.Content className="relative z-50 rounded bg-white p-1.5 shadow-blue dark:bg-dark-500">
+        <Select.ScrollUpButton />
+        <Select.Viewport>
+          {options.map((option) => (
+            <Select.Item
+              key={option.value}
+              value={option.value}
+              className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
+            >
+              <SelectItemIndicator />
+              <Select.ItemText>{option.label}</Select.ItemText>
+            </Select.Item>
+          ))}
+        </Select.Viewport>
+        <Select.ScrollDownButton />
+      </Select.Content>
+    </Select.Root>
+  );
+};

@@ -46,11 +46,13 @@ export function CatchBoundary() {
   );
 }
 
-export const AppWithProviders = () => (
-  <ThemeProvider>
-    <App />
-  </ThemeProvider>
-);
+export const AppWithProviders = () => {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+  );
+};
 
 const App = (): JSX.Element => {
   // TODO: Get theme from OS settings
