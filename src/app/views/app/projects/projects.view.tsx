@@ -1,22 +1,13 @@
 import { Link } from "@remix-run/react";
 import cx from "classix";
 import { ProjectSummary } from "@domain/project";
-import { useTheme } from "@app/theme.store";
 import { Icon } from "@app/components/icon";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
-  const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-  };
-
   return (
     <div className="bg-white p-6 dark:bg-dark-300">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
-      <button onClick={toggleTheme}>Switch theme</button>
-      <button className="mt-8 flex items-center rounded bg-grey-300 p-3 hover:bg-primary-light hover:text-primary-main">
+      <button className="mt-8 flex items-center rounded bg-grey-300 p-3 hover:bg-primary-light hover:text-primary-main dark:bg-dark-200 dark:hover:bg-dark-100 dark:hover:text-font-main-dark">
         <span>
           <Icon name="add" size={20} />
         </span>
@@ -29,7 +20,7 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
               to={project.id}
               className={cx(
                 "group flex rounded shadow-sm outline outline-2 outline-transparent duration-100 ease-linear",
-                "hover:-translate-y-0.5 hover:bg-primary-light hover:text-primary-main hover:shadow-md hover:outline-primary-main"
+                "hover:-translate-y-0.5 hover:bg-primary-light hover:text-primary-main hover:shadow-md hover:outline-primary-main dark:bg-dark-200 dark:hover:text-primary-main-dark dark:hover:outline-primary-main-dark"
               )}
             >
               <img
@@ -39,7 +30,7 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
               />
               <div className="flex flex-col gap-1 px-3 pt-2 pb-6">
                 <h2 className="text-lg">{project.name}</h2>
-                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-80 line-clamp-2 group-hover:text-primary-main">
+                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-80 line-clamp-2 dark:text-font-light-dark dark:group-hover:text-primary-main-dark">
                   {project.description}
                 </h3>
               </div>
