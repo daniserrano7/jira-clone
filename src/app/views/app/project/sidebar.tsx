@@ -7,7 +7,6 @@ import {
   setLocalStorageThemePreference,
 } from "@infrastructure/local-storage/theme";
 import { useTheme } from "@app/theme.store";
-import { SelectItemIndicator } from "@app/components/select";
 import { Icon, IconName } from "@app/components/icon";
 import imageProject from "public/images/default-project.png";
 
@@ -196,11 +195,7 @@ const SelectTheme = (): JSX.Element => {
   };
 
   return (
-    <Select.Root
-      // open={true}
-      defaultValue={preference}
-      onValueChange={onValueChange}
-    >
+    <Select.Root defaultValue={preference} onValueChange={onValueChange}>
       <Select.Trigger className="flex cursor-pointer items-center justify-center rounded-lg border-none bg-primary-light p-2 text-xs text-primary-main hover:bg-primary-light-hover dark:border-2 dark:border-solid dark:border-primary-main-dark dark:bg-transparent dark:text-primary-main-dark dark:hover:bg-primary-main-dark dark:hover:bg-opacity-20 dark:focus-visible:outline-white">
         <Icon name="settings" size={24} />
         <Select.Value>{""}</Select.Value>
@@ -212,9 +207,9 @@ const SelectTheme = (): JSX.Element => {
             <Select.Item
               key={option.value}
               value={option.value}
-              className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
+              className="relative flex cursor-pointer items-center gap-2 rounded py-2 pl-6 pr-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
             >
-              <SelectItemIndicator />
+              <Select.ItemIndicator className="absolute left-2 top-1/2 h-[7px] w-[7px] -translate-y-1/2 rounded-full bg-primary-main" />
               <Select.ItemText>{option.label}</Select.ItemText>
             </Select.Item>
           ))}
