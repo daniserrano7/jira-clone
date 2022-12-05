@@ -1,11 +1,9 @@
 import { createContext, useContext } from "react";
 import { makeAutoObservable } from "mobx";
 import { Project } from "@domain/project";
-import { Issue } from "@domain/issue";
 
 export class ProjectStore {
   project: Project;
-  editingIssue: Issue | null = null;
   filters: Filters = {
     search: "",
     sort: "date",
