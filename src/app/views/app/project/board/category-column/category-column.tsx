@@ -1,9 +1,10 @@
+import { useEffect, Dispatch, SetStateAction } from "react";
 import { observer } from "mobx-react-lite";
 import { Link, useFetcher } from "@remix-run/react";
 import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category } from "@domain/category";
-import { Issue } from "@domain/issue";
+import { Issue, IssueId } from "@domain/issue";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
 import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
@@ -12,7 +13,13 @@ import { priorities } from "@domain/priority";
 
 export const CategoryColumn = observer(
   (props: CategoryColumnProps): JSX.Element => {
-    const { category, isDragging, handleDragging } = props;
+    const {
+      category,
+      isDragging,
+      submittingIssues,
+      setSubmittingIssues,
+      handleDragging,
+    } = props;
     const fetcher = useFetcher();
     const projectStore = useProjectStore();
     const searchFilter = projectStore.filters.search.toLowerCase();
@@ -30,6 +37,10 @@ export const CategoryColumn = observer(
     );
 
     const updateIssueOnCardDrop = (item: DropItem) => {
+      if (item.categoryId === category.id) {
+        return;
+      }
+
       fetcher.submit(
         {
           _action: "updateIssueCategory",
@@ -40,6 +51,10 @@ export const CategoryColumn = observer(
           method: "post",
         }
       );
+
+      if (!submittingIssues.includes(item.issueId)) {
+        setSubmittingIssues((prev) => [...prev, item.issueId]);
+      }
     };
 
     const filteredIssues = (): Issue[] =>
@@ -65,6 +80,13 @@ export const CategoryColumn = observer(
           if (sortA > sortB) return -1;
           return 0;
         });
+
+    useEffect(() => {
+      if (fetcher.data && fetcher.data.issueId) {
+        const { issueId } = fetcher.data;
+        setSubmittingIssues((prev) => prev.filter((id) => id !== issueId));
+      }
+    }, [fetcher, setSubmittingIssues]);
 
     return (
       <div
@@ -116,6 +138,8 @@ export const CategoryColumn = observer(
                     <IssueCard
                       issue={issue}
                       categoryId={category.id}
+                      isSubmitting={submittingIssues.includes(issue.id)}
+                      // isSubmitting={true}
                       handleDragging={handleDragging}
                     />
                   </li>
@@ -132,6 +156,8 @@ export const CategoryColumn = observer(
 interface CategoryColumnProps {
   category: Category;
   isDragging: boolean;
+  submittingIssues: IssueId[];
+  setSubmittingIssues: Dispatch<SetStateAction<IssueId[]>>;
   handleDragging: (isDragging: boolean) => void;
 }
 

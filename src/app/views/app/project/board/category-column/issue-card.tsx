@@ -14,7 +14,12 @@ export interface DropItem {
 }
 
 export const IssueCard = observer(
-  ({ issue, categoryId, handleDragging }: IssueCardProps): JSX.Element => {
+  ({
+    issue,
+    categoryId,
+    isSubmitting,
+    handleDragging,
+  }: IssueCardProps): JSX.Element => {
     // TODO: Reduce the number of re-renders
     const issueIdPrefix = issue.id.split("-")[0];
 
@@ -40,10 +45,11 @@ export const IssueCard = observer(
 
     return (
       <div
-        ref={dragRef}
+        ref={isSubmitting ? undefined : dragRef}
         className={cx(
           "flex w-full cursor-pointer flex-col rounded border-none bg-white p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-primary-light dark:bg-dark-300 dark:text-font-main-dark dark:hover:bg-dark-100",
-          isDragging && "opacity-50"
+          isDragging && "opacity-50",
+          isSubmitting && "opacity-50"
         )}
       >
         <Link to={`issue/${issue.id}`}>
@@ -70,6 +76,7 @@ export const IssueCard = observer(
 interface IssueCardProps {
   issue: Issue;
   categoryId: CategoryId;
+  isSubmitting: boolean;
   handleDragging: (isDragging: boolean) => void;
 }
 

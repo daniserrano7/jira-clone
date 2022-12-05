@@ -4,6 +4,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project } from "@domain/project";
 import { Category } from "@domain/category";
+import { IssueId } from "@domain/issue";
 import { Search } from "@app/views/app/project/board/search";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
@@ -38,6 +39,7 @@ interface Props {
 
 const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -46,6 +48,8 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
           key={category.id}
           category={category}
           isDragging={isDragging}
+          submittingIssues={submittingIssues}
+          setSubmittingIssues={setSubmittingIssues}
           handleDragging={setIsDragging}
         />
       ))}
