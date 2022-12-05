@@ -114,6 +114,25 @@ export const updateIssue = async (issue: UpdateIssueInputData) => {
   });
 };
 
+export type UpdateIssueCategoryData = {
+  issueId: IssueId;
+  categoryId: CategoryId;
+};
+export const updateIssueCategory = async ({ issueId, categoryId }: UpdateIssueCategoryData) => {
+  await db.issue.update({
+    where: {
+      id: issueId,
+    },
+    data: {
+      category: {
+        connect: {
+          id: categoryId,
+        },
+      },
+    },
+  });
+};
+
 export const deleteIssue = async (issueId: IssueId) => {
   await db.issue.delete({
     where: {

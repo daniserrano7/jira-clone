@@ -16,7 +16,6 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
   const requireError =
     (actionData?.errors.name || !isFocus) &&
     (title.length === 0 || textAreOnlySpaces(title));
-  console.log("REQUIRE ERROR: ", requireError);
 
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);

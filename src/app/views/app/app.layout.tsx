@@ -5,7 +5,6 @@ import { Header } from "./header";
 
 export const AppLayout = ({ user }: Props) => {
   const appStore = new AppStore({ user });
-  console.log("RENDERING APP LAYOUT");
 
   return (
     <AppContext.Provider value={appStore}>

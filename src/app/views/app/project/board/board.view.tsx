@@ -3,6 +3,7 @@ import { Outlet } from "@remix-run/react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project } from "@domain/project";
+import { Category } from "@domain/category";
 import { Search } from "@app/views/app/project/board/search";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
@@ -10,8 +11,6 @@ import { CategoryColumn } from "./category-column";
 import { ProjectContext, ProjectStore } from "../project.store";
 
 export const BoardView = ({ project }: Props): JSX.Element => {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-
   return (
     <ProjectContext.Provider value={new ProjectStore(project)}>
       <div className="box-border flex h-full flex-col">
@@ -25,16 +24,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
           </div>
         </section>
         <section className="mt-12 flex h-full gap-3">
-          <DndProvider backend={HTML5Backend}>
-            {project.categories.map((category) => (
-              <CategoryColumn
-                key={category.id}
-                category={category}
-                isDragging={isDragging}
-                handleDragging={setIsDragging}
-              />
-            ))}
-          </DndProvider>
+          <Categories categories={project.categories} />
         </section>
         <Outlet />
       </div>
@@ -44,4 +34,25 @@ export const BoardView = ({ project }: Props): JSX.Element => {
 
 interface Props {
   project: Project;
+}
+
+const Categories = ({ categories }: CategoriesProps): JSX.Element => {
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  return (
+    <DndProvider backend={HTML5Backend}>
+      {categories.map((category) => (
+        <CategoryColumn
+          key={category.id}
+          category={category}
+          isDragging={isDragging}
+          handleDragging={setIsDragging}
+        />
+      ))}
+    </DndProvider>
+  );
+};
+
+interface CategoriesProps {
+  categories: Category[];
 }

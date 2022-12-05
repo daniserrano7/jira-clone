@@ -28,7 +28,6 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const submit = useSubmit();
   const params = useSearchParams();
   const transition = useTransition();
-  console.log("TRANSITION STATE: ", transition.state);
   const initStatus = (params[0].get("category") as CategoryType) || "TODO";
 
   const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {

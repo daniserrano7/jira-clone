@@ -1,26 +1,27 @@
 import { observer } from "mobx-react-lite";
-import { Link } from "@remix-run/react";
+import { Link, useFetcher } from "@remix-run/react";
 import cx from "classix";
 import { useDrop } from "react-dnd";
-import { Category, CategoryType } from "@domain/category";
-import { Issue, IssueId } from "@domain/issue";
+import { Category } from "@domain/category";
+import { Issue } from "@domain/issue";
 import { useProjectStore } from "@app/views/app/project";
 import { Icon } from "@app/components/icon";
-import { IssueCard, DRAG_ISSUE_CARD } from "./issue-card";
+import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "@app/components/scroll-area";
 import { priorities } from "@domain/priority";
 
 export const CategoryColumn = observer(
   (props: CategoryColumnProps): JSX.Element => {
     const { category, isDragging, handleDragging } = props;
+    const fetcher = useFetcher();
     const projectStore = useProjectStore();
     const searchFilter = projectStore.filters.search.toLowerCase();
     const emptyCategory = category.issues.length === 0;
 
-    const [{ isOver }, drop] = useDrop(
+    const [{ isOver }, dropRef] = useDrop(
       () => ({
         accept: DRAG_ISSUE_CARD,
-        drop: (item: DropItem) => console.log("Droped item: ", item),
+        drop: (item: DropItem) => updateIssueOnCardDrop(item),
         collect: (monitor) => ({
           isOver: !!monitor.isOver(),
         }),
@@ -28,10 +29,18 @@ export const CategoryColumn = observer(
       [category.id]
     );
 
-    interface DropItem {
-      issueId: IssueId;
-      categoryId: CategoryType;
-    }
+    const updateIssueOnCardDrop = (item: DropItem) => {
+      fetcher.submit(
+        {
+          _action: "updateIssueCategory",
+          issueId: item.issueId,
+          categoryId: category.id,
+        },
+        {
+          method: "post",
+        }
+      );
+    };
 
     const filteredIssues = (): Issue[] =>
       category.issues
@@ -59,7 +68,7 @@ export const CategoryColumn = observer(
 
     return (
       <div
-        ref={drop}
+        ref={dropRef}
         className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200 dark:bg-dark-500"
       >
         {/* Column drop area */}
@@ -104,12 +113,11 @@ export const CategoryColumn = observer(
               ) : (
                 filteredIssues().map((issue, index) => (
                   <li key={index} className="mb-2">
-                    <Link to={`issue/${issue.id}`}>
-                      <IssueCard
-                        issue={issue}
-                        handleDragging={handleDragging}
-                      />
-                    </Link>
+                    <IssueCard
+                      issue={issue}
+                      categoryId={category.id}
+                      handleDragging={handleDragging}
+                    />
                   </li>
                 ))
               )}

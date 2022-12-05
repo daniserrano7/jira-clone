@@ -10,7 +10,6 @@ export class AppStore {
   user: User;
 
   constructor({ user }: Constructor) {
-    console.log("INITIALIZING APP STORE");
     this.user = user;
     makeAutoObservable(this);
   }

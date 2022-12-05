@@ -190,7 +190,6 @@ const SelectTheme = (): JSX.Element => {
   ];
 
   const onValueChange = (value: ThemePreference) => {
-    console.log(value);
     setLocalStorageThemePreference(value);
   };
 

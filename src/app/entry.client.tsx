@@ -6,9 +6,9 @@ function hydrate() {
   startTransition(() => {
     hydrateRoot(
       document,
-      <StrictMode>
-        <RemixBrowser />
-      </StrictMode>
+      // <StrictMode>
+      <RemixBrowser />
+      // </StrictMode>
     );
   });
 }
