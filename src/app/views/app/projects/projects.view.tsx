@@ -5,10 +5,11 @@ import { useTheme } from "@app/theme.store";
 import { Icon } from "@app/components/icon";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
   };
 
   return (
