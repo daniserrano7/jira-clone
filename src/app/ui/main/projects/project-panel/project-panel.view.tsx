@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Form, useSubmit, useTransition } from "@remix-run/react";
+import { Form, useSubmit, useNavigate, useTransition } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { User } from "@domain/user";
@@ -9,10 +9,12 @@ import { Icon } from "@app/components/icon";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/Kbd";
+import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
   const submit = useSubmit();
+  const navigate = useNavigate();
   const transition = useTransition();
 
   const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,10 +22,14 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
     postData(e.currentTarget);
   };
 
-  const handleProgrammaticSubmit = (): void => {
-    if (formRef.current) {
-      postData(formRef.current);
-    }
+  // const handleProgrammaticSubmit = (): void => {
+  //   if (formRef.current) {
+  //     postData(formRef.current);
+  //   }
+  // };
+
+  const handleProgrammaticClose = (): void => {
+    navigate("/projects");
   };
 
   const postData = (formTarget: HTMLFormElement) => {
@@ -40,16 +46,14 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
       <Dialog.Portal>
         <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
           <Dialog.Content
-            onEscapeKeyDown={handleProgrammaticSubmit}
-            onPointerDownOutside={handleProgrammaticSubmit}
+            onEscapeKeyDown={handleProgrammaticClose}
+            onPointerDownOutside={handleProgrammaticClose}
             className="relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
           >
+            <PanelHeaderProject id={project?.id || "Create new project"} />
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
               <div className="mb-6">
-                <p className="mb-1 font-primary-black text-font-main dark:text-font-main-dark">
-                  Title
-                </p>
-                <Dialog.Title className="mb-8 -ml-3">
+                <Dialog.Title className="mt-5 mb-8 -ml-3">
                   <Title initTitle={project?.name || ""} maxLength={30} />
                 </Dialog.Title>
                 <p className="font-primary-black text-font-main dark:text-font-main-dark">
@@ -85,9 +89,9 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                   ))}
                 </ul>
               </div>
-              <div className="grid grid-cols-3 items-end">
+              <div className="mt-6 grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Esc</Kbd> to apply changes
+                  Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to accept
                 </span>
                 <button
                   type="submit"
@@ -100,9 +104,12 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                       <Spinner />
                     </>
                   ) : (
-                    "Done"
+                    "Accept"
                   )}
                 </button>
+                <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  Press <Kbd>Esc</Kbd> to close
+                </span>
               </div>
             </Form>
           </Dialog.Content>

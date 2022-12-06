@@ -1,26 +1,24 @@
-import { Form, Link, useLocation } from "@remix-run/react";
+import { Form, Link } from "@remix-run/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import cx from "classix";
 import { IssueId } from "@domain/issue";
 import { Icon } from "@app/components/icon";
 
-export const PanelHeader = ({ id }: PanelHeaderProps): JSX.Element => {
-  const location = useLocation();
-  const previousUrl = location.pathname.split("/issue")[0];
+export const PanelHeaderProject = ({
+  id,
+}: PanelHeaderProjectProps): JSX.Element => {
+  const isEditMode = false;
 
   return (
     <div className="flex">
       <span className="flex flex-grow items-center">
-        <span className="flex items-center">
-          <Icon name="task" size={16} />
-        </span>
         <span className="ml-1 text-font-light text-opacity-80 dark:text-font-light-dark">
           {id}
         </span>
       </span>
-      <DeleteIssueModalDialog />
+      {isEditMode && <DeleteIssueModalDialog />}
       <Link
-        to={previousUrl}
+        to="/projects"
         className="ml-3 flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
       >
         <Icon name="close" size={24} />
@@ -29,7 +27,7 @@ export const PanelHeader = ({ id }: PanelHeaderProps): JSX.Element => {
   );
 };
 
-interface PanelHeaderProps {
+interface PanelHeaderProjectProps {
   id: IssueId;
 }
 

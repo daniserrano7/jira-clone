@@ -19,7 +19,7 @@ import { UserAvatar } from "@app/components/avatar";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/Kbd";
-import { PanelHeader } from "./panel-header";
+import { PanelHeaderIssue } from "./panel-header-issue";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
@@ -107,7 +107,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
             onPointerDownOutside={handleProgramaticClose}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
           >
-            <PanelHeader id={issue?.id || "Create new issue"} />
+            <PanelHeaderIssue id={issue?.id || "Create new issue"} />
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
@@ -169,7 +169,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               </div>
               <div className="mt-6 grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to apply changes
+                  Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to accept
                 </span>
                 <button
                   type="submit"
@@ -182,11 +182,11 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       <Spinner />
                     </>
                   ) : (
-                    "Done"
+                    "Accept"
                   )}
                 </button>
                 <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Esc</Kbd> to close without saving
+                  Press <Kbd>Esc</Kbd> to close
                 </span>
               </div>
             </Form>
