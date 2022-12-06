@@ -1,9 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Form,
   useSubmit,
   useSearchParams,
   useTransition,
+  useLocation,
+  useNavigate,
 } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { userMock1 } from "@domain/user";
@@ -29,28 +31,38 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const submit = useSubmit();
   const params = useSearchParams();
   const transition = useTransition();
+  const location = useLocation();
+  const navigate = useNavigate();
   const initStatus = (params[0].get("category") as CategoryType) || "TODO";
+
+  const handleProgramaticClose = () => {
+    const previousUrl = location.pathname.split("/issue")[0];
+    navigate(previousUrl);
+  };
+
+  const postData = useCallback(
+    (formTarget: HTMLFormElement) => {
+      const formData = new FormData(formTarget);
+      formData.set("comments", JSON.stringify(comments));
+      formData.set("_action", "upsert");
+
+      submit(formData, {
+        method: "post",
+      });
+    },
+    [comments, submit]
+  );
 
   const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     postData(e.currentTarget);
   };
 
-  const handleProgrammaticSubmit = (): void => {
+  const handleProgrammaticSubmit = useCallback((): void => {
     if (formRef.current) {
       postData(formRef.current);
     }
-  };
-
-  const postData = (formTarget: HTMLFormElement) => {
-    const formData = new FormData(formTarget);
-    formData.set("comments", JSON.stringify(comments));
-    formData.set("_action", "upsert");
-
-    submit(formData, {
-      method: "post",
-    });
-  };
+  }, [postData]);
 
   const addComment = (newComment: Comment): void => {
     setComments([...comments, newComment]);
@@ -63,13 +75,29 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     setComments(updatedComments);
   };
 
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault();
+        handleProgrammaticSubmit();
+      }
+    },
+    [handleProgrammaticSubmit]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
+
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal>
         <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
           <Dialog.Content
-            onEscapeKeyDown={handleProgrammaticSubmit}
-            onPointerDownOutside={handleProgrammaticSubmit}
+            onEscapeKeyDown={handleProgramaticClose}
+            onPointerDownOutside={handleProgramaticClose}
             className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
           >
             <PanelHeader id={issue?.id || "Create new issue"} />
@@ -129,9 +157,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   </div>
                 </section>
               </div>
-              <div className="grid grid-cols-3 items-end">
+              <div className="mt-6 grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Esc</Kbd> to apply changes
+                  Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to apply changes
                 </span>
                 <button
                   type="submit"
@@ -147,6 +175,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                     "Done"
                   )}
                 </button>
+                <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  Press <Kbd>Esc</Kbd> to close without saving
+                </span>
               </div>
             </Form>
           </Dialog.Content>

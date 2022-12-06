@@ -75,10 +75,8 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                         <Checkbox.Root
                           id={`checkbox-${user.id}`}
                           className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
-                          defaultChecked
                         >
-                          <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center dark:bg-primary-main-dark">
-                            {/* <CheckIcon /> */}
+                          <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
                             <Icon name="add" />
                           </Checkbox.Indicator>
                         </Checkbox.Root>
