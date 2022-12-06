@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useActionData } from "@remix-run/react";
 import cx from "classix";
-import { ActionData as IssueActionData } from "@app/routes/__main/projects/$projectId/board/issue/$issueId";
+import { ActionData as IssueActionData } from "@app/routes/__main/projects.$projectId/board/issue/$issueId";
 import { TextareaAutosize } from "@app/components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
