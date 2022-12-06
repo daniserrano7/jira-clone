@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
 import { TextareaAutosize } from "@app/components/textarea-autosize";
-import { textAreOnlySpaces } from "@app/utils";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
 export const EditBox = ({
   defaultMessage,

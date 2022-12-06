@@ -7,7 +7,11 @@ const sectionTitles: Record<string, string> = {
   backlog: "Backlog",
 };
 
-export const ProjectView = ({ name, description }: Props): JSX.Element => {
+export const ProjectView = ({
+  name,
+  description,
+  image,
+}: Props): JSX.Element => {
   const location = useLocation();
   const section = location.pathname.split("/").slice(-1)[0];
 
@@ -16,6 +20,7 @@ export const ProjectView = ({ name, description }: Props): JSX.Element => {
       <Sidebar
         projectName={name}
         projectDescription={description || "Description undefined"}
+        projectImage={image || "/images/default-project.png"}
       />
       <div className="z-10 flex h-full w-full flex-grow flex-col py-6 px-5">
         <section>
@@ -37,4 +42,5 @@ export const ProjectView = ({ name, description }: Props): JSX.Element => {
 interface Props {
   name: string;
   description?: string;
+  image: string;
 }

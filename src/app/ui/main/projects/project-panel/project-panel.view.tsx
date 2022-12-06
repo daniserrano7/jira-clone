@@ -12,7 +12,7 @@ import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/Kbd";
 import { PanelHeaderProject } from "./panel-header-project";
 
-export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
+export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
   const fetcher = useFetcher();
   const navigate = useNavigate();

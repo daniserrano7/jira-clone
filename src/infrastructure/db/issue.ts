@@ -4,7 +4,7 @@ import { CategoryType, CategoryId } from "@domain/category";
 import { IssueId, Issue } from "@domain/issue";
 import { Priority } from "@domain/priority";
 import { Comment } from "@domain/comment";
-import { dnull } from "@infrastructure/utils/dnull";
+import { dnull } from "src/utils/dnull";
 import { db } from "./db.server";
 
 export const getIssue = async (issueId: IssueId): Promise<Issue | null> => {

@@ -33,6 +33,7 @@ const createOrUpdateProject = async (project: Project): Promise<ProjectDB> => {
     id: project.id,
     name: project.name,
     description: project.description,
+    image: project.image,
     users: {
       connect: project.users.map((user) => ({ id: user.id })),
     },

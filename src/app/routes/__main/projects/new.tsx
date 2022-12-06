@@ -5,8 +5,9 @@ import { User, UserId } from "@domain/user";
 import { Category, categoryTypes, categoryTypeDict } from "@domain/category";
 import { getUsers } from "@infrastructure/db/user";
 import { createProject } from "@infrastructure/db/project";
-import { ProjectPanel } from "@app/ui/main/projects/project-panel/project-panel.view";
-import { textAreOnlySpaces } from "@app/utils";
+import { ProjectPanelView } from "@app/ui/main/projects/project-panel/project-panel.view";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { getRandomProjectImage } from "@utils/random-project-image";
 
 type LoaderData = {
   users: User[];
@@ -67,6 +68,7 @@ export const action: ActionFunction = async ({ request }) => {
       name,
       description,
       userIds: users,
+      image: getRandomProjectImage(),
       categories,
     });
 
@@ -76,5 +78,5 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function IssuePanelRoute() {
   const { users } = useLoaderData() as LoaderData;
-  return <ProjectPanel users={users} />;
+  return <ProjectPanelView users={users} />;
 }

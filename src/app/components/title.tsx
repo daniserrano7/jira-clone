@@ -1,7 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
 import { TextareaAutosize } from "@app/components/textarea-autosize";
-import { textAreOnlySpaces } from "@app/utils";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
 const DEFAULT_MAX_LENGTH = 80;
 
@@ -13,7 +13,6 @@ export const Title = ({
   const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
 
-  console.log("MAX LEN: ", maxLength);
   const isMaxLength = title.length >= maxLength;
   const requireError =
     error && (title.length === 0 || textAreOnlySpaces(title));

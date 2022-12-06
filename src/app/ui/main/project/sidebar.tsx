@@ -8,10 +8,9 @@ import {
 } from "@infrastructure/local-storage/theme";
 import { useTheme } from "@app/theme.store";
 import { Icon, IconName } from "@app/components/icon";
-import imageProject from "public/images/default-project.png";
 
 export const Sidebar = (props: Props): JSX.Element => {
-  const { projectName, projectDescription } = props;
+  const { projectName, projectDescription, projectImage } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const { theme, setTheme } = useTheme();
 
@@ -32,7 +31,7 @@ export const Sidebar = (props: Props): JSX.Element => {
       >
         <section className="flex w-full items-start py-6 px-5">
           <img
-            src={imageProject}
+            src={projectImage}
             width={28}
             height={28}
             alt="project"
@@ -103,6 +102,7 @@ export const Sidebar = (props: Props): JSX.Element => {
 interface Props {
   projectName: string;
   projectDescription: string;
+  projectImage: string;
 }
 
 const navItems: NavItemProps[] = [

@@ -55,6 +55,6 @@ export function CatchBoundary() {
 
 export default function ProjectRoute() {
   const { projectSummary } = useLoaderData() as LoaderData;
-  const { name, description } = projectSummary;
-  return <ProjectView name={name} description={description} />;
+  const { name, description, image } = projectSummary;
+  return <ProjectView name={name} description={description} image={image} />;
 }

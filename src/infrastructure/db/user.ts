@@ -1,5 +1,5 @@
 import { User, userMock1 } from "@domain/user";
-import { dnull } from "@infrastructure/utils/dnull";
+import { dnull } from "src/utils/dnull";
 import { db } from "./db.server";
 
 export const fetchUser = async (): Promise<User> => {

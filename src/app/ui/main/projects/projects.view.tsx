@@ -27,7 +27,7 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
               )}
             >
               <img
-                src="/images/default-project.png"
+                src={project.image || "/images/default-project.png"}
                 alt="Project"
                 className="h-auto w-[90px] rounded-l object-cover"
               />

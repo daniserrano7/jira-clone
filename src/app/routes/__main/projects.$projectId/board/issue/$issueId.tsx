@@ -14,7 +14,7 @@ import {
   UpdateIssueInputData,
 } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
-import { textAreOnlySpaces } from "@app/utils";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
 type LoaderData = {
   issue: Issue;

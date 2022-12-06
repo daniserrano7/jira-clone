@@ -3,7 +3,7 @@ import { Project, ProjectSummary, ProjectId } from "@domain/project";
 import { Category, CategoryType } from "@domain/category";
 import { Priority } from "@domain/priority";
 import { db } from "./db.server";
-import { dnull } from "@infrastructure/utils/dnull";
+import { dnull } from "src/utils/dnull";
 
 export const getProject = async (projectId: ProjectId): Promise<Project | null> => {
   const projectDb = await db.project.findUnique({
@@ -41,6 +41,7 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
     users: projectDb.users.map(dnull),
     name: projectDb.name,
     description: projectDb.description || "",
+    image: projectDb.image,
     categories: projectDb.categories.map((category) => ({
       id: category.id,
       name: category.name,
@@ -71,6 +72,7 @@ export const getProjectSummary = async (projectId: ProjectId): Promise<ProjectSu
       id: true,
       name: true,
       description: true,
+      image: true,
       createdAt: true,
     },
   });
@@ -83,6 +85,7 @@ export const getProjectSummary = async (projectId: ProjectId): Promise<ProjectSu
     id: projectSummaryDb.id,
     name: projectSummaryDb.name,
     description: projectSummaryDb.description || "",
+    image: projectSummaryDb.image,
     createdAt: projectSummaryDb.createdAt.getDate(),
   };
 
@@ -95,6 +98,7 @@ export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
       id: true,
       name: true,
       description: true,
+      image: true,
       createdAt: true,
     },
     orderBy: {
@@ -105,6 +109,7 @@ export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
   const projectsSummary: ProjectSummary[] = projectsSummaryDb.map((projectSummaryDb) => ({
     id: projectSummaryDb.id,
     name: projectSummaryDb.name,
+    image: projectSummaryDb.image,
     description: projectSummaryDb.description || "",
     createdAt: projectSummaryDb.createdAt.getDate(),
   }));
@@ -115,6 +120,7 @@ export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
 type CreateProjectInput = {
   name: string;
   description: string;
+  image: string;
   userIds: UserId[];
   categories: Omit<Category, "id">[];
 };
@@ -123,6 +129,7 @@ export const createProject = async (project: CreateProjectInput): Promise<void> 
     data: {
       name: project.name,
       description: project.description,
+      image: project.image,
       categories: {
         create: project.categories.map((category) => ({
           name: category.name,
@@ -139,22 +146,4 @@ export const createProject = async (project: CreateProjectInput): Promise<void> 
       users: true,
     },
   });
-
-  // const projectCreated: Project = {
-  //   id: projectDb.id,
-  //   users: [],
-  //   name: projectDb.name,
-  //   description: projectDb.description || "",
-  //   categories: projectDb.categories.map((category) => ({
-  //     id: category.id,
-  //     name: category.name,
-  //     type: category.type as CategoryType,
-  //     order: category.order,
-  //     issues: [],
-  //   })),
-  //   createdAt: projectDb.createdAt.getDate(),
-  //   updatedAt: projectDb.updatedAt.getDate(),
-  // };
-
-  // return projectCreated;
 };
