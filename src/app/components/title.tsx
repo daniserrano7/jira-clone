@@ -5,13 +5,18 @@ import { ActionData as IssueActionData } from "@app/routes/__main/projects/$proj
 import { TextareaAutosize } from "@app/components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
-export const Title = ({ initTitle }: TitleProps): JSX.Element => {
+const DEFAULT_MAX_LENGTH = 80;
+
+export const Title = ({
+  initTitle,
+  maxLength = DEFAULT_MAX_LENGTH,
+}: TitleProps): JSX.Element => {
   const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
   const actionData = useActionData() as IssueActionData;
 
-  const MAX_LENGTH = 80;
-  const isMaxLength = title.length >= MAX_LENGTH;
+  console.log("MAX LEN: ", maxLength);
+  const isMaxLength = title.length >= maxLength;
   // Handle server and client name error
   const requireError =
     (actionData?.errors.name || !isFocus) &&
@@ -21,7 +26,7 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
   const onBlur = () => setIsFocus(false);
 
   const updateTitle = (newTitle: string) => {
-    if (newTitle.length > MAX_LENGTH) return;
+    if (newTitle.length > maxLength) return;
 
     setTitle(newTitle);
   };
@@ -56,7 +61,7 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
               : "text-font-light dark:text-font-light-dark"
           )}
         >
-          {title.length} / {MAX_LENGTH}
+          {title.length} / {maxLength}
         </span>
       )}
     </div>
@@ -65,4 +70,5 @@ export const Title = ({ initTitle }: TitleProps): JSX.Element => {
 
 interface TitleProps {
   initTitle: string;
+  maxLength?: number;
 }

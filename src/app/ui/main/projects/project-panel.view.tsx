@@ -6,8 +6,8 @@ import { User } from "@domain/user";
 import { Project } from "@domain/project";
 import { UserAvatar } from "@app/components/avatar";
 import { Icon } from "@app/components/icon";
-import { Title } from "@app/ui/main/project/board/issue-panel/title";
-import { Description } from "@app/ui/main/project/board/issue-panel/description";
+import { Title } from "@app/components/title";
+import { Description } from "@app/components/description";
 
 export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -45,11 +45,11 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
           >
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
               <div className="mb-6">
-                <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                <p className="mb-1 font-primary-black text-font-main dark:text-font-main-dark">
                   Title
                 </p>
                 <Dialog.Title className="mb-8 -ml-3">
-                  <Title initTitle={project?.name || ""} />
+                  <Title initTitle={project?.name || ""} maxLength={30} />
                 </Dialog.Title>
                 <p className="font-primary-black text-font-main dark:text-font-main-dark">
                   Description
