@@ -1,11 +1,5 @@
-import { useEffect, useRef } from "react";
-import {
-  Form,
-  useSubmit,
-  useNavigate,
-  useTransition,
-  useActionData,
-} from "@remix-run/react";
+import { useEffect, useRef, useCallback } from "react";
+import { Form, useNavigate, useFetcher, useActionData } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { User } from "@domain/user";
@@ -20,10 +14,41 @@ import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
-  const submit = useSubmit();
+  const fetcher = useFetcher();
   const navigate = useNavigate();
-  const transition = useTransition();
   const actionData = useActionData() as ProjectActionData;
+
+  const postData = useCallback(
+    (formTarget: HTMLFormElement) => {
+      const formData = new FormData(formTarget);
+      formData.set("_action", "upsert");
+
+      fetcher.submit(formData, {
+        method: "post",
+      });
+    },
+    [fetcher]
+  );
+
+  const handleProgrammaticSubmit = useCallback((): void => {
+    if (formRef.current) {
+      postData(formRef.current);
+    }
+  }, [postData]);
+
+  const handleProgrammaticClose = (): void => {
+    navigate("/projects");
+  };
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault();
+        handleProgrammaticSubmit();
+      }
+    },
+    [handleProgrammaticSubmit]
+  );
 
   useEffect(() => {
     const isErrors =
@@ -34,31 +59,13 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
         .getElementById("project-panel-overlay")
         ?.scrollTo({ top: 0, behavior: "smooth" });
     }
-  });
+  }, [actionData]);
 
-  // const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   postData(e.currentTarget);
-  // };
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
 
-  // const handleProgrammaticSubmit = (): void => {
-  //   if (formRef.current) {
-  //     postData(formRef.current);
-  //   }
-  // };
-
-  const handleProgrammaticClose = (): void => {
-    navigate("/projects");
-  };
-
-  const postData = (formTarget: HTMLFormElement) => {
-    const formData = new FormData(formTarget);
-    // formData.set("_action", "upsert");
-
-    submit(formData, {
-      method: "post",
-    });
-  };
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
 
   return (
     <Dialog.Root open={true}>
@@ -126,9 +133,9 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                   name="_action"
                   value="upsert"
                   className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
-                  disabled={transition.state !== "idle"}
+                  disabled={fetcher.state !== "idle"}
                 >
-                  {transition.state !== "idle" ? (
+                  {fetcher.state !== "idle" ? (
                     <>
                       Submmiting
                       <Spinner />
