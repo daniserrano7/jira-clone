@@ -22,6 +22,9 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
               reporter: true,
               asignee: true,
             },
+            orderBy: {
+              createdAt: "desc",
+            },
           },
         },
       },

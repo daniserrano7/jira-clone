@@ -1,29 +1,19 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { useProjectStore, SortFilter } from "@app/views/app/project";
+import { Sort, sortList } from "@domain/filter";
+import { useProjectStore } from "@app/views/app/project";
 import { Icon, IconName } from "@app/components/icon";
 
 export const SelectSort = (): JSX.Element => {
   const { filters } = useProjectStore();
-  const [value, setValue] = useState<SortFilter>(filters.sort);
+  const [value, setValue] = useState<Sort>(filters.sort);
 
-  const options: SortFilter[] = ["date", "priority"];
-  const optionIcon: Record<SortFilter, IconName> = {
+  const optionIcon: Record<Sort, IconName> = {
     date: "clock",
     priority: "priority",
   };
 
-  interface SelectOption {
-    id: SortFilter;
-    label: string;
-  }
-
-  const selectOptions: SelectOption[] = options.map((option) => ({
-    id: option,
-    label: option,
-  }));
-
-  const onValueChange = (value: SortFilter): void => {
+  const onValueChange = (value: Sort): void => {
     filters.sort = value;
     setValue(value);
   };
@@ -39,14 +29,14 @@ export const SelectSort = (): JSX.Element => {
       <Select.Content className="rounded bg-white p-1.5 shadow-blue dark:bg-dark-500">
         <Select.ScrollUpButton />
         <Select.Viewport>
-          {selectOptions.map((option, index) => (
+          {sortList.map((sort, index) => (
             <Select.Item
               key={index}
-              value={option.id}
+              value={sort.id}
               className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
             >
-              <Icon name={optionIcon[option.id]} size={12} />
-              <Select.ItemText>{option.label}</Select.ItemText>
+              <Icon name={optionIcon[sort.id]} size={12} />
+              <Select.ItemText>{sort.label}</Select.ItemText>
             </Select.Item>
           ))}
         </Select.Viewport>

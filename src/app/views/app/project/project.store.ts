@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 import { makeAutoObservable } from "mobx";
 import { Project } from "@domain/project";
+import { Sort } from "@domain/filter";
 
 export class ProjectStore {
   project: Project;
@@ -17,10 +18,8 @@ export class ProjectStore {
 
 interface Filters {
   search: string;
-  sort: SortFilter;
+  sort: Sort;
 }
-
-export type SortFilter = "date" | "priority";
 
 export const ProjectContext = createContext<ProjectStore | undefined>(undefined);
 

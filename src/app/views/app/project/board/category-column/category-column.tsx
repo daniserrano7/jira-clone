@@ -74,8 +74,6 @@ export const CategoryColumn = observer(
               ? b.createdAt
               : priorities.indexOf(b.priority);
 
-          if (!sortA || !sortB) return 0;
-
           if (sortA < sortB) return 1;
           if (sortA > sortB) return -1;
           return 0;
@@ -139,7 +137,6 @@ export const CategoryColumn = observer(
                       issue={issue}
                       categoryId={category.id}
                       isSubmitting={submittingIssues.includes(issue.id)}
-                      // isSubmitting={true}
                       handleDragging={handleDragging}
                     />
                   </li>
