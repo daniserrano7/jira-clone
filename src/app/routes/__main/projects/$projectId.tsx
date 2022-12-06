@@ -6,7 +6,7 @@ import { ProjectSummary, ProjectId } from "@domain/project";
 import { getProjectSummary } from "@infrastructure/db/project";
 import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
-import { ProjectView } from "@app/views/main/project";
+import { ProjectView } from "@app/ui/main/project";
 
 type LoaderData = {
   projectSummary: ProjectSummary;

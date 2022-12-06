@@ -5,7 +5,7 @@ import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { useProjectStore } from "@app/views/main/project";
+import { useProjectStore } from "@app/ui/main/project";
 import { Icon } from "@app/components/icon";
 import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "@app/components/scroll-area";

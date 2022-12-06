@@ -13,7 +13,7 @@ import {
   deleteIssue,
   UpdateIssueInputData,
 } from "@infrastructure/db/issue";
-import { IssuePanel } from "@app/views/main/project/board/issue-panel";
+import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { textAreOnlySpaces } from "@app/utils";
 
 type LoaderData = {

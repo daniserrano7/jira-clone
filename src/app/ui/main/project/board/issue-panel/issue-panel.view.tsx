@@ -18,7 +18,7 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
-import { useAppStore } from "@app/views/main/app.store";
+import { useAppStore } from "@app/ui/main/app.store";
 import { CategoryType } from "@domain/category";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {

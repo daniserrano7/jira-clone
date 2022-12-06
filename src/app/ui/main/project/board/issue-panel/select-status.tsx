@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId, CategoryType } from "@domain/category";
-import { useProjectStore } from "@app/views/main/project";
+import { useProjectStore } from "@app/ui/main/project";
 import {
   SelectTrigger,
   SelectTriggerIcon,

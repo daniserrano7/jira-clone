@@ -5,7 +5,7 @@ import { CategoryId } from "@domain/category";
 import { Comment } from "@domain/comment";
 import { Priority } from "@domain/priority";
 import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
-import { IssuePanel } from "@app/views/main/project/board/issue-panel";
+import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 
 export const loader: LoaderFunction = async () => {
   return json(null);

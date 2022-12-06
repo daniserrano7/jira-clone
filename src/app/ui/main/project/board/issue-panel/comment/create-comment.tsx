@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { Comment } from "@domain/comment";
-import { useAppStore } from "@app/views/main";
+import { useAppStore } from "@app/ui/main";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 

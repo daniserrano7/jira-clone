@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { Sort, sortList } from "@domain/filter";
-import { useProjectStore } from "@app/views/main/project";
+import { useProjectStore } from "@app/ui/main/project";
 import { Icon, IconName } from "@app/components/icon";
 
 export const SelectSort = (): JSX.Element => {
