@@ -2,7 +2,7 @@ import { useState } from "react";
 import cx from "classix";
 import { userMock1 } from "@domain/user";
 import { Comment, CommentId } from "@domain/comment";
-import { useAppStore } from "@app/views/app";
+import { useAppStore } from "@app/views/main";
 import { UserAvatar } from "@app/components/avatar";
 import { EditBox } from "./edit-box";
 

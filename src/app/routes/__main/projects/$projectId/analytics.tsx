@@ -1,4 +1,4 @@
-import { AnalyticsView } from "@app/views/app/project/analytics";
+import { AnalyticsView } from "@app/views/main/project/analytics";
 import { Error500 } from "@app/components/error-500";
 
 export function ErrorBoundary({ error }: { error: Error }) {

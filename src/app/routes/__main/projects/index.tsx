@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { ProjectSummary } from "@domain/project";
 import { getProjectsSummary } from "@infrastructure/db/project";
-import { ProjectsView } from "@app/views/app/projects";
+import { ProjectsView } from "@app/views/main/projects";
 
 type LoaderData = {
   projectsSummary: ProjectSummary[];

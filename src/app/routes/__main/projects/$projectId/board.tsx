@@ -11,7 +11,7 @@ import {
   UpdateIssueCategoryData,
 } from "@infrastructure/db/issue";
 import { Error500 } from "@app/components/error-500";
-import { BoardView } from "@app/views/app/project/board";
+import { BoardView } from "@app/views/main/project/board";
 
 type LoaderData = {
   project: Project;

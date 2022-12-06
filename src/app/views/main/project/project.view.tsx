@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "@remix-run/react";
-import { Sidebar } from "@app/views/app/project/sidebar";
+import { Sidebar } from "@app/views/main/project/sidebar";
 
 const sectionTitles: Record<string, string> = {
   board: "Board",

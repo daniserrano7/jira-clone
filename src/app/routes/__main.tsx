@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { User } from "@domain/user";
 import { fetchUser } from "@infrastructure/db/user";
-import { AppLayout } from "@app/views/app";
+import { AppLayout } from "@app/views/main";
 
 type LoaderData = {
   user: User;

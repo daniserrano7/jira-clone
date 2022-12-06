@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react-lite";
 import cx from "classix";
-import { useProjectStore } from "@app/views/app/project";
+import { useProjectStore } from "@app/views/main/project";
 import { Icon } from "@app/components/icon";
 
 export const Search = observer((): JSX.Element => {
