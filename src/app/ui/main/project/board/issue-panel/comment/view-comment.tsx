@@ -47,11 +47,16 @@ export const ViewComment = ({
   const IdleComment = (): JSX.Element => (
     <div className="font-primary-light">
       <p>{comment.message}</p>
-      <div className={cx("mt-3", isNotSelfComment ? "hidden" : "visible")}>
+      <div
+        className={cx(
+          "mt-3 text-font-light dark:text-font-light-dark",
+          isNotSelfComment ? "hidden" : "visible"
+        )}
+      >
         <button
           onClick={edit}
           disabled={isNotSelfComment}
-          className="font-primary-light text-xs text-font-light hover:underline"
+          className="font-primary-light text-xs hover:underline"
         >
           Edit
         </button>
@@ -59,7 +64,7 @@ export const ViewComment = ({
         <button
           onClick={remove}
           disabled={isNotSelfComment}
-          className="font-primary-light text-xs text-font-light hover:underline"
+          className="font-primary-light text-xs hover:underline"
         >
           Delete
         </button>

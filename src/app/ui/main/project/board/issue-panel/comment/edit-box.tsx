@@ -54,7 +54,7 @@ export const EditBox = ({
         onFocus={onFocus}
         autofocus={autofocus}
         textareaClassName={cx(
-          "min-h-[80px] leading-6 font-primary-light outline outline-1 outline-grey-400 bg-grey-200",
+          "min-h-[80px] leading-6 font-primary-light outline outline-2 outline-grey-400 dark:outline-dark-200 bg-grey-200",
           isError &&
             "placeholder:text-error-main placeholder:text-opacity-70 !outline-error-main !outline-2"
         )}
@@ -75,7 +75,7 @@ export const EditBox = ({
         <button
           className={cx(
             buttonStyle,
-            "hover:bg-error-light hover:text-error-dark"
+            "hover:bg-error-light hover:text-error-dark dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
           )}
           onClick={onCancel}
         >

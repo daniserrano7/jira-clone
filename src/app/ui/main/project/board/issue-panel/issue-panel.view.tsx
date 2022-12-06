@@ -38,11 +38,6 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const navigate = useNavigate();
   const initStatus = (params[0].get("category") as CategoryType) || "TODO";
 
-  const handleProgramaticClose = () => {
-    const previousUrl = location.pathname.split("/issue")[0];
-    navigate(previousUrl);
-  };
-
   const postData = useCallback(
     (formTarget: HTMLFormElement) => {
       const formData = new FormData(formTarget);
@@ -56,16 +51,31 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     [comments, submit]
   );
 
-  const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    postData(e.currentTarget);
-  };
-
   const handleProgrammaticSubmit = useCallback((): void => {
     if (formRef.current) {
       postData(formRef.current);
     }
   }, [postData]);
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "s") {
+        e.preventDefault();
+        handleProgrammaticSubmit();
+      }
+    },
+    [handleProgrammaticSubmit]
+  );
+
+  const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    postData(e.currentTarget);
+  };
+
+  const handleProgramaticClose = () => {
+    const previousUrl = location.pathname.split("/issue")[0];
+    navigate(previousUrl);
+  };
 
   const addComment = (newComment: Comment): void => {
     setComments([...comments, newComment]);
@@ -78,15 +88,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     setComments(updatedComments);
   };
 
-  const onKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === "s") {
-        e.preventDefault();
-        handleProgrammaticSubmit();
-      }
-    },
-    [handleProgrammaticSubmit]
-  );
+  const sortComments = (comments: Comment[]): Comment[] => {
+    return comments.sort((a, b) => b.createdAt - a.createdAt);
+  };
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);
@@ -127,7 +131,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       <CreateComment addComment={addComment} />
                     </div>
                     <ul className="mt-8 space-y-6">
-                      {comments.map((comment, index) => (
+                      {sortComments(comments).map((comment, index) => (
                         <li key={index}>
                           <ViewComment
                             comment={comment}
