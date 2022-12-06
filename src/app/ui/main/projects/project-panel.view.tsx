@@ -8,6 +8,7 @@ import { UserAvatar } from "@app/components/avatar";
 import { Icon } from "@app/components/icon";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
+import { Kbd } from "@app/components/Kbd";
 
 export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -88,11 +89,7 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
               </div>
               <div className="grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press{" "}
-                  <kbd className="rounded bg-grey-300  p-1 font-primary-light text-icon dark:bg-dark-500 dark:text-font-light-dark">
-                    Esc
-                  </kbd>{" "}
-                  to apply changes
+                  Press <Kbd>Esc</Kbd> to apply changes
                 </span>
                 <button
                   type="submit"

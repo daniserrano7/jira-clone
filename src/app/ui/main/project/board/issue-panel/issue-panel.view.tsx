@@ -13,6 +13,7 @@ import { UserAvatar } from "@app/components/avatar";
 import { PanelHeader } from "./panel-header";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
+import { Kbd } from "@app/components/Kbd";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
@@ -130,11 +131,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               </div>
               <div className="grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press{" "}
-                  <kbd className="rounded bg-grey-300  p-1 font-primary-light text-icon dark:bg-dark-500 dark:text-font-light-dark">
-                    Esc
-                  </kbd>{" "}
-                  to apply changes
+                  Press <Kbd>Esc</Kbd> to apply changes
                 </span>
                 <button
                   type="submit"
