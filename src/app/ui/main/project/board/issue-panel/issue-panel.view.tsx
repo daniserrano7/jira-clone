@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Form,
+  useActionData,
   useSubmit,
   useSearchParams,
   useTransition,
@@ -9,25 +10,27 @@ import {
 } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { userMock1 } from "@domain/user";
+import { CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
+import { useAppStore } from "@app/ui/main/app.store";
+import { ActionData as IssueActionData } from "@app/routes/__main/projects.$projectId/board/issue/$issueId";
 import { UserAvatar } from "@app/components/avatar";
-import { PanelHeader } from "./panel-header";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/Kbd";
+import { PanelHeader } from "./panel-header";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
-import { useAppStore } from "@app/ui/main/app.store";
-import { CategoryType } from "@domain/category";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const { user } = useAppStore();
   const formRef = useRef<HTMLFormElement>(null);
+  const actionData = useActionData() as IssueActionData;
   const submit = useSubmit();
   const params = useSearchParams();
   const transition = useTransition();
@@ -105,7 +108,10 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">
                   <Dialog.Title className="my-5 -ml-3">
-                    <Title initTitle={issue?.name || ""} />
+                    <Title
+                      initTitle={issue?.name || ""}
+                      error={actionData?.errors.name}
+                    />
                   </Dialog.Title>
                   <p className="font-primary-black text-font-main dark:text-font-main-dark">
                     Description

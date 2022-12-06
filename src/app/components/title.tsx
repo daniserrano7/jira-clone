@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useActionData } from "@remix-run/react";
 import cx from "classix";
-import { ActionData as IssueActionData } from "@app/routes/__main/projects.$projectId/board/issue/$issueId";
 import { TextareaAutosize } from "@app/components/textarea-autosize";
 import { textAreOnlySpaces } from "@app/utils";
 
@@ -10,17 +8,15 @@ const DEFAULT_MAX_LENGTH = 80;
 export const Title = ({
   initTitle,
   maxLength = DEFAULT_MAX_LENGTH,
+  error,
 }: TitleProps): JSX.Element => {
   const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
-  const actionData = useActionData() as IssueActionData;
 
   console.log("MAX LEN: ", maxLength);
   const isMaxLength = title.length >= maxLength;
-  // Handle server and client name error
   const requireError =
-    (actionData?.errors.name || !isFocus) &&
-    (title.length === 0 || textAreOnlySpaces(title));
+    error && (title.length === 0 || textAreOnlySpaces(title));
 
   const onFocus = () => setIsFocus(true);
   const onBlur = () => setIsFocus(false);
@@ -49,7 +45,7 @@ export const Title = ({
       />
       {requireError && (
         <span className="ml-3 font-primary-light text-sm text-error-main dark:text-error-main-dark">
-          This field is required
+          {error}
         </span>
       )}
       {isFocus && (
@@ -71,4 +67,5 @@ export const Title = ({
 interface TitleProps {
   initTitle: string;
   maxLength?: number;
+  error?: string;
 }
