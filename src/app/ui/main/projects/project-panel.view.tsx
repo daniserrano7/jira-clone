@@ -1,0 +1,142 @@
+import { useRef } from "react";
+import { Form, useSubmit, useTransition } from "@remix-run/react";
+import * as Dialog from "@radix-ui/react-dialog";
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { User } from "@domain/user";
+import { Project } from "@domain/project";
+import { UserAvatar } from "@app/components/avatar";
+import { Icon } from "@app/components/icon";
+import { Title } from "@app/ui/main/project/board/issue-panel/title";
+import { Description } from "@app/ui/main/project/board/issue-panel/description";
+
+export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const submit = useSubmit();
+  const transition = useTransition();
+
+  const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    postData(e.currentTarget);
+  };
+
+  const handleProgrammaticSubmit = (): void => {
+    if (formRef.current) {
+      postData(formRef.current);
+    }
+  };
+
+  const postData = (formTarget: HTMLFormElement) => {
+    const formData = new FormData(formTarget);
+    formData.set("_action", "upsert");
+
+    submit(formData, {
+      method: "post",
+    });
+  };
+
+  return (
+    <Dialog.Root open={true}>
+      <Dialog.Portal>
+        <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
+          <Dialog.Content
+            onEscapeKeyDown={handleProgrammaticSubmit}
+            onPointerDownOutside={handleProgrammaticSubmit}
+            className="relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
+          >
+            <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
+              <div className="mb-6">
+                <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                  Title
+                </p>
+                <Dialog.Title className="mb-8 -ml-3">
+                  <Title initTitle={project?.name || ""} />
+                </Dialog.Title>
+                <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                  Description
+                </p>
+                <div className="-ml-3 mb-5">
+                  <Description initDescription={project?.description || ""} />
+                </div>
+                <ul className="space-y-1.5">
+                  {users.map((user) => (
+                    <li
+                      key={user.id}
+                      className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main dark:hover:bg-dark-200 dark:hover:outline-primary-main-dark"
+                    >
+                      <label
+                        htmlFor={`checkbox-${user.id}`}
+                        className="flex w-full cursor-pointer items-center justify-between gap-4 py-3"
+                      >
+                        <span className="flex items-center gap-4">
+                          <UserAvatar {...user} size={48} />
+                          <span>{user.name}</span>
+                        </span>
+                        <Checkbox.Root
+                          id={`checkbox-${user.id}`}
+                          className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
+                          defaultChecked
+                        >
+                          <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center dark:bg-primary-main-dark">
+                            {/* <CheckIcon /> */}
+                            <Icon name="add" />
+                          </Checkbox.Indicator>
+                        </Checkbox.Root>
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid grid-cols-3 items-end">
+                <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  Press{" "}
+                  <kbd className="rounded bg-grey-300  p-1 font-primary-light text-icon dark:bg-dark-500 dark:text-font-light-dark">
+                    Esc
+                  </kbd>{" "}
+                  to apply changes
+                </span>
+                <button
+                  type="submit"
+                  className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
+                  disabled={transition.state !== "idle"}
+                >
+                  {transition.state !== "idle" ? (
+                    <>
+                      Submmiting
+                      <Spinner />
+                    </>
+                  ) : (
+                    "Done"
+                  )}
+                </button>
+              </div>
+            </Form>
+          </Dialog.Content>
+        </Dialog.Overlay>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+};
+
+interface Props {
+  project?: Project;
+  users: User[];
+}
+
+const Spinner = (): JSX.Element => (
+  <svg
+    aria-hidden="true"
+    className="dark:text-gray-600 mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
+    viewBox="0 0 100 101"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+      fill="currentBaseColor"
+    />
+    <path
+      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+      fill="currentColor"
+    />
+  </svg>
+);

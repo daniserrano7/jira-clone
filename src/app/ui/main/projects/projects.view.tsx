@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link, Outlet } from "@remix-run/react";
 import cx from "classix";
 import { ProjectSummary } from "@domain/project";
 import { Icon } from "@app/components/icon";
@@ -7,12 +7,15 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
   return (
     <div className="bg-white p-6 dark:bg-dark-300">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
-      <button className="mt-8 flex items-center rounded bg-grey-300 p-3 hover:bg-primary-light hover:text-primary-main dark:bg-dark-200 dark:hover:bg-dark-100 dark:hover:text-font-main-dark">
+      <Link
+        to="new"
+        className="mt-8 flex w-fit items-center rounded bg-grey-300 py-3 pl-3 pr-4 hover:bg-primary-light hover:text-primary-main dark:bg-dark-200 dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
+      >
         <span>
           <Icon name="add" size={20} />
         </span>
         <span className="ml-2 leading-4">Add Project</span>
-      </button>
+      </Link>
       <ul className="mt-4 w-[400px] space-y-6">
         {projectsSummary.map((project) => (
           <li key={project.id}>
@@ -38,6 +41,7 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
           </li>
         ))}
       </ul>
+      <Outlet />
     </div>
   );
 };
