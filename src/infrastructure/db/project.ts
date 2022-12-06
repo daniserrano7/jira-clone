@@ -130,9 +130,13 @@ export const createProject = async (project: CreateProjectInput): Promise<void> 
           order: category.order,
         })),
       },
+      users: {
+        connect: project.userIds.map((userId) => ({ id: userId })),
+      },
     },
     include: {
       categories: true,
+      users: true,
     },
   });
 

@@ -31,9 +31,6 @@ export const action: ActionFunction = async ({ request }) => {
   const description = formData.get("description") as string;
   const users = formData.getAll("user") as UserId[];
 
-  console.log("NAME, DESCRIPTION: ", name, description);
-  console.log("USERS: ", users);
-
   if (!(_action === "upsert" || _action === "delete")) {
     throw new Error(
       `Invalid action: '${_action}'. Values must be 'upsert' or 'delete'`
