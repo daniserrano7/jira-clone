@@ -16,9 +16,9 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
         </span>
         <span className="ml-2 leading-4">Add Project</span>
       </Link>
-      <ul className="mt-4 w-[400px] space-y-6">
+      <div className="4 mt-4 grid grid-cols-auto-400 gap-8">
         {projectsSummary.map((project) => (
-          <li key={project.id}>
+          <div key={project.id} className="w-[400px]">
             <Link
               to={project.id}
               className={cx(
@@ -38,9 +38,9 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
                 </h3>
               </div>
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       <Outlet />
     </div>
   );
