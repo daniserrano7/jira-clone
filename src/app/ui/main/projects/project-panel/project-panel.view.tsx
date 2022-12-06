@@ -1,9 +1,16 @@
-import { useRef } from "react";
-import { Form, useSubmit, useNavigate, useTransition } from "@remix-run/react";
+import { useEffect, useRef } from "react";
+import {
+  Form,
+  useSubmit,
+  useNavigate,
+  useTransition,
+  useActionData,
+} from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { User } from "@domain/user";
 import { Project } from "@domain/project";
+import { ActionData as ProjectActionData } from "@app/routes/__main/projects/new";
 import { UserAvatar } from "@app/components/avatar";
 import { Icon } from "@app/components/icon";
 import { Title } from "@app/components/title";
@@ -16,11 +23,23 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   const submit = useSubmit();
   const navigate = useNavigate();
   const transition = useTransition();
+  const actionData = useActionData() as ProjectActionData;
 
-  const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    postData(e.currentTarget);
-  };
+  useEffect(() => {
+    const isErrors =
+      actionData?.errors && Object.keys(actionData?.errors).length > 0;
+
+    if (isErrors) {
+      document
+        .getElementById("project-panel-overlay")
+        ?.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
+  // const handleFormSumbit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   postData(e.currentTarget);
+  // };
 
   // const handleProgrammaticSubmit = (): void => {
   //   if (formRef.current) {
@@ -34,7 +53,7 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
 
   const postData = (formTarget: HTMLFormElement) => {
     const formData = new FormData(formTarget);
-    formData.set("_action", "upsert");
+    // formData.set("_action", "upsert");
 
     submit(formData, {
       method: "post",
@@ -44,17 +63,24 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal>
-        <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
+        <Dialog.Overlay
+          id="project-panel-overlay"
+          className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]"
+        >
           <Dialog.Content
             onEscapeKeyDown={handleProgrammaticClose}
             onPointerDownOutside={handleProgrammaticClose}
             className="relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
           >
             <PanelHeaderProject id={project?.id || "Create new project"} />
-            <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
+            <Form method="post" ref={formRef}>
               <div className="mb-6">
                 <Dialog.Title className="mt-5 mb-8 -ml-3">
-                  <Title initTitle={project?.name || ""} maxLength={30} />
+                  <Title
+                    initTitle={project?.name || ""}
+                    maxLength={30}
+                    error={actionData?.errors?.name}
+                  />
                 </Dialog.Title>
                 <p className="font-primary-black text-font-main dark:text-font-main-dark">
                   Description
@@ -79,6 +105,8 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                         <Checkbox.Root
                           id={`checkbox-${user.id}`}
                           className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
+                          name="user"
+                          value={user.id}
                         >
                           <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
                             <Icon name="add" />
@@ -95,6 +123,8 @@ export const ProjectPanel = ({ project, users }: Props): JSX.Element => {
                 </span>
                 <button
                   type="submit"
+                  name="_action"
+                  value="upsert"
                   className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
                   disabled={transition.state !== "idle"}
                 >

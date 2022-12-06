@@ -1,5 +1,6 @@
+import { UserId } from "@domain/user";
 import { Project, ProjectSummary, ProjectId } from "@domain/project";
-import { CategoryType } from "@domain/category";
+import { Category, CategoryType } from "@domain/category";
 import { Priority } from "@domain/priority";
 import { db } from "./db.server";
 import { dnull } from "@infrastructure/utils/dnull";
@@ -109,4 +110,47 @@ export const getProjectsSummary = async (): Promise<ProjectSummary[]> => {
   }));
 
   return projectsSummary;
+};
+
+type CreateProjectInput = {
+  name: string;
+  description: string;
+  userIds: UserId[];
+  categories: Omit<Category, "id">[];
+};
+export const createProject = async (project: CreateProjectInput): Promise<void> => {
+  await db.project.create({
+    data: {
+      name: project.name,
+      description: project.description,
+      categories: {
+        create: project.categories.map((category) => ({
+          name: category.name,
+          type: category.type,
+          order: category.order,
+        })),
+      },
+    },
+    include: {
+      categories: true,
+    },
+  });
+
+  // const projectCreated: Project = {
+  //   id: projectDb.id,
+  //   users: [],
+  //   name: projectDb.name,
+  //   description: projectDb.description || "",
+  //   categories: projectDb.categories.map((category) => ({
+  //     id: category.id,
+  //     name: category.name,
+  //     type: category.type as CategoryType,
+  //     order: category.order,
+  //     issues: [],
+  //   })),
+  //   createdAt: projectDb.createdAt.getDate(),
+  //   updatedAt: projectDb.updatedAt.getDate(),
+  // };
+
+  // return projectCreated;
 };
