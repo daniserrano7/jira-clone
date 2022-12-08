@@ -1,25 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "@remix-run/react";
+import { observer } from "mobx-react-lite";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
-import {
-  ThemePreference,
-  setLocalStorageThemePreference,
-} from "@infrastructure/local-storage/theme";
-import { useTheme } from "@app/theme.store";
+import { Theme, ThemePreference } from "@app/store/theme.store";
+import { useTheme } from "@app/store/theme.store";
 import { Icon, IconName } from "@app/components/icon";
 
 export const Sidebar = (props: Props): JSX.Element => {
   const { projectName, projectDescription, projectImage } = props;
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const { theme, setTheme } = useTheme();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
-  const basebuttonClass = cx("p-1 rounded-lg");
-  const selectedButtonClass = cx("dark:bg-dark-100 bg-grey-100");
 
   return (
     <aside className="relative flex">
@@ -57,29 +51,7 @@ export const Sidebar = (props: Props): JSX.Element => {
             ))}
           </nav>
         </section>
-        <section className="flex gap-2 px-5 py-3">
-          <div className="grid w-full grid-cols-2 gap-2 rounded-lg bg-grey-400 p-1 dark:bg-dark-300">
-            <button
-              className={cx(
-                basebuttonClass,
-                theme === "light" && selectedButtonClass
-              )}
-              onClick={() => setTheme("light")}
-            >
-              Light
-            </button>
-            <button
-              className={cx(
-                basebuttonClass,
-                theme === "dark" && selectedButtonClass
-              )}
-              onClick={() => setTheme("dark")}
-            >
-              Dark
-            </button>
-          </div>
-          <SelectTheme />
-        </section>
+        <SelectTheme />
       </div>
       <div
         className={cx("r-0 relative z-10 ml-7 h-full w-3", isOpen && "ml-0")}
@@ -171,14 +143,12 @@ export interface NavItemProps {
   disabled?: boolean;
 }
 
-const SelectTheme = (): JSX.Element => {
-  const { preference } = useTheme();
+const SelectTheme = observer((): JSX.Element => {
+  const { theme, setTheme, themePreference, setThemePreference } = useTheme();
+  const basebuttonClass = cx("p-1 rounded-lg");
+  const selectedButtonClass = cx("dark:bg-dark-100 bg-grey-100");
 
-  interface Option {
-    value: ThemePreference;
-    label: string;
-  }
-  const options: Option[] = [
+  const preferences: { value: ThemePreference; label: string }[] = [
     {
       value: "selected",
       label: "Selected",
@@ -189,32 +159,63 @@ const SelectTheme = (): JSX.Element => {
     },
   ];
 
-  const onValueChange = (value: ThemePreference) => {
-    setLocalStorageThemePreference(value);
+  const changeTheme = (newTheme: Theme) => {
+    if (newTheme !== theme) setTheme(newTheme);
+    console.log("SIDEBAR CHANGE THEME: ", newTheme);
+  };
+
+  const changeThemePreference = (newThemePreference: ThemePreference) => {
+    if (newThemePreference !== themePreference)
+      setThemePreference(newThemePreference);
   };
 
   return (
-    <Select.Root defaultValue={preference} onValueChange={onValueChange}>
-      <Select.Trigger className="flex cursor-pointer items-center justify-center rounded-lg border-none bg-primary-light p-2 text-xs text-primary-main hover:bg-primary-light-hover dark:border-2 dark:border-solid dark:border-primary-main-dark dark:bg-transparent dark:text-primary-main-dark dark:hover:bg-primary-main-dark dark:hover:bg-opacity-20 dark:focus-visible:outline-white">
-        <Icon name="settings" size={24} />
-        <Select.Value>{""}</Select.Value>
-      </Select.Trigger>
-      <Select.Content className="relative z-50 rounded bg-white p-1.5 shadow-blue dark:bg-dark-500">
-        <Select.ScrollUpButton />
-        <Select.Viewport>
-          {options.map((option) => (
-            <Select.Item
-              key={option.value}
-              value={option.value}
-              className="relative flex cursor-pointer items-center gap-2 rounded py-2 pl-6 pr-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
-            >
-              <Select.ItemIndicator className="absolute left-2 top-1/2 h-[7px] w-[7px] -translate-y-1/2 rounded-full bg-primary-main" />
-              <Select.ItemText>{option.label}</Select.ItemText>
-            </Select.Item>
-          ))}
-        </Select.Viewport>
-        <Select.ScrollDownButton />
-      </Select.Content>
-    </Select.Root>
+    <section className="flex gap-2 px-5 py-3">
+      <div className="grid w-full grid-cols-2 gap-2 rounded-lg bg-grey-400 p-1 dark:bg-dark-300">
+        <button
+          className={cx(
+            basebuttonClass,
+            theme === "light" && selectedButtonClass
+          )}
+          onClick={() => changeTheme("light")}
+        >
+          Light
+        </button>
+        <button
+          className={cx(
+            basebuttonClass,
+            theme === "dark" && selectedButtonClass
+          )}
+          onClick={() => changeTheme("dark")}
+        >
+          Dark
+        </button>
+      </div>
+      <Select.Root
+        defaultValue={themePreference}
+        onValueChange={changeThemePreference}
+      >
+        <Select.Trigger className="flex cursor-pointer items-center justify-center rounded-lg border-none bg-primary-light p-2 text-xs text-primary-main hover:bg-primary-light-hover dark:border-2 dark:border-solid dark:border-primary-main-dark dark:bg-transparent dark:text-primary-main-dark dark:hover:bg-primary-main-dark dark:hover:bg-opacity-20 dark:focus-visible:outline-white">
+          <Icon name="settings" size={24} />
+          <Select.Value>{""}</Select.Value>
+        </Select.Trigger>
+        <Select.Content className="relative z-50 rounded bg-white p-1.5 shadow-blue dark:bg-dark-500">
+          <Select.ScrollUpButton />
+          <Select.Viewport>
+            {preferences.map((option) => (
+              <Select.Item
+                key={option.value}
+                value={option.value}
+                className="relative flex cursor-pointer items-center gap-2 rounded py-2 pl-6 pr-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light dark:text-primary-main-dark dark:outline-none dark:hover:bg-dark-300 dark:focus:bg-dark-300"
+              >
+                <Select.ItemIndicator className="absolute left-2 top-1/2 h-[7px] w-[7px] -translate-y-1/2 rounded-full bg-primary-main" />
+                <Select.ItemText>{option.label}</Select.ItemText>
+              </Select.Item>
+            ))}
+          </Select.Viewport>
+          <Select.ScrollDownButton />
+        </Select.Content>
+      </Select.Root>
+    </section>
   );
-};
+});

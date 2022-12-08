@@ -1,4 +1,9 @@
-import type { MetaFunction } from "@remix-run/node";
+import type {
+  MetaFunction,
+  LoaderFunction,
+  ActionFunction,
+} from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -7,26 +12,53 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from "@remix-run/react";
 import cx from "classix";
-import { userMock1 } from "@domain/user";
-import { UserStore, UserContext } from "./store/user.store";
-import { ThemeProvider, useTheme } from "./theme.store";
+import { Theme, ThemePreference } from "@app/store/theme.store";
+import {
+  createThemeSession,
+  getThemeFromRequest,
+} from "./session-storage/theme-storage.server";
+import { ThemeProvider, useTheme } from "./store/theme.store";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
 
-export function links() {
+export const links = () => {
   return [
     { rel: "stylesheet", href: fonts },
     { rel: "stylesheet", href: styles },
   ];
-}
+};
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Jira clone",
   viewport: "width=device-width,initial-scale=1",
 });
+
+type LoaderData = {
+  theme?: Theme;
+  themePreference?: ThemePreference;
+};
+export const loader: LoaderFunction = async ({ request }) => {
+  const { theme, themePreference } = await getThemeFromRequest(request);
+  return json<LoaderData>({ theme, themePreference });
+};
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const _action = formData.get("_action") as string;
+
+  if (_action === "setTheme") {
+    const theme = formData.get("theme") as Theme;
+    const themePreference = formData.get("preference") as ThemePreference;
+    const redirectTo = (formData.get("redirectTo") as string) || "/";
+    console.log("REDIRECT TO: ", redirectTo);
+    return createThemeSession({ theme, themePreference }, redirectTo);
+  }
+  console.error("Unknown action", _action);
+};
 
 export function CatchBoundary() {
   const caught = useCatch();
@@ -48,19 +80,18 @@ export function CatchBoundary() {
   );
 }
 
-const AppWithProviders = () => {
-  const userStore = new UserStore({ user: userMock1 });
+export default function AppWithProviders() {
+  const { theme, themePreference } = useLoaderData<LoaderData>();
   return (
-    <UserContext.Provider value={userStore}>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </UserContext.Provider>
+    <ThemeProvider
+      value={{ initTheme: theme, initPreference: themePreference }}
+    >
+      <App />
+    </ThemeProvider>
   );
-};
+}
 
 const App = (): JSX.Element => {
-  // TODO: Get theme from OS settings
   const { theme } = useTheme();
   const isDarkTheme = theme === "dark";
 
@@ -70,7 +101,7 @@ const App = (): JSX.Element => {
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
+      <body className="h-full font-primary text-font-main dark:text-font-main-dark">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
@@ -79,5 +110,3 @@ const App = (): JSX.Element => {
     </html>
   );
 };
-
-export default AppWithProviders;

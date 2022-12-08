@@ -2,14 +2,10 @@ import { createContext, useContext } from "react";
 import { makeAutoObservable } from "mobx";
 import { User } from "@domain/user";
 
-interface Constructor {
-  user: User;
-}
-
 export class UserStore {
   user: User;
 
-  constructor({ user }: Constructor) {
+  constructor(user: User) {
     this.user = user;
     makeAutoObservable(this);
   }
@@ -20,6 +16,7 @@ export class UserStore {
 }
 
 export const UserContext = createContext<UserStore | undefined>(undefined);
+
 export const useUserStore = (): UserStore => {
   const userStore = useContext(UserContext);
   if (!userStore) {

@@ -10,10 +10,10 @@ export const ViewComment = ({
   comment,
   removeComment,
 }: ViewCommentProps): JSX.Element => {
-  const userStore = useUserStore();
+  const appStore = useUserStore();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const isNotSelfComment = comment.user.id !== userStore.user.id;
+  const isNotSelfComment = comment.user.id !== appStore.user.id;
 
   const edit = () => setIsEditing(true);
   const cancel = () => setIsEditing(false);

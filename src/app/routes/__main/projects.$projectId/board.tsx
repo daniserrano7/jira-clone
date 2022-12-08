@@ -40,14 +40,12 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  // await new Promise((resolve) => setTimeout(resolve, 4000));
-
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
-  const categoryId = formData.get("categoryId") as CategoryId;
-  const issueId = formData.get("issueId") as IssueId;
 
   if (_action === "updateIssueCategory") {
+    const categoryId = formData.get("categoryId") as CategoryId;
+    const issueId = formData.get("issueId") as IssueId;
     const inputData: UpdateIssueCategoryData = {
       categoryId,
       issueId,
