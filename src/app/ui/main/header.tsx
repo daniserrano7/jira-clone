@@ -1,11 +1,11 @@
 import { Link } from "@remix-run/react";
 import cx from "classix";
-import { useAppStore } from "./app.store";
+import { useUserStore } from "../../store/user.store";
 import { Icon } from "@app/components/icon";
-import { UserAvatar } from "@app/components/avatar";
+import { UserAvatar } from "@app/components/user-avatar";
 
 export const Header = (): JSX.Element => {
-  const { user } = useAppStore();
+  const { user } = useUserStore();
 
   const iconBaseClass =
     "w-[32px] h-[32px] rounded-full flex items-center justify-center cursor-pointer fill-white hover:bg-primary-light hover:text-primary-main dark:text-white dark:fill-dark-300 dark:hover:bg-dark-100 dark:hover:text-primary-main-dark";

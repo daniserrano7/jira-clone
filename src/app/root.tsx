@@ -9,6 +9,8 @@ import {
   useCatch,
 } from "@remix-run/react";
 import cx from "classix";
+import { userMock1 } from "@domain/user";
+import { UserStore, UserContext } from "./store/user.store";
 import { ThemeProvider, useTheme } from "./theme.store";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
@@ -46,11 +48,14 @@ export function CatchBoundary() {
   );
 }
 
-export const AppWithProviders = () => {
+const AppWithProviders = () => {
+  const userStore = new UserStore({ user: userMock1 });
   return (
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <UserContext.Provider value={userStore}>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </UserContext.Provider>
   );
 };
 
@@ -65,7 +70,7 @@ const App = (): JSX.Element => {
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main dark:text-font-main-dark">
+      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
         <Outlet />
         <ScrollRestoration />
         <Scripts />

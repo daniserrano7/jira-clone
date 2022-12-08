@@ -2,18 +2,18 @@ import { useState } from "react";
 import cx from "classix";
 import { userMock1 } from "@domain/user";
 import { Comment, CommentId } from "@domain/comment";
-import { useAppStore } from "@app/ui/main";
-import { UserAvatar } from "@app/components/avatar";
+import { useUserStore } from "@app/store/user.store";
+import { UserAvatar } from "@app/components/user-avatar";
 import { EditBox } from "./edit-box";
 
 export const ViewComment = ({
   comment,
   removeComment,
 }: ViewCommentProps): JSX.Element => {
-  const appStore = useAppStore();
+  const userStore = useUserStore();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const isNotSelfComment = comment.user.id !== appStore.user.id;
+  const isNotSelfComment = comment.user.id !== userStore.user.id;
 
   const edit = () => setIsEditing(true);
   const cancel = () => setIsEditing(false);

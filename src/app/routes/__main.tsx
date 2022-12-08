@@ -3,7 +3,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { User } from "@domain/user";
 import { fetchUser } from "@infrastructure/db/user";
-import { AppLayout } from "@app/ui/main";
+import { MainLayout } from "@app/ui/main";
 
 type LoaderData = {
   user: User;
@@ -23,5 +23,5 @@ export const loader: LoaderFunction = async () => {
 
 export default function AppRoute() {
   const { user } = useLoaderData() as LoaderData;
-  return <AppLayout user={user} />;
+  return <MainLayout user={user} />;
 }

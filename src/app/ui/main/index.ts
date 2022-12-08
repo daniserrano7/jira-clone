@@ -1,2 +1,1 @@
-export * from "./app.layout";
-export * from "./app.store";
+export * from "./main.layout";

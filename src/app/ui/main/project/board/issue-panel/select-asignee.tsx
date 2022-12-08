@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
 import { User, UserId } from "@domain/user";
 import { useProjectStore } from "@app/ui/main/project";
-import { UserAvatar } from "@app/components/avatar";
+import { UserAvatar } from "@app/components/user-avatar";
 import {
   SelectTrigger,
   SelectTriggerIcon,

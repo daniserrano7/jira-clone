@@ -1,13 +1,13 @@
 import { v4 as uuid } from "uuid";
 import { Comment } from "@domain/comment";
-import { useAppStore } from "@app/ui/main";
-import { UserAvatar } from "@app/components/avatar";
+import { useUserStore } from "@app/store/user.store";
+import { UserAvatar } from "@app/components/user-avatar";
 import { EditBox } from "./edit-box";
 
 export const CreateComment = ({
   addComment,
 }: CreateCommentProps): JSX.Element => {
-  const { user } = useAppStore();
+  const { user } = useUserStore();
 
   const save = (message: string) => {
     addComment({

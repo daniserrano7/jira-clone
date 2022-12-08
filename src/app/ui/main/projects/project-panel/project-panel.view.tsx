@@ -5,11 +5,11 @@ import * as Checkbox from "@radix-ui/react-checkbox";
 import { User } from "@domain/user";
 import { Project } from "@domain/project";
 import { ActionData as ProjectActionData } from "@app/routes/__main/projects/new";
-import { UserAvatar } from "@app/components/avatar";
+import { UserAvatar } from "@app/components/user-avatar";
 import { Icon } from "@app/components/icon";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
-import { Kbd } from "@app/components/Kbd";
+import { Kbd } from "@app/components/kbd";
 import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {

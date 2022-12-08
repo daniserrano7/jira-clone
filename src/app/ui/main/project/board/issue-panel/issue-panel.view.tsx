@@ -13,12 +13,12 @@ import { userMock1 } from "@domain/user";
 import { CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
-import { useAppStore } from "@app/ui/main/app.store";
+import { useUserStore } from "@app/store/user.store";
 import { ActionData as IssueActionData } from "@app/routes/__main/projects.$projectId/board/issue/$issueId";
-import { UserAvatar } from "@app/components/avatar";
+import { UserAvatar } from "@app/components/user-avatar";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
-import { Kbd } from "@app/components/Kbd";
+import { Kbd } from "@app/components/kbd";
 import { PanelHeaderIssue } from "./panel-header-issue";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
@@ -28,7 +28,7 @@ import { SelectAsignee } from "./select-asignee";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
-  const { user } = useAppStore();
+  const { user } = useUserStore();
   const formRef = useRef<HTMLFormElement>(null);
   const actionData = useActionData() as IssueActionData;
   const submit = useSubmit();
