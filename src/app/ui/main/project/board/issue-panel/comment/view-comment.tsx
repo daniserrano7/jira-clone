@@ -1,6 +1,5 @@
 import { useState } from "react";
 import cx from "classix";
-import { userMock1 } from "@domain/user";
 import { Comment, CommentId } from "@domain/comment";
 import { useUserStore } from "@app/store/user.store";
 import { UserAvatar } from "@app/components/user-avatar";
@@ -10,10 +9,10 @@ export const ViewComment = ({
   comment,
   removeComment,
 }: ViewCommentProps): JSX.Element => {
-  const appStore = useUserStore();
+  const { user } = useUserStore();
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const isNotSelfComment = comment.user.id !== appStore.user.id;
+  const isNotSelfComment = comment.user.id !== user.id;
 
   const edit = () => setIsEditing(true);
   const cancel = () => setIsEditing(false);
@@ -74,7 +73,7 @@ export const ViewComment = ({
 
   return (
     <div className="flex gap-6">
-      <UserAvatar {...userMock1} tooltip={false} />
+      <UserAvatar {...comment.user} tooltip={false} />
       <div style={{ width: "100%" }}>
         <p className="mr-4 inline-block font-primary-bold">
           {comment.user.name}
