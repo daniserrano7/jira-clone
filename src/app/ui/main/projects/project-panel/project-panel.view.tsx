@@ -42,7 +42,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === "s") {
+      if (e.shiftKey && e.key.toLowerCase() === "s") {
         e.preventDefault();
         handleProgrammaticSubmit();
       }
@@ -126,7 +126,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
               </div>
               <div className="mt-6 grid grid-cols-3 items-end">
                 <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to accept
+                  Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                 </span>
                 <button
                   type="submit"

@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { Outlet } from "@remix-run/react";
+import { useState, useCallback, useEffect } from "react";
+import { Outlet, useNavigate } from "@remix-run/react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project } from "@domain/project";
 import { Category } from "@domain/category";
 import { IssueId } from "@domain/issue";
 import { Search } from "@app/ui/main/project/board/search";
+import { Kbd } from "@app/components/Kbd";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
@@ -24,9 +25,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
             <SelectSort />
           </div>
         </section>
-        <section className="mt-12 flex h-full gap-3">
-          <Categories categories={project.categories} />
-        </section>
+        <Categories categories={project.categories} />
         <Outlet />
       </div>
     </ProjectContext.Provider>
@@ -40,20 +39,44 @@ interface Props {
 const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
+  const navigate = useNavigate();
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.shiftKey && e.key.toLowerCase() === "n") {
+        e.preventDefault();
+        navigate("issue/new");
+      }
+    },
+    [navigate]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      {categories.map((category) => (
-        <CategoryColumn
-          key={category.id}
-          category={category}
-          isDragging={isDragging}
-          submittingIssues={submittingIssues}
-          setSubmittingIssues={setSubmittingIssues}
-          handleDragging={setIsDragging}
-        />
-      ))}
-    </DndProvider>
+    <section className="mt-12 h-full">
+      <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+        Press <Kbd>Shift</Kbd> + <Kbd>N</Kbd> to create a new issue
+      </span>
+      <DndProvider backend={HTML5Backend}>
+        <div className="flex gap-3">
+          {categories.map((category) => (
+            <CategoryColumn
+              key={category.id}
+              category={category}
+              isDragging={isDragging}
+              submittingIssues={submittingIssues}
+              setSubmittingIssues={setSubmittingIssues}
+              handleDragging={setIsDragging}
+            />
+          ))}
+        </div>
+      </DndProvider>
+    </section>
   );
 };
 
