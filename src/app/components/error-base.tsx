@@ -2,15 +2,15 @@ export const ErrorBase = ({ variant, message, href }: Props) => {
   const imgPath = `/images/error-${variant}.svg`;
 
   return (
-    <div className="text-center max-w-[500px]">
+    <div className="max-w-[500px] text-center">
       <img
         src={imgPath}
         alt="Server error"
-        className="h-[350px] w-auto mx-auto mb-4"
+        className="mx-auto mb-4 h-[350px] w-auto"
       />
       <a
         href={href}
-        className="text-primary-main max-w-[100px] text-lg hover:underline"
+        className="max-w-[100px] text-lg text-primary-main hover:underline dark:text-primary-main-dark"
       >
         {message}
       </a>
