@@ -1,16 +1,23 @@
 import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { ProjectSummary } from "@domain/project";
 import { getProjectsSummary } from "@infrastructure/db/project";
+import { getUserIdFromRequest } from "@app/session-storage";
 import { ProjectsView } from "@app/ui/main/projects";
 
 type LoaderData = {
   projectsSummary: ProjectSummary[];
 };
 
-export const loader: LoaderFunction = async () => {
-  const projectsSummary = await getProjectsSummary();
+export const loader: LoaderFunction = async ({ request }) => {
+  const userId = await getUserIdFromRequest(request);
+
+  if (!userId) {
+    return redirect("/login");
+  }
+
+  const projectsSummary = await getProjectsSummary(userId);
 
   return json<LoaderData>({ projectsSummary });
 };
