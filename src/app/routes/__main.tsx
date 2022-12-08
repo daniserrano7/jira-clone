@@ -1,19 +1,28 @@
 import type { LoaderFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { User } from "@domain/user";
-import { fetchUser } from "@infrastructure/db/user";
+import { getUserIdFromRequest } from "@app/session-storage/user-storage.server";
+import { getUser } from "@infrastructure/db/user";
 import { MainLayout } from "@app/ui/main";
 
 type LoaderData = {
   user: User;
 };
 
-export const loader: LoaderFunction = async () => {
-  const user = await fetchUser();
+export const loader: LoaderFunction = async ({ request }) => {
+  const userId = await getUserIdFromRequest(request);
+
+  if (!userId) {
+    return redirect("/login");
+  }
+
+  const user = await getUser(userId);
 
   if (!user) {
-    throw new Error("Project not found");
+    throw new Response("Not Found", {
+      status: 404,
+    });
   }
 
   return json<LoaderData>({

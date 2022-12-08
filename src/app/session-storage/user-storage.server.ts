@@ -1,4 +1,5 @@
 import { createCookieSessionStorage, redirect } from "@remix-run/node";
+import { UserId } from "@domain/user";
 import { SESSION_SECRET } from "./shared";
 
 const _30daysInSeconds = 60 * 60 * 24 * 30;
@@ -30,9 +31,13 @@ export const getUserSession = (request: Request) => {
   return userStorage.getSession(request.headers.get("Cookie"));
 };
 
-export const getUserIdFromRequest = async (request: Request) => {
+export const getUserIdFromRequest = async (request: Request): Promise<UserId | null> => {
   const session = await getUserSession(request);
   const userId = session.get(USER_SESSION_KEY);
-  if (!userId || typeof userId !== "string") return null;
-  return userId;
+
+  return isValidUserId(userId) ? (userId as UserId) : null;
+};
+
+const isValidUserId = (userId: unknown): userId is UserId => {
+  return Boolean(userId) && typeof userId === "string";
 };

@@ -76,8 +76,6 @@ export const ThemeProvider = ({ children, value }: ThemeProviderProps) => {
       : "light";
 
     // To avoid unnecessary executions or impossible updates
-    console.log("SYSTEM THEME: ", systemTheme);
-    console.log("INIT THEME: ", initTheme);
     if (systemTheme === theme || systemTheme == initTheme) return;
 
     setIsInitialized(true);

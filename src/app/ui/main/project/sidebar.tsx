@@ -161,7 +161,6 @@ const SelectTheme = observer((): JSX.Element => {
 
   const changeTheme = (newTheme: Theme) => {
     if (newTheme !== theme) setTheme(newTheme);
-    console.log("SIDEBAR CHANGE THEME: ", newTheme);
   };
 
   const changeThemePreference = (newThemePreference: ThemePreference) => {

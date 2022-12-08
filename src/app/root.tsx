@@ -54,7 +54,6 @@ export const action: ActionFunction = async ({ request }) => {
     const theme = formData.get("theme") as Theme;
     const themePreference = formData.get("preference") as ThemePreference;
     const redirectTo = (formData.get("redirectTo") as string) || "/";
-    console.log("REDIRECT TO: ", redirectTo);
     return createThemeSession({ theme, themePreference }, redirectTo);
   }
   console.error("Unknown action", _action);
@@ -101,7 +100,7 @@ const App = (): JSX.Element => {
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main dark:text-font-main-dark">
+      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
