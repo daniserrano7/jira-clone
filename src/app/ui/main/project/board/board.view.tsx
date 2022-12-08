@@ -25,7 +25,9 @@ export const BoardView = ({ project }: Props): JSX.Element => {
             <SelectSort />
           </div>
         </section>
-        <Categories categories={project.categories} />
+        <DndProvider backend={HTML5Backend}>
+          <Categories categories={project.categories} />
+        </DndProvider>
         <Outlet />
       </div>
     </ProjectContext.Provider>
@@ -62,20 +64,18 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
       <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
         Press <Kbd>Shift</Kbd> + <Kbd>N</Kbd> to create a new issue
       </span>
-      <DndProvider backend={HTML5Backend}>
-        <div className="flex gap-3">
-          {categories.map((category) => (
-            <CategoryColumn
-              key={category.id}
-              category={category}
-              isDragging={isDragging}
-              submittingIssues={submittingIssues}
-              setSubmittingIssues={setSubmittingIssues}
-              handleDragging={setIsDragging}
-            />
-          ))}
-        </div>
-      </DndProvider>
+      <div className="flex gap-3">
+        {categories.map((category) => (
+          <CategoryColumn
+            key={category.id}
+            category={category}
+            isDragging={isDragging}
+            submittingIssues={submittingIssues}
+            setSubmittingIssues={setSubmittingIssues}
+            handleDragging={setIsDragging}
+          />
+        ))}
+      </div>
     </section>
   );
 };

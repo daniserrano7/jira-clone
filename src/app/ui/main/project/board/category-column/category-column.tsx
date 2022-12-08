@@ -96,7 +96,8 @@ export const CategoryColumn = observer(
           className={cx(
             "absolute z-50 box-border h-[100%] w-[100%] rounded p-1.5 duration-200",
             isDragging ? "visible" : "hidden",
-            isOver || "bg-white bg-opacity-70"
+            isOver ||
+              "bg-white bg-opacity-70 dark:bg-dark-300 dark:bg-opacity-70"
           )}
         >
           <div
@@ -105,10 +106,14 @@ export const CategoryColumn = observer(
               isDragging ? "visible" : "hidden",
               isOver
                 ? "border-solid border-success-main"
-                : "flex items-center justify-center border-dashed border-primary-main"
+                : "flex items-center justify-center border-dashed border-primary-main dark:border-primary-main-dark"
             )}
           >
-            {!isOver && <span className="rounded bg-white">DROP HERE</span>}
+            {!isOver && (
+              <span className="rounded bg-white px-1 dark:bg-dark-100">
+                DROP HERE
+              </span>
+            )}
           </div>
         </div>
         {/* Column header */}
