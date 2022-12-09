@@ -60,11 +60,11 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   }, [onKeyDown]);
 
   return (
-    <section className="mt-12 h-full">
+    <section className="mt-12 flex h-full flex-col">
       <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
         Press <Kbd>Shift</Kbd> + <Kbd>N</Kbd> to create a new issue
       </span>
-      <div className="flex gap-3">
+      <div className="flex h-full gap-3">
         {categories.map((category) => (
           <CategoryColumn
             key={category.id}
