@@ -1,3 +1,3 @@
 export const AnalyticsView = () => {
-  return <div>ANALYTICS PAGE</div>;
+  return <div>Comming soon...</div>;
 };
