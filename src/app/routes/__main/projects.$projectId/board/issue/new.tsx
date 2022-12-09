@@ -6,6 +6,13 @@ import { Comment } from "@domain/comment";
 import { Priority } from "@domain/priority";
 import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+
+export type ActionData = {
+  errors: {
+    name?: string;
+  };
+};
 
 export const loader: LoaderFunction = async () => {
   return json(null);
@@ -34,6 +41,13 @@ export const action: ActionFunction = async ({ request, params }) => {
       reporterId,
       comments,
     };
+
+    if (!name || textAreOnlySpaces(name)) {
+      return json<ActionData>(
+        { errors: { name: "Title is required" } },
+        { status: 400 }
+      );
+    }
 
     await createIssue(issueInputData);
   }
