@@ -17,7 +17,7 @@ export const ScrollArea = ({
     <ScrollAreaPrimitive.Scrollbar
       orientation="vertical"
       className={cx(
-        "flex w-2 touch-none select-none rounded-full bg-grey-400 duration-150 ease-out hover:bg-grey-600"
+        "flex w-2 touch-none select-none rounded-full bg-grey-400 duration-150 ease-out hover:bg-grey-600 dark:bg-dark-100"
       )}
     >
       <ScrollAreaPrimitive.Thumb
