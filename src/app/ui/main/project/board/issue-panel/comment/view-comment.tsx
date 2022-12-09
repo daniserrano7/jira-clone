@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFetcher } from "@remix-run/react";
 import cx from "classix";
 import { Comment, CommentId } from "@domain/comment";
 import { useUserStore } from "@app/store/user.store";
@@ -11,6 +12,7 @@ export const ViewComment = ({
 }: ViewCommentProps): JSX.Element => {
   const { user } = useUserStore();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const fetcher = useFetcher();
 
   const isNotSelfComment = comment.user.id !== user.id;
 
@@ -19,6 +21,13 @@ export const ViewComment = ({
 
   const remove = () => {
     removeComment(comment.id);
+
+    if (comment.id.startsWith("temp-")) return;
+
+    fetcher.submit(
+      { commentId: comment.id, _action: "deleteComment" },
+      { method: "delete" }
+    );
   };
 
   const save = (commentText: string): void => {

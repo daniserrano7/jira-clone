@@ -11,7 +11,7 @@ export const CreateComment = ({
 
   const save = (message: string) => {
     addComment({
-      id: uuid(),
+      id: "temp-" + uuid(),
       user,
       message,
       createdAt: Date.now(),

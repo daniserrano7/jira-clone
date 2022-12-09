@@ -3,9 +3,10 @@ import { redirect, json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
 import { UserId } from "@domain/user";
+import { ProjectId } from "@domain/project";
 import { CategoryId } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { Comment } from "@domain/comment";
+import { Comment, CommentId } from "@domain/comment";
 import { Priority } from "@domain/priority";
 import {
   getIssue,
@@ -13,6 +14,7 @@ import {
   deleteIssue,
   UpdateIssueInputData,
 } from "@infrastructure/db/issue";
+import { deleteComment } from "@infrastructure/db/comment";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
@@ -44,6 +46,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export const action: ActionFunction = async ({ request, params }) => {
   const id = params.issueId as IssueId;
+  const projectId = params.projectId as ProjectId;
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
 
@@ -81,7 +84,16 @@ export const action: ActionFunction = async ({ request, params }) => {
   if (_action === "delete") {
     await deleteIssue(id);
   }
-  return redirect(`/projects/${params.projectId}/board`);
+
+  if (_action === "deleteComment") {
+    const commentId = formData.get("commentId") as CommentId;
+
+    if (!commentId) return null;
+
+    await deleteComment(commentId);
+    return redirect(`/projects/${projectId}/board/issue/${id}`);
+  }
+  return redirect(`/projects/${projectId}/board`);
 };
 
 export default function IssuePanelRoute() {

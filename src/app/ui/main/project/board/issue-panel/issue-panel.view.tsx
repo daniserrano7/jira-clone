@@ -9,7 +9,6 @@ import {
   useNavigate,
 } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { userMock1 } from "@domain/user";
 import { CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
@@ -29,6 +28,7 @@ import { SelectAsignee } from "./select-asignee";
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const { user } = useUserStore();
+  const reporter = issue ? issue.reporter : user;
   const formRef = useRef<HTMLFormElement>(null);
   const actionData = useActionData() as IssueActionData;
   const submit = useSubmit();
@@ -131,8 +131,8 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       <CreateComment addComment={addComment} />
                     </div>
                     <ul className="mt-8 space-y-6">
-                      {sortComments(comments).map((comment, index) => (
-                        <li key={index}>
+                      {sortComments(comments).map((comment) => (
+                        <li key={comment.id}>
                           <ViewComment
                             comment={comment}
                             removeComment={removeComment}
@@ -160,10 +160,14 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   <div>
                     <p className="mb-1">Reporter</p>
                     <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1 dark:bg-dark-500">
-                      <UserAvatar {...userMock1} tooltip={false} />
-                      <p className="m-0">{userMock1.name}</p>
+                      <UserAvatar {...reporter} tooltip={false} />
+                      <input
+                        type="hidden"
+                        name="reporter"
+                        value={reporter.id}
+                      />
+                      <p className="m-0">{reporter.name}</p>
                     </div>
-                    <input type="hidden" name="reporter" value={userMock1.id} />
                   </div>
                 </section>
               </div>
