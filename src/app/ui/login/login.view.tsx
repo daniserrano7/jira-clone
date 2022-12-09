@@ -23,23 +23,25 @@ export const LoginView = ({ users }: Props) => {
   };
 
   return (
-    <div>
-      <h1>Select login user</h1>
-      <h2>
-        There is no authentication involved. You can try to login with any user
-        you want!
+    <div className="mx-auto max-w-[400px] pt-[20vh]">
+      <h1 className="font-primary-black text-5xl">Select login user</h1>
+      <h2 className="mt-3 mb-8 font-primary-light text-lg text-font-light dark:text-font-light-dark">
+        There is no authentication involved. You can login with any user you
+        want! Keep in mind you can only access the projects the user is member
+        of. Try to create issues and comments with different users to see how it
+        reflects in the UI and database. You can logout on the user avatar.
       </h2>
-      <Form method="post">
+      <Form method="post" className="mx-auto w-[300px]">
         <Select.Root
           name="user"
           defaultValue={userMock1.id}
           onValueChange={onValueChange}
         >
-          <SelectTrigger>
-            <div className="mr-2">
-              <UserAvatar {...selectedValue} tooltip={false} size={32} />
+          <SelectTrigger className="flex w-full justify-between">
+            <div className="flex items-center gap-2">
+              <UserAvatar {...selectedValue} tooltip={false} />
+              <Select.Value />
             </div>
-            <Select.Value />
             <SelectTriggerIcon />
           </SelectTrigger>
           <SelectContent>
@@ -57,7 +59,12 @@ export const LoginView = ({ users }: Props) => {
             <Select.ScrollDownButton />
           </SelectContent>
         </Select.Root>
-        <button type="submit" name="_action" value="setUser">
+        <button
+          type="submit"
+          name="_action"
+          value="setUser"
+          className="mt-2 w-full rounded bg-primary-main p-2 dark:bg-primary-main-dark"
+        >
           Login
         </button>
       </Form>

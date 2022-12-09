@@ -1,4 +1,5 @@
-import { Link } from "@remix-run/react";
+import { Link, Form } from "@remix-run/react";
+import * as Popover from "@radix-ui/react-popover";
 import cx from "classix";
 import { useUserStore } from "../../store/user.store";
 import { Icon } from "@app/components/icon";
@@ -31,7 +32,24 @@ export const Header = (): JSX.Element => {
         >
           <Icon name="github" />
         </a>
-        <UserAvatar {...user} tooltip={false} />
+        <Popover.Root>
+          <Popover.Trigger className="rounded-full outline outline-2 outline-grey-300 hover:outline-primary-main dark:outline-grey-600 dark:hover:outline-white">
+            <UserAvatar {...user} tooltip={false} />
+          </Popover.Trigger>
+          <Popover.Portal>
+            <Popover.Content
+              className="group z-50 rounded bg-white px-3 py-1 shadow-md-dark hover:bg-grey-300 dark:bg-dark-400 dark:hover:bg-dark-200"
+              sideOffset={3}
+            >
+              <Form method="post" action="/logout">
+                <button type="submit" name="_action" value="logout">
+                  Logout
+                </button>
+              </Form>
+              <Popover.Arrow className="fill-white group-hover:fill-grey-300 dark:fill-dark-500 dark:group-hover:fill-dark-100" />
+            </Popover.Content>
+          </Popover.Portal>
+        </Popover.Root>
       </section>
     </header>
   );

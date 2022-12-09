@@ -9,7 +9,7 @@ export const UserAvatar = ({
   size = 36,
   tooltip,
 }: UserAvatarProps): JSX.Element => {
-  const imageDimensions = {
+  const imageSize = {
     width: `${size}px`,
     height: `${size}px`,
   };
@@ -22,18 +22,17 @@ export const UserAvatar = ({
   return (
     <div className="rounded-full">
       <Tooltip title={name} show={tooltip}>
-        <Avatar.Root className="flex items-center" style={imageDimensions}>
+        <Avatar.Root className="flex items-center" style={imageSize}>
           <Avatar.Image
             className="rounded-full object-cover"
             src={image && `/avatars/${image}`}
-            style={imageDimensions}
+            style={imageSize}
           />
           <Avatar.Fallback
             delayMs={0}
             className="flex items-center justify-center rounded-full text-font-main"
             style={{
-              width: `${size}px`,
-              height: `${size}px`,
+              ...imageSize,
               backgroundColor: color,
             }}
           >

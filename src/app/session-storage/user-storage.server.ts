@@ -27,6 +27,15 @@ export const createUserSession = async (userId: string, redirectTo: string) => {
   });
 };
 
+export const destroyUserSession = async (request: Request, redirectTo: string) => {
+  const session = await getUserSession(request);
+  return redirect(redirectTo, {
+    headers: {
+      "Set-Cookie": await userStorage.destroySession(session),
+    },
+  });
+};
+
 export const getUserSession = (request: Request) => {
   return userStorage.getSession(request.headers.get("Cookie"));
 };

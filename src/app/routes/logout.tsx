@@ -1,9 +1,8 @@
 import type { LoaderFunction, ActionFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { User } from "@domain/user";
-import { getUsers } from "@infrastructure/db/user";
-import { createUserSession } from "@app/session-storage";
+import { destroyUserSession } from "@app/session-storage";
 import { LoginView } from "@app/ui/login";
 
 type LoaderData = {
@@ -11,18 +10,16 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async () => {
-  const users = await getUsers();
-  return json<LoaderData>({ users });
+  return redirect("/login");
 };
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
 
-  if (_action === "setUser") {
-    const userId = formData.get("user") as string;
-    const redirectTo = "/projects";
-    return createUserSession(userId, redirectTo);
+  if (_action === "logout") {
+    const redirectTo = "/login";
+    return destroyUserSession(request, redirectTo);
   }
   console.error("Unknown action", _action);
 };
