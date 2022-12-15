@@ -63,7 +63,7 @@ export const LoginView = ({ users }: Props) => {
           type="submit"
           name="_action"
           value="setUser"
-          className="mt-2 w-full rounded bg-primary-main p-2 dark:bg-primary-main-dark"
+          className="mt-2 w-full rounded bg-primary-main p-2 text-white hover:bg-primary-main-hover dark:bg-primary-main-dark dark:hover:bg-primary-main-hover-dark"
         >
           Login
         </button>

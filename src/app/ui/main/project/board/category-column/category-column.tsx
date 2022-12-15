@@ -1,11 +1,4 @@
-import {
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { observer } from "mobx-react-lite";
 import { Link, useFetcher } from "@remix-run/react";
 import cx from "classix";
@@ -95,7 +88,7 @@ export const CategoryColumn = observer(
       }
     }, [fetcher, setSubmittingIssues]);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
       if (columnRef.current) {
         setColumnHeight(columnRef.current.offsetHeight);
       }

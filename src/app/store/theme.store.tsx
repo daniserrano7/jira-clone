@@ -21,7 +21,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 
 export const ThemeProvider = ({ children, value }: ThemeProviderProps) => {
   const initTheme = value.initTheme || "light";
-  const initPreference = value.initPreference || "selected";
+  const initPreference = value.initPreference || "system";
   const fetcher = useFetcher();
 
   const [isInitialized, setIsInitialized] = useState(false);
