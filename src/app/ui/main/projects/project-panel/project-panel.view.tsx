@@ -9,7 +9,7 @@ import { UserAvatar } from "@app/components/user-avatar";
 import { Icon } from "@app/components/icon";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
-import { Kbd } from "@app/components/kbd";
+import { Kbd } from "@app/components/kbd-placeholder";
 import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {

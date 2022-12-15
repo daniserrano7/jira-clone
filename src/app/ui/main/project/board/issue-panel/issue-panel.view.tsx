@@ -17,7 +17,7 @@ import { ActionData as IssueActionData } from "@app/routes/__main/projects.$proj
 import { UserAvatar } from "@app/components/user-avatar";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
-import { Kbd } from "@app/components/kbd";
+import { Kbd } from "@app/components/kbd-placeholder";
 import { PanelHeaderIssue } from "./panel-header-issue";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
