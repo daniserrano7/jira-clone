@@ -1,8 +1,5 @@
-import type {
-  MetaFunction,
-  LoaderFunction,
-  ActionFunction,
-} from "@remix-run/node";
+import { useEffect } from "react";
+import type { MetaFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -12,14 +9,12 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useFetcher,
   useLoaderData,
 } from "@remix-run/react";
 import cx from "classix";
-import { Theme, ThemePreference } from "@app/store/theme.store";
-import {
-  createThemeSession,
-  getThemeFromRequest,
-} from "./session-storage/theme-storage.server";
+import { Theme, Preference } from "@app/store/theme.store";
+import { getThemeSession } from "./session-storage/theme-storage.server";
 import { ThemeProvider, useTheme } from "./store/theme.store";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
@@ -39,24 +34,83 @@ export const meta: MetaFunction = () => ({
 
 type LoaderData = {
   theme?: Theme;
-  themePreference?: ThemePreference;
+  preference?: Preference;
 };
 export const loader: LoaderFunction = async ({ request }) => {
-  const { theme, themePreference } = await getThemeFromRequest(request);
-  return json<LoaderData>({ theme, themePreference });
+  const themeSession = await getThemeSession(request);
+  const { theme, preference } = themeSession.getTheme();
+  return json<LoaderData>({ theme, preference });
 };
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const _action = formData.get("_action") as string;
+export default function AppWithProviders() {
+  const { theme, preference } = useLoaderData<LoaderData>();
+  return (
+    <ThemeProvider specifiedTheme={theme} specifiedPreference={preference}>
+      <App />
+    </ThemeProvider>
+  );
+}
 
-  if (_action === "setTheme") {
-    const theme = formData.get("theme") as Theme;
-    const themePreference = formData.get("preference") as ThemePreference;
-    const redirectTo = (formData.get("redirectTo") as string) || "/";
-    return createThemeSession({ theme, themePreference }, redirectTo);
-  }
-  console.error("Unknown action", _action);
+const App = (): JSX.Element => {
+  const loaderData = useLoaderData<LoaderData>();
+  const { theme: sessionTheme, preference: sessionPreference } = loaderData;
+  const { theme } = useTheme();
+  const fetcher = useFetcher();
+  const isDarkTheme = theme === Theme.DARK;
+
+  useEffect(() => {
+    // To avoid missmatch between server and client, theme is loaded
+    // from cookie session. On the first visit, the theme is not stored
+    // in the session, so we got it from system preference and set it.
+    // Next time, the theme will be loaded from session and this won't run.
+    if (sessionTheme && sessionPreference !== Preference.SYSTEM) return;
+
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? Theme.DARK
+      : Theme.LIGHT;
+
+    if (systemTheme === theme) return;
+
+    fetcher.submit(
+      { theme: systemTheme, preference: Preference.SYSTEM },
+      { action: "action/set-theme", method: "post" }
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <html lang="en" className={cx("h-full", isDarkTheme && Theme.DARK)}>
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: !sessionTheme
+              ? `
+                (function () {
+                  if (typeof window === 'undefined') return;
+
+                  const isSystemThemeDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    
+                  if (isSystemThemeDark) {
+                    const htmlElement = document.documentElement;
+                    htmlElement.classList.add('dark');
+                  }
+                })();
+              `
+              : "",
+          }}
+        />
+      </body>
+    </html>
+  );
 };
 
 export function CatchBoundary() {
@@ -78,34 +132,3 @@ export function CatchBoundary() {
     </html>
   );
 }
-
-export default function AppWithProviders() {
-  const { theme, themePreference } = useLoaderData<LoaderData>();
-  return (
-    <ThemeProvider
-      value={{ initTheme: theme, initPreference: themePreference }}
-    >
-      <App />
-    </ThemeProvider>
-  );
-}
-
-const App = (): JSX.Element => {
-  const { theme } = useTheme();
-  const isDarkTheme = theme === "dark";
-
-  return (
-    <html lang="en" className={cx("h-full", isDarkTheme && "dark")}>
-      <head>
-        <Meta />
-        <Links />
-      </head>
-      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
-};

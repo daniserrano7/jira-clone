@@ -3,7 +3,7 @@ import { NavLink } from "@remix-run/react";
 import { observer } from "mobx-react-lite";
 import * as Select from "@radix-ui/react-select";
 import cx from "classix";
-import { Theme, ThemePreference } from "@app/store/theme.store";
+import { Theme, Preference } from "@app/store/theme.store";
 import { useTheme } from "@app/store/theme.store";
 import { Icon, IconName } from "@app/components/icon";
 
@@ -144,17 +144,29 @@ export interface NavItemProps {
 }
 
 const SelectTheme = observer((): JSX.Element => {
-  const { theme, setTheme, themePreference, setThemePreference } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const themePreference = "system";
   const basebuttonClass = cx("p-1 rounded-lg");
   const selectedButtonClass = cx("dark:bg-dark-100 bg-grey-100");
 
-  const preferences: { value: ThemePreference; label: string }[] = [
+  const themes: { value: Theme; label: string }[] = [
     {
-      value: "selected",
+      value: Theme.LIGHT,
+      label: "Light",
+    },
+    {
+      value: Theme.DARK,
+      label: "Dark",
+    },
+  ];
+
+  const preferences: { value: Preference; label: string }[] = [
+    {
+      value: Preference.SELECTED,
       label: "Selected",
     },
     {
-      value: "system",
+      value: Preference.SYSTEM,
       label: "System",
     },
   ];
@@ -163,32 +175,28 @@ const SelectTheme = observer((): JSX.Element => {
     if (newTheme !== theme) setTheme(newTheme);
   };
 
-  const changeThemePreference = (newThemePreference: ThemePreference) => {
-    if (newThemePreference !== themePreference)
-      setThemePreference(newThemePreference);
+  const changeThemePreference = (newThemePreference: Preference) => {
+    if (newThemePreference !== themePreference) {
+      console.log("asdf");
+    }
+    // setThemePreference(newThemePreference);
   };
 
   return (
     <section className="flex gap-2 px-5 py-3">
       <div className="grid w-full grid-cols-2 gap-2 rounded-lg bg-grey-400 p-1 dark:bg-dark-300">
-        <button
-          className={cx(
-            basebuttonClass,
-            theme === "light" && selectedButtonClass
-          )}
-          onClick={() => changeTheme("light")}
-        >
-          Light
-        </button>
-        <button
-          className={cx(
-            basebuttonClass,
-            theme === "dark" && selectedButtonClass
-          )}
-          onClick={() => changeTheme("dark")}
-        >
-          Dark
-        </button>
+        {themes.map(({ value, label }) => (
+          <button
+            key={value}
+            className={cx(
+              basebuttonClass,
+              theme === value && selectedButtonClass
+            )}
+            onClick={() => changeTheme(value)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
       <Select.Root
         defaultValue={themePreference}
