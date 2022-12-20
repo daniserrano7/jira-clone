@@ -1,4 +1,4 @@
-import { createCookieSessionStorage, redirect } from "@remix-run/node";
+import { createCookieSessionStorage } from "@remix-run/node";
 import { UserId } from "@domain/user";
 import { SESSION_SECRET } from "./shared";
 
@@ -17,34 +17,20 @@ const userStorage = createCookieSessionStorage({
   },
 });
 
-export const createUserSession = async (userId: string, redirectTo: string) => {
-  const session = await userStorage.getSession();
-  session.set(USER_SESSION_KEY, userId);
-  return redirect(redirectTo, {
-    headers: {
-      "Set-Cookie": await userStorage.commitSession(session),
+export const getUserSession = async (request: Request) => {
+  const session = await userStorage.getSession(request.headers.get("Cookie"));
+
+  return {
+    getUser: (): UserId | null => {
+      const userId = session.get(USER_SESSION_KEY) as UserId | undefined;
+      return isValidUserId(userId) ? userId : null;
     },
-  });
-};
-
-export const destroyUserSession = async (request: Request, redirectTo: string) => {
-  const session = await getUserSession(request);
-  return redirect(redirectTo, {
-    headers: {
-      "Set-Cookie": await userStorage.destroySession(session),
+    setUser: (userId: UserId) => {
+      if (isValidUserId(userId)) session.set(USER_SESSION_KEY, userId);
     },
-  });
-};
-
-export const getUserSession = (request: Request) => {
-  return userStorage.getSession(request.headers.get("Cookie"));
-};
-
-export const getUserIdFromRequest = async (request: Request): Promise<UserId | null> => {
-  const session = await getUserSession(request);
-  const userId = session.get(USER_SESSION_KEY);
-
-  return isValidUserId(userId) ? (userId as UserId) : null;
+    destroyUser: () => userStorage.destroySession(session),
+    commit: () => userStorage.commitSession(session),
+  };
 };
 
 const isValidUserId = (userId: unknown): userId is UserId => {

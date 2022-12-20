@@ -1,9 +1,9 @@
 import type { LoaderFunction, ActionFunction } from "@remix-run/node";
-import { json } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { User } from "@domain/user";
 import { getUsers } from "@infrastructure/db/user";
-import { createUserSession } from "@app/session-storage";
+import { getUserSession } from "@app/session-storage";
 import { LoginView } from "@app/ui/login";
 
 type LoaderData = {
@@ -21,8 +21,12 @@ export const action: ActionFunction = async ({ request }) => {
 
   if (_action === "setUser") {
     const userId = formData.get("user") as string;
-    const redirectTo = "/projects";
-    return createUserSession(userId, redirectTo);
+    const userSession = await getUserSession(request);
+    userSession.setUser(userId);
+
+    return redirect("/projects", {
+      headers: { "Set-Cookie": await userSession.commit() },
+    });
   }
   console.error("Unknown action", _action);
 };
