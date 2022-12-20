@@ -21,7 +21,7 @@ export enum Preference {
 const preferences: Array<Preference> = Object.values(Preference);
 
 export const DEFAULT_THEME: Theme = Theme.LIGHT;
-export const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
+const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
 
 type ThemeContextType = {
   theme: Theme | null;
