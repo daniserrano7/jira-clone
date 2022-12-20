@@ -1,16 +1,10 @@
 import { createContext, useContext } from "react";
-import { makeAutoObservable } from "mobx";
 import { User } from "@domain/user";
 
 export class UserStore {
   user: User;
 
   constructor(user: User) {
-    this.user = user;
-    makeAutoObservable(this);
-  }
-
-  setUser(user: User) {
     this.user = user;
   }
 }
