@@ -25,15 +25,14 @@ export const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
 
 type ThemeContextType = {
   theme: Theme | null;
-  setTheme: React.Dispatch<React.SetStateAction<Theme | null>>;
   preference: Preference | null;
-  setPreference: React.Dispatch<React.SetStateAction<Preference | null>>;
+  setTheme: (theme: Theme, preference?: Preference) => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 const prefersLightMQ = "(prefers-color-scheme: light)";
-const getPreferredTheme = (): Theme =>
+export const getSystemTheme = (): Theme =>
   window.matchMedia(prefersLightMQ).matches ? Theme.LIGHT : Theme.DARK;
 
 export const ThemeProvider = ({
@@ -55,17 +54,10 @@ export const ThemeProvider = ({
     // the client will have to figure it out before hydration.
     if (typeof window !== "object") return null;
 
-    return getPreferredTheme();
+    return getSystemTheme();
   });
   const [preference, setPreference] = useState<Preference | null>(() => {
-    if (specifiedPreference) {
-      if (preferences.includes(specifiedPreference)) return specifiedPreference;
-      else return null;
-    }
-
-    // there's no way for us to know what the theme should be in this context
-    // the client will have to figure it out before hydration.
-    if (typeof window !== "object") return null;
+    if (isValidPreference(specifiedPreference)) return specifiedPreference;
 
     return DEFAULT_PREFERENCE;
   });
@@ -78,34 +70,34 @@ export const ThemeProvider = ({
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(prefersLightMQ);
+
     const handleChange = () => {
+      if (preference !== Preference.SYSTEM) return;
+
       const newTheme = mediaQuery.matches ? Theme.LIGHT : Theme.DARK;
-      setTheme(newTheme);
+      setThemeState(newTheme);
     };
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [preference]);
 
   const setTheme = useCallback(
-    (cb: Parameters<typeof setThemeState>[0]) => {
-      const newTheme = typeof cb === "function" ? cb(theme) : cb;
-      if (newTheme) {
-        persistThemeRef.current.submit(
-          { theme: newTheme },
-          { action: "action/set-theme", method: "post" }
-        );
-      }
+    (newTheme: Theme, newPreference: Preference = Preference.SYSTEM) => {
+      persistThemeRef.current.submit(
+        { theme: newTheme, preference: newPreference },
+        { action: "action/set-theme", method: "post" }
+      );
       setThemeState(newTheme);
+      setPreference(newPreference);
     },
-    [theme]
+    []
   );
 
   const value = {
     theme,
-    setTheme,
     preference,
-    setPreference,
+    setTheme,
   };
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

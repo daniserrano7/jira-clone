@@ -63,14 +63,12 @@ const App = (): JSX.Element => {
     // from cookie session. On the first visit, the theme is not stored
     // in the session, so we got it from system preference and set it.
     // Next time, the theme will be loaded from session and this won't run.
-    if (sessionTheme && sessionPreference !== Preference.SYSTEM) return;
+    if (sessionTheme && sessionPreference === Preference.SELECTED) return;
 
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
       .matches
       ? Theme.DARK
       : Theme.LIGHT;
-
-    if (systemTheme === theme) return;
 
     fetcher.submit(
       { theme: systemTheme, preference: Preference.SYSTEM },

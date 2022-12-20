@@ -7,7 +7,6 @@ export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const theme = form.get("theme") as Theme;
   const preference = form.get("preference") as Preference;
-
   const themeSession = await getThemeSession(request);
   themeSession.setTheme({ theme, preference });
   return json(

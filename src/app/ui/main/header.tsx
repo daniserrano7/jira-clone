@@ -4,10 +4,12 @@ import cx from "classix";
 import { useUserStore } from "@app/store/user.store";
 import {
   Theme,
-  themes,
+  Preference,
   useTheme,
-  DEFAULT_THEME,
   isValidTheme,
+  isValidPreference,
+  getSystemTheme,
+  DEFAULT_THEME,
 } from "@app/store/theme.store";
 import { Icon } from "@app/components/icon";
 import { UserAvatar } from "@app/components/user-avatar";
@@ -45,14 +47,32 @@ export const Header = (): JSX.Element => {
 
 const UserProfile = (): JSX.Element => {
   const { user } = useUserStore();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, preference } = useTheme();
 
-  const selectTheme = (newTheme: string): void => {
-    console.log("select theme");
-    if (!isValidTheme(newTheme) || newTheme === theme) {
-      return;
+  const themeOptions: { value: Theme | Preference.SYSTEM; label: string }[] = [
+    {
+      value: Theme.LIGHT,
+      label: "Light",
+    },
+    {
+      value: Theme.DARK,
+      label: "Dark",
+    },
+    {
+      value: Preference.SYSTEM,
+      label: "System",
+    },
+  ];
+  const currentValue = preference === Preference.SYSTEM ? preference : theme;
+
+  const selectTheme = (value: string): void => {
+    if (isValidPreference(value)) {
+      setTheme(getSystemTheme(), value as Preference);
     }
-    setTheme(newTheme as Theme);
+
+    if (isValidTheme(value)) {
+      setTheme(value as Theme, Preference.SELECTED);
+    }
   };
 
   return (
@@ -74,13 +94,13 @@ const UserProfile = (): JSX.Element => {
             Select theme
           </DropdownMenu.Label>
           <DropdownMenu.RadioGroup
-            value={theme || DEFAULT_THEME}
+            value={currentValue || DEFAULT_THEME}
             onValueChange={selectTheme}
           >
-            {themes.map((theme) => (
-              <DropdownMenu.RadioItem key={theme} value={theme}>
+            {themeOptions.map(({ value, label }) => (
+              <DropdownMenu.RadioItem key={value} value={value}>
                 <DropdownMenu.ItemIndicator className="inline-block h-1 w-1 bg-error-main"></DropdownMenu.ItemIndicator>
-                {theme}
+                {label}
               </DropdownMenu.RadioItem>
             ))}
           </DropdownMenu.RadioGroup>
