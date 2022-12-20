@@ -21,7 +21,7 @@ export const CreateComment = ({
 
   return (
     <div className="mt-4 flex items-start gap-6">
-      <UserAvatar {...user} tooltip={false} />
+      <UserAvatar {...user} />
       <EditBox defaultMessage="" save={save} />
     </div>
   );

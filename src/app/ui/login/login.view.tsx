@@ -39,7 +39,7 @@ export const LoginView = ({ users }: Props) => {
         >
           <SelectTrigger className="flex w-full justify-between">
             <div className="flex items-center gap-2">
-              <UserAvatar {...selectedValue} tooltip={false} />
+              <UserAvatar {...selectedValue} />
               <Select.Value />
             </div>
             <SelectTriggerIcon />
@@ -50,7 +50,7 @@ export const LoginView = ({ users }: Props) => {
               {users.map((user, index) => (
                 <SelectItem key={index} value={user.id}>
                   <SelectItemIndicator />
-                  <UserAvatar {...user} tooltip={false} />
+                  <UserAvatar {...user} />
                   <Select.ItemText>{user.name}</Select.ItemText>
                 </SelectItem>
               ))}

@@ -19,7 +19,7 @@ export const UserProfile = (): JSX.Element => {
         onClick={openMenu}
         className="ml-1 rounded-full outline outline-2 outline-grey-300 hover:outline-primary-main dark:outline-grey-600 dark:hover:outline-white"
       >
-        <UserAvatar {...user} tooltip={false} />
+        <UserAvatar {...user} />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
@@ -33,7 +33,7 @@ export const UserProfile = (): JSX.Element => {
           )}
         >
           <DropdownMenu.Item className="flex flex-col items-center p-3 !outline-none">
-            <UserAvatar {...user} size={80} tooltip={false} />
+            <UserAvatar {...user} size={80} />
             <span className="mt-2 text-lg">{user.name}</span>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="h-px bg-grey-500 dark:bg-dark-100" />

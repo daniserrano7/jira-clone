@@ -47,7 +47,7 @@ const MoreUsers = ({ users }: MoreUsersProps): JSX.Element => (
               key={user.id}
               className="mb-1 flex items-center justify-start gap-3 py-1 outline-none last:mb-0 focus:bg-grey-300 focus-visible:outline-none dark:hover:bg-dark-100 dark:focus:bg-dark-100"
             >
-              <UserAvatar {...user} size={44} tooltip={false} />
+              <UserAvatar {...user} size={44} />
               <span className="dark:text-font-main-dark">{user.name}</span>
             </DropdownMenu.Item>
           ))}

@@ -160,7 +160,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   <div>
                     <p className="mb-1">Reporter</p>
                     <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1 dark:bg-dark-500">
-                      <UserAvatar {...reporter} tooltip={false} />
+                      <UserAvatar {...reporter} />
                       <input
                         type="hidden"
                         name="reporter"

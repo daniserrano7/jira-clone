@@ -35,7 +35,7 @@ export const SelectAsignee = ({ initAsignee }: Props): JSX.Element => {
     >
       <SelectTrigger>
         <div className="mr-2">
-          <UserAvatar {...selectedValue} tooltip={false} size={32} />
+          <UserAvatar {...selectedValue} size={32} />
         </div>
         <Select.Value />
         <SelectTriggerIcon />
@@ -46,7 +46,7 @@ export const SelectAsignee = ({ initAsignee }: Props): JSX.Element => {
           {users.map((user, index) => (
             <SelectItem key={index} value={user.id}>
               <SelectItemIndicator />
-              <UserAvatar {...user} tooltip={false} />
+              <UserAvatar {...user} />
               <Select.ItemText>{user.name}</Select.ItemText>
             </SelectItem>
           ))}

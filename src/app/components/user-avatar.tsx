@@ -7,7 +7,7 @@ export const UserAvatar = ({
   image,
   color,
   size = 36,
-  tooltip,
+  tooltip = false,
 }: UserAvatarProps): JSX.Element => {
   const imageSize = {
     width: `${size}px`,

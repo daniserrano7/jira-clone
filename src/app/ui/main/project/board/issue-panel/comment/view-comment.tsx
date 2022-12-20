@@ -82,7 +82,7 @@ export const ViewComment = ({
 
   return (
     <div className="flex gap-6">
-      <UserAvatar {...comment.user} tooltip={false} />
+      <UserAvatar {...comment.user} />
       <div style={{ width: "100%" }}>
         <p className="mr-4 inline-block font-primary-bold">
           {comment.user.name}
