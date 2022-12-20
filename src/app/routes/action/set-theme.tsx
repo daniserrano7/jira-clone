@@ -12,9 +12,12 @@ export const action: ActionFunction = async ({ request }) => {
   const themeSession = await getThemeSession(request);
   themeSession.setTheme({ theme, preference });
 
-  return json({
-    headers: { "Set-Cookie": await themeSession.commit() },
-  });
+  return json(
+    { success: true },
+    {
+      headers: { "Set-Cookie": await themeSession.commit() },
+    }
+  );
 };
 
 export default function SetThemeAction() {
