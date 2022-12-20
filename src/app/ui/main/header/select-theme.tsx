@@ -1,4 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { MdLightMode } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
 import cx from "classix";
 import {
   Theme,
@@ -9,7 +11,6 @@ import {
   getSystemTheme,
   DEFAULT_THEME,
 } from "@app/store/theme.store";
-import { Icon } from "@app/components/icon";
 
 export const SelctTheme = (): JSX.Element => {
   const { theme, setTheme, preference } = useTheme();
@@ -36,6 +37,9 @@ export const SelctTheme = (): JSX.Element => {
     },
   ];
   const currentValue = preference === Preference.SYSTEM ? preference : theme;
+  const triggerIconClass = cx(
+    "fill-icon group-hover:fill-primary-main dark:fill-grey-500 dark:group-hover:fill-white"
+  );
 
   const selectTheme = (value: string): void => {
     if (isValidPreference(value)) {
@@ -49,8 +53,12 @@ export const SelctTheme = (): JSX.Element => {
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="ml-4 rounded-full outline outline-2 outline-grey-300 hover:outline-primary-main dark:outline-grey-600 dark:hover:outline-white">
-        <Icon name="clock" />
+      <DropdownMenu.Trigger className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main dark:outline-grey-500 dark:hover:bg-dark-100 dark:hover:outline-white">
+        {theme === Theme.LIGHT ? (
+          <MdLightMode className={triggerIconClass} />
+        ) : (
+          <MdDarkMode className={triggerIconClass} />
+        )}
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
@@ -105,17 +113,6 @@ export const SelctTheme = (): JSX.Element => {
               </DropdownMenu.RadioItem>
             ))}
           </DropdownMenu.RadioGroup>
-          <DropdownMenu.Separator className="my-3 h-px bg-grey-200 dark:bg-grey-300" />
-          <DropdownMenu.Item
-            className={cx(
-              "flex cursor-default select-none items-center rounded-md px-2 py-2 text-xs outline-none",
-              "text-gray-400 focus:bg-gray-50 dark:text-gray-500 dark:focus:bg-gray-900"
-            )}
-          >
-            <span className="text-gray-700 dark:text-gray-300 flex-grow">
-              Logout
-            </span>
-          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
