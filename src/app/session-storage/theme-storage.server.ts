@@ -1,5 +1,5 @@
-import { createCookieSessionStorage, redirect } from "@remix-run/node";
-import { Theme, ThemePreference } from "@app/store/theme.store";
+import { createCookieSessionStorage } from "@remix-run/node";
+import { Theme, Preference, isValidTheme, isValidPreference } from "@app/store/theme.store";
 import { SESSION_SECRET } from "./shared";
 
 const THEME_SESSION_KEY = "theme";
@@ -16,49 +16,27 @@ const themeStorage = createCookieSessionStorage({
   },
 });
 
-interface CreateThemeSessionData {
-  theme: Theme;
-  themePreference: ThemePreference;
-}
-export const createThemeSession = async (
-  { theme, themePreference }: CreateThemeSessionData,
-  redirectTo: string
-) => {
-  const session = await themeStorage.getSession();
-  session.set(THEME_SESSION_KEY, theme);
-  session.set(THEME_PREFERENCE_SESSION_KEY, themePreference);
-  return redirect(redirectTo, {
-    headers: {
-      "Set-Cookie": await themeStorage.commitSession(session),
-    },
-  });
-};
-
-export const getThemeSession = (request: Request) => {
-  return themeStorage.getSession(request.headers.get("Cookie"));
-};
-
-interface GetThemeFromRequest {
+interface ThemeSessionValues {
   theme?: Theme;
-  themePreference?: ThemePreference;
+  preference?: Preference;
 }
-export const getThemeFromRequest = async (request: Request): Promise<GetThemeFromRequest> => {
-  const session = await getThemeSession(request);
-  const sessionTheme = session.get(THEME_SESSION_KEY);
-  const sessionPreference = session.get(THEME_PREFERENCE_SESSION_KEY);
 
-  const theme = isValidTheme(sessionTheme) ? sessionTheme : undefined;
-  const themePreference = isValidPreference(sessionPreference) ? sessionPreference : undefined;
+export const getThemeSession = async (request: Request) => {
+  const session = await themeStorage.getSession(request.headers.get("Cookie"));
 
-  return { theme, themePreference };
-};
-
-const isValidTheme = (theme: string): theme is Theme => {
-  const themes: Theme[] = ["light", "dark"];
-  return themes.includes(theme as Theme);
-};
-
-const isValidPreference = (preference: string): preference is ThemePreference => {
-  const themes: ThemePreference[] = ["selected", "system"];
-  return themes.includes(preference as ThemePreference);
+  return {
+    getTheme: (): ThemeSessionValues => {
+      const theme = session.get(THEME_SESSION_KEY) as Theme | undefined;
+      const preference = session.get(THEME_PREFERENCE_SESSION_KEY) as Preference | undefined;
+      return {
+        theme: isValidTheme(theme) ? theme : undefined,
+        preference: isValidPreference(preference) ? preference : undefined,
+      };
+    },
+    setTheme: ({ theme, preference }: ThemeSessionValues) => {
+      if (isValidTheme(theme)) session.set(THEME_SESSION_KEY, theme);
+      if (isValidPreference(preference)) session.set(THEME_PREFERENCE_SESSION_KEY, preference);
+    },
+    commit: () => themeStorage.commitSession(session, { expires: new Date("2088-10-18") }),
+  };
 };

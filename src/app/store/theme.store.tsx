@@ -3,100 +3,111 @@ import {
   useContext,
   useState,
   useEffect,
+  useRef,
   useCallback,
 } from "react";
 import { useFetcher } from "@remix-run/react";
 
-export type Theme = "light" | "dark";
-export type ThemePreference = "selected" | "system";
+// Inspired from Kent C. Dodds repo https://github.com/kentcdodds/kentcdodds.com/blob/main/app/utils/theme-provider.tsx
+export enum Theme {
+  LIGHT = "light",
+  DARK = "dark",
+}
+export const themes: Array<Theme> = Object.values(Theme);
+export enum Preference {
+  SELECTED = "selected",
+  SYSTEM = "system",
+}
+const preferences: Array<Preference> = Object.values(Preference);
+
+export const DEFAULT_THEME: Theme = Theme.LIGHT;
+const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
 
 type ThemeContextType = {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
-  themePreference: ThemePreference;
-  setThemePreference: (themePreference: ThemePreference) => void;
+  theme: Theme | null;
+  preference: Preference | null;
+  setTheme: (theme: Theme, preference?: Preference) => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
-export const ThemeProvider = ({ children, value }: ThemeProviderProps) => {
-  const initTheme = value.initTheme || "light";
-  const initPreference = value.initPreference || "system";
-  const fetcher = useFetcher();
+const prefersLightMQ = "(prefers-color-scheme: light)";
+export const getSystemTheme = (): Theme =>
+  window.matchMedia(prefersLightMQ).matches ? Theme.LIGHT : Theme.DARK;
 
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [theme, _setTheme] = useState<Theme>(initTheme);
-  const [themePreference, _setThemePreference] =
-    useState<ThemePreference>(initPreference);
+export const ThemeProvider = ({
+  children,
+  specifiedTheme,
+  specifiedPreference,
+}: ThemeProviderProps) => {
+  const [theme, setThemeState] = useState<Theme | null>(() => {
+    // On the server, if we don't have a specified theme then we should
+    // return null and the clientThemeCode will set the theme for us
+    // before hydration. Then (during hydration), this code will get the same
+    // value that clientThemeCode got so hydration is happy.
+    if (specifiedTheme) {
+      if (themes.includes(specifiedTheme)) return specifiedTheme;
+      else return null;
+    }
 
-  interface SaveThemeToSessionStorage {
-    newTheme?: Theme;
-    newPreference?: ThemePreference;
-  }
-  const saveChangesToSessionStorage = useCallback(
-    ({ newTheme, newPreference }: SaveThemeToSessionStorage) => {
-      fetcher.submit(
-        {
-          _action: "setTheme",
-          theme: newTheme || theme,
-          preference: newPreference || themePreference,
-          redirectTo: window.location.pathname,
-        },
-        { method: "post", action: "/" }
-      );
-    },
-    [fetcher, theme, themePreference]
-  );
+    // there's no way for us to know what the theme should be in this context
+    // the client will have to figure it out before hydration.
+    if (typeof window !== "object") return null;
 
-  const setThemePreference = (newPreference: ThemePreference) => {
-    _setThemePreference(newPreference);
-    saveChangesToSessionStorage({ newPreference: newPreference });
-  };
+    return getSystemTheme();
+  });
+  const [preference, setPreference] = useState<Preference | null>(() => {
+    if (isValidPreference(specifiedPreference)) return specifiedPreference;
+
+    return DEFAULT_PREFERENCE;
+  });
+
+  const persistTheme = useFetcher();
+  const persistThemeRef = useRef(persistTheme);
+  useEffect(() => {
+    persistThemeRef.current = persistTheme;
+  }, [persistTheme]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(prefersLightMQ);
+
+    const handleChange = () => {
+      if (preference !== Preference.SYSTEM) return;
+
+      const newTheme = mediaQuery.matches ? Theme.LIGHT : Theme.DARK;
+      setThemeState(newTheme);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preference]);
 
   const setTheme = useCallback(
-    (newTheme: Theme) => {
-      _setTheme(newTheme);
-
-      // If preference is "system", don't save theme in session storage
-      // because it will be overwritten by system theme instantly.
-      if (themePreference === "system") return;
-      saveChangesToSessionStorage({ newTheme: newTheme });
+    (newTheme: Theme, newPreference: Preference = Preference.SYSTEM) => {
+      persistThemeRef.current.submit(
+        { theme: newTheme, preference: newPreference },
+        { action: "action/set-theme", method: "post" }
+      );
+      setThemeState(newTheme);
+      setPreference(newPreference);
     },
-    [themePreference, saveChangesToSessionStorage]
+    []
   );
 
-  // If preference is "system" and stored theme is different from system theme,
-  // save the new system theme in session storage and update.
-  useEffect(() => {
-    if (isInitialized || initPreference !== "system") return;
-
-    const systemTheme: Theme = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? "dark"
-      : "light";
-
-    // To avoid unnecessary executions or impossible updates
-    if (systemTheme === theme || systemTheme == initTheme) return;
-
-    setIsInitialized(true);
-    setTheme(systemTheme);
-  }, [initTheme, initPreference, fetcher, setTheme, isInitialized, theme]);
-
+  const value = {
+    theme,
+    preference,
+    setTheme,
+  };
   return (
-    <ThemeContext.Provider
-      value={{ theme, setTheme, themePreference, setThemePreference }}
-    >
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 
 interface ThemeProviderProps {
   children: JSX.Element;
-  value: {
-    initTheme?: Theme;
-    initPreference?: ThemePreference;
-  };
+  specifiedTheme: Theme | undefined;
+  specifiedPreference: Preference | undefined;
 }
 
 export const useTheme = () => {
@@ -105,4 +116,14 @@ export const useTheme = () => {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
   return themeContext;
+};
+
+export const isValidTheme = (theme: unknown): theme is Theme => {
+  return themes.includes(theme as Theme);
+};
+
+export const isValidPreference = (
+  preference: unknown
+): preference is Preference => {
+  return preferences.includes(preference as Preference);
 };
