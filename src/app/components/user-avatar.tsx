@@ -33,6 +33,7 @@ export const UserAvatar = ({
           style={{
             ...imageSize,
             backgroundColor: color,
+            fontSize: `${size / 2}px`,
           }}
         >
           {acronym}
