@@ -48,12 +48,10 @@ export const SelctTheme = (): JSX.Element => {
   };
 
   return (
-    <DropdownMenu.Root open={true}>
+    <DropdownMenu.Root>
       <DropdownMenu.Trigger className="ml-4 rounded-full outline outline-2 outline-grey-300 hover:outline-primary-main dark:outline-grey-600 dark:hover:outline-white">
-        {/* <UserAvatar {...user} tooltip={false} /> */}
         <Icon name="clock" />
       </DropdownMenu.Trigger>
-
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           align="end"
