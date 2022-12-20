@@ -27,7 +27,6 @@
     "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-dropdown-menu": "^2.0.1",
-    "@radix-ui/react-popover": "^1.0.2",
     "@radix-ui/react-scroll-area": "^1.0.1",
     "@radix-ui/react-select": "^1.1.1",
     "@remix-run/netlify": "^1.7.5",

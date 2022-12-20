@@ -13,14 +13,15 @@ export enum Theme {
   LIGHT = "light",
   DARK = "dark",
 }
-const themes: Array<Theme> = Object.values(Theme);
+export const themes: Array<Theme> = Object.values(Theme);
 export enum Preference {
   SELECTED = "selected",
   SYSTEM = "system",
 }
 const preferences: Array<Preference> = Object.values(Preference);
 
-const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
+export const DEFAULT_THEME: Theme = Theme.LIGHT;
+export const DEFAULT_PREFERENCE: Preference = Preference.SYSTEM;
 
 type ThemeContextType = {
   theme: Theme | null;
