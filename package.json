@@ -12,8 +12,7 @@
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
     "test-all": "npm run type-check && npm run lint && npm run test",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "icons": "npx @svgr/cli --out-dir ./public/icons --filename-case kebab --typescript --icon -- ./public/icons/svg"
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "prisma": {
     "schema": "src/infrastructure/db/schema.prisma",
@@ -58,7 +57,6 @@
     "@remix-run/dev": "^1.7.5",
     "@remix-run/eslint-config": "^1.7.5",
     "@remix-run/serve": "^1.7.5",
-    "@svgr/cli": "^6.5.1",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",

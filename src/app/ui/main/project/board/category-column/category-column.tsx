@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import { observer } from "mobx-react-lite";
 import { Link, useFetcher } from "@remix-run/react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { RxValueNone } from "react-icons/rx";
 import cx from "classix";
 import { useDrop } from "react-dnd";
 import { Category } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { useProjectStore } from "@app/ui/main/project";
-import { Icon } from "@app/components/icon";
 import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "@app/components/scroll-area";
 import { priorities } from "@domain/priority";
@@ -134,7 +135,7 @@ export const CategoryColumn = observer(
             to={`issue/new?category=${category.type}`}
             className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-100"
           >
-            <Icon name="add" size={24} />
+            <AiOutlinePlus size={24} />
           </Link>
         </div>
         {/* Column body items */}
@@ -175,7 +176,7 @@ interface CategoryColumnProps {
 
 const EmptyCategory = (): JSX.Element => (
   <div className="mt-4 flex flex-col items-center text-font-light dark:text-font-light-dark">
-    <Icon name="empty" size={36} />
+    <RxValueNone size={36} />
     <p className="mt-4 font-primary-light text-xs uppercase">No issues found</p>
   </div>
 );

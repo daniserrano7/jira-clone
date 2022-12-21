@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "@remix-run/react";
+import { HiOutlineViewBoards } from "react-icons/hi";
 import cx from "classix";
-import { Icon, IconName } from "@app/components/icon";
+import { RiArrowDropLeftLine } from "react-icons/ri";
+import { ImStatsDots } from "react-icons/im";
+import { BsListNested } from "react-icons/bs";
+import { BsCloudSlash } from "react-icons/bs";
+import { TbError404 } from "react-icons/tb";
 
 export const Sidebar = (props: Props): JSX.Element => {
   const { projectName, projectDescription, projectImage } = props;
@@ -47,7 +52,6 @@ export const Sidebar = (props: Props): JSX.Element => {
             ))}
           </nav>
         </section>
-        {/* <SelectTheme /> */}
       </div>
       <div
         className={cx("r-0 relative z-10 ml-7 h-full w-3", isOpen && "ml-0")}
@@ -57,10 +61,10 @@ export const Sidebar = (props: Props): JSX.Element => {
           onClick={toggleSidebar}
           className={cx(
             "absolute -left-[12px] mt-6 flex h-[24px] w-[24px] cursor-pointer items-center justify-center rounded-full border-none bg-white shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)] transition-transform delay-150 duration-200 ease-in hover:bg-primary-main hover:text-white dark:bg-dark-200 dark:hover:bg-dark-100",
-            isOpen && "rotate-180"
+            !isOpen && "rotate-180"
           )}
         >
-          <Icon name="arrow" size={24} />
+          <RiArrowDropLeftLine size={24} />
         </button>
       </div>
     </aside>
@@ -76,28 +80,28 @@ interface Props {
 const navItems: NavItemProps[] = [
   {
     href: "board",
-    icon: "board",
+    icon: <HiOutlineViewBoards size={24} />,
     name: "Board",
   },
   {
     href: "analytics",
-    icon: "analytics",
+    icon: <ImStatsDots size={20} />,
     name: "Analytics",
   },
   {
     href: "backlog",
-    icon: "backlog",
+    icon: <BsListNested size={24} />,
     name: "Backlog",
     disabled: true,
   },
   {
     href: "server-error",
-    icon: "server-error",
+    icon: <BsCloudSlash size={24} />,
     name: "Server error",
   },
   {
     href: "not-found",
-    icon: "not-found",
+    icon: <TbError404 size={24} />,
     name: "Not found",
   },
 ];
@@ -118,7 +122,7 @@ const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
         )
       }
     >
-      <Icon name={icon} />
+      {icon}
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
       <span
         className={cx(
@@ -134,7 +138,7 @@ const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
 
 export interface NavItemProps {
   href: string;
-  icon: IconName;
+  icon: JSX.Element;
   name: string;
   disabled?: boolean;
 }

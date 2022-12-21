@@ -1,7 +1,7 @@
 import { Link, Outlet } from "@remix-run/react";
+import { AiOutlinePlus } from "react-icons/ai";
 import cx from "classix";
 import { ProjectSummary } from "@domain/project";
-import { Icon } from "@app/components/icon";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
   return (
@@ -12,7 +12,7 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
         className="mt-8 flex w-fit items-center rounded bg-grey-300 py-3 pl-3 pr-4 hover:bg-primary-light hover:text-primary-main dark:bg-dark-200 dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
       >
         <span>
-          <Icon name="add" size={20} />
+          <AiOutlinePlus size={22} />
         </span>
         <span className="ml-2 leading-4">Add Project</span>
       </Link>

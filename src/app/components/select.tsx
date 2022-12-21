@@ -1,7 +1,7 @@
 import * as Select from "@radix-ui/react-select";
 import { twix } from "tailwindcss-radix-ui";
 import cx from "classix";
-import { Icon } from "@app/components/icon";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const SelectTrigger = twix(
   Select.Trigger,
@@ -12,8 +12,8 @@ export const SelectTrigger = twix(
 );
 
 export const SelectTriggerIcon = (): JSX.Element => (
-  <Select.Icon className="rotate-90">
-    <Icon name="arrow" size={28} />
+  <Select.Icon>
+    <RiArrowDropDownLine size={28} />
   </Select.Icon>
 );
 

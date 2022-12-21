@@ -1,8 +1,10 @@
 import { Form, Link, useLocation } from "@remix-run/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import cx from "classix";
+import { MdDeleteOutline } from "react-icons/md";
+import { IoCloseOutline } from "react-icons/io5";
 import { IssueId } from "@domain/issue";
-import { Icon } from "@app/components/icon";
+import { TaskIcon } from "@app/components/icons";
 
 export const PanelHeaderIssue = ({
   id,
@@ -14,7 +16,7 @@ export const PanelHeaderIssue = ({
     <div className="flex">
       <span className="flex flex-grow items-center">
         <span className="flex items-center">
-          <Icon name="task" size={16} />
+          <TaskIcon size={20} />
         </span>
         <span className="ml-1 text-font-light text-opacity-80 dark:text-font-light-dark">
           {id}
@@ -23,9 +25,9 @@ export const PanelHeaderIssue = ({
       <DeleteIssueModalDialog />
       <Link
         to={previousUrl}
-        className="ml-3 flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
+        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
       >
-        <Icon name="close" size={24} />
+        <IoCloseOutline size={32} />
       </Link>
     </div>
   );
@@ -42,9 +44,10 @@ const DeleteIssueModalDialog = (): JSX.Element => {
 
   return (
     <AlertDialog.Root>
-      <AlertDialog.Trigger className="flex cursor-pointer rounded border-none p-1.5 text-icon hover:bg-grey-300 hover:text-error-main dark:text-font-light-dark dark:hover:bg-dark-100 dark:hover:text-error-main-dark">
-        <Icon name="delete" size={24} />
+      <AlertDialog.Trigger className="flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 hover:text-error-main dark:text-font-light-dark dark:hover:bg-dark-100 dark:hover:text-error-main-dark">
+        <MdDeleteOutline size={26} />
       </AlertDialog.Trigger>
+
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="fixed top-0 left-0 z-50 h-full w-full bg-black bg-opacity-40" />
         <AlertDialog.Content className="fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-5 shadow-lg dark:bg-dark-300">

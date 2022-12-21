@@ -1,10 +1,10 @@
 import cx from "classix";
+import { HiFlag } from "react-icons/hi";
 import { Priority } from "@domain/priority";
-import { Icon } from "@app/components/icon";
 
 export const PriorityIcon = ({
   priority,
-  size = 16,
+  size = 18,
 }: PriorityIconProps): JSX.Element => (
   <span
     className={cx(
@@ -14,7 +14,7 @@ export const PriorityIcon = ({
       priority === "high" && "text-error-main"
     )}
   >
-    <Icon name="priority" size={size} />
+    <HiFlag size={size} />
   </span>
 );
 

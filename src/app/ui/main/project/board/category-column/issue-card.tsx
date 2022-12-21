@@ -4,7 +4,7 @@ import cx from "classix";
 import { useDrag } from "react-dnd";
 import { CategoryId } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
-import { Icon } from "@app/components/icon";
+import { TaskIcon } from "@app/components/icons";
 import { PriorityIcon } from "@app/components/priority-icon";
 
 export interface DropItem {
@@ -54,14 +54,12 @@ export const IssueCard = ({
           <p className="min-h-[48px] w-full line-clamp-2">{issue.name}</p>
           <div className="flex items-center justify-between pt-4">
             <span className="flex items-center">
-              <span className="flex items-center">
-                <Icon name="task" size={16} />
-              </span>
+              <TaskIcon size={18} />
               <span className="ml-1.5 text-2xs text-font-light dark:text-font-light-dark">
                 {issueIdPrefix}
               </span>
             </span>
-            <PriorityIcon priority={issue.priority} size={14} />
+            <PriorityIcon priority={issue.priority} />
           </div>
         </>
       </Link>

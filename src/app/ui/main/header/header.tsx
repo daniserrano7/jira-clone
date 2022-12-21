@@ -1,6 +1,8 @@
 import { Link } from "@remix-run/react";
 import cx from "classix";
-import { Icon } from "@app/components/icon";
+import { HiQuestionMarkCircle } from "react-icons/hi";
+import { AiFillGithub } from "react-icons/ai";
+import { Tooltip } from "@app/components/tooltip";
 import { SelctTheme } from "./select-theme";
 import { UserProfile } from "./user-profile";
 
@@ -20,15 +22,19 @@ export const Header = (): JSX.Element => {
         </Link>
       </section>
       <section className="flex items-center gap-4">
-        <button disabled className={cx(iconBaseClass, "cursor-not-allowed")}>
-          <Icon name="question" />
-        </button>
-        <a
-          href="https://github.com/daniserrano7/jira-clone"
-          className={iconBaseClass}
-        >
-          <Icon name="github" />
-        </a>
+        <Tooltip title="About">
+          <button disabled className={cx(iconBaseClass, "cursor-not-allowed")}>
+            <HiQuestionMarkCircle size={24} />
+          </button>
+        </Tooltip>
+        <Tooltip title="Github">
+          <a
+            href="https://github.com/daniserrano7/jira-clone"
+            className={iconBaseClass}
+          >
+            <AiFillGithub size={24} />
+          </a>
+        </Tooltip>
         <SelctTheme />
         <UserProfile />
       </section>

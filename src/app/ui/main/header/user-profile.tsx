@@ -43,7 +43,6 @@ export const UserProfile = (): JSX.Element => {
                 type="submit"
                 className="flex w-full items-center gap-2 rounded p-2 text-sm text-error-main hover:bg-error-light dark:text-error-main-dark dark:hover:bg-dark-100"
               >
-                {/* <Icon name="clock" size={20} /> */}
                 <FaPowerOff />
                 <span className="">Log out</span>
               </button>
