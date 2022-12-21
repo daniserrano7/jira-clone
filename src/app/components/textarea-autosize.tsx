@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import cx from "classix";
 
 export const TextareaAutosize = (props: TitleProps): JSX.Element => {
@@ -33,7 +33,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
     return !/^( )\1*$/.test(value);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!textareaRef.current) return;
 
     setTextareaHeight(textareaRef.current.scrollHeight);

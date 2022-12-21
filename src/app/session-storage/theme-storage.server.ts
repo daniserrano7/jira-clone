@@ -34,7 +34,6 @@ export const getThemeSession = async (request: Request) => {
       };
     },
     setTheme: ({ theme, preference }: ThemeSessionValues) => {
-      console.log("SESSION SET", theme, preference);
       if (isValidTheme(theme)) session.set(THEME_SESSION_KEY, theme);
       if (isValidPreference(preference)) session.set(THEME_PREFERENCE_SESSION_KEY, preference);
     },

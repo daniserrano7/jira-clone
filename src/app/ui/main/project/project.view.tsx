@@ -6,6 +6,7 @@ const sectionTitles: Record<string, string> = {
   analytics: "Analytics",
   backlog: "Backlog",
 };
+const defaultSection = "board";
 
 export const ProjectView = ({
   name,
@@ -14,6 +15,8 @@ export const ProjectView = ({
 }: Props): JSX.Element => {
   const location = useLocation();
   const section = location.pathname.split("/").slice(-1)[0];
+
+  const sectionTitle = sectionTitles[section] || sectionTitles[defaultSection];
 
   return (
     <div className="relative flex h-full flex-grow">
@@ -30,7 +33,7 @@ export const ProjectView = ({
           <span className="mx-2">/</span>
           <span>{name}</span>
           <h1 className="mt-4 mb-5 font-primary-black text-2xl">
-            {sectionTitles[section]}
+            {sectionTitle}
           </h1>
         </section>
         <Outlet />

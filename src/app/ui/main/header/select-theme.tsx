@@ -67,10 +67,7 @@ export const SelctTheme = (): JSX.Element => {
         <DropdownMenu.Content
           align="end"
           sideOffset={5}
-          className={cx(
-            "z-50 rounded bg-grey-200 px-3 py-1 shadow-md-dark dark:bg-dark-400",
-            "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down"
-          )}
+          className="z-50 origin-top-right rounded bg-white px-3 py-1 shadow-md-dark radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up dark:bg-dark-400"
         >
           <DropdownMenu.Label className="text-gray-700 dark:text-gray-200 select-none py-2 text-lg">
             Select theme
@@ -78,14 +75,14 @@ export const SelctTheme = (): JSX.Element => {
           <DropdownMenu.RadioGroup
             value={currentValue || DEFAULT_THEME}
             onValueChange={selectTheme}
-            className="space-y-1"
+            className="space-y-2"
           >
             {themeOptions.map(({ value, label, image }) => (
               <DropdownMenu.RadioItem
                 key={value}
                 value={value}
                 className={cx(
-                  "group flex gap-4 rounded p-2 outline outline-1 outline-transparent hover:outline-primary-main dark:hover:text-primary-main-dark dark:hover:outline-primary-main-dark",
+                  "group flex gap-4 rounded px-2 pt-1 pb-2 outline outline-2 outline-transparent hover:outline-primary-main dark:hover:text-primary-main-dark dark:hover:outline-primary-main-dark",
                   value === currentValue &&
                     "bg-primary-light text-primary-main outline-primary-main dark:bg-primary-light-dark dark:text-primary-main-dark dark:outline-primary-main-dark"
                 )}

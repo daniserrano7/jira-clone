@@ -1,7 +1,8 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Form, useNavigate, useFetcher, useActionData } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Checkbox from "@radix-ui/react-checkbox";
+import cx from "classix";
 import { BsCheckLg } from "react-icons/bs";
 import { User } from "@domain/user";
 import { Project } from "@domain/project";
@@ -13,6 +14,7 @@ import { Kbd } from "@app/components/kbd-placeholder";
 import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
+  const [isOpen, setIsOpen] = useState(true);
   const formRef = useRef<HTMLFormElement>(null);
   const fetcher = useFetcher();
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   }, [postData]);
 
   const handleProgrammaticClose = (): void => {
-    navigate("/projects");
+    setIsOpen(false);
   };
 
   const onKeyDown = useCallback(
@@ -67,17 +69,31 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setTimeout(() => navigate("/projects"), 300);
+    }
+  }, [isOpen, navigate]);
+
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal>
         <Dialog.Overlay
           id="project-panel-overlay"
-          className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]"
+          className={cx(
+            "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
+            "radix-state-open:animate-fade-in duration-300",
+            !isOpen && "bg-opacity-0"
+          )}
         >
           <Dialog.Content
             onEscapeKeyDown={handleProgrammaticClose}
             onPointerDownOutside={handleProgrammaticClose}
-            className="relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
+            className={cx(
+              "relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
+              "duration-300 radix-state-open:animate-slide-up",
+              !isOpen && "translate-y-[10px] opacity-0"
+            )}
           >
             <PanelHeaderProject id={project?.id || "Create new project"} />
             <Form method="post" ref={formRef}>

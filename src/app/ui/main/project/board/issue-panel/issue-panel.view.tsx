@@ -24,8 +24,10 @@ import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
+import { cx } from "classix";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
+  const [isOpen, setIsOpen] = useState(true);
   const [comments, setComments] = useState<Comment[]>(issue?.comments || []);
   const { user } = useUserStore();
   const reporter = issue ? issue.reporter : user;
@@ -73,8 +75,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   };
 
   const handleProgramaticClose = () => {
-    const previousUrl = location.pathname.split("/issue")[0];
-    navigate(previousUrl);
+    setIsOpen(false);
   };
 
   const addComment = (newComment: Comment): void => {
@@ -98,14 +99,33 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onKeyDown]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setTimeout(() => {
+        const previousUrl = location.pathname.split("/issue")[0];
+        navigate(previousUrl);
+      }, 300);
+    }
+  }, [isOpen, navigate, location.pathname]);
+
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal>
-        <Dialog.Overlay className="absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]">
+        <Dialog.Overlay
+          className={cx(
+            "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
+            "radix-state-open:animate-fade-in duration-300",
+            !isOpen && "bg-opacity-0"
+          )}
+        >
           <Dialog.Content
             onEscapeKeyDown={handleProgramaticClose}
             onPointerDownOutside={handleProgramaticClose}
-            className="relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300"
+            className={cx(
+              "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
+              "duration-300 radix-state-open:animate-slide-up",
+              !isOpen && "translate-y-[10px] opacity-0"
+            )}
           >
             <PanelHeaderIssue id={issue?.id || "Create new issue"} />
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
