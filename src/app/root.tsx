@@ -16,6 +16,7 @@ import cx from "classix";
 import { Theme, Preference } from "@app/store/theme.store";
 import { getThemeSession } from "./session-storage/theme-storage.server";
 import { ThemeProvider, useTheme } from "./store/theme.store";
+import { Error500 } from "./components/error-500";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
 
@@ -110,6 +111,31 @@ const App = (): JSX.Element => {
     </html>
   );
 };
+
+export function ErrorBoundary({ error }: { error: Error }) {
+  console.error(error);
+  const errorMessage = "The Project page failed. Refresh";
+
+  return (
+    // Inline styles because tailwind is not loaded at this point
+    <div
+      style={{
+        maxWidth: "500px",
+        width: "80%",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        textAlign: "center",
+        color: "#0052cc",
+        fontFamily: "sans-serif",
+        fontWeight: "bold",
+      }}
+    >
+      <Error500 message={errorMessage} href="/" />
+    </div>
+  );
+}
 
 export function CatchBoundary() {
   const caught = useCatch();
