@@ -1,10 +1,6 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
-  serverBuildTarget: "netlify",
-  server:
-    process.env.NETLIFY || process.env.NETLIFY_LOCAL
-      ? "./server.js"
-      : undefined,
+  
   ignoredRouteFiles: ["**/.*"],
   appDirectory: "./src/app",
   serverDependenciesToBundle: [
@@ -15,8 +11,8 @@ module.exports = {
     "dnd-core",
     "@react-dnd/shallowequal",
     "@react-dnd/asap",
-  ]
-  // assetsBuildDirectory: "public/build",
+  ],
+  assetsBuildDirectory: "public/build",
   // serverBuildPath: ".netlify/functions-internal/server.js",
-  // publicPath: "/build/",
+  publicPath: "/build/",
 };

@@ -8,3 +8,7 @@
 .env
 src/app/styles/app-compiled.css
 src/infrastructure/db/dev.db
+src/infrastructure/db/migrations/migration_lock.toml
+package-lock.json
+/build
+package-lock.json
