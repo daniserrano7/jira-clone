@@ -6,7 +6,11 @@ kill_timeout = 5
 processes = []
 
 [env]
-  DATABASE_URL = "file:/app/src/infrastructure/db/sqlite.db"
+  DATABASE_URL = "file:/app/data/sqlite.db"
+
+[mounts]
+  source="jira_data"
+  destination="/data"
 
 [experimental]
   allowed_public_ports = []
