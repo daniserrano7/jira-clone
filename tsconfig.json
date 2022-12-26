@@ -1,6 +1,6 @@
 {
   "include": ["remix.env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", ".netlify"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2019"],
     "skipLibCheck": true,
