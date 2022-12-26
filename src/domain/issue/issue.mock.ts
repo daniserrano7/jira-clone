@@ -2,8 +2,8 @@ import { userMock1, userMock2 } from "@domain/user";
 import { commentMock1, commentMock2, commentMock3 } from "@domain/comment";
 import { Issue } from "./issue";
 
-const createdAt = Date.now();
-const updatedAt = Date.now();
+const createdAt = new Date("2022-01-01").valueOf();
+const updatedAt = new Date("2022-01-01").valueOf();
 
 // PROJECT 1
 export const todoIssuesMock1: Issue[] = [

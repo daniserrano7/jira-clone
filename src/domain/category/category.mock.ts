@@ -8,8 +8,8 @@ import {
   doneIssuesMock2,
 } from "@domain/issue";
 
-const createdAt = Date.now();
-const updatedAt = Date.now();
+const createdAt = new Date("2022-01-01").valueOf();
+const updatedAt = new Date("2022-01-01").valueOf();
 
 const ids1 = [
   "1e8877a7-91dc-46de-bce0-f077ad922fc8",

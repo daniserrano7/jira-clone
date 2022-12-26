@@ -13,8 +13,8 @@ processes = []
   destination="/data"
 
 [experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+  cmd = "start_with_migrations.sh"
+  entrypoint = "sh"
 
 [[services]]
   http_checks = []

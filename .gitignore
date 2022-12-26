@@ -4,10 +4,7 @@
 /node_modules
 /.cache
 /public/build
-/.netlify
+build
 .env
 src/app/styles/app-compiled.css
-src/infrastructure/db/dev.db
-build
-src/infrastructure/db/sqlite.db
 src/infrastructure/db/sqlite.db
