@@ -1,7 +1,9 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useLocation, useNavigate } from "@remix-run/react";
 import invariant from "tiny-invariant";
+import cx from "classix";
+import * as Dialog from "@radix-ui/react-dialog";
 import { UserId } from "@domain/user";
 import { ProjectId } from "@domain/project";
 import { CategoryId } from "@domain/category";
@@ -16,6 +18,7 @@ import {
 } from "@infrastructure/db/issue";
 import { deleteComment } from "@infrastructure/db/comment";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
+import { Error404 } from "@app/components/error-404";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
 type LoaderData = {
@@ -95,6 +98,51 @@ export const action: ActionFunction = async ({ request, params }) => {
   }
   return redirect(`/projects/${projectId}/board`);
 };
+
+export function CatchBoundary() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const boardUrl = location.pathname.split("/issue")[0];
+
+  const handleProgrammaticNavigation = () => {
+    navigate(boardUrl);
+  };
+
+  return (
+    <Dialog.Root open={true}>
+      <Dialog.Portal>
+        <Dialog.Overlay
+          className={cx(
+            "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
+            "radix-state-open:animate-fade-in duration-300"
+          )}
+        >
+          <Dialog.Content
+            onPointerDownOutside={handleProgrammaticNavigation}
+            className={cx(
+              "relative z-50 flex rounded-md bg-white py-12 px-20 shadow-lg flex-center dark:bg-dark-300",
+              "duration-300 radix-state-open:animate-slide-up"
+            )}
+          >
+            <Error404
+              message="This issue does not exist. Go to the board page"
+              href={boardUrl}
+            />
+          </Dialog.Content>
+        </Dialog.Overlay>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+
+  return (
+    <div>
+      <Error404
+        message="It seems that you have lost! Go to the main page"
+        href="/"
+      />
+    </div>
+  );
+}
 
 export default function IssuePanelRoute() {
   const { issue } = useLoaderData() as LoaderData;
