@@ -74,7 +74,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     postData(e.currentTarget);
   };
 
-  const handleProgramaticClose = () => {
+  const handleProgrammaticClose = () => {
     setIsOpen(false);
   };
 
@@ -119,8 +119,8 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
           )}
         >
           <Dialog.Content
-            onEscapeKeyDown={handleProgramaticClose}
-            onPointerDownOutside={handleProgramaticClose}
+            onEscapeKeyDown={handleProgrammaticClose}
+            onPointerDownOutside={handleProgrammaticClose}
             className={cx(
               "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
               "duration-300 radix-state-open:animate-slide-up",

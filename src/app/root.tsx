@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { CSSProperties, useEffect } from "react";
 import type { MetaFunction, LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
@@ -8,7 +8,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
   useFetcher,
   useLoaderData,
 } from "@remix-run/react";
@@ -16,6 +15,7 @@ import cx from "classix";
 import { Theme, Preference } from "@app/store/theme.store";
 import { getThemeSession } from "./session-storage/theme-storage.server";
 import { ThemeProvider, useTheme } from "./store/theme.store";
+import { Error404 } from "./components/error-404";
 import { Error500 } from "./components/error-500";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
@@ -112,46 +112,47 @@ const App = (): JSX.Element => {
   );
 };
 
+const errorComponentStyle: CSSProperties = {
+  maxWidth: "500px",
+  width: "80%",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  textAlign: "center",
+  color: "#0052cc",
+  fontFamily: "sans-serif",
+  fontWeight: "bold",
+};
+
 export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
-  const errorMessage = "The Project page failed. Refresh";
+  const errorMessage =
+    "It seems there is a critical error! Please try again or contact me at: danielserrano.contacto@gmail.com";
 
   return (
     // Inline styles because tailwind is not loaded at this point
-    <div
-      style={{
-        maxWidth: "500px",
-        width: "80%",
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        textAlign: "center",
-        color: "#0052cc",
-        fontFamily: "sans-serif",
-        fontWeight: "bold",
-      }}
-    >
+    <div style={errorComponentStyle}>
       <Error500 message={errorMessage} href="/" />
     </div>
   );
 }
 
 export function CatchBoundary() {
-  const caught = useCatch();
-
   return (
     <html>
       <head>
-        <title>Oops!</title>
+        <title>Oops! Not found</title>
         <Meta />
         <Links />
       </head>
       <body>
-        <h1>
-          {caught.status} {caught.statusText} asdfasdf
-        </h1>
-        <Scripts />
+        <div style={errorComponentStyle}>
+          <Error404
+            message="It seems that you have lost! Go to the main page"
+            href="/"
+          />
+        </div>
       </body>
     </html>
   );
