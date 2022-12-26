@@ -9,3 +9,4 @@
 src/app/styles/app-compiled.css
 src/infrastructure/db/dev.db
 build
+src/infrastructure/db/sqlite.db
