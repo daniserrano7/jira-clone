@@ -34,7 +34,7 @@ export const SelctTheme = (): JSX.Element => {
     {
       value: Preference.SYSTEM,
       label: "System",
-      image: "/images/select-theme-light.png",
+      image: "/images/select-theme-system.png",
     },
   ];
   const currentValue = preference === Preference.SYSTEM ? preference : theme;
