@@ -1,10 +1,10 @@
 # Jira clone v1.0 (deprecated)
 
+> **NOTE**: This is the old and simpler version. The new one has more features and is implemented with a SSR architecture. You can find it on the [master branch](https://github.com/daniserrano7/jira-clone/tree/master). I only keep this version for historical purposes, since it shows different skills and technologies I consider valuable.
+
 A simplified Jira clone application with some custom modifications. This is a personal project for practicing skills and it is not intended to work as a real Jira application. It only includes the frontend - all the data is stored in the IndexedDb. It is still in early development and a lot of features and improves are coming.
 
 For pragmatic purposes, many features are not included. Others have been modified according to my tastes. The application should serve the basic functionalities of a project management software. I have taken inspiration from the actual [Jira website](https://www.atlassian.com/es/software/jira), as well as from [Trello](https://trello.com/). Also, [Ivor's Jira clone](https://github.com/oldboyxx/jira_clone) has been a great inspiration for me (I have to admit I like his designs more than Jira's originals). I only took ideas and resources (fonts and icons) from the original projects; I've developed everything from scratch and by myself.
-
-[LIVE DEMO](https://gleaming-sable-407787.netlify.app/)
 
 ## Table of Contents
 
