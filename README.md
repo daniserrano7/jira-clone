@@ -1,4 +1,4 @@
-# Jira frontend clone
+# Jira clone v1.0 (deprecated)
 
 A simplified Jira clone application with some custom modifications. This is a personal project for practicing skills and it is not intended to work as a real Jira application. It only includes the frontend - all the data is stored in the IndexedDb. It is still in early development and a lot of features and improves are coming.
 
