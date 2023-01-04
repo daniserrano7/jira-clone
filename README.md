@@ -90,14 +90,14 @@ It is divided in three main sections: login, projects list and project space.
 
 The login section is the first one you will see when you open the app. It is a simple select element where you can choose which user you will use to log in. It then creates a cookie session that will be used to authenticate the user at server level in the other sections; otherwise, you will be redirected to the login URL. Once logged in, you can log out by clicking the logout button through the avatar, in the top right corner of the app. This will delete the cookie session and redirect you to the login page.
 
-![Login](./readme-assets/login.png | width=500)
+<img src="./readme-assets/login.png" alt="Login" width="500px" />
 
 ### Projects list<a name="projects-list"></a>
 
 This sections whows the projects the logged in user has access to. It is possible to create a new project and assign users to it.
 
-![Projects](./readme-assets/projects.png)
-![ProjectsNew](./readme-assets/projects-new.png)
+<img src="./readme-assets/projects.png" alt="Projects" />
+<img src="./readme-assets/projects-new.png" alt="ProjectsNew" />
 
 ### Project space<a name="project-space"></a>
 
@@ -105,11 +105,11 @@ This is the main section of the app. It shows the project's board, where you can
 
 Related to that project board, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and assign it to different users. Also, it is possible to move an issue from one category to another by drag and drop.
 
-![Board](./readme-assets/project.png)
+<img src="./readme-assets/project.png" alt="Board" />
 
 Within the issue editing panel you can manage the issue and see its information. It is very intuitive and simple to use, and includes server-side validation. You may notice what, although it is in a different URL route, it is rendered as a modal, including a nice transition.
 
-![Issue panel](./readme-assets/issue-panel.png)
+<img src="./readme-assets/issue-panel.png" alt="Issue panel" />
 
 ## Technologies<a name="technologies"></a>
 
