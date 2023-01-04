@@ -14,6 +14,9 @@ For pragmatic purposes, many features are not included. Others have been modifie
    - [Build](#build)
    - [Test](#test)
 2. [Overview](#overview)
+   - [Login](#login)
+   - [Projects list](#projects-list)
+   - [Project space](#project-space)
 3. [Project structure](#project_structure)
    - [Domain](#domain)
    - [Infrastructure](#infrastructure)
@@ -57,7 +60,11 @@ To build a compiled version of the application, execute the following command:
 npm run build
 ```
 
-This command will also execute the Tailwind CSS compiler in production mode.
+This command will also execute the Tailwind CSS compiler in production mode. To start the compiled version, execute the following command:
+
+```
+npm run start
+```
 
 ### Test<a name="test"></a>
 
@@ -82,11 +89,13 @@ It is divided in three main sections: login, projects list and project space.
 ### Login<a name="login"></a>
 
 The login section is the first one you will see when you open the app. It is a simple select element where you can choose which user you will use to log in. It then creates a cookie session that will be used to authenticate the user at server level in the other sections; otherwise, you will be redirected to the login URL. Once logged in, you can log out by clicking the logout button through the avatar, in the top right corner of the app. This will delete the cookie session and redirect you to the login page.
-![Login](./readme-assets/login.png)
+
+![Login](./readme-assets/login.png | width=500)
 
 ### Projects list<a name="projects-list"></a>
 
 This sections whows the projects the logged in user has access to. It is possible to create a new project and assign users to it.
+
 ![Projects](./readme-assets/projects.png)
 ![ProjectsNew](./readme-assets/projects-new.png)
 
