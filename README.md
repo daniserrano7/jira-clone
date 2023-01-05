@@ -42,6 +42,18 @@ cd jira-clone
 npm install
 ```
 
+The application needs a database to work. You can create it with Prisma by executing the following command:
+
+```
+npx prisma db push
+```
+
+It will be created in the path specified by the environmental variable DATABASE_URL. To populate the database with some initial data, execute the following command:
+
+```
+npx prisma db seed
+```
+
 ### Run<a name="run"></a>
 
 To run the application in dev mode, execute the following command:
