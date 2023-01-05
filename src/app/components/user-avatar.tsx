@@ -11,6 +11,7 @@ export const UserAvatar = ({
 }: UserAvatarProps): JSX.Element => {
   const imageSize = {
     width: `${size}px`,
+    minWidth: `${size}px`,
     height: `${size}px`,
   };
   const acronym = name
