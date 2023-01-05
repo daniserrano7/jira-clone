@@ -10,6 +10,8 @@ export const getUser = async (userId: UserId): Promise<User | null> => {
 };
 
 export const getUsers = async (): Promise<User[]> => {
-  const users = await db.user.findMany();
+  const users = await db.user.findMany({
+    orderBy: { name: "asc" },
+  });
   return users.map(dnull);
 };

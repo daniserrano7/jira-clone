@@ -11,7 +11,11 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
       id: projectId,
     },
     include: {
-      users: true,
+      users: {
+        orderBy: {
+          name: "asc",
+        },
+      },
       categories: {
         include: {
           issues: {

@@ -25,7 +25,6 @@ export const loader: LoaderFunction = async ({ request, params }) => {
 
   const project: Project | null = await getProject(projectId);
 
-  // TODO: Should this be a 404 or a 500?
   if (!project) {
     throw new Response("Not Found", {
       status: 404,
