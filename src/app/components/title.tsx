@@ -7,6 +7,7 @@ const DEFAULT_MAX_LENGTH = 80;
 
 export const Title = ({
   initTitle,
+  disabled,
   maxLength = DEFAULT_MAX_LENGTH,
   error,
 }: TitleProps): JSX.Element => {
@@ -33,6 +34,7 @@ export const Title = ({
         value={title}
         setValue={updateTitle}
         placeholder="Write the title"
+        disabled={disabled}
         onFocus={onFocus}
         onBlur={onBlur}
         textareaClassName={cx(
@@ -65,6 +67,7 @@ export const Title = ({
 
 interface TitleProps {
   initTitle: string;
+  disabled?: boolean;
   maxLength?: number;
   error?: string;
 }

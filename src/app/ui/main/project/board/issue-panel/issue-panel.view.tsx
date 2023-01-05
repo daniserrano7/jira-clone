@@ -134,6 +134,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   <Dialog.Title className="my-5 -ml-3">
                     <Title
                       initTitle={issue?.name || ""}
+                      disabled={user.id !== reporter.id}
                       error={actionData?.errors.name}
                     />
                   </Dialog.Title>
@@ -141,7 +142,10 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                     Description
                   </p>
                   <div className="-ml-3">
-                    <Description initDescription={issue?.description || ""} />
+                    <Description
+                      initDescription={issue?.description || ""}
+                      disabled={user.id !== reporter.id}
+                    />
                   </div>
                   <div className="mt-6">
                     <p className="font-primary-black text-font-main dark:text-font-main-dark">
