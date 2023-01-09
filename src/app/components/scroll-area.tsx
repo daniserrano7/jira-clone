@@ -8,8 +8,7 @@ export const ScrollArea = ({
   <ScrollAreaPrimitive.Root
     type="hover"
     scrollHideDelay={400}
-    style={{ scrollbarWidth: "none" }}
-    className="h-full w-full overflow-y-scroll"
+    className="h-full w-full overflow-y-scroll scrollbar-hide"
   >
     <ScrollAreaPrimitive.Viewport className={cx("h-full w-full", className)}>
       {children}
