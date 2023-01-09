@@ -1,12 +1,8 @@
 import { createContext, useContext } from "react";
 import { User } from "@domain/user";
 
-export class UserStore {
+interface UserStore {
   user: User;
-
-  constructor(user: User) {
-    this.user = user;
-  }
 }
 
 export const UserContext = createContext<UserStore | undefined>(undefined);
