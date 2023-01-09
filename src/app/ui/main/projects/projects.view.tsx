@@ -5,7 +5,7 @@ import { ProjectSummary } from "@domain/project";
 
 export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
   return (
-    <div className="bg-white p-6 dark:bg-dark-300">
+    <div className="bg-white p-6 dark:bg-dark-400">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
       <Link
         to="new"
@@ -29,11 +29,13 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
               <img
                 src={project.image || "/images/default-project.png"}
                 alt="Project"
+                width="90px"
+                height="auto"
                 className="h-auto w-[90px] rounded-l object-cover"
               />
               <div className="flex flex-col gap-1 px-3 pt-2 pb-6">
                 <h2 className="text-lg">{project.name}</h2>
-                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-80 line-clamp-2 dark:text-font-light-dark dark:group-hover:text-primary-main-dark">
+                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-100 line-clamp-2 dark:text-font-light-dark dark:group-hover:text-primary-main-dark">
                   {project.description}
                 </h3>
               </div>

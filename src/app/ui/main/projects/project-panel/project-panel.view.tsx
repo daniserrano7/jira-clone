@@ -150,6 +150,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                   value="upsert"
                   className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
                   disabled={fetcher.state !== "idle"}
+                  aria-label="Accept changes"
                 >
                   {fetcher.state !== "idle" ? (
                     <>

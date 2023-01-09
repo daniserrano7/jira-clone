@@ -55,7 +55,10 @@ export const SelctTheme = (): JSX.Element => {
   return (
     <DropdownMenu.Root>
       <Tooltip title="Select theme">
-        <DropdownMenu.Trigger className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main dark:outline-grey-500 dark:hover:bg-dark-100 dark:hover:outline-white">
+        <DropdownMenu.Trigger
+          aria-label="Open theme select"
+          className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main dark:outline-grey-500 dark:hover:bg-dark-100 dark:hover:outline-white"
+        >
           {theme === Theme.LIGHT ? (
             <MdLightMode className={triggerIconClass} />
           ) : (

@@ -65,6 +65,7 @@ export const ViewComment = ({
           onClick={edit}
           disabled={isNotSelfComment}
           className="font-primary-light text-xs hover:underline"
+          aria-label="Edit comment"
         >
           Edit
         </button>
@@ -73,6 +74,7 @@ export const ViewComment = ({
           onClick={remove}
           disabled={isNotSelfComment}
           className="font-primary-light text-xs hover:underline"
+          aria-label="Delete comment"
         >
           Delete
         </button>

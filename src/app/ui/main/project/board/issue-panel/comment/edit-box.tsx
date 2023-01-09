@@ -69,6 +69,7 @@ export const EditBox = ({
             "bg-primary-main text-white hover:bg-primary-main-hover"
           )}
           onClick={onSave}
+          aria-label="Save comment"
         >
           Save
         </button>
@@ -78,6 +79,7 @@ export const EditBox = ({
             "hover:bg-error-light hover:text-error-dark dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
           )}
           onClick={onCancel}
+          aria-label="Cancel comment"
         >
           Cancel
         </button>

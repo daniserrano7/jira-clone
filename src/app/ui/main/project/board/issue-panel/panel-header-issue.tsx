@@ -26,6 +26,7 @@ export const PanelHeaderIssue = ({
       <Link
         to={previousUrl}
         className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
+        aria-label="Close issue panel"
       >
         <IoCloseOutline size={32} />
       </Link>
@@ -44,7 +45,10 @@ const DeleteIssueModalDialog = (): JSX.Element => {
 
   return (
     <AlertDialog.Root>
-      <AlertDialog.Trigger className="flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 hover:text-error-main dark:text-font-light-dark dark:hover:bg-dark-100 dark:hover:text-error-main-dark">
+      <AlertDialog.Trigger
+        className="flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 hover:text-error-main dark:text-font-light-dark dark:hover:bg-dark-100 dark:hover:text-error-main-dark"
+        aria-label="Open delete issue dialog"
+      >
         <MdDeleteOutline size={26} />
       </AlertDialog.Trigger>
 
@@ -64,6 +68,7 @@ const DeleteIssueModalDialog = (): JSX.Element => {
                 "hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-500",
                 buttonBaseClass
               )}
+              aria-label="Cancel"
             >
               Cancel
             </AlertDialog.Cancel>
@@ -75,6 +80,7 @@ const DeleteIssueModalDialog = (): JSX.Element => {
                 "bg-error-light text-error-dark hover:bg-error-hover dark:bg-error-main-dark dark:text-error-light-dark dark:hover:bg-error-hover-dark",
                 buttonBaseClass
               )}
+              aria-label="Delete issue"
             >
               Delete
             </button>

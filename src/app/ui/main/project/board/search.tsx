@@ -64,6 +64,7 @@ const ClearIcon = ({ onClick }: ClearIconProps): JSX.Element => (
       iconBaseClass,
       "cursor-pointer rounded hover:bg-grey-300 dark:hover:bg-dark-100"
     )}
+    aria-label="Clear search"
   >
     <IoCloseOutline size={16} />
   </button>

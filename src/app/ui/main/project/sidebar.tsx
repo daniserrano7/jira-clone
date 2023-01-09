@@ -63,6 +63,7 @@ export const Sidebar = (props: Props): JSX.Element => {
             "absolute -left-[12px] mt-6 flex h-[24px] w-[24px] cursor-pointer items-center justify-center rounded-full border-none bg-white shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)] transition-transform delay-150 duration-200 ease-in hover:bg-primary-main hover:text-white dark:bg-dark-200 dark:hover:bg-dark-100",
             !isOpen && "rotate-180"
           )}
+          aria-label="Toggle sidebar"
         >
           <RiArrowDropLeftLine size={24} />
         </button>
@@ -114,7 +115,7 @@ const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
         cx(
           "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
           isActive && !disabled
-            ? "bg-grey-300 text-primary-main dark:bg-dark-100 dark:text-primary-main-dark"
+            ? "bg-grey-300 text-primary-main dark:bg-dark-200 dark:text-primary-main-dark"
             : "text-font-light dark:text-font-main-dark",
           disabled
             ? "!cursor-not-allowed hover:bg-transparent"

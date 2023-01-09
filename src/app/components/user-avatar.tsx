@@ -27,6 +27,7 @@ export const UserAvatar = ({
           className="rounded-full object-cover"
           src={image && `/avatars/${image}`}
           style={imageSize}
+          alt={name}
         />
         <Avatar.Fallback
           delayMs={0}

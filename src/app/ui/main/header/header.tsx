@@ -23,7 +23,11 @@ export const Header = (): JSX.Element => {
       </section>
       <section className="flex items-center gap-4">
         <Tooltip title="About">
-          <button disabled className={cx(iconBaseClass, "cursor-not-allowed")}>
+          <button
+            aria-label="About this website"
+            disabled
+            className={cx(iconBaseClass, "cursor-not-allowed")}
+          >
             <HiQuestionMarkCircle size={24} />
           </button>
         </Tooltip>
@@ -31,6 +35,7 @@ export const Header = (): JSX.Element => {
           <a
             href="https://github.com/daniserrano7/jira-clone"
             className={iconBaseClass}
+            aria-label="Go to my Github"
           >
             <AiFillGithub size={24} />
           </a>

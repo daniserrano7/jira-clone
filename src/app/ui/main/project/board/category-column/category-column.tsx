@@ -112,6 +112,7 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
         <Link
           to={`issue/new?category=${category.type}`}
           className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-100"
+          aria-label={`Add new ${category.name} issue`}
         >
           <AiOutlinePlus size={24} />
         </Link>
