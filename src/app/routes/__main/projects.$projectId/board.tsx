@@ -5,6 +5,7 @@ import invariant from "tiny-invariant";
 import { Project, ProjectId } from "@domain/project";
 import { CategoryId } from "@domain/category";
 import { IssueId } from "@domain/issue";
+import { Sort, isValidSort } from "@domain/filter";
 import { getProject } from "@infrastructure/db/project";
 import {
   updateIssueCategory,
@@ -19,11 +20,16 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const url = new URL(request.url);
+  const DEFAULT_SORT: Sort = "date";
+  const sortByParam = url.searchParams.get("sortBy") as string;
+  const sortBy = isValidSort(sortByParam) ? sortByParam : DEFAULT_SORT;
   const projectId = params.projectId as ProjectId;
 
   invariant(params.projectId, `params.projectId is required`);
 
-  const project: Project | null = await getProject(projectId);
+  const project: Project | null = await getProject(projectId, {
+    sortIssuesBy: sortBy,
+  });
 
   if (!project) {
     throw new Response("Not Found", {

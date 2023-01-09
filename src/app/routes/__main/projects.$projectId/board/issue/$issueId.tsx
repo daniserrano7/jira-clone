@@ -63,7 +63,6 @@ export const action: ActionFunction = async ({ request, params }) => {
     const comments = JSON.parse(
       formData.get("comments") as string
     ) as Comment[];
-    console.log("NAME, DESC: ", name, description);
     const issueInputData: UpdateIssueInputData = {
       id,
       name,

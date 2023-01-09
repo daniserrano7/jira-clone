@@ -85,8 +85,8 @@ const seedUsers = async () => {
   for (const user of usersMock) {
     const userDb = await createUserIfNotExists(user);
     recordAlreadyExists(userDb)
-      ? console.log(`User already exists: ${user.name}. Skipping...`)
-      : console.log(`Created USER: ${user.name}`);
+      ? console.info(`User already exists: ${user.name}. Skipping...`)
+      : console.info(`Created USER: ${user.name}`);
   }
 };
 
@@ -95,26 +95,26 @@ const seedProjects = async () => {
     const projectDb = await createProjectIfNotExists(project);
 
     if (recordAlreadyExists(projectDb)) {
-      console.log(`Project already exists: ${project.name}. Skipping...`);
+      console.info(`Project already exists: ${project.name}. Skipping...`);
       continue;
     }
-    console.log(`Created PROJECT: ${project.name}`);
+    console.info(`Created PROJECT: ${project.name}`);
 
     for (const category of project.categories) {
       const categoryDb = await createCategoryIfNotExists(category, projectDb.id);
       if (recordAlreadyExists(categoryDb)) {
-        console.log(`Category already exists: ${category.name}. Skipping...`);
+        console.info(`Category already exists: ${category.name}. Skipping...`);
         continue;
       }
-      console.log(`Created CATEGORY: ${category.name}`);
+      console.info(`Created CATEGORY: ${category.name}`);
 
       for (const issue of category.issues) {
         const issueDb = await createIssueIfNotExists(issue, categoryDb.id);
         if (recordAlreadyExists(issueDb)) {
-          console.log(`Issue already exists: ${issue.name}. Skipping...`);
+          console.info(`Issue already exists: ${issue.name}. Skipping...`);
           continue;
         }
-        console.log(`Created ISSUE: ${issue.name}`);
+        console.info(`Created ISSUE: ${issue.name}`);
       }
     }
   }

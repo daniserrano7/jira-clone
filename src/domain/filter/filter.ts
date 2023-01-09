@@ -19,3 +19,5 @@ export const sortList: SortList = (Object.entries(sortDict) as [Sort, string][])
     label: value,
   })
 );
+
+export const isValidSort = (sort: string): sort is Sort => sorts.includes(sort as Sort);

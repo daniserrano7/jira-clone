@@ -2,10 +2,18 @@ import { UserId } from "@domain/user";
 import { Project, ProjectSummary, ProjectId } from "@domain/project";
 import { Category, CategoryType } from "@domain/category";
 import { Priority } from "@domain/priority";
+import { Sort } from "@domain/filter";
 import { db } from "./db.server";
 import { dnull } from "src/utils/dnull";
 
-export const getProject = async (projectId: ProjectId): Promise<Project | null> => {
+export const getProject = async (
+  projectId: ProjectId,
+  options: GetProjectOptions
+): Promise<Project | null> => {
+  const { sortIssuesBy } = options;
+  const sortIssuesKey = sortIssuesBy === "date" ? "createdAt" : "priority";
+  const sortIssueValue = sortIssuesBy === "date" ? "desc" : "asc";
+
   const projectDb = await db.project.findUnique({
     where: {
       id: projectId,
@@ -28,7 +36,7 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
               asignee: true,
             },
             orderBy: {
-              createdAt: "desc",
+              [sortIssuesKey]: sortIssueValue,
             },
           },
         },
@@ -68,6 +76,10 @@ export const getProject = async (projectId: ProjectId): Promise<Project | null> 
 
   return project;
 };
+
+interface GetProjectOptions {
+  sortIssuesBy: Sort;
+}
 
 export const getProjectSummary = async (projectId: ProjectId): Promise<ProjectSummary | null> => {
   const projectSummaryDb = await db.project.findUnique({

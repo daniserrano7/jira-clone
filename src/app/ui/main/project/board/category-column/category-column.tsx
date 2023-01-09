@@ -10,7 +10,6 @@ import { Issue, IssueId } from "@domain/issue";
 import { useProjectStore } from "@app/ui/main/project";
 import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
 import { ScrollArea } from "@app/components/scroll-area";
-import { priorities } from "@domain/priority";
 
 export const CategoryColumn = observer(
   (props: CategoryColumnProps): JSX.Element => {
@@ -61,26 +60,10 @@ export const CategoryColumn = observer(
     };
 
     const filteredIssues = (): Issue[] =>
-      category.issues
-        .filter((issue) => {
-          const name = issue.name.toLowerCase();
-          return name.includes(searchFilter);
-        })
-        .sort((a, b) => {
-          const sortA =
-            projectStore.filters.sort === "date"
-              ? a.createdAt
-              : priorities.indexOf(a.priority);
-
-          const sortB =
-            projectStore.filters.sort === "date"
-              ? b.createdAt
-              : priorities.indexOf(b.priority);
-
-          if (sortA < sortB) return 1;
-          if (sortA > sortB) return -1;
-          return 0;
-        });
+      category.issues.filter((issue) => {
+        const name = issue.name.toLowerCase();
+        return name.includes(searchFilter);
+      });
 
     useEffect(() => {
       if (fetcher.data && fetcher.data.issueId) {
