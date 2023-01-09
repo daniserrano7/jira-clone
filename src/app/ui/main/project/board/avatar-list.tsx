@@ -8,7 +8,6 @@ const MAX_DISPLAY_USERS = 4;
 
 export const UserAvatarList = ({ users }: Props): JSX.Element => {
   const displayUsers = users.slice(0, MAX_DISPLAY_USERS);
-  console.log("render avatar list");
 
   return (
     <span className="ml-2 flex">

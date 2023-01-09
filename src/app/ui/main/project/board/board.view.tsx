@@ -13,7 +13,6 @@ import { CategoryColumn } from "./category-column";
 import { ProjectContextProvider } from "../project.store";
 
 export const BoardView = ({ project }: Props): JSX.Element => {
-  console.log("render board view");
   return (
     <ProjectContextProvider project={project}>
       <div className="box-border flex h-full flex-col">
