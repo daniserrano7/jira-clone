@@ -24,6 +24,7 @@ export const links = () => {
   return [
     { rel: "stylesheet", href: fonts },
     { rel: "stylesheet", href: styles },
+    { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
   ];
 };
 
