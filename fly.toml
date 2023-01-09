@@ -6,20 +6,16 @@ kill_timeout = 5
 processes = []
 
 [env]
-DATABASE_URL = "file:/app/data/sqlite.db"
-PORT = "8080"
+DATABASE_URL = "file:/data/sqlite.db"
 
 [mounts]
 source = "jira_data"
 destination = "/data"
 
-[experimental]
-cmd = "start_with_migrations.sh"
-entrypoint = "sh"
-
 [[services]]
 http_checks = []
-internal_port = 8080
+tcp_checks = []
+internal_port = 3000
 processes = ["app"]
 protocol = "tcp"
 script_checks = []

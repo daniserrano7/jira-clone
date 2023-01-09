@@ -58,4 +58,4 @@ COPY --from=build /app/public /app/public
 ADD . .
 EXPOSE 8080
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:migrate"]
