@@ -5,7 +5,17 @@ interface UserStore {
   user: User;
 }
 
-export const UserContext = createContext<UserStore | undefined>(undefined);
+const UserContext = createContext<UserStore | undefined>(undefined);
+
+export const UserContextProvider = ({
+  user,
+  children,
+}: {
+  user: User;
+  children: JSX.Element;
+}): JSX.Element => (
+  <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+);
 
 export const useUserStore = (): UserStore => {
   const userStore = useContext(UserContext);
