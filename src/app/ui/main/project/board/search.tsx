@@ -29,8 +29,9 @@ export const Search = observer((): JSX.Element => {
   return (
     <div className="relative w-fit">
       <input
-        value={search}
         type="text"
+        name="search"
+        value={search}
         placeholder="Filter issues"
         onChange={handleChange}
         className={cx(

@@ -17,12 +17,13 @@ export const SelectSort = (): JSX.Element => {
       ? <HiFlag size={16} /> 
       : <BsClockHistory size={16} />;
 
+  const handleSubmit = (value: string): void => {
+    submit({ sortBy: value });
+  };
+
   return (
     <Form method="get">
-      <Select.Root
-        defaultValue={sortBy}
-        onValueChange={(value) => submit({ sortBy: value })}
-      >
+      <Select.Root defaultValue={sortBy} onValueChange={handleSubmit}>
         <Select.Trigger className="flex cursor-pointer items-center justify-center rounded border-none bg-primary-light py-1.5 px-3 text-xs text-primary-main hover:bg-primary-light-hover dark:border-2 dark:border-solid dark:border-primary-main-dark dark:bg-transparent dark:text-primary-main-dark dark:hover:bg-primary-main-dark dark:hover:bg-opacity-20 dark:focus-visible:outline-white">
           <div className="mr-2 flex items-center">
             <FaSortAmountDownAlt size={14} />
