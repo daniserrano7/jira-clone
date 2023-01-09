@@ -1,17 +1,11 @@
 import React from "react";
-import { observer } from "mobx-react-lite";
 import cx from "classix";
 import { BiSearch } from "react-icons/bi";
 import { IoCloseOutline } from "react-icons/io5";
 import { useProjectStore } from "@app/ui/main/project";
 
-export const Search = observer((): JSX.Element => {
-  const { filters } = useProjectStore();
-  const search = filters.search;
-
-  const setSearch = (value: string) => {
-    filters.search = value;
-  };
+export const Search = (): JSX.Element => {
+  const { search, setSearch } = useProjectStore();
 
   const clearSearch = () => setSearch("");
   const renderIcon = (): JSX.Element => {
@@ -49,7 +43,7 @@ export const Search = observer((): JSX.Element => {
       </span>
     </div>
   );
-});
+};
 
 const iconBaseClass = cx(
   "flex border-none justify-center items-center font-icon z-10"

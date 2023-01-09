@@ -10,11 +10,12 @@ import { Kbd } from "@app/components/kbd-placeholder";
 import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
-import { ProjectContext, ProjectStore } from "../project.store";
+import { ProjectContextProvider } from "../project.store";
 
 export const BoardView = ({ project }: Props): JSX.Element => {
+  console.log("render board view");
   return (
-    <ProjectContext.Provider value={new ProjectStore(project)}>
+    <ProjectContextProvider project={project}>
       <div className="box-border flex h-full flex-col">
         <section className="flex items-center">
           <Search />
@@ -30,7 +31,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
         </DndProvider>
         <Outlet />
       </div>
-    </ProjectContext.Provider>
+    </ProjectContextProvider>
   );
 };
 
