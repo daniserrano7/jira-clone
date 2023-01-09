@@ -7,6 +7,7 @@ processes = []
 
 [env]
 DATABASE_URL = "file:/app/data/sqlite.db"
+PORT = "8080"
 
 [mounts]
 source = "jira_data"
@@ -16,13 +17,9 @@ destination = "/data"
 cmd = "start_with_migrations.sh"
 entrypoint = "sh"
 
-[[statics]]
-guest_path = "/app/public"
-url_prefix = "/public/"
-
 [[services]]
 http_checks = []
-internal_port = 3000
+internal_port = 8080
 processes = ["app"]
 protocol = "tcp"
 script_checks = []
@@ -39,9 +36,3 @@ port = 80
 [[services.ports]]
 handlers = ["tls", "http"]
 port = 443
-
-[[services.tcp_checks]]
-grace_period = "1s"
-interval = "15s"
-restart_limit = 0
-timeout = "2s"

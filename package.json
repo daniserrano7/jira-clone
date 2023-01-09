@@ -7,7 +7,7 @@
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -w -i ./src/app/styles/app.css -o ./src/app/styles/app-compiled.css",
     "start": "remix-serve build",
-    "deploy": "fly deploy",
+    "deploy": "fly deploy -a jira-clone",
     "type-check": "tsc --pretty --noEmit -p tsconfig.json",
     "lint": "npx eslint --ext ts,tsx src",
     "test": "vitest run",
