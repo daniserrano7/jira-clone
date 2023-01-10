@@ -37,7 +37,10 @@ export const LoginView = ({ users }: Props) => {
           defaultValue={userMock1.id}
           onValueChange={onValueChange}
         >
-          <SelectTrigger className="flex w-full justify-between">
+          <SelectTrigger
+            className="flex w-full justify-between"
+            aria-label="Open user select"
+          >
             <div className="flex items-center gap-2">
               <UserAvatar {...selectedValue} />
               <Select.Value />

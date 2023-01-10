@@ -94,7 +94,7 @@ npm run test-all
 
 ## Overview<a name="overview"></a>
 
-The app simulates Jira's workspace, where you can create projects, assign users and create and update issues. It uses a SQLite database to store the data, which can be stored locally on your environment (in the live demo it is placed in the Fly's persistent storage). The content is rendered server-side thanks to Remix Run framework, and it barely uses client stores (only for session data and issues filters (which I plan to replace soon)).
+The app simulates Jira's workspace, where you can create projects, assign users and create and update issues. It uses a SQLite database to store the data, which can be stored locally on your environment (in the live demo it is placed in the Fly's persistent storage). The content is rendered server-side thanks to Remix Run framework, and it barely uses client stores (only for session data and issues search).
 
 It is divided in three main sections: login, projects list and project space.
 
@@ -125,7 +125,7 @@ Within the issue editing panel you can manage the issue and see its information.
 
 ## Technologies<a name="technologies"></a>
 
-The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/), [Remix Run](https://remix.run/) as a SSR framework, [Radix](https://www.radix-ui.com/) for accesible UI components, [Tailwind CSS](https://tailwindcss.com/) for the styling and [MobX](https://mobx.js.org/README.html) as state manager. Thanks to Remix and its SSR paradigm, state management is reduced at its minimum, and MobX is barely needed (I'm planning to completely remove it). Regarding data storage, I've used a [SQLite](https://www.sqlite.org) database, which uses a single file. Depending on the environment, persistent storage is handled differently. Database location URL can be set via environment variables. To handle the database I've used [Prisma](https://www.prisma.io/), which is a great ORM for SQLite. For testing, I've used [Vitest](https://vitest.dev/), but due to the new entities approach I no longer need to test the domain level. I'm planning to test routing and HTTP requests in the future.
+The app is made with [React](https://reactjs.org/) (using ES6 and hooks), [Typescript](https://www.typescriptlang.org/), [Remix Run](https://remix.run/) as a SSR framework, [Radix](https://www.radix-ui.com/) for accesible UI components and [Tailwind CSS](https://tailwindcss.com/) for the styling. Thanks to Remix and its SSR paradigm, state management is reduced at its minimum. Regarding data storage, I've used a [SQLite](https://www.sqlite.org) database, which uses a single file. Depending on the environment, persistent storage is handled differently. Database location URL can be set via environment variables. To handle the database I've used [Prisma](https://www.prisma.io/), which is a great ORM for SQLite. For testing, I've used [Vitest](https://vitest.dev/), but due to the new entities approach I no longer need to test the domain level. I'm planning to test routing and HTTP requests in the future.
 
 I've used [ESLint](https://eslint.org/) for linting with low restrictive rules. For the formatting, I've relied on [Prettier](https://prettier.io/). The app is deployed at [Fly](https://fly.io/).
 
