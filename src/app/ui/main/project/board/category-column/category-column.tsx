@@ -8,6 +8,7 @@ import { Category } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { ScrollArea } from "@app/components/scroll-area";
 import { useProjectStore } from "@app/ui/main/project";
+import { useSortBy } from "@app/hooks/useSortBy";
 import { IssueCard, DropItem, DRAG_ISSUE_CARD } from "./issue-card";
 
 export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
@@ -21,8 +22,12 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
   const [columnHeight, setColumnHeight] = useState<number>(0);
   const columnRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const fetcher = useFetcher();
+  const sortBy = useSortBy();
   const { search } = useProjectStore();
   const emptyCategory = category.issues.length === 0;
+  const issueLink = sortBy
+    ? `issue/new?category=${category.type}&sortBy=${sortBy}`
+    : `issue/new?category=${category.type}`;
 
   const [{ isOver }, dropRef] = useDrop(
     () => ({
@@ -110,7 +115,7 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
           {!emptyCategory && <span>( {category.issues.length} )</span>}
         </span>
         <Link
-          to={`issue/new?category=${category.type}`}
+          to={issueLink}
           className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-100"
           aria-label={`Add new ${category.name} issue`}
         >

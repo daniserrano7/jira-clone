@@ -1,6 +1,7 @@
 export const sorts = ["date", "priority"] as const;
+export const DEFAULT_SORT: Sort = "date";
 
-export type Sort = typeof sorts[number];
+export type Sort = (typeof sorts)[number];
 type SortDict = Record<Sort, string>;
 type SortItem = {
   id: Sort;

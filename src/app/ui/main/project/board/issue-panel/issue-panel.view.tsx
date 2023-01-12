@@ -135,7 +135,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                     <Title
                       initTitle={issue?.name || ""}
                       readOnly={user.id !== reporter.id}
-                      error={actionData?.errors.name}
+                      error={actionData?.errors?.name}
                     />
                   </Dialog.Title>
                   <p className="font-primary-black text-font-main dark:text-font-main-dark">

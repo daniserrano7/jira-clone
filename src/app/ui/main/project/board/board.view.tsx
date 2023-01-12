@@ -50,8 +50,6 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
     event: EVENTS.ISSUE_CHANGED,
   });
 
-  console.log("EVENT SOURCE DATA: ", data);
-
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.shiftKey && e.key.toLowerCase() === "n") {

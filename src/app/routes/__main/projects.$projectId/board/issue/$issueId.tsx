@@ -1,7 +1,6 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { useLoaderData, useLocation, useNavigate } from "@remix-run/react";
-import { redirectBack } from "remix-utils";
 import invariant from "tiny-invariant";
 import cx from "classix";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -11,6 +10,7 @@ import { CategoryId } from "@domain/category";
 import { Issue, IssueId } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
 import { Priority } from "@domain/priority";
+import { isValidSort } from "@domain/filter";
 import {
   getIssue,
   updateIssue,
@@ -54,6 +54,12 @@ export const action: ActionFunction = async ({ request, params }) => {
   const projectId = params.projectId as ProjectId;
   const formData = await request.formData();
   const _action = formData.get("_action") as string;
+  const url = new URL(request.url);
+  const sortByParam = url.searchParams.get("sortBy") as string;
+  const sortBySeachParam = isValidSort(sortByParam)
+    ? `?sortBy=${sortByParam}`
+    : "";
+  const previousUrl = `/projects/${projectId}/board${sortBySeachParam}`;
 
   if (_action === "upsert") {
     const name = formData.get("title") as string;
@@ -89,6 +95,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   if (_action === "delete") {
     await deleteIssue(id);
+    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
   }
 
   if (_action === "deleteComment") {
@@ -100,10 +107,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     return redirect(`/projects/${projectId}/board/issue/${id}`, 202);
   }
 
-  return redirectBack(request, {
-    fallback: `/projects/${params.projectId}/board`,
-    status: 202,
-  });
+  return redirect(previousUrl);
 };
 
 export function CatchBoundary() {

@@ -1,15 +1,14 @@
-import { Form, useSubmit, useSearchParams } from "@remix-run/react";
+import { Form, useSubmit } from "@remix-run/react";
 import * as Select from "@radix-ui/react-select";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { HiFlag } from "react-icons/hi";
 import { BsClockHistory } from "react-icons/bs";
-import { Sort, sortList, isValidSort } from "@domain/filter";
+import { Sort, sortList, DEFAULT_SORT } from "@domain/filter";
+import { useSortBy } from "@app/hooks/useSortBy";
 
 export const SelectSort = (): JSX.Element => {
   const submit = useSubmit();
-  const [searchParams] = useSearchParams();
-  const sortByParam = searchParams.get("sortBy") as string;
-  const sortBy = isValidSort(sortByParam) ? sortByParam : "date";
+  const sortBy = useSortBy() || DEFAULT_SORT;
 
   const SortIcon = ({ sort }: { sort: Sort }): JSX.Element =>
     // prettier-ignore
