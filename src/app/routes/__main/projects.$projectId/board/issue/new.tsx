@@ -7,6 +7,7 @@ import { Priority } from "@domain/priority";
 import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { emitter, EVENTS } from "@app/events";
 
 export type ActionData = {
   errors: {
@@ -49,7 +50,11 @@ export const action: ActionFunction = async ({ request, params }) => {
       );
     }
 
-    await createIssue(issueInputData);
+    const newIssueId = await createIssue(issueInputData);
+    console.log("newIssueId", newIssueId);
+
+    emitter.emit(EVENTS.ISSUE_CHANGED, newIssueId);
+    return json(null, { status: 201 });
   }
 
   return redirect(`/projects/${params.projectId}/board`);

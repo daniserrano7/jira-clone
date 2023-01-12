@@ -20,6 +20,7 @@ import { deleteComment } from "@infrastructure/db/comment";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { Error404 } from "@app/components/error-404";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { emitter, EVENTS } from "@app/events";
 
 type LoaderData = {
   issue: Issue;
@@ -82,6 +83,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     }
 
     await updateIssue(issueInputData);
+    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
   }
 
   if (_action === "delete") {

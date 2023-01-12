@@ -126,35 +126,35 @@ const errorComponentStyle: CSSProperties = {
   fontWeight: "bold",
 };
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-  const errorMessage =
-    "It seems there is a critical error! Please try again or contact me at: danielserrano.contacto@gmail.com";
+// export function ErrorBoundary({ error }: { error: Error }) {
+//   console.error(error);
+//   const errorMessage =
+//     "It seems there is a critical error! Please try again or contact me at: danielserrano.contacto@gmail.com";
 
-  return (
-    // Inline styles because tailwind is not loaded at this point
-    <div style={errorComponentStyle}>
-      <Error500 message={errorMessage} href="/" />
-    </div>
-  );
-}
+//   return (
+//     // Inline styles because tailwind is not loaded at this point
+//     <div style={errorComponentStyle}>
+//       <Error500 message={errorMessage} href="/" />
+//     </div>
+//   );
+// }
 
-export function CatchBoundary() {
-  return (
-    <html>
-      <head>
-        <title>Oops! Not found</title>
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <div style={errorComponentStyle}>
-          <Error404
-            message="It seems that you have lost! Go to the main page"
-            href="/"
-          />
-        </div>
-      </body>
-    </html>
-  );
-}
+// export function CatchBoundary() {
+//   return (
+//     <html>
+//       <head>
+//         <title>Oops! Not found</title>
+//         <Meta />
+//         <Links />
+//       </head>
+//       <body>
+//         <div style={errorComponentStyle}>
+//           <Error404
+//             message="It seems that you have lost! Go to the main page"
+//             href="/"
+//           />
+//         </div>
+//       </body>
+//     </html>
+//   );
+// }

@@ -62,8 +62,8 @@ export type CreateIssueInputData = {
   reporterId: UserId;
   comments: Comment[];
 };
-export const createIssue = async (issue: CreateIssueInputData): Promise<void> => {
-  await db.issue.create({
+export const createIssue = async (issue: CreateIssueInputData): Promise<IssueId> => {
+  const newIssue = await db.issue.create({
     data: {
       ...issue,
       comments: {
@@ -82,6 +82,8 @@ export const createIssue = async (issue: CreateIssueInputData): Promise<void> =>
       },
     },
   });
+
+  return newIssue.id as IssueId;
 };
 
 export type UpdateIssueInputData = CreateIssueInputData & { id: IssueId };
