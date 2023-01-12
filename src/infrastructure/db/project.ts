@@ -1,3 +1,5 @@
+import { Prisma } from "@prisma/client";
+
 import { UserId } from "@domain/user";
 import { Project, ProjectSummary, ProjectId } from "@domain/project";
 import { Category, CategoryType } from "@domain/category";
@@ -10,9 +12,22 @@ export const getProject = async (
   projectId: ProjectId,
   options: GetProjectOptions
 ): Promise<Project | null> => {
+  type PrismaSortType = Prisma.Enumerable<Prisma.IssueOrderByWithRelationInput>;
+
   const { sortIssuesBy } = options;
-  const sortIssuesKey = sortIssuesBy === "date" ? "createdAt" : "priority";
-  const sortIssueValue = sortIssuesBy === "date" ? "desc" : "asc";
+  const sortByDate: PrismaSortType = {
+    createdAt: "desc",
+  };
+  const sortByPriority: PrismaSortType = {
+    priority: {
+      order: "desc",
+    },
+  };
+
+  // prettier-ignore
+  const orderBy: PrismaSortType = sortIssuesBy === "date" 
+    ? [sortByDate, sortByPriority] 
+    : [sortByPriority, sortByDate];
 
   const projectDb = await db.project.findUnique({
     where: {
@@ -35,9 +50,7 @@ export const getProject = async (
               reporter: true,
               asignee: true,
             },
-            orderBy: {
-              [sortIssuesKey]: sortIssueValue,
-            },
+            orderBy: orderBy,
           },
         },
       },

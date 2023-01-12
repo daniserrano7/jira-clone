@@ -2,7 +2,7 @@ import { Prisma } from "@prisma/client";
 import { UserId } from "@domain/user";
 import { CategoryType, CategoryId } from "@domain/category";
 import { IssueId, Issue } from "@domain/issue";
-import { Priority } from "@domain/priority";
+import { Priority, PriorityId } from "@domain/priority";
 import { Comment } from "@domain/comment";
 import { dnull } from "src/utils/dnull";
 import { db } from "./db.server";
@@ -16,6 +16,7 @@ export const getIssue = async (issueId: IssueId): Promise<Issue | null> => {
       asignee: true,
       reporter: true,
       category: true,
+      priority: true,
       comments: {
         include: {
           user: true,
@@ -57,7 +58,7 @@ export type CreateIssueInputData = {
   name: string;
   description: string;
   categoryId: CategoryId;
-  priority: Priority;
+  priority: PriorityId;
   asigneeId: UserId;
   reporterId: UserId;
   comments: Comment[];
@@ -66,6 +67,8 @@ export const createIssue = async (issue: CreateIssueInputData): Promise<IssueId>
   const newIssue = await db.issue.create({
     data: {
       ...issue,
+      priority: undefined,
+      priorityId: issue.priority,
       comments: {
         create: issue.comments.map((comment) => {
           const commentInput: Omit<Prisma.CommentCreateInput, "issue"> = {
@@ -94,6 +97,8 @@ export const updateIssue = async (issue: UpdateIssueInputData) => {
     },
     data: {
       ...issue,
+      priority: undefined,
+      priorityId: issue.priority,
       comments: {
         upsert: issue.comments.map((comment) => {
           const commentInput: Omit<Prisma.CommentCreateInput, "issue"> = {

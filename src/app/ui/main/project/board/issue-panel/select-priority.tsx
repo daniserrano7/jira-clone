@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as Select from "@radix-ui/react-select";
-import { Priority, priorities, priorityDict } from "@domain/priority";
+import { PriorityId, prioritiesMock } from "@domain/priority";
 import { PriorityIcon } from "@app/components/priority-icon";
 import {
   SelectTrigger,
@@ -11,10 +11,10 @@ import {
 } from "@app/components/select";
 
 export const SelectPriority = ({ initPriority }: Props): JSX.Element => {
-  const [selectValue, setSelectValue] = useState<Priority>(initPriority);
+  const [selectValue, setSelectValue] = useState<PriorityId>(initPriority);
 
   const onValueChange = (value: string) => {
-    const priority = value as Priority;
+    const priority = value as PriorityId;
     setSelectValue(priority);
   };
 
@@ -34,15 +34,15 @@ export const SelectPriority = ({ initPriority }: Props): JSX.Element => {
       <SelectContent>
         <Select.ScrollUpButton />
         <Select.Viewport>
-          {priorities.map((priority, index) => (
+          {prioritiesMock.map((priority, index) => (
             <SelectItem
               key={index}
-              value={priority}
+              value={priority.id}
               className="text-xs uppercase"
             >
               <SelectItemIndicator />
-              <PriorityIcon priority={priority} />
-              <Select.ItemText>{priorityDict[priority]}</Select.ItemText>
+              <PriorityIcon priority={priority.id} />
+              <Select.ItemText>{priority.name}</Select.ItemText>
             </SelectItem>
           ))}
           <Select.Separator />
@@ -54,5 +54,5 @@ export const SelectPriority = ({ initPriority }: Props): JSX.Element => {
 };
 
 interface Props {
-  initPriority: Priority;
+  initPriority: PriorityId;
 }

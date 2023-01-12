@@ -64,7 +64,7 @@ export const IssueCard = ({
                 {issueIdPrefix}
               </span>
             </span>
-            <PriorityIcon priority={issue.priority} />
+            <PriorityIcon priority={issue.priority.id} />
           </div>
         </>
       </Link>

@@ -49,7 +49,6 @@ model Issue {
   categoryId  String
   name        String
   description String?
-  priority    String    @default("low") // TODO: apply check constraint to emulate enum
   reporter    User      @relation("issue_reporter", fields: [reporterId], references: [id])
   reporterId  String
   asignee     User      @relation("issue_assignee", fields: [asigneeId], references: [id])
@@ -57,6 +56,8 @@ model Issue {
   comments    Comment[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  priority    Priority  @relation(fields: [priorityId], references: [id])
+  priorityId  String
 }
 
 model Comment {
@@ -66,6 +67,15 @@ model Comment {
   user      User     @relation(fields: [userId], references: [id])
   userId    String
   message   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Priority {
+  id        String   @id @default(uuid())
+  order     Int
+  name      String
+  issues    Issue[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

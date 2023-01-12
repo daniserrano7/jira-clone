@@ -175,7 +175,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   </div>
                   <div>
                     <p className="mb-1">Priority</p>
-                    <SelectPriority initPriority={issue?.priority || "low"} />
+                    <SelectPriority
+                      initPriority={issue?.priority.id || "low"}
+                    />
                   </div>
                   <div>
                     <p className="mb-1">Asignee</p>
