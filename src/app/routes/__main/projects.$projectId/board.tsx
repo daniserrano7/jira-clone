@@ -59,8 +59,8 @@ export const action: ActionFunction = async ({ request }) => {
 
     try {
       await updateIssueCategory(inputData);
-      emitter.emit(EVENTS.ISSUE_CHANGED, "4");
-      return json({ issueId }, { status: 200 });
+      emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+      return json(null, { status: 201 });
     } catch (error) {
       const errorMsg =
         error instanceof Error

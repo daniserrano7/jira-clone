@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { Outlet, useNavigate, useRevalidator } from "@remix-run/react";
-import { useEventSource, useDataRefresh } from "remix-utils";
+import { useEventSource } from "remix-utils";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project } from "@domain/project";
@@ -44,14 +44,13 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
   const navigate = useNavigate();
-  const { refresh } = useDataRefresh();
-  const revalidator = useRevalidator();
+  const { revalidate } = useRevalidator();
 
-  const lastIssueId = useEventSource("board/issue/issue-event", {
+  const data = useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CHANGED,
   });
 
-  console.log("lastIssueId", lastIssueId);
+  console.log("EVENT SOURCE DATA: ", data);
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -64,10 +63,8 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   );
 
   useEffect(() => {
-    // revalidator.revalidate();
-    refresh();
-    console.log("refresh");
-  }, [lastIssueId]);
+    revalidate();
+  }, [data, revalidate]);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);

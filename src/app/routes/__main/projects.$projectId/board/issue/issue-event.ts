@@ -4,8 +4,8 @@ import { emitter, EVENTS } from "@app/events";
 
 export async function loader({ request }: LoaderArgs) {
   return eventStream(request.signal, (send) => {
-    const handle = () => {
-      send({ event: EVENTS.ISSUE_CHANGED, data: Date.now().toString() });
+    const handle = (message: string) => {
+      send({ event: EVENTS.ISSUE_CHANGED, data: message });
     };
 
     emitter.on(EVENTS.ISSUE_CHANGED, handle);

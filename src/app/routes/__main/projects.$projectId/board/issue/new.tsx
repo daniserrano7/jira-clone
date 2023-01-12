@@ -50,11 +50,10 @@ export const action: ActionFunction = async ({ request, params }) => {
       );
     }
 
-    const newIssueId = await createIssue(issueInputData);
-    console.log("newIssueId", newIssueId);
+    await createIssue(issueInputData);
 
-    emitter.emit(EVENTS.ISSUE_CHANGED, newIssueId);
-    return json(null, { status: 201 });
+    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+    // return json(null, { status: 201 });
   }
 
   return redirect(`/projects/${params.projectId}/board`);
