@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import { Outlet, useNavigate } from "@remix-run/react";
+import { Outlet, useNavigate, useRevalidator } from "@remix-run/react";
+import { useEventSource } from "remix-utils";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { Project } from "@domain/project";
@@ -11,6 +12,7 @@ import { UserAvatarList } from "./avatar-list";
 import { SelectSort } from "./select-sort";
 import { CategoryColumn } from "./category-column";
 import { ProjectContextProvider } from "../project.store";
+import { EVENTS } from "@app/events";
 
 export const BoardView = ({ project }: Props): JSX.Element => {
   return (
@@ -42,6 +44,13 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
   const navigate = useNavigate();
+  const { revalidate } = useRevalidator();
+
+  const data = useEventSource("board/issue/issue-event", {
+    event: EVENTS.ISSUE_CHANGED,
+  });
+
+  console.log("EVENT SOURCE DATA: ", data);
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -52,6 +61,10 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
     },
     [navigate]
   );
+
+  useEffect(() => {
+    revalidate();
+  }, [data, revalidate]);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);

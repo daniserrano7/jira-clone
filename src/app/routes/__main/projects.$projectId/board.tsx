@@ -13,6 +13,7 @@ import {
 } from "@infrastructure/db/issue";
 import { Error500 } from "@app/components/error-500";
 import { BoardView } from "@app/ui/main/project/board";
+import { emitter, EVENTS } from "@app/events";
 
 type LoaderData = {
   project: Project;
@@ -58,7 +59,8 @@ export const action: ActionFunction = async ({ request }) => {
 
     try {
       await updateIssueCategory(inputData);
-      return json({ issueId }, { status: 200 });
+      emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+      return json(null, { status: 201 });
     } catch (error) {
       const errorMsg =
         error instanceof Error

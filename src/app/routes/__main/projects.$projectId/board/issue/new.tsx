@@ -1,5 +1,6 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
-import { redirect, json } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { redirectBack } from "remix-utils";
 import { UserId } from "@domain/user";
 import { CategoryId } from "@domain/category";
 import { Comment } from "@domain/comment";
@@ -7,6 +8,7 @@ import { Priority } from "@domain/priority";
 import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { emitter, EVENTS } from "@app/events";
 
 export type ActionData = {
   errors: {
@@ -50,9 +52,14 @@ export const action: ActionFunction = async ({ request, params }) => {
     }
 
     await createIssue(issueInputData);
+
+    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
   }
 
-  return redirect(`/projects/${params.projectId}/board`);
+  return redirectBack(request, {
+    fallback: `/projects/${params.projectId}/board`,
+    status: 201,
+  });
 };
 
 export default function IssuePanelRoute() {

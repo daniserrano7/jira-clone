@@ -1,6 +1,7 @@
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { useLoaderData, useLocation, useNavigate } from "@remix-run/react";
+import { redirectBack } from "remix-utils";
 import invariant from "tiny-invariant";
 import cx from "classix";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -20,6 +21,7 @@ import { deleteComment } from "@infrastructure/db/comment";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { Error404 } from "@app/components/error-404";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { emitter, EVENTS } from "@app/events";
 
 type LoaderData = {
   issue: Issue;
@@ -82,6 +84,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     }
 
     await updateIssue(issueInputData);
+    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
   }
 
   if (_action === "delete") {
@@ -94,9 +97,13 @@ export const action: ActionFunction = async ({ request, params }) => {
     if (!commentId) return null;
 
     await deleteComment(commentId);
-    return redirect(`/projects/${projectId}/board/issue/${id}`);
+    return redirect(`/projects/${projectId}/board/issue/${id}`, 202);
   }
-  return redirect(`/projects/${projectId}/board`);
+
+  return redirectBack(request, {
+    fallback: `/projects/${params.projectId}/board`,
+    status: 202,
+  });
 };
 
 export function CatchBoundary() {
