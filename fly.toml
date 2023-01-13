@@ -1,4 +1,4 @@
-# fly.toml file generated for jira-clone on 2022-12-23T17:51:31+01:00
+# fly.toml file generated for jira-clone on 2023-01-13T19:03:42+01:00
 
 app = "jira-clone"
 kill_signal = "SIGINT"
@@ -6,33 +6,33 @@ kill_timeout = 5
 processes = []
 
 [env]
-DATABASE_URL = "file:/data/jira_clone.db"
-
-[[statics]]
-guest_path = "/app/public"
-url_prefix = "/public"
+  DATABASE_URL = "file:/data/jira_clone.db"
 
 [mounts]
-source = "jira_data"
-destination = "/data"
+  destination = "/data"
+  source = "jira_data"
 
 [[services]]
-http_checks = []
-tcp_checks = []
-internal_port = 3000
-processes = ["app"]
-protocol = "tcp"
-script_checks = []
-[services.concurrency]
-hard_limit = 25
-soft_limit = 20
-type = "connections"
+  http_checks = []
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  tcp_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
 
-[[services.ports]]
-force_https = true
-handlers = ["http"]
-port = 80
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
 
-[[services.ports]]
-handlers = ["tls", "http"]
-port = 443
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/public"
