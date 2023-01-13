@@ -7,6 +7,7 @@ processes = []
 
 [env]
 DATABASE_URL = "file:/data/jira_clone.db"
+PORT = "3000"
 
 [mounts]
 destination = "/data"
