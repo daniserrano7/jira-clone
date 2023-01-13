@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
-DATABASE_URL = "file:/data/sqlite.db"
+DATABASE_URL = "file:/data/jira_clone.db"
 
 [[statics]]
 guest_path = "/app/public"
