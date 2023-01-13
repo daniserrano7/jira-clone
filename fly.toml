@@ -33,6 +33,6 @@ port = 80
 handlers = ["tls", "http"]
 port = 443
 
-[[statics]]
-guest_path = "/app/public"
-url_prefix = "/public"
+# [[statics]]
+# guest_path = "/app/public"
+# url_prefix = "/public"
