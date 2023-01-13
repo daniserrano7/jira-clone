@@ -5,6 +5,7 @@ import { Comment, CommentId } from "@domain/comment";
 import { useUserStore } from "@app/store/user.store";
 import { UserAvatar } from "@app/components/user-avatar";
 import { EditBox } from "./edit-box";
+import { formatDateTime } from "@utils/formatDateTime";
 
 export const ViewComment = ({
   comment,
@@ -33,23 +34,6 @@ export const ViewComment = ({
   const save = (commentText: string): void => {
     comment.message = commentText;
     setIsEditing(false);
-  };
-
-  const formatDateTime = (): string => {
-    if (!comment.createdAt) return "DATE UNDEFINED";
-
-    const locale = "en-US";
-    const date = new Date(comment.createdAt).toLocaleDateString(locale, {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-    const time = new Date(comment.createdAt).toLocaleTimeString(locale, {
-      hour12: false,
-      timeStyle: "short",
-    });
-
-    return `${time} · ${date}`;
   };
 
   const IdleComment = (): JSX.Element => (
@@ -89,7 +73,13 @@ export const ViewComment = ({
         <p className="mr-4 inline-block font-primary-bold">
           {comment.user.name}
         </p>
-        <span className="font-primary-light text-xs">{formatDateTime()}</span>
+        <span className="font-primary-light text-xs">
+          {comment.createdAt ? (
+            formatDateTime(comment.createdAt)
+          ) : (
+            <i>Date undefined</i>
+          )}
+        </span>
         <div className="mt-3">
           {isEditing ? (
             <EditBox

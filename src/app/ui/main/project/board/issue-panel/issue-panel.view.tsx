@@ -9,6 +9,7 @@ import {
   useNavigate,
 } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
+import { cx } from "classix";
 import { CategoryType } from "@domain/category";
 import { Issue } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
@@ -18,13 +19,13 @@ import { UserAvatar } from "@app/components/user-avatar";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/kbd-placeholder";
+import { formatDateTime } from "@utils/formatDateTime";
 import { PanelHeaderIssue } from "./panel-header-issue";
 import { CreateComment } from "./comment/create-comment";
 import { ViewComment } from "./comment/view-comment";
 import { SelectStatus } from "./select-status";
 import { SelectPriority } from "./select-priority";
 import { SelectAsignee } from "./select-asignee";
-import { cx } from "classix";
 
 export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);
@@ -195,6 +196,9 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       <p className="m-0">{reporter.name}</p>
                     </div>
                   </div>
+                  <div>
+                    <CreatedUpdatdAt issue={issue} />
+                  </div>
                 </section>
               </div>
               <div className="mt-6 grid grid-cols-3 items-end">
@@ -231,6 +235,32 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
 interface Props {
   issue?: Issue;
 }
+
+const CreatedUpdatdAt = ({ issue }: Props): JSX.Element => {
+  const values = [
+    { label: "Created at:", value: issue?.createdAt },
+    { label: "Updated at:", value: issue?.updatedAt },
+  ];
+
+  return (
+    <table>
+      <tbody className="text-sm">
+        {values.map(({ label, value }) => (
+          <tr key={label}>
+            <td className="pr-4">
+              <p className="mb-2">{label}</p>
+            </td>
+            <td>
+              <p className="mb-2 text-white">
+                {value ? formatDateTime(value) : "Just now"}
+              </p>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
 
 const Spinner = (): JSX.Element => (
   <svg
