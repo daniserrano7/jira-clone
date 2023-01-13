@@ -115,7 +115,7 @@ This sections whows the projects the logged in user has access to. It is possibl
 
 This is the main section of the app. It shows the project's board, where you can see the issues of the project. It also shows other tabs, such as analytics (which is not implemented yet) and backlog (this will never be implemented; it is only shown for UI puposes). There are also links that trigger page errors to show Remix error handling. There are both 404 and 500 errors.
 
-Related to that project board, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and assign it to different users. Also, it is possible to move an issue from one category to another by drag and drop.
+Related to that project board, you can create, edit and delete issues. You can modify issue's properties, change its category, add comments and assign it to different users. Also, it is possible to move an issue from one category to another by drag and drop. Every issue change is streamed to the server thanks to Server Sent Events, so the board is updated in real time (try it with two different tabs!).
 
 <img src="./readme-assets/project.png" alt="Board" />
 
