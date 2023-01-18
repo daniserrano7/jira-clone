@@ -21,6 +21,9 @@ export const getIssue = async (issueId: IssueId): Promise<Issue | null> => {
         include: {
           user: true,
         },
+        orderBy: {
+          createdAt: "asc",
+        },
       },
     },
   });

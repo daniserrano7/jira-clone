@@ -90,10 +90,6 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     setComments(updatedComments);
   };
 
-  const sortComments = (comments: Comment[]): Comment[] => {
-    return comments.sort((a, b) => b.createdAt - a.createdAt);
-  };
-
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);
 
@@ -159,7 +155,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       <CreateComment addComment={addComment} />
                     </div>
                     <ul className="mt-8 space-y-6">
-                      {sortComments(comments).map((comment) => (
+                      {comments.map((comment) => (
                         <li key={comment.id}>
                           <ViewComment
                             comment={comment}
