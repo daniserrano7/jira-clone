@@ -128,7 +128,10 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               !isOpen && "translate-y-[10px] opacity-0"
             )}
           >
-            <PanelHeaderIssue id={issue?.id || "Create new issue"} />
+            <PanelHeaderIssue
+              id={issue?.id || "Create new issue"}
+              deleteDisabled={user.id !== reporter.id}
+            />
             <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
               <div className="grid grid-cols-5 gap-16">
                 <section className="col-span-3">

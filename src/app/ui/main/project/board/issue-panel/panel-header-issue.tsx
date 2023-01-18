@@ -8,6 +8,7 @@ import { TaskIcon } from "@app/components/icons";
 
 export const PanelHeaderIssue = ({
   id,
+  deleteDisabled,
 }: PanelHeaderIssueProps): JSX.Element => {
   const location = useLocation();
   const previousUrl = location.pathname.split("/issue")[0];
@@ -22,7 +23,7 @@ export const PanelHeaderIssue = ({
           {id}
         </span>
       </span>
-      <DeleteIssueModalDialog />
+      <DeleteIssueModalDialog disabled={deleteDisabled} />
       <Link
         to={previousUrl}
         className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
@@ -36,9 +37,12 @@ export const PanelHeaderIssue = ({
 
 interface PanelHeaderIssueProps {
   id: IssueId;
+  deleteDisabled?: boolean;
 }
 
-const DeleteIssueModalDialog = (): JSX.Element => {
+const DeleteIssueModalDialog = ({
+  disabled,
+}: DeleteIssueModalDialogProps): JSX.Element => {
   const buttonBaseClass = cx(
     "border-none py-1.5 px-3.5 rounded bg-grey-300 dark:bg-dark-100 font-primary-bold cursor-pointer"
   );
@@ -46,8 +50,15 @@ const DeleteIssueModalDialog = (): JSX.Element => {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger
-        className="flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 hover:text-error-main dark:text-font-light-dark dark:hover:bg-dark-100 dark:hover:text-error-main-dark"
+        className={cx(
+          "flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100",
+          disabled
+            ? "cursor-not-allowed"
+            : "hover:text-error-main dark:hover:text-error-main-dark"
+        )}
         aria-label="Open delete issue dialog"
+        disabled={disabled}
+        title={disabled ? "This user cannot delete the issue" : "Delete issue"}
       >
         <MdDeleteOutline size={26} />
       </AlertDialog.Trigger>
@@ -90,3 +101,7 @@ const DeleteIssueModalDialog = (): JSX.Element => {
     </AlertDialog.Root>
   );
 };
+
+interface DeleteIssueModalDialogProps {
+  disabled?: boolean;
+}
