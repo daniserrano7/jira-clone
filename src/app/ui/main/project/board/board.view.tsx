@@ -43,8 +43,8 @@ interface Props {
 const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
-  const navigate = useNavigate();
   const { revalidate } = useRevalidator();
+  const navigate = useNavigate();
 
   const data = useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CHANGED,
@@ -59,6 +59,10 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
     },
     [navigate]
   );
+
+  useEffect(() => {
+    setSubmittingIssues([]);
+  }, [categories]);
 
   useEffect(() => {
     revalidate();
