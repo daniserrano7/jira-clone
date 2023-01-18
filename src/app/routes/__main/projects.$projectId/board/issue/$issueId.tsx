@@ -45,6 +45,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     "og:site_name": title,
     "og:title": title,
     "og:description": description,
+    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
