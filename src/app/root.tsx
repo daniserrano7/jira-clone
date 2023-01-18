@@ -28,11 +28,37 @@ export const links = () => {
   ];
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Jira clone",
-  viewport: "width=device-width,initial-scale=1",
-});
+export const meta: MetaFunction = () => {
+  const title = "Jira clone";
+  const description =
+    "Task manager application inspired in Jira. Side project made with Remix, React, Tailwind, TypeScript and more.";
+  const image =
+    "https://jira-clone.fly.dev/static/images/select-theme-light.png";
+  const url = "https://jira-clone.fly.dev";
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: title,
+    description: description,
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "twitter:card": "summary_large_image",
+    "twitter:site": url,
+    "twitter:domain": "jira-clone.fly.dev",
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:image": image,
+    "twitter:image:width": "951",
+    "twitter:image:height": "696",
+    "twitter:image:alt": title,
+    "twitter:creator": "@Jack_DanielSG",
+    "twitter:creator:id": "Jack_DanielSG",
+  };
+};
 
 type LoaderData = {
   theme?: Theme;

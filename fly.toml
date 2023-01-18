@@ -13,6 +13,10 @@ PORT = "3000"
 destination = "/data"
 source = "data"
 
+[[statics]]
+guest_path = "/app/public/images"
+url_prefix = "/static/images"
+
 [[services]]
 http_checks = []
 internal_port = 3000

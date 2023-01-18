@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
@@ -7,6 +7,38 @@ import { getProjectSummary } from "@infrastructure/db/project";
 import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/ui/main/project";
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { projectSummary } = data as LoaderData;
+  const title = `Jira clone - ${projectSummary.name || "Project"}`;
+  const description =
+    "See all your projects in one place. Create new ones and assigne team members.";
+  const image = "https://jira-clone.fly.dev/static/images/readme/project.png";
+  const url = `https://jira-clone.fly.dev/projects/${projectSummary.id}`;
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: title,
+    description: description,
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "twitter:card": "summary_large_image",
+    "twitter:site": url,
+    "twitter:domain": "jira-clone.fly.dev",
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:image": image,
+    "twitter:image:width": "1457",
+    "twitter:image:height": "872",
+    "twitter:image:alt": title,
+    "twitter:creator": "@Jack_DanielSG",
+    "twitter:creator:id": "Jack_DanielSG",
+  };
+};
 
 type LoaderData = {
   projectSummary: ProjectSummary;

@@ -1,5 +1,10 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type {
+  ActionFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
+import invariant from "tiny-invariant";
 import { UserId } from "@domain/user";
 import { ProjectId } from "@domain/project";
 import { CategoryId } from "@domain/category";
@@ -11,14 +16,53 @@ import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { emitter, EVENTS } from "@app/events";
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { projectId } = data as LoaderData;
+  const title = `Jira clone - Create issue`;
+  const description = "Create new issue, edit it and and assigne team members.";
+  const image =
+    "https://jira-clone.fly.dev/static/images/readme/issue-panel.png";
+  const url = `https://jira-clone.fly.dev/projects/${projectId}/board/issue/new`;
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: title,
+    description: description,
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "twitter:card": "summary_large_image",
+    "twitter:site": url,
+    "twitter:domain": "jira-clone.fly.dev",
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:image": image,
+    "twitter:image:width": "1452",
+    "twitter:image:height": "865",
+    "twitter:image:alt": title,
+    "twitter:creator": "@Jack_DanielSG",
+    "twitter:creator:id": "Jack_DanielSG",
+  };
+};
+
+type LoaderData = {
+  projectId: ProjectId;
+};
+
+export const loader: LoaderFunction = async ({ params }) => {
+  const projectId = params.projectId as ProjectId;
+
+  invariant(params.projectId, `params.projectId is required`);
+  return json<LoaderData>({ projectId });
+};
+
 export type ActionData = {
   errors: {
     name?: string;
   };
-};
-
-export const loader: LoaderFunction = async () => {
-  return json(null);
 };
 
 export const action: ActionFunction = async ({ request, params }) => {

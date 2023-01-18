@@ -1,4 +1,8 @@
-import type { LoaderFunction, ActionFunction } from "@remix-run/node";
+import type {
+  LoaderFunction,
+  ActionFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
@@ -14,6 +18,38 @@ import {
 import { Error500 } from "@app/components/error-500";
 import { BoardView } from "@app/ui/main/project/board";
 import { emitter, EVENTS } from "@app/events";
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { project } = data as LoaderData;
+  const title = "Jira clone - Board";
+  const description =
+    "Manage your project. Create, edit, delete new issues and assigne them.";
+  const image = "https://jira-clone.fly.dev/static/images/readme/project.png";
+  const url = `https://jira-clone.fly.dev/projects/${project.id}/board`;
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: title,
+    description: description,
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "twitter:card": "summary_large_image",
+    "twitter:site": url,
+    "twitter:domain": "jira-clone.fly.dev",
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:image": image,
+    "twitter:image:width": "1457",
+    "twitter:image:height": "872",
+    "twitter:image:alt": title,
+    "twitter:creator": "@Jack_DanielSG",
+    "twitter:creator:id": "Jack_DanielSG",
+  };
+};
 
 type LoaderData = {
   project: Project;

@@ -1,4 +1,8 @@
-import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import type {
+  ActionFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { useLoaderData, useLocation, useNavigate } from "@remix-run/react";
 import invariant from "tiny-invariant";
@@ -23,8 +27,41 @@ import { Error404 } from "@app/components/error-404";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { emitter, EVENTS } from "@app/events";
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { issue, projectId } = data as LoaderData;
+  const title = `Jira clone - ${issue.name}`;
+  const description = issue.description;
+  const image =
+    "https://jira-clone.fly.dev/static/images/readme/issue-panel.png";
+  const url = `https://jira-clone.fly.dev/projects/${projectId}/board/issue/${issue.name}`;
+
+  return {
+    charset: "utf-8",
+    viewport: "width=device-width,initial-scale=1",
+    title: title,
+    description: description,
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "twitter:card": "summary_large_image",
+    "twitter:site": url,
+    "twitter:domain": "jira-clone.fly.dev",
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:image": image,
+    "twitter:image:width": "1452",
+    "twitter:image:height": "865",
+    "twitter:image:alt": title,
+    "twitter:creator": "@Jack_DanielSG",
+    "twitter:creator:id": "Jack_DanielSG",
+  };
+};
+
 type LoaderData = {
   issue: Issue;
+  projectId: ProjectId;
 };
 
 export type ActionData = {
@@ -33,7 +70,8 @@ export type ActionData = {
   };
 };
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ params, request }) => {
+  const projectId = params.projectId as ProjectId;
   const issueId = params.issueId as IssueId;
 
   invariant(params.projectId, `params.projectId is required`);
@@ -46,7 +84,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     });
   }
 
-  return json<LoaderData>({ issue });
+  return json<LoaderData>({ issue, projectId });
 };
 
 export const action: ActionFunction = async ({ request, params }) => {
