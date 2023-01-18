@@ -15,7 +15,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   const userId = userSession.getUser();
 
   if (!userId) {
-    return redirect("/login", 401);
+    return redirect("/login");
   }
 
   const user = await getUser(userId);

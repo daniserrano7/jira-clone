@@ -15,6 +15,9 @@ import { PanelHeaderProject } from "./panel-header-project";
 
 export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);
+  const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(
+    null
+  );
   const formRef = useRef<HTMLFormElement>(null);
   const fetcher = useFetcher();
   const navigate = useNavigate();
@@ -76,100 +79,107 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   }, [isOpen, navigate]);
 
   return (
-    <Dialog.Root open={true}>
-      <Dialog.Portal>
-        <Dialog.Overlay
-          id="project-panel-overlay"
-          className={cx(
-            "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
-            "radix-state-open:animate-fade-in duration-300",
-            !isOpen && "bg-opacity-0"
-          )}
-        >
-          <Dialog.Content
-            onEscapeKeyDown={handleProgrammaticClose}
-            onPointerDownOutside={handleProgrammaticClose}
+    <>
+      <Dialog.Root open={true}>
+        <Dialog.Portal container={portalContainer}>
+          <Dialog.Overlay
+            id="project-panel-overlay"
             className={cx(
-              "relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
-              "duration-300 radix-state-open:animate-slide-up",
-              !isOpen && "translate-y-[10px] opacity-0"
+              "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
+              "radix-state-open:animate-fade-in duration-300",
+              !isOpen && "bg-opacity-0"
             )}
           >
-            <PanelHeaderProject id={project?.id || "Create new project"} />
-            <Form method="post" ref={formRef}>
-              <div className="mb-6">
-                <Dialog.Title className="mt-5 mb-8 -ml-3">
-                  <Title
-                    initTitle={project?.name || ""}
-                    maxLength={30}
-                    error={actionData?.errors?.name}
-                  />
-                </Dialog.Title>
-                <p className="font-primary-black text-font-main dark:text-font-main-dark">
-                  Description
-                </p>
-                <div className="-ml-3 mb-5">
-                  <Description initDescription={project?.description || ""} />
-                </div>
-                <ul className="space-y-1.5">
-                  {users.map((user) => (
-                    <li
-                      key={user.id}
-                      className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main dark:hover:bg-dark-200 dark:hover:outline-primary-main-dark"
-                    >
-                      <label
-                        htmlFor={`checkbox-${user.id}`}
-                        className="flex w-full cursor-pointer items-center justify-between gap-4 py-3"
+            <Dialog.Content
+              onEscapeKeyDown={handleProgrammaticClose}
+              onPointerDownOutside={handleProgrammaticClose}
+              className={cx(
+                "relative z-50 w-4/5 max-w-[600px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
+                "duration-300 radix-state-open:animate-slide-up",
+                !isOpen && "translate-y-[10px] opacity-0"
+              )}
+            >
+              <PanelHeaderProject id={project?.id || "Create new project"} />
+              <Form method="post" ref={formRef}>
+                <div className="mb-6">
+                  <Dialog.Title className="mt-5 mb-8 -ml-3">
+                    <Title
+                      initTitle={project?.name || ""}
+                      maxLength={30}
+                      error={actionData?.errors?.name}
+                    />
+                  </Dialog.Title>
+                  <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                    Description
+                  </p>
+                  <div className="-ml-3 mb-5">
+                    <Description initDescription={project?.description || ""} />
+                  </div>
+                  <ul className="space-y-1.5">
+                    {users.map((user) => (
+                      <li
+                        key={user.id}
+                        className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main dark:hover:bg-dark-200 dark:hover:outline-primary-main-dark"
                       >
-                        <span className="flex items-center gap-4">
-                          <UserAvatar {...user} size={48} />
-                          <span>{user.name}</span>
-                        </span>
-                        <Checkbox.Root
-                          id={`checkbox-${user.id}`}
-                          className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
-                          name="user"
-                          value={user.id}
+                        <label
+                          htmlFor={`checkbox-${user.id}`}
+                          className="flex w-full cursor-pointer items-center justify-between gap-4 py-3"
                         >
-                          <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
-                            <BsCheckLg size={16} className="text-grey-400" />
-                          </Checkbox.Indicator>
-                        </Checkbox.Root>
-                      </label>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-6 grid grid-cols-3 items-end">
-                <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
-                </span>
-                <button
-                  type="submit"
-                  name="_action"
-                  value="upsert"
-                  className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
-                  disabled={fetcher.state !== "idle"}
-                  aria-label="Accept changes"
-                >
-                  {fetcher.state !== "idle" ? (
-                    <>
-                      Submmiting
-                      <Spinner />
-                    </>
-                  ) : (
-                    "Accept"
-                  )}
-                </button>
-                <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
-                  Press <Kbd>Esc</Kbd> to close
-                </span>
-              </div>
-            </Form>
-          </Dialog.Content>
-        </Dialog.Overlay>
-      </Dialog.Portal>
-    </Dialog.Root>
+                          <span className="flex items-center gap-4">
+                            <UserAvatar {...user} size={48} />
+                            <span>{user.name}</span>
+                          </span>
+                          <Checkbox.Root
+                            id={`checkbox-${user.id}`}
+                            className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
+                            name="user"
+                            value={user.id}
+                          >
+                            <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
+                              <BsCheckLg size={16} className="text-grey-400" />
+                            </Checkbox.Indicator>
+                          </Checkbox.Root>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mt-6 grid grid-cols-3 items-end">
+                  <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                    Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
+                  </span>
+                  <button
+                    type="submit"
+                    name="_action"
+                    value="upsert"
+                    className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
+                    disabled={fetcher.state !== "idle"}
+                    aria-label="Accept changes"
+                  >
+                    {fetcher.state !== "idle" ? (
+                      <>
+                        Submmiting
+                        <Spinner />
+                      </>
+                    ) : (
+                      "Accept"
+                    )}
+                  </button>
+                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                    Press <Kbd>Esc</Kbd> to close
+                  </span>
+                </div>
+              </Form>
+            </Dialog.Content>
+          </Dialog.Overlay>
+        </Dialog.Portal>
+      </Dialog.Root>
+      {/* To avoid hydration issues because a missmatch with the server*/}
+      <div
+        ref={setPortalContainer}
+        className="fixed top-0 left-0 w-full h-full z-50"
+      />
+    </>
   );
 };
 

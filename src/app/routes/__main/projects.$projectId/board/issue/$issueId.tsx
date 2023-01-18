@@ -182,15 +182,6 @@ export function CatchBoundary() {
       </Dialog.Portal>
     </Dialog.Root>
   );
-
-  return (
-    <div>
-      <Error404
-        message="It seems that you have lost! Go to the main page"
-        href="/"
-      />
-    </div>
-  );
 }
 
 export default function IssuePanelRoute() {
