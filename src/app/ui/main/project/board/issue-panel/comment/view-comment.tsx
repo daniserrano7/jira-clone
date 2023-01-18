@@ -79,6 +79,12 @@ export const ViewComment = ({
           ) : (
             <i>Date undefined</i>
           )}
+          {commentIsEdited(comment) && (
+            <>
+              <span className="mx-2">·</span>
+              <span>EDITED</span>
+            </>
+          )}
         </span>
         <div className="mt-3">
           {isEditing ? (
@@ -95,6 +101,13 @@ export const ViewComment = ({
       </div>
     </div>
   );
+};
+
+const commentIsEdited = (comment: Comment): boolean => {
+  // Convert miliseconds to seconds just in case there is a minimal difference
+  const createdAtInSeconds = Math.floor(comment.createdAt / 1000);
+  const updatedAtInSeconds = Math.floor(comment.updatedAt / 1000);
+  return createdAtInSeconds !== updatedAtInSeconds;
 };
 
 interface ViewCommentProps {

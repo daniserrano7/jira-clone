@@ -1,6 +1,4 @@
 export const formatDateTime = (timestamp: number): string => {
-  // if (!comment.createdAt) return "DATE UNDEFINED";;
-
   const locale = "en-US";
   const date = new Date(timestamp).toLocaleDateString(locale, {
     day: "2-digit",
