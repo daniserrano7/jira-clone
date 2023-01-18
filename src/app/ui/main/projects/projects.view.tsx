@@ -30,12 +30,12 @@ export const ProjectsView = ({ projectsSummary }: Props): JSX.Element => {
                 src={project.image || "/images/default-project.png"}
                 alt="Project"
                 width="90px"
-                height="auto"
+                height="104px"
                 className="h-auto w-[90px] rounded-l object-cover"
               />
               <div className="flex flex-col gap-1 px-3 pt-2 pb-6">
                 <h2 className="text-lg">{project.name}</h2>
-                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-100 line-clamp-2 dark:text-font-light-dark dark:group-hover:text-primary-main-dark">
+                <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-100 line-clamp-2 dark:text-white dark:text-opacity-60 dark:group-hover:text-primary-main-dark">
                   {project.description}
                 </h3>
               </div>

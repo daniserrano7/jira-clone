@@ -33,6 +33,7 @@ type = "connections"
 force_https = true
 handlers = ["http"]
 port = 80
+http_options = { response = { headers = { Expect-CT = false } } }
 
 [[services.ports]]
 handlers = ["tls", "http"]
