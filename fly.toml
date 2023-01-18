@@ -7,7 +7,7 @@ processes = []
 
 [env]
 DATABASE_URL = "file:/data/jira_clone.db"
-PORT = "3000"
+PORT = "8080"
 
 [mounts]
 destination = "/data"
@@ -19,7 +19,7 @@ url_prefix = "/static/images"
 
 [[services]]
 http_checks = []
-internal_port = 3000
+internal_port = 8080
 processes = ["app"]
 protocol = "tcp"
 script_checks = []
