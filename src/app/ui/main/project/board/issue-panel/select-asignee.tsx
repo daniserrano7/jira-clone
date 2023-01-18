@@ -33,7 +33,7 @@ export const SelectAsignee = ({ initAsignee }: Props): JSX.Element => {
       defaultValue={initAsignee.id}
       onValueChange={onValueChange}
     >
-      <SelectTrigger>
+      <SelectTrigger aria-label="Open asignee select">
         <div className="mr-2">
           <UserAvatar {...selectedValue} size={32} />
         </div>

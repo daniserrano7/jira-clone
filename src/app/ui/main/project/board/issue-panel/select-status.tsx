@@ -39,6 +39,7 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
       onValueChange={onValueChange}
     >
       <SelectTrigger
+        aria-label="Open status select"
         className={cx(
           selectedStatus === "IN_PROGRESS" &&
             "!bg-primary-main !text-white hover:!bg-primary-main-hover",
