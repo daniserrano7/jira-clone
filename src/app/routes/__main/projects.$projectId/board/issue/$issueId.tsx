@@ -71,7 +71,7 @@ export type ActionData = {
   };
 };
 
-export const loader: LoaderFunction = async ({ params, request }) => {
+export const loader: LoaderFunction = async ({ params }) => {
   const projectId = params.projectId as ProjectId;
   const issueId = params.issueId as IssueId;
 
