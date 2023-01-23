@@ -10,6 +10,7 @@ export const projectMock1: Project = {
   categories: categoriesMock1,
   image:
     "https://admin.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10400?size=xxlarge",
+  createdAt: new Date("2023-01-01 10:00").valueOf(),
 };
 
 export const projectMock2: Project = {
@@ -21,6 +22,7 @@ export const projectMock2: Project = {
   categories: categoriesMock2,
   image:
     "https://admin.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10401?size=xxlarge",
+  createdAt: new Date("2023-01-01 11:00").valueOf(),
 };
 
 export const projectsMock: Project[] = [projectMock1, projectMock2];
