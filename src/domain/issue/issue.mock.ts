@@ -71,7 +71,7 @@ export const doneIssuesMock1: Issue[] = [
     updatedAt: new Date("2022-01-23 02:04").valueOf(),
   },
   {
-    id: "8264e3fc-dd97-4abe-9612-deee6472e5c4",
+    id: "4db55cbf-222d-424a-b23b-08e61534c706",
     name: "HINT: Check network status when navigating to an error page.",
     description:
       'There are two sections on the sidebar that will intentionally throw an error. The section "Server error" will trigger a 500 error response, while "Not found" returns a 404 error. You can check the status response on the browser network tab and see how it is handled on the UI.',
@@ -131,3 +131,14 @@ export const inProgressIssuesMock2: Issue[] = [
 ];
 
 export const doneIssuesMock2: Issue[] = [];
+
+export const defaultIssuesIds = [
+  todoIssuesMock1,
+  inProgressIssuesMock1,
+  doneIssuesMock1,
+  todoIssuesMock2,
+  inProgressIssuesMock2,
+  doneIssuesMock2,
+]
+  .flat()
+  .map((issue) => issue.id);

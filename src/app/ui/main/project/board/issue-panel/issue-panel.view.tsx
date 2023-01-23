@@ -11,7 +11,7 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import { cx } from "classix";
 import { CategoryType } from "@domain/category";
-import { Issue } from "@domain/issue";
+import { Issue, defaultIssuesIds } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
 import { useUserStore } from "@app/store/user.store";
 import { ActionData as IssueActionData } from "@app/routes/__main/projects.$projectId/board/issue/$issueId";
@@ -131,7 +131,10 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
             >
               <PanelHeaderIssue
                 id={issue?.id || "Create new issue"}
-                deleteDisabled={userIsNotReporter}
+                deleteDisabled={
+                  userIsNotReporter ||
+                  defaultIssuesIds.includes(issue?.id || "")
+                }
               />
               <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
                 <div className="grid grid-cols-5 gap-16">
