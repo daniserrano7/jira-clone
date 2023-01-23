@@ -7,6 +7,7 @@ import { BsCheckLg } from "react-icons/bs";
 import { User } from "@domain/user";
 import { Project } from "@domain/project";
 import { ActionData as ProjectActionData } from "@app/routes/__main/projects/new";
+import { useUserStore } from "@app/store/user.store";
 import { UserAvatar } from "@app/components/user-avatar";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
@@ -22,6 +23,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const actionData = useActionData() as ProjectActionData;
+  const { user: loggedUser } = useUserStore();
 
   const postData = useCallback(
     (formTarget: HTMLFormElement) => {
@@ -134,6 +136,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                             className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
                             name="user"
                             value={user.id}
+                            defaultChecked={user.id === loggedUser?.id}
                           >
                             <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
                               <BsCheckLg size={16} className="text-grey-400" />

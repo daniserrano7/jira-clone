@@ -1,8 +1,12 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type {
+  LoaderFunction,
+  ActionFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { ProjectSummary } from "@domain/project";
-import { getProjectsSummary } from "@infrastructure/db/project";
+import { ProjectId, ProjectSummary } from "@domain/project";
+import { getProjectsSummary, deleteProject } from "@infrastructure/db/project";
 import { getUserSession } from "@app/session-storage";
 import { ProjectsView } from "@app/ui/main/projects";
 
@@ -53,6 +57,20 @@ export const loader: LoaderFunction = async ({ request }) => {
   const projectsSummary = await getProjectsSummary(userId);
 
   return json<LoaderData>({ projectsSummary });
+};
+
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const _action = formData.get("_action") as string;
+
+  if (_action === "delete") {
+    const projectId = formData.get("projectId") as ProjectId;
+
+    projectId
+      ? await deleteProject(projectId)
+      : console.error("Project id not found: ", projectId);
+  }
+  return redirect("/projects");
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {

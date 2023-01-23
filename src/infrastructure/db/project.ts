@@ -183,3 +183,11 @@ export const createProject = async (project: CreateProjectInput): Promise<void> 
     },
   });
 };
+
+export const deleteProject = async (projectId: ProjectId): Promise<void> => {
+  await db.project.delete({
+    where: {
+      id: projectId,
+    },
+  });
+};

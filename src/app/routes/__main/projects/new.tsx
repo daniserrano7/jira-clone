@@ -108,7 +108,7 @@ export const action: ActionFunction = async ({ request }) => {
       categories,
     });
 
-    return redirect("/projects", 201);
+    return redirect("/projects");
   }
 };
 
