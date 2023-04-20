@@ -1,7 +1,7 @@
 /** @type {import('@remix-run/dev').AppConfig} */
 module.exports = {
   future: {},
-  ignoredRouteFiles: ["**/.*"],
+  ignoredRouteFiles: ["**/.*", "**/*.spec.ts"],
   appDirectory: "./src/app",
   serverDependenciesToBundle: [
     "react-dnd",
