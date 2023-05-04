@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect } from "react";
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -13,6 +13,7 @@ import {
 } from "@remix-run/react";
 import cx from "classix";
 import { Theme, Preference } from "@app/store/theme.store";
+import { formatTags, formatProperties } from "@utils/meta";
 import { getThemeSession } from "./session-storage/theme-storage.server";
 import { ThemeProvider, useTheme } from "./store/theme.store";
 import { Error404 } from "./components/error-404";
@@ -28,7 +29,7 @@ export const links = () => {
   ];
 };
 
-export const meta: MetaFunction = () => {
+export const meta: V2_MetaFunction = () => {
   const title = "Jira clone";
   const description =
     "Task manager application inspired in Jira. Side project made with Remix, React, Tailwind, TypeScript and more.";
@@ -36,17 +37,11 @@ export const meta: MetaFunction = () => {
     "https://jira-clone.fly.dev/static/images/select-theme-light.png";
   const url = "https://jira-clone.fly.dev";
 
-  return {
+  const tags = {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
     title: title,
     description: description,
-    "og:url": url,
-    "og:type": "website",
-    "og:site_name": title,
-    "og:title": title,
-    "og:description": description,
-    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
@@ -59,6 +54,17 @@ export const meta: MetaFunction = () => {
     "twitter:creator": "@Jack_DanielSG",
     "twitter:creator:id": "Jack_DanielSG",
   };
+
+  const properties = {
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+
+  return [...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {

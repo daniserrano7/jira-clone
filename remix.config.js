@@ -2,6 +2,7 @@
 module.exports = {
   future: {
     v2_normalizeFormMethod: true,
+    v2_meta: true,
   },
   ignoredRouteFiles: ["**/.*", "**/*.spec.ts"],
   appDirectory: "./src/app",
