@@ -106,7 +106,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     : "";
   const previousUrl = `/projects/${projectId}/board${sortBySeachParam}`;
 
-  if (_action === "upsert") {
+  if (_action === "update") {
     const name = formData.get("title") as string;
     const description = formData.get("description") as string;
     const categoryId = formData.get("status") as CategoryId;
@@ -133,8 +133,6 @@ export const action: ActionFunction = async ({ request, params }) => {
         { status: 400 }
       );
     }
-
-    console.log("ISSUE ID: ", id);
 
     await updateIssue(issueInputData);
     emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());

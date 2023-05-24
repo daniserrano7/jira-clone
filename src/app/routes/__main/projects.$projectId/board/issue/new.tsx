@@ -83,7 +83,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     : "";
   const previousUrl = `/projects/${projectId}/board${sortBySeachParam}`;
 
-  if (_action === "upsert") {
+  if (_action === "create") {
     const name = formData.get("title") as string;
     const description = formData.get("description") as string;
     const categoryId = formData.get("status") as CategoryId;

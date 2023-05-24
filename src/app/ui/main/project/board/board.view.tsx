@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useRevalidator } from "@remix-run/react";
 import { useEventSource } from "remix-utils";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { toast } from 'react-toastify';
 import { Project } from "@domain/project";
 import { Category } from "@domain/category";
 import { IssueId } from "@domain/issue";
@@ -18,7 +19,6 @@ export const BoardView = ({ project }: Props): JSX.Element => {
   return (
     <ProjectContextProvider project={project}>
       <div className="box-border flex h-full flex-col">
-        {/* <Alert /> */}
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">
@@ -39,21 +39,6 @@ export const BoardView = ({ project }: Props): JSX.Element => {
 
 interface Props {
   project: Project;
-}
-
-const Alert = () => {
-  const data = useEventSource("board/issue/issue-event", {
-    event: EVENTS.ISSUE_CREATED,
-  });
-
-  useEffect(() => {
-    console.log("DATA OF CREATED ISSUE: ", data)
-    alert("ISSUE CREATED")
-  }, [data]);
-
-  return (
-    <div></div>
-  )
 }
 
 const Categories = ({ categories }: CategoriesProps): JSX.Element => {
@@ -81,19 +66,12 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   );
 
   useEffect(() => {
-    console.log("DATA OF CREATED ISSUE: ", dataCreated)
-    if (dataCreated) {
-      alert("ISSUE CREATED")
-    }
-  }, [dataCreated, revalidate]);
-
-  useEffect(() => {
     setSubmittingIssues([]);
   }, [categories]);
 
+  // Revalidate to update category columns on event received
   useEffect(() => {
     revalidate();
-    console.log("DATA: ", dataUpdated)
   }, [dataUpdated, revalidate]);
 
   useEffect(() => {
