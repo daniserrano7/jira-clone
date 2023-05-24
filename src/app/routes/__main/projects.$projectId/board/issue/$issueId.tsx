@@ -134,13 +134,15 @@ export const action: ActionFunction = async ({ request, params }) => {
       );
     }
 
+    console.log("ISSUE ID: ", id);
+
     await updateIssue(issueInputData);
     emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
   }
 
   if (_action === "delete") {
     await deleteIssue(id);
-    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+    emitter.emit(EVENTS.ISSUE_DELETED, Date.now());
   }
 
   if (_action === "deleteComment") {

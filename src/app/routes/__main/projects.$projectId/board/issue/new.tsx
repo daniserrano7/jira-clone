@@ -112,7 +112,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     await createIssue(issueInputData);
 
-    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+    emitter.emit(EVENTS.ISSUE_CREATED, Date.now());
   }
 
   return redirect(previousUrl);

@@ -18,6 +18,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
   return (
     <ProjectContextProvider project={project}>
       <div className="box-border flex h-full flex-col">
+        {/* <Alert /> */}
         <section className="flex items-center">
           <Search />
           <div className="my-0 mx-4 inline">
@@ -40,13 +41,32 @@ interface Props {
   project: Project;
 }
 
+const Alert = () => {
+  const data = useEventSource("board/issue/issue-event", {
+    event: EVENTS.ISSUE_CREATED,
+  });
+
+  useEffect(() => {
+    console.log("DATA OF CREATED ISSUE: ", data)
+    alert("ISSUE CREATED")
+  }, [data]);
+
+  return (
+    <div></div>
+  )
+}
+
 const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [submittingIssues, setSubmittingIssues] = useState<IssueId[]>([]);
   const { revalidate } = useRevalidator();
   const navigate = useNavigate();
 
-  const data = useEventSource("board/issue/issue-event", {
+  const dataCreated = useEventSource("board/issue/issue-event", {
+    event: EVENTS.ISSUE_CREATED,
+  });
+
+  const dataUpdated = useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CHANGED,
   });
 
@@ -61,12 +81,20 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   );
 
   useEffect(() => {
+    console.log("DATA OF CREATED ISSUE: ", dataCreated)
+    if (dataCreated) {
+      alert("ISSUE CREATED")
+    }
+  }, [dataCreated, revalidate]);
+
+  useEffect(() => {
     setSubmittingIssues([]);
   }, [categories]);
 
   useEffect(() => {
     revalidate();
-  }, [data, revalidate]);
+    console.log("DATA: ", dataUpdated)
+  }, [dataUpdated, revalidate]);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);

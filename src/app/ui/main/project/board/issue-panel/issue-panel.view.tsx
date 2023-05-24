@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Form,
   useActionData,
-  useSubmit,
   useSearchParams,
   useTransition,
+  useFetcher,
   useLocation,
   useNavigate,
 } from "@remix-run/react";
@@ -37,7 +37,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const reporter = issue ? issue.reporter : user;
   const formRef = useRef<HTMLFormElement>(null);
   const actionData = useActionData() as IssueActionData;
-  const submit = useSubmit();
+  const fetcher = useFetcher();
   const params = useSearchParams();
   const transition = useTransition();
   const location = useLocation();
@@ -45,17 +45,19 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const initStatus = (params[0].get("category") as CategoryType) || "TODO";
   const userIsNotReporter = user.id !== reporter.id;
 
+  console.log("FETCHER STATE: ", fetcher.type)
+
   const postData = useCallback(
     (formTarget: HTMLFormElement) => {
       const formData = new FormData(formTarget);
       formData.set("comments", JSON.stringify(comments));
       formData.set("_action", "upsert");
 
-      submit(formData, {
+      fetcher.submit(formData, {
         method: "post",
       });
     },
-    [comments, submit]
+    [comments, fetcher]
   );
 
   const handleProgrammaticSubmit = useCallback((): void => {
@@ -108,6 +110,12 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
       }, 300);
     }
   }, [isOpen, navigate, location.pathname]);
+
+  useEffect(() => {
+    if (fetcher.type === "actionRedirect") {
+      alert("ISSUE CREATED");
+    }
+  }, [fetcher.type])
 
   return (
     <>
