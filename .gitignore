@@ -12,3 +12,6 @@ src/infrastructure/db/sqlite.db
 src/infrastructure/db/sqlite.db-journal
 package-lock.json
 pnpm-lock.yaml
+/test-results/
+/playwright-report/
+/playwright/.cache/
