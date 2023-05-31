@@ -2,14 +2,15 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Form,
   useActionData,
-  useSubmit,
   useSearchParams,
   useTransition,
+  useFetcher,
   useLocation,
   useNavigate,
 } from "@remix-run/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cx } from "classix";
+import { toast } from "react-toastify";
 import { CategoryType } from "@domain/category";
 import { Issue, defaultIssuesIds } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
@@ -37,7 +38,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const reporter = issue ? issue.reporter : user;
   const formRef = useRef<HTMLFormElement>(null);
   const actionData = useActionData() as IssueActionData;
-  const submit = useSubmit();
+  const fetcher = useFetcher();
   const params = useSearchParams();
   const transition = useTransition();
   const location = useLocation();
@@ -47,15 +48,17 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
 
   const postData = useCallback(
     (formTarget: HTMLFormElement) => {
+      const isExistingIssue = Boolean(issue?.id);
       const formData = new FormData(formTarget);
+      const action = isExistingIssue ? "update" : "create";
       formData.set("comments", JSON.stringify(comments));
-      formData.set("_action", "upsert");
+      formData.set("_action", action);
 
-      submit(formData, {
+      fetcher.submit(formData, {
         method: "post",
       });
     },
-    [comments, submit]
+    [comments, fetcher]
   );
 
   const handleProgrammaticSubmit = useCallback((): void => {
@@ -108,6 +111,14 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
       }, 300);
     }
   }, [isOpen, navigate, location.pathname]);
+
+  useEffect(() => {
+    const formAction = fetcher.formData?.get("_action");
+
+    if (fetcher.type === "actionRedirect" && formAction === "create") {
+      toast.success("Issue created successfully");
+    }
+  }, [fetcher.type])
 
   return (
     <>
@@ -204,7 +215,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       </div>
                     </div>
                     <div>
-                      <CreatedUpdatdAt issue={issue} />
+                      <CreatedUpdatedAt issue={issue} />
                     </div>
                   </section>
                 </div>
@@ -249,7 +260,7 @@ interface Props {
   issue?: Issue;
 }
 
-const CreatedUpdatdAt = ({ issue }: Props): JSX.Element => {
+const CreatedUpdatedAt = ({ issue }: Props): JSX.Element => {
   const values = [
     { label: "Created at:", value: issue?.createdAt },
     { label: "Updated at:", value: issue?.updatedAt },

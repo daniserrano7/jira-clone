@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useRevalidator } from "@remix-run/react";
 import { useEventSource } from "remix-utils";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { toast } from 'react-toastify';
 import { Project } from "@domain/project";
 import { Category } from "@domain/category";
 import { IssueId } from "@domain/issue";
@@ -46,7 +47,11 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const { revalidate } = useRevalidator();
   const navigate = useNavigate();
 
-  const data = useEventSource("board/issue/issue-event", {
+  const dataCreated = useEventSource("board/issue/issue-event", {
+    event: EVENTS.ISSUE_CREATED,
+  });
+
+  const dataUpdated = useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CHANGED,
   });
 
@@ -64,9 +69,10 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
     setSubmittingIssues([]);
   }, [categories]);
 
+  // Revalidate to update category columns on event received
   useEffect(() => {
     revalidate();
-  }, [data, revalidate]);
+  }, [dataUpdated, revalidate]);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);
