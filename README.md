@@ -42,7 +42,7 @@ cd jira-clone
 npm install
 ```
 
-The application needs a database to work. You can create it with Prisma by executing the following command:
+The application needs a database to work. You must first define the SQLite database url via environment variable. The repo provides a template named .sample.env with the structure of your env vars. You can then create your own .env file with the required values. Finally, you can create the database with Prisma by executing the following command:
 
 ```
 npx prisma db push
