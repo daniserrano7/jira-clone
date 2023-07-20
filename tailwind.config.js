@@ -1,81 +1,63 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-  content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/app/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
     colors: {
-      "primary-main": "#0052cc",
-      "primary-main-dark": "#3e8bfe",
-      "primary-light": "#deebff",
-      "primary-light-dark": "#002b4c",
-      "primary-main-hover": "#005ce6",
-      "primary-main-hover-dark": "#4c9aff",
-      "primary-light-hover": "#c5dcff",
-      "secondary-main": "#403294",
-      "secondary-light": "#EAE6FF",
-      "success-main": "#00875A",
-      "success-light": "#00a16b",
-      "warn-main": "#FFAB00",
-      "error-main": "red",
-      "error-main-dark": "#fe4c4c",
-      "error-light": "#ffe5e5",
-      "error-light-dark": "#2c0202",
-      "error-dark": "#b30000",
-      "error-dark-dark": "red",
-      "error-hover": "#fdd8d8",
-      "error-hover-dark": "#fe6f6f",
-      "white": "#fff",
-      "black": "#000",
-      "grey-100": "#fafbfc",
-      "grey-200": "#f4f5f7",
-      "grey-300": "#ebecf0",
-      "grey-400": "#e0e1e6",
-      "grey-500": "#dddddd",
-      "grey-600": "#d3d3d3",
-      "dark-100": "#444",
-      "dark-200": "#3d3d3d",
-      "dark-300": "#333",
-      "dark-400": "#2d2d2d",
-      "dark-500": "#222",
-      "font-main": "#172b4d",
-      "font-main-dark": "#E3FCEF",
-      "font-light": "#5e6c84",
-      "font-light-dark": "#838a86",
-      "font-grey": "#676767",
-      "font-success-main": "#006644",
-      "font-success-main-dark": "#00c382",
-      "font-success-light": "#E3FCEF",
-      "icon": "#344563",
-      "focus": "#4c9aff",
-      "transparent": "transparent",
+      "primary-main": "var(--color-primary-main)",
+      "primary-light": "var(--color-primary-light)",
+      "primary-main-hover": "var(--color-primary-main-hover)",
+      "primary-light-hover": "var(--color-primary-light-hover)",
+      "secondary-main": "var(--color-secondary-main)",
+      "secondary-light": "var(--color-secondary-light)",
+      "success-main": "var(--color-success-main)",
+      "success-light": "var(--color-success-light)",
+      "warn-main": "var(--color-warn-main)",
+      "error-main": "var(--color-error-main)",
+      "error-light": "var(--color-error-light)",
+      "error-hover": "var(--color-error-hover)",
+      white: "var(--color-white)",
+      black: "var(--color-black)",
+      "grey-100": "var(--color-grey-100)",
+      "grey-200": "var(--color-grey-200)",
+      "grey-300": "var(--color-grey-300)",
+      "grey-400": "var(--color-grey-400)",
+      "grey-500": "var(--color-grey-500)",
+      "grey-600": "var(--color-grey-600)",
+      "font-main": "var(--color-font-main)",
+      "font-light": "var(--color-font-light)",
+      "font-grey": "var(--color-font-grey)",
+      "font-success-main": "var(--color-font-success-main)",
+      "font-success-light": "var(--color-font-success-light)",
+      icon: "var(--color-icon)",
+      focus: "var(--color-focus)",
+      transparent: "var(--color-transparent)",
     },
     fontFamily: {
       "primary-light": ["CircularStdLight", "sans-serif"],
-      "primary": ["CircularStdMedium", "sans-serif"],
+      primary: ["CircularStdMedium", "sans-serif"],
       "primary-bold": ["CircularStdBold", "sans-serif"],
       "primary-black": ["CircularStdBlack", "sans-serif"],
     },
     boxShadow: {
-      "xs": "rgba(0,0,0, 0.2) 0px 1px 1px, rgba(0,0,0, 0.2) 0px 0px 1px",
-      "sm": "rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px",
-      "md": "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
-      "md-dark": "0 0 2px 1px rgba(0, 0, 0, 0.5)",
-      "lg": "rgba(14, 18, 22, 0.35) 0px 10px 38px -10px, rgba(14, 18, 22, 0.2) 0px 10px 20px -15px",
-      "blue": "5px 5px 20px 1px rgba(0, 82, 204, 0.2)",
+      xs: "rgba(0,0,0, 0.2) 0px 1px 1px, rgba(0,0,0, 0.2) 0px 0px 1px",
+      sm: "rgba(9, 30, 66, 0.25) 0px 1px 1px 0px, rgba(9, 30, 66, 0.31) 0px 0px 1px 0px",
+      md: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+      md: "0 0 2px 1px rgba(0, 0, 0, 0.5)",
+      lg: "rgba(14, 18, 22, 0.35) 0px 10px 38px -10px, rgba(14, 18, 22, 0.2) 0px 10px 20px -15px",
+      blue: "5px 5px 20px 1px rgba(0, 82, 204, 0.2)",
       "dialog-overlay": "rgba(0,0,0,0.45)",
     },
     extend: {
       fontSize: {
         "2xs": ["0.75rem", "1rem"],
-        "xs": ["0.8125rem", "1rem"],
+        xs: ["0.8125rem", "1rem"],
       },
       gridTemplateColumns: {
-        'auto-400': 'repeat(auto-fit, 400px)',
+        "auto-400": "repeat(auto-fit, 400px)",
       },
       keyframes: {
         // Dropdown menu
@@ -135,16 +117,13 @@ module.exports = {
         "slide-up": "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
         // Tooltip
         "slide-up-fade": "slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-        "slide-right-fade":
-          "slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-right-fade": "slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-down-fade": "slide-down-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         "slide-left-fade": "slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         // Toast
         "toast-hide": "toast-hide 100ms ease-in forwards",
-        "toast-slide-in-right":
-          "toast-slide-in-right 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-        "toast-slide-in-bottom":
-          "toast-slide-in-bottom 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "toast-slide-in-right": "toast-slide-in-right 150ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "toast-slide-in-bottom": "toast-slide-in-bottom 150ms cubic-bezier(0.16, 1, 0.3, 1)",
         "toast-swipe-out": "toast-swipe-out 100ms ease-out forwards",
       },
     },
@@ -152,23 +131,25 @@ module.exports = {
   plugins: [
     require("@tailwindcss/line-clamp"),
     require("tailwindcss-radix")(),
-    plugin(({ addUtilities }) => addUtilities({
-      ".flex-center": {
-        "justify-content": "center",
-        "align-items": "center",
-      },
-      ".scrollbar-hide": {
-        /* IE and Edge */
-        "-ms-overflow-style": "none",
+    plugin(({ addUtilities }) =>
+      addUtilities({
+        ".flex-center": {
+          "justify-content": "center",
+          "align-items": "center",
+        },
+        ".scrollbar-hide": {
+          /* IE and Edge */
+          "-ms-overflow-style": "none",
 
-        /* Firefox */
-        "scrollbar-width": "none",
+          /* Firefox */
+          "scrollbar-width": "none",
 
-        /* Safari and Chrome */
-        "&::-webkit-scrollbar": {
-          display: "none"
-        }
-      }
-    })),
+          /* Safari and Chrome */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      })
+    ),
   ],
-}
+};
