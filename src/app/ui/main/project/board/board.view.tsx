@@ -3,7 +3,6 @@ import { Outlet, useNavigate, useRevalidator } from "@remix-run/react";
 import { useEventSource } from "remix-utils";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { toast } from 'react-toastify';
 import { Project } from "@domain/project";
 import { Category } from "@domain/category";
 import { IssueId } from "@domain/issue";
@@ -47,7 +46,8 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const { revalidate } = useRevalidator();
   const navigate = useNavigate();
 
-  const dataCreated = useEventSource("board/issue/issue-event", {
+  // Data created
+  useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CREATED,
   });
 
@@ -82,7 +82,7 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
 
   return (
     <section className="mt-12 flex h-full flex-col">
-      <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+      <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80">
         Press <Kbd>Shift</Kbd> + <Kbd>N</Kbd> to create a new issue
       </span>
       <div className="flex h-full gap-3">

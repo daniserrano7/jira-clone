@@ -1,6 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { MdLightMode } from "react-icons/md";
-import { MdDarkMode } from "react-icons/md";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 import cx from "classix";
 import {
   Theme,
@@ -38,9 +37,7 @@ export const SelctTheme = (): JSX.Element => {
     },
   ];
   const currentValue = preference === Preference.SYSTEM ? preference : theme;
-  const triggerIconClass = cx(
-    "fill-icon group-hover:fill-primary-main dark:fill-grey-500 dark:group-hover:fill-white"
-  );
+  const triggerIconClass = cx("fill-icon group-hover:fill-primary-main");
 
   const selectTheme = (value: string): void => {
     if (isValidPreference(value)) {
@@ -57,7 +54,7 @@ export const SelctTheme = (): JSX.Element => {
       <Tooltip title="Select theme">
         <DropdownMenu.Trigger
           aria-label="Open theme select"
-          className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main dark:outline-grey-500 dark:hover:bg-dark-100 dark:hover:outline-white"
+          className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main"
         >
           {theme === Theme.LIGHT ? (
             <MdLightMode className={triggerIconClass} />
@@ -70,9 +67,9 @@ export const SelctTheme = (): JSX.Element => {
         <DropdownMenu.Content
           align="end"
           sideOffset={5}
-          className="z-50 origin-top-right rounded bg-white px-3 py-1 shadow-md-dark radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up dark:bg-dark-400"
+          className="z-50 origin-top-right rounded bg-white px-3 py-1 shadow-md-dark radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
         >
-          <DropdownMenu.Label className="text-gray-700 dark:text-gray-200 select-none py-2 text-lg">
+          <DropdownMenu.Label className="text-gray-700 select-none py-2 text-lg">
             Select theme
           </DropdownMenu.Label>
           <DropdownMenu.RadioGroup
@@ -85,22 +82,22 @@ export const SelctTheme = (): JSX.Element => {
                 key={value}
                 value={value}
                 className={cx(
-                  "group flex gap-4 rounded px-2 pt-1 pb-2 outline outline-2 outline-transparent hover:outline-primary-main dark:hover:text-primary-main-dark dark:hover:outline-primary-main-dark",
+                  "group flex gap-4 rounded px-2 pt-1 pb-2 outline outline-2 outline-transparent hover:outline-primary-main",
                   value === currentValue &&
-                    "bg-primary-light text-primary-main outline-primary-main dark:bg-primary-light-dark dark:text-primary-main-dark dark:outline-primary-main-dark"
+                    "bg-primary-light text-primary-main outline-primary-main"
                 )}
               >
                 <span
                   className={cx(
-                    "border-1 mt-1 flex h-4 w-4 rounded-full border flex-center group-hover:border-primary-main dark:group-hover:border-primary-main-dark",
+                    "border-1 mt-1 flex h-4 w-4 rounded-full border flex-center group-hover:border-primary-main",
                     value === currentValue
-                      ? "border-primary-main dark:border-primary-main-dark"
-                      : "border-grey-600 dark:border-white"
+                      ? "border-primary-main"
+                      : "border-grey-600"
                   )}
                 >
                   <span
                     className={cx(
-                      "h-2 w-2 rounded-full bg-primary-main dark:bg-primary-main-dark",
+                      "h-2 w-2 rounded-full bg-primary-main",
                       value === currentValue ? "block" : "hidden"
                     )}
                   />
@@ -110,7 +107,7 @@ export const SelctTheme = (): JSX.Element => {
                   <img
                     src={image}
                     alt={`${label} theme`}
-                    className="h-[100px] w-[180px] rounded border-2 border-grey-300 object-cover dark:border-dark-100"
+                    className="h-[100px] w-[180px] rounded border-2 border-grey-300 object-cover"
                   />
                 </div>
               </DropdownMenu.RadioItem>

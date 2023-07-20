@@ -176,7 +176,7 @@ export function CatchBoundary() {
           <Dialog.Content
             onPointerDownOutside={handleProgrammaticNavigation}
             className={cx(
-              "relative z-50 flex rounded-md bg-white py-12 px-20 shadow-lg flex-center dark:bg-dark-300",
+              "relative z-50 flex rounded-md bg-white py-12 px-20 shadow-lg flex-center",
               "duration-300 radix-state-open:animate-slide-up"
             )}
           >

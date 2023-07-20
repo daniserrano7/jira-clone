@@ -10,7 +10,7 @@ export const ErrorBase = ({ variant, message, href }: Props) => {
       />
       <a
         href={href}
-        className="max-w-[100px] text-lg text-primary-main hover:underline dark:text-primary-main-dark"
+        className="max-w-[100px] text-lg text-primary-main hover:underline"
       >
         {message}
       </a>

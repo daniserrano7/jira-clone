@@ -41,7 +41,7 @@ export const ViewComment = ({
       <p>{comment.message}</p>
       <div
         className={cx(
-          "mt-3 text-font-light dark:text-font-light-dark",
+          "mt-3 text-font-light",
           isNotSelfComment ? "hidden" : "visible"
         )}
       >

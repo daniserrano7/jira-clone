@@ -3,7 +3,7 @@ import cx from "classix";
 import { twix } from "tailwindcss-radix-ui";
 
 const buttonBaseClass = cx(
-  "border-none py-1.5 px-3.5 rounded bg-grey-300 dark:bg-dark-100 font-primary-bold cursor-pointer"
+  "border-none py-1.5 px-3.5 rounded bg-grey-300 font-primary-bold cursor-pointer"
 );
 
 export const Root = AlertDialog.Root;
@@ -15,7 +15,7 @@ export const Overlay = twix(
 );
 export const Content = twix(
   AlertDialog.Content,
-  "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-5 shadow-lg dark:bg-dark-300"
+  "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded bg-white p-5 shadow-lg"
 );
 export const Title = twix(
   AlertDialog.Title,
@@ -27,10 +27,7 @@ export const Description = twix(
 );
 export const Cancel = twix(
   AlertDialog.Cancel,
-  cx(
-    "hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-500",
-    buttonBaseClass
-  )
+  cx("hover:bg-grey-400", buttonBaseClass)
 );
 export const Confirm = (
   props: React.ButtonHTMLAttributes<HTMLButtonElement>
@@ -39,7 +36,7 @@ export const Confirm = (
     {...props}
     className={cx(
       buttonBaseClass,
-      "bg-error-light text-error-dark hover:bg-error-hover dark:bg-error-main-dark dark:text-error-light-dark dark:hover:bg-error-hover-dark",
+      "bg-error-light text-error-dark hover:bg-error-hover",
       props.className
     )}
   >

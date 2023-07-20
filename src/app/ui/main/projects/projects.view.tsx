@@ -13,11 +13,11 @@ export const ProjectsView = ({
   projectsSummary,
 }: ProjectsViewProps): JSX.Element => {
   return (
-    <div className="bg-white p-6 dark:bg-dark-400">
+    <div className="bg-white p-6">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
       <Link
         to="new"
-        className="mt-8 flex w-fit items-center rounded bg-grey-300 py-3 pl-3 pr-4 hover:bg-primary-light hover:text-primary-main dark:bg-dark-200 dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
+        className="mt-8 flex w-fit items-center rounded bg-grey-300 py-3 pl-3 pr-4 hover:bg-primary-light hover:text-primary-main"
       >
         <span>
           <AiOutlinePlus size={22} />
@@ -47,7 +47,7 @@ const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
         to={project.id}
         className={cx(
           "group flex rounded shadow-sm outline outline-2 outline-transparent duration-100 ease-linear",
-          "hover:-translate-y-0.5 hover:bg-primary-light hover:text-primary-main hover:shadow-md hover:outline-primary-main dark:bg-dark-200 dark:hover:text-primary-main-dark dark:hover:outline-primary-main-dark"
+          "hover:-translate-y-0.5 hover:bg-primary-light hover:text-primary-main hover:shadow-md hover:outline-primary-main"
         )}
       >
         <img
@@ -59,7 +59,7 @@ const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
         />
         <div className="flex flex-col gap-1 px-3 pt-2 pb-6">
           <h2 className="text-lg">{project.name}</h2>
-          <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-100 line-clamp-2 dark:text-white dark:text-opacity-60 dark:group-hover:text-primary-main-dark">
+          <h3 className="min-h-[40px] font-primary-light text-sm text-font-light text-opacity-100 line-clamp-2">
             {project.description}
           </h3>
         </div>
@@ -69,8 +69,8 @@ const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
           className={cx(
             "flex items-center gap-1 cursor-pointer border-none text-sm mt-1",
             isDefaultProject
-              ? "text-font-light dark:text-font-light-dark text-opacity-50 dark:text-opacity-40 cursor-not-allowed"
-              : "text-icon dark:text-font-light-dark hover:text-error-main dark:hover:text-error-main-dark"
+              ? "text-font-light text-opacity-50 cursor-not-allowed"
+              : "text-icon hover:text-error-main"
           )}
           aria-label="Open delete issue dialog"
           title={

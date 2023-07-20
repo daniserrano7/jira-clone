@@ -106,7 +106,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                       error={actionData?.errors?.name}
                     />
                   </Dialog.Title>
-                  <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                  <p className="font-primary-black text-font-main">
                     Description
                   </p>
                   <div className="-ml-3 mb-5">
@@ -116,7 +116,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                     {users.map((user) => (
                       <li
                         key={user.id}
-                        className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main dark:hover:bg-dark-200 dark:hover:outline-primary-main-dark"
+                        className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main"
                       >
                         <label
                           htmlFor={`checkbox-${user.id}`}
@@ -128,7 +128,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                           </span>
                           <Checkbox.Root
                             id={`checkbox-${user.id}`}
-                            className="h-[36px] w-[36px] rounded-md bg-white dark:bg-dark-500"
+                            className="h-[36px] w-[36px] rounded-md bg-white"
                             name="user"
                             value={user.id}
                             defaultChecked={user.id === loggedUser?.id}
@@ -143,7 +143,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                   </ul>
                 </div>
                 <div className="mt-6 grid grid-cols-3 items-end">
-                  <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  <span className="font-primary-light text-2xs text-font-light text-opacity-80">
                     Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                   </span>
                   <button
@@ -163,7 +163,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                       "Accept"
                     )}
                   </button>
-                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80">
                     Press <Kbd>Esc</Kbd> to close
                   </span>
                 </div>
@@ -189,7 +189,7 @@ interface Props {
 const Spinner = (): JSX.Element => (
   <svg
     aria-hidden="true"
-    className="dark:text-gray-600 mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
+    className="mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

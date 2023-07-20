@@ -17,7 +17,7 @@ export const Overlay = twix(
 export const Content = twix(
   Dialog.Content,
   cx(
-    "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
+    "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg",
     "duration-300 radix-state-open:animate-slide-up"
   )
 );

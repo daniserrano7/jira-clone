@@ -82,14 +82,14 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
   return (
     <div
       ref={dropRef}
-      className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200 dark:bg-dark-500"
+      className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200"
     >
       {/* Column drop area */}
       <div
         className={cx(
           "absolute z-50 box-border h-[100%] w-[100%] rounded p-1.5 duration-200",
           isDragging ? "visible" : "hidden",
-          isOver || "bg-white bg-opacity-70 dark:bg-dark-300 dark:bg-opacity-70"
+          isOver || "bg-white bg-opacity-70"
         )}
       >
         <div
@@ -98,25 +98,21 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
             isDragging ? "visible" : "hidden",
             isOver
               ? "border-solid border-success-main"
-              : "flex items-center justify-center border-dashed border-primary-main dark:border-primary-main-dark"
+              : "flex items-center justify-center border-dashed border-primary-main"
           )}
         >
-          {!isOver && (
-            <span className="rounded bg-white px-1 dark:bg-dark-100">
-              DROP HERE
-            </span>
-          )}
+          {!isOver && <span className="rounded bg-white px-1">DROP HERE</span>}
         </div>
       </div>
       {/* Column header */}
-      <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out dark:text-font-light-dark">
+      <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out">
         <span className="flex gap-2">
           <span>{category.name}</span>
           {!emptyCategory && <span>( {category.issues.length} )</span>}
         </span>
         <Link
           to={issueLink}
-          className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400 dark:text-font-light-dark dark:hover:bg-dark-100"
+          className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
           aria-label={`Add new ${category.name} issue`}
         >
           <AiOutlinePlus size={24} />
@@ -158,7 +154,7 @@ interface CategoryColumnProps {
 }
 
 const EmptyCategory = (): JSX.Element => (
-  <li className="mt-4 flex flex-col items-center text-font-light dark:text-font-light-dark">
+  <li className="mt-4 flex flex-col items-center text-font-light">
     <RxValueNone size={36} />
     <p className="mt-4 font-primary-light text-xs uppercase">No issues found</p>
   </li>

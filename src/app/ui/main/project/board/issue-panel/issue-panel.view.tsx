@@ -9,7 +9,6 @@ import {
   useNavigate,
 } from "@remix-run/react";
 import * as Dialog from "@app/components/dialog";
-import { cx } from "classix";
 import { toast } from "react-toastify";
 import { CategoryType } from "@domain/category";
 import { Issue, defaultIssuesIds } from "@domain/issue";
@@ -58,7 +57,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
         method: "post",
       });
     },
-    [comments, fetcher]
+    [comments, fetcher, issue?.id]
   );
 
   const handleProgrammaticSubmit = useCallback((): void => {
@@ -118,7 +117,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     if (fetcher.type === "actionRedirect" && formAction === "create") {
       toast.success("Issue created successfully");
     }
-  }, [fetcher.type]);
+  }, [fetcher.type, fetcher.formData]);
 
   return (
     <>
@@ -147,7 +146,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                         error={actionData?.errors?.name}
                       />
                     </Dialog.Title>
-                    <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                    <p className="font-primary-black text-font-main">
                       Description
                     </p>
                     <div className="-ml-3">
@@ -157,7 +156,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       />
                     </div>
                     <div className="mt-6">
-                      <p className="font-primary-black text-font-main dark:text-font-main-dark">
+                      <p className="font-primary-black text-font-main">
                         Comments
                       </p>
                       <div>
@@ -175,7 +174,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       </ul>
                     </div>
                   </section>
-                  <section className="col-span-2 space-y-10 dark:text-font-light-dark">
+                  <section className="col-span-2 space-y-10">
                     <div>
                       <p className="mb-1">Status</p>
                       <SelectStatus
@@ -194,7 +193,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                     </div>
                     <div>
                       <p className="mb-1">Reporter</p>
-                      <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1 dark:bg-dark-500">
+                      <div className="mt-1 flex w-fit items-center gap-2 rounded-full bg-grey-300 py-1 pl-1 pr-3.5 pb-1">
                         <UserAvatar {...reporter} />
                         <input
                           type="hidden"
@@ -210,7 +209,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   </section>
                 </div>
                 <div className="mt-6 grid grid-cols-3 items-end">
-                  <span className="font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  <span className="font-primary-light text-2xs text-font-light text-opacity-80">
                     Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                   </span>
                   <button
@@ -228,7 +227,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       "Accept"
                     )}
                   </button>
-                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80">
                     Press <Kbd>Esc</Kbd> to close
                   </span>
                 </div>
@@ -279,7 +278,7 @@ const CreatedUpdatedAt = ({ issue }: Props): JSX.Element => {
 const Spinner = (): JSX.Element => (
   <svg
     aria-hidden="true"
-    className="dark:text-gray-600 mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
+    className="mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

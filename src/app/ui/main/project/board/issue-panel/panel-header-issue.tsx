@@ -19,14 +19,12 @@ export const PanelHeaderIssue = ({
         <span className="flex items-center">
           <TaskIcon size={20} />
         </span>
-        <span className="ml-1 text-font-light text-opacity-80 dark:text-font-light-dark">
-          {id}
-        </span>
+        <span className="ml-1 text-font-light text-opacity-80">{id}</span>
       </span>
       <DeleteIssueModalDialog disabled={deleteDisabled} />
       <Link
         to={previousUrl}
-        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100"
+        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300"
         aria-label="Close issue panel"
       >
         <IoCloseOutline size={32} />
@@ -47,10 +45,8 @@ const DeleteIssueModalDialog = ({
     <AlertDialog.Root>
       <AlertDialog.Trigger
         className={cx(
-          "flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300 dark:text-font-light-dark dark:hover:bg-dark-100",
-          disabled
-            ? "cursor-not-allowed"
-            : "hover:text-error-main dark:hover:text-error-main-dark"
+          "flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300",
+          disabled ? "cursor-not-allowed" : "hover:text-error-main"
         )}
         aria-label="Open delete issue dialog"
         disabled={disabled}

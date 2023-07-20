@@ -4,8 +4,7 @@ import { HiOutlineViewBoards } from "react-icons/hi";
 import cx from "classix";
 import { RiArrowDropLeftLine } from "react-icons/ri";
 import { ImStatsDots } from "react-icons/im";
-import { BsListNested } from "react-icons/bs";
-import { BsCloudSlash } from "react-icons/bs";
+import { BsListNested, BsCloudSlash } from "react-icons/bs";
 import { TbError404 } from "react-icons/tb";
 
 export const Sidebar = (props: Props): JSX.Element => {
@@ -20,7 +19,7 @@ export const Sidebar = (props: Props): JSX.Element => {
     <aside className="relative flex">
       <div
         className={cx(
-          "flex h-full max-w-0 flex-col whitespace-nowrap bg-grey-100 opacity-0 duration-300 ease-out dark:bg-dark-500",
+          "flex h-full max-w-0 flex-col whitespace-nowrap bg-grey-100 opacity-0 duration-300 ease-out",
           isOpen && "w-[240px] max-w-[240px] whitespace-normal opacity-100"
         )}
       >
@@ -60,7 +59,7 @@ export const Sidebar = (props: Props): JSX.Element => {
         <button
           onClick={toggleSidebar}
           className={cx(
-            "absolute -left-[12px] mt-6 flex h-[24px] w-[24px] cursor-pointer items-center justify-center rounded-full border-none bg-white shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)] transition-transform delay-150 duration-200 ease-in hover:bg-primary-main hover:text-white dark:bg-dark-200 dark:hover:bg-dark-100",
+            "absolute -left-[12px] mt-6 flex h-[24px] w-[24px] cursor-pointer items-center justify-center rounded-full border-none bg-white shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)] transition-transform delay-150 duration-200 ease-in hover:bg-primary-main hover:text-white",
             !isOpen && "rotate-180"
           )}
           aria-label="Toggle sidebar"
@@ -115,11 +114,11 @@ const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
         cx(
           "group flex w-full cursor-pointer items-center gap-4 rounded border-none p-2 text-sm",
           isActive && !disabled
-            ? "bg-grey-300 text-primary-main dark:bg-dark-200 dark:text-primary-main-dark"
-            : "text-font-light dark:text-font-main-dark",
+            ? "bg-grey-300 text-primary-main"
+            : "text-font-light",
           disabled
             ? "!cursor-not-allowed hover:bg-transparent"
-            : "hover:bg-grey-300 dark:hover:bg-dark-100"
+            : "hover:bg-grey-300"
         )
       }
     >
@@ -127,7 +126,7 @@ const NavItem = ({ href, icon, name, disabled }: NavItemProps): JSX.Element => {
       <span className={cx(disabled && "group-hover:hidden")}>{name}</span>
       <span
         className={cx(
-          "itmes-center -ml-2 hidden rounded bg-grey-300 py-1 px-2 text-2xs uppercase disabled:hover:flex dark:bg-dark-100",
+          "itmes-center -ml-2 hidden rounded bg-grey-300 py-1 px-2 text-2xs uppercase disabled:hover:flex",
           disabled && "group-hover:block"
         )}
       >
