@@ -18,3 +18,4 @@ pnpm-lock.yaml
 /test-results/
 /playwright-report/
 /playwright/.cache/
+src/infrastructure/db/db.sqlite
