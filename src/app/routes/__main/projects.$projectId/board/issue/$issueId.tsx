@@ -1,7 +1,7 @@
 import type {
   ActionFunction,
   LoaderFunction,
-  MetaFunction,
+  V2_MetaFunction,
 } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { useLoaderData, useLocation, useNavigate } from "@remix-run/react";
@@ -26,26 +26,21 @@ import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
 import { Error404 } from "@app/components/error-404";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { emitter, EVENTS } from "@app/events";
+import { formatTags, formatProperties } from "@utils/meta";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   const { issue, projectId } = data as LoaderData;
   const title = `Jira clone - ${issue.name}`;
-  const description = issue.description;
+  const description = issue.description || "No description";
   const image =
     "https://jira-clone.fly.dev/static/images/readme/issue-panel.png";
   const url = `https://jira-clone.fly.dev/projects/${projectId}/board/issue/${issue.name}`;
 
-  return {
+  const tags = {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
     title: title,
     description: description,
-    "og:url": url,
-    "og:type": "website",
-    "og:site_name": title,
-    "og:title": title,
-    "og:description": description,
-    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
@@ -58,6 +53,17 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     "twitter:creator": "@Jack_DanielSG",
     "twitter:creator:id": "Jack_DanielSG",
   };
+
+  const properties = {
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+
+  return [...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {
@@ -100,7 +106,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     : "";
   const previousUrl = `/projects/${projectId}/board${sortBySeachParam}`;
 
-  if (_action === "upsert") {
+  if (_action === "update") {
     const name = formData.get("title") as string;
     const description = formData.get("description") as string;
     const categoryId = formData.get("status") as CategoryId;
@@ -134,7 +140,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
   if (_action === "delete") {
     await deleteIssue(id);
-    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+    emitter.emit(EVENTS.ISSUE_DELETED, Date.now());
   }
 
   if (_action === "deleteComment") {

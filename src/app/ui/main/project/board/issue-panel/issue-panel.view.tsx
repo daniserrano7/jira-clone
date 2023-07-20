@@ -2,14 +2,15 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import {
   Form,
   useActionData,
-  useSubmit,
   useSearchParams,
   useTransition,
+  useFetcher,
   useLocation,
   useNavigate,
 } from "@remix-run/react";
-import * as Dialog from "@radix-ui/react-dialog";
+import * as Dialog from "@app/components/dialog";
 import { cx } from "classix";
+import { toast } from "react-toastify";
 import { CategoryType } from "@domain/category";
 import { Issue, defaultIssuesIds } from "@domain/issue";
 import { Comment, CommentId } from "@domain/comment";
@@ -37,7 +38,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
   const reporter = issue ? issue.reporter : user;
   const formRef = useRef<HTMLFormElement>(null);
   const actionData = useActionData() as IssueActionData;
-  const submit = useSubmit();
+  const fetcher = useFetcher();
   const params = useSearchParams();
   const transition = useTransition();
   const location = useLocation();
@@ -47,15 +48,17 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
 
   const postData = useCallback(
     (formTarget: HTMLFormElement) => {
+      const isExistingIssue = Boolean(issue?.id);
       const formData = new FormData(formTarget);
+      const action = isExistingIssue ? "update" : "create";
       formData.set("comments", JSON.stringify(comments));
-      formData.set("_action", "upsert");
+      formData.set("_action", action);
 
-      submit(formData, {
+      fetcher.submit(formData, {
         method: "post",
       });
     },
-    [comments, submit]
+    [comments, fetcher]
   );
 
   const handleProgrammaticSubmit = useCallback((): void => {
@@ -109,25 +112,23 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
     }
   }, [isOpen, navigate, location.pathname]);
 
+  useEffect(() => {
+    const formAction = fetcher.formData?.get("_action");
+
+    if (fetcher.type === "actionRedirect" && formAction === "create") {
+      toast.success("Issue created successfully");
+    }
+  }, [fetcher.type]);
+
   return (
     <>
       <Dialog.Root open={true}>
         <Dialog.Portal container={portalContainer}>
-          <Dialog.Overlay
-            className={cx(
-              "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
-              "radix-state-open:animate-fade-in duration-300",
-              !isOpen && "bg-opacity-0"
-            )}
-          >
+          <Dialog.Overlay className={isOpen ? "" : "bg-opacity-0"}>
             <Dialog.Content
               onEscapeKeyDown={handleProgrammaticClose}
               onPointerDownOutside={handleProgrammaticClose}
-              className={cx(
-                "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-white py-6 px-8 shadow-lg dark:bg-dark-300",
-                "duration-300 radix-state-open:animate-slide-up",
-                !isOpen && "translate-y-[10px] opacity-0"
-              )}
+              className={isOpen ? "" : "translate-y-[10px] opacity-0"}
             >
               <PanelHeaderIssue
                 id={issue?.id || "Create new issue"}
@@ -204,7 +205,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       </div>
                     </div>
                     <div>
-                      <CreatedUpdatdAt issue={issue} />
+                      <CreatedUpdatedAt issue={issue} />
                     </div>
                   </section>
                 </div>
@@ -249,7 +250,7 @@ interface Props {
   issue?: Issue;
 }
 
-const CreatedUpdatdAt = ({ issue }: Props): JSX.Element => {
+const CreatedUpdatedAt = ({ issue }: Props): JSX.Element => {
   const values = [
     { label: "Created at:", value: issue?.createdAt },
     { label: "Updated at:", value: issue?.updatedAt },
