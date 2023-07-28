@@ -4,49 +4,14 @@
 
 @layer base {
   * {
-    /* @apply focus-visible:outline;
+    @apply focus-visible:outline;
     @apply focus-visible:outline-2;
-    @apply focus-visible:outline-primary-main; */
-    /* @apply dark:focus-visible:outline-primary-main; */
+    @apply focus-visible:outline-primary-main;
+    @apply dark:focus-visible:outline-primary-main;
   }
 }
 
 :root {
-  --Blue800: rgb(0, 85, 204);
-  --Red500: rgb(255, 59, 48);
-  --Green500: rgb(76, 217, 100);
-}
-
-:root,
-.light {
-  /* Text */
-  --color-text: var(--Blue800);
-  --color-text-success: var(--Blue800);
-  --color-text-danger: var(--Blue800);
-  --color-text-warning: var(--Blue800);
-  --color-text-info: var(--Blue800);
-  --color-text-subtle: var(--Blue800);
-  --color-text-subtlest: var(--Blue800);
-  --color-text-accent-blue: var(--Blue800);
-  --color-text-accent-green: var(--Green500);
-  --color-text-accent-grey: var(--Blue800);
-  --color-text-link: var(--Blue800);
-  --color-text-link-hover: var(--Blue800);
-  --color-text-link-pressed: var(--Blue800);
-
-  /* Elevation */
-  --color-elevation-surface: var(--Blue800);
-  --color-elevation-surface-hovered: var(--Blue800);
-  --color-elevation-surface-pressed: var(--Blue800);
-  --color-elevation-surface-overlay: var(--Blue800);
-  --color-elevation-surface-overlay-hovered: var(--Blue800);
-  --color-elevation-surface-overlay-pressed: var(--Blue800);
-  --color-elevation-surface-raised: var(--Blue800);
-  --color-elevation-surface-raised-hovered: var(--Blue800);
-  --color-elevation-surface-raised-pressed: var(--Blue800);
-  --color-elevation-surface-sunken: var(--Blue800);
-  --color-shadow-overlay: var(--Blue800);
-
   --color-primary-main: #0052cc;
   --color-primary-light: #deebff;
   --color-primary-main-hover: #005ce6;

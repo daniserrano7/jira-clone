@@ -120,7 +120,7 @@ const App = (): JSX.Element => {
   }, []);
 
   return (
-    <html lang="en" className={cx("h-full", isDarkTheme && Theme.DARK)}>
+    <html lang="en" className={cx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
