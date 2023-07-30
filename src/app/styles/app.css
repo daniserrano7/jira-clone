@@ -23,6 +23,8 @@
   --DarkNeutral100: #172b4d;
 
   --Blue700: #0c66e4;
+  --Blue800: #0055cc;
+  --Blue900: #09326c;
 }
 
 :root,
@@ -41,6 +43,7 @@
   --color-font-link: var(--Placeholder);
   --color-font-link-hover: var(--Placeholder);
   --color-font-link-pressed: var(--Placeholder);
+  --color-font-inverse: var(--Neutral0);
 
   /* Elevation */
   --color-elevation-surface: var(--Neutral0);
@@ -57,6 +60,8 @@
 
   /* Background */
   --color-background-brand: var(--Blue700);
+  --color-background-brand-hovered: var(--Blue800);
+  --color-background-brand-pressed: var(--Blue900);
   --color-background-success: var(--Placeholder);
   --color-background-info: var(--Placeholder);
   --color-background-warning: var(--Placeholder);

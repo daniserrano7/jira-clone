@@ -16,6 +16,7 @@ module.exports = {
         subtle: "var(--color-font-subtle)",
         subtlest: "var(--color-font-subtlest)",
         selected: "var(--color-font-selected)",
+        inverse: "var(--color-font-inverse)",
         accent: {
           DEFAULT: "var(--color-font-accent)",
           green: "var(--color-font-accent-green)",
@@ -41,7 +42,11 @@ module.exports = {
         },
       },
       background: {
-        brand: "var(--color-background-brand)",
+        brand: {
+          DEFAULT: "var(--color-background-brand)",
+          hovered: "var(--color-background-brand-hovered)",
+          pressed: "var(--color-background-brand-pressed)",
+        },
         success: "var(--color-background-success)",
         info: "var(--color-background-info)",
         warning: "var(--color-background-warning)",

@@ -4,7 +4,7 @@ export const Button = ({ children, className, ...props }: Props) => {
   return (
     <button
       className={cx(
-        "text-white hover:bg-primary-main-hover rounded bg-background-brand p-2",
+        "rounded bg-background-brand p-2 text-font-inverse hover:bg-background-brand-hovered active:bg-background-brand-pressed",
         className
       )}
       {...props}
