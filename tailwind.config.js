@@ -7,20 +7,20 @@ module.exports = {
   darkMode: "class",
   theme: {
     colors: {
-      text: {
-        DEFAULT: "var(--color-text)",
-        success: "var(--color-text-success)",
-        info: "var(--color-text-info)",
-        warning: "var(--color-text-warning)",
-        danger: "var(--color-text-danger)",
-        subtle: "var(--color-text-subtle)",
-        subtlest: "var(--color-text-subtlest)",
-        selected: "var(--color-text-selected)",
+      font: {
+        DEFAULT: "var(--color-font)",
+        success: "var(--color-font-success)",
+        info: "var(--color-font-info)",
+        warning: "var(--color-font-warning)",
+        danger: "var(--color-font-danger)",
+        subtle: "var(--color-font-subtle)",
+        subtlest: "var(--color-font-subtlest)",
+        selected: "var(--color-font-selected)",
         accent: {
-          DEFAULT: "var(--color-text-accent)",
-          green: "var(--color-text-accent-green)",
-          blue: "var(--color-text-accent-blue)",
-          grey: "var(--color-text-accent-grey)",
+          DEFAULT: "var(--color-font-accent)",
+          green: "var(--color-font-accent-green)",
+          blue: "var(--color-font-accent-blue)",
+          grey: "var(--color-font-accent-grey)",
         },
       },
       link: {
@@ -41,7 +41,7 @@ module.exports = {
         },
       },
       background: {
-        DEFAULT: "var(--color-background)",
+        brand: "var(--color-background-brand)",
         success: "var(--color-background-success)",
         info: "var(--color-background-info)",
         warning: "var(--color-background-warning)",

@@ -98,7 +98,6 @@ const App = (): JSX.Element => {
   const { theme: sessionTheme, preference: sessionPreference } = loaderData;
   const { theme } = useTheme();
   const fetcher = useFetcher();
-  const isDarkTheme = theme === Theme.DARK;
 
   useEffect(() => {
     // To avoid missmatch between server and client, theme is loaded
@@ -125,7 +124,7 @@ const App = (): JSX.Element => {
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main">
+      <body className="bg-elevation-surface h-full font-primary text-font">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
