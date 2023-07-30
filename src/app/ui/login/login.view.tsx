@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Form } from "@remix-run/react";
 import * as Select from "@radix-ui/react-select";
 import { User, UserId, userMock1 } from "@domain/user";
+import { Button } from "@app/components/button";
 import { UserAvatar } from "@app/components/user-avatar";
 import {
   SelectContent,
@@ -62,15 +63,15 @@ export const LoginView = ({ users }: Props) => {
             <Select.ScrollDownButton />
           </SelectContent>
         </Select.Root>
-        <button
+        <Button
           type="submit"
           name="_action"
           value="setUser"
           aria-label="Login"
-          className="mt-2 w-full rounded bg-primary-main p-2 text-white hover:bg-primary-main-hover"
+          className="mt-2 w-full"
         >
           Login
-        </button>
+        </Button>
       </Form>
     </div>
   );
