@@ -41,6 +41,25 @@ module.exports = {
           grey: "var(--color-border-accent-grey)",
         },
       },
+      elevation: {
+        surface: {
+          DEFAULT: "var(--color-elevation-surface)",
+          hovered: "var(--color-elevation-surface-hovered)",
+          pressed: "var(--color-elevation-surface-pressed)",
+          raised: {
+            DEFAULT: "var(--color-elevation-surface-raised)",
+            hovered: "var(--color-elevation-surface-raised-hovered)",
+            pressed: "var(--color-elevation-surface-raised-pressed)",
+          },
+          overlay: {
+            DEFAULT: "var(--color-elevation-surface-overlay)",
+            hovered: "var(--color-elevation-surface-overlay-hovered)",
+            pressed: "var(--color-elevation-surface-overlay-pressed)",
+          },
+          sunken: "var(--color-elevation-surface-sunken)",
+        },
+        "shadow-overflow": "var(--color-shadow-overlay)",
+      },
       background: {
         brand: {
           DEFAULT: "var(--color-background-brand)",
@@ -53,12 +72,21 @@ module.exports = {
         danger: "var(--color-background-danger)",
         subtle: "var(--color-background-subtle)",
         subtlest: "var(--color-background-subtlest)",
-        selected: "var(--color-background-selected)",
+        selected: {
+          DEFAULT: "var(--color-background-selected)",
+          hovered: "var(--color-background-selected-hovered)",
+          pressed: "var(--color-background-selected-pressed)",
+        },
         accent: {
           DEFAULT: "var(--color-background-accent)",
           green: "var(--color-background-accent-green)",
           blue: "var(--color-background-accent-blue)",
-          grey: "var(--color-background-accent-grey)",
+          grey: {
+            subtlest: "var(--color-background-accent-grey-subtlest)",
+            subtler: "var(--color-background-accent-grey-subtler)",
+            subtle: "var(--color-background-accent-grey-subtle)",
+            bolder: "var(--color-background-accent-grey-bolder)",
+          },
         },
         disabled: "var(--color-background-disabled)",
         input: {
@@ -66,6 +94,7 @@ module.exports = {
           hovered: "var(--color-background-input-hovered)",
         },
       },
+      transparent: "transparent",
       // "primary-main": "var(--color-primary-main)",
       // "primary-light": "var(--color-primary-light)",
       // "primary-main-hover": "var(--color-primary-main-hover)",

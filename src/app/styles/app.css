@@ -17,11 +17,22 @@
   --Green500: rgb(76, 217, 100);
 
   --Neutral0: #ffffff;
+  --Neutral100: #f7f8f9;
+  --Neutral200: #f1f2f4;
+  --Neutral300: #dcdfe4;
+  --Neutral400: #b3b9c4;
+  --Neutral500: #8590a2;
+  --Neutral600: #758195;
+  --Neutral700: #626f86;
   --Neutral800: #44546f;
+  --Neutral900: #2c3e5d;
   --Neutral1000: #172b4d;
 
   --DarkNeutral100: #172b4d;
 
+  --Blue100: #e9f2ff;
+  --Blue200: #cce0ff;
+  --Blue300: #85b8ff;
   --Blue700: #0c66e4;
   --Blue800: #0055cc;
   --Blue900: #09326c;
@@ -47,16 +58,16 @@
 
   /* Elevation */
   --color-elevation-surface: var(--Neutral0);
-  --color-elevation-surface-hovered: var(--Placeholder);
-  --color-elevation-surface-pressed: var(--Placeholder);
-  --color-elevation-surface-overlay: var(--Placeholder);
-  --color-elevation-surface-overlay-hovered: var(--Placeholder);
-  --color-elevation-surface-overlay-pressed: var(--Placeholder);
-  --color-elevation-surface-raised: var(--Placeholder);
-  --color-elevation-surface-raised-hovered: var(--Placeholder);
-  --color-elevation-surface-raised-pressed: var(--Placeholder);
-  --color-elevation-surface-sunken: var(--Placeholder);
-  --color-shadow-overlay: var(--Placeholder);
+  --color-elevation-surface-hovered: var(--Neutral200);
+  --color-elevation-surface-pressed: var(--Neutral300);
+  --color-elevation-surface-overlay: var(--Neutral0);
+  --color-elevation-surface-overlay-hovered: var(--Neutral200);
+  --color-elevation-surface-overlay-pressed: var(--Neutral300);
+  --color-elevation-surface-raised: var(--Neutral0);
+  --color-elevation-surface-raised-hovered: var(--Neutral200);
+  --color-elevation-surface-raised-pressed: var(--Neutral300);
+  --color-elevation-surface-sunken: var(--Neutral100);
+  --color-shadow-overflow: 0px 0px 8px rgba(9, 30, 66, 0.16), 0px 0px 1px rgba(9, 30, 66, 0.12);
 
   /* Background */
   --color-background-brand: var(--Blue700);
@@ -68,14 +79,22 @@
   --color-background-danger: var(--Placeholder);
   --color-background-subtle: var(--Placeholder);
   --color-background-subtlest: var(--Placeholder);
-  --color-background-selected: var(--Placeholder);
+  --color-background-selected: var(--Blue100);
+  --color-background-selected-hovered: var(--Blue200);
+  --color-background-selected-pressed: var(--Blue300);
   --color-background-accent: var(--Placeholder);
   --color-background-accent-green: var(--Placeholder);
   --color-background-accent-blue: var(--Placeholder);
-  --color-background-accent-grey: var(--Placeholder);
+  --color-background-accent-grey-subtlest: var(--Neutral200);
+  --color-background-accent-grey-subtler: var(--Neutral300);
+  --color-background-accent-grey-subtle: var(--Neutral500);
+  --color-background-accent-grey-bolder: var(--Neutral700);
   --color-background-disabled: var(--Placeholder);
   --color-background-input: var(--Placeholder);
   --color-background-input-hovered: var(--Placeholder);
+
+  /* Border */
+  --color-border-selected: var(--Blue700);
 
   --color-primary-main: #0052cc;
   --color-primary-light: #deebff;
