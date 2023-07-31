@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       font: {
         DEFAULT: "var(--color-font)",
+        brand: "var(--color-font-brand)",
         success: "var(--color-font-success)",
         info: "var(--color-font-info)",
         warning: "var(--color-font-warning)",
@@ -17,6 +18,7 @@ module.exports = {
         subtlest: "var(--color-font-subtlest)",
         selected: "var(--color-font-selected)",
         inverse: "var(--color-font-inverse)",
+        disabled: "var(--color-font-disabled)",
         accent: {
           DEFAULT: "var(--color-font-accent)",
           green: "var(--color-font-accent-green)",
@@ -32,6 +34,7 @@ module.exports = {
       icon: "var(--color-icon)",
       border: {
         DEFAULT: "var(--color-border)",
+        brand: "var(--color-border-brand)",
         disabled: "var(--color-border-disabled)",
         focused: "var(--color-border-focused)",
         selected: "var(--color-border-selected)",
@@ -62,9 +65,21 @@ module.exports = {
       },
       background: {
         brand: {
-          DEFAULT: "var(--color-background-brand)",
-          hovered: "var(--color-background-brand-hovered)",
-          pressed: "var(--color-background-brand-pressed)",
+          subtlest: {
+            DEFAULT: "var(--color-background-brand-subtlest)",
+            hovered: "var(--color-background-brand-subtlest-hovered)",
+            pressed: "var(--color-background-brand-subtlest-pressed)",
+          },
+          bold: {
+            DEFAULT: "var(--color-background-brand-bold)",
+            hovered: "var(--color-background-brand-bold-hovered)",
+            pressed: "var(--color-background-brand-bold-pressed)",
+          },
+          boldest: {
+            DEFAULT: "var(--color-background-brand-boldest)",
+            hovered: "var(--color-background-brand-boldest-hovered)",
+            pressed: "var(--color-background-brand-boldest-pressed)",
+          },
         },
         success: "var(--color-background-success)",
         info: "var(--color-background-info)",
@@ -80,7 +95,12 @@ module.exports = {
         accent: {
           DEFAULT: "var(--color-background-accent)",
           green: "var(--color-background-accent-green)",
-          blue: "var(--color-background-accent-blue)",
+          blue: {
+            subtlest: "var(--color-background-accent-blue-subtlest)",
+            subtler: "var(--color-background-accent-blue-subtler)",
+            subtle: "var(--color-background-accent-blue-subtle)",
+            bolder: "var(--color-background-accent-blue-bolder)",
+          },
           grey: {
             subtlest: "var(--color-background-accent-grey-subtlest)",
             subtler: "var(--color-background-accent-grey-subtler)",
