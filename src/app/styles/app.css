@@ -46,6 +46,9 @@
   --Red100: #ffedeb;
   --Red200: #ffd2cc;
   --Red300: #ff9c8f;
+  --Red400: #f87462;
+  --Red500: #ef5c48;
+  --Red600: #e34935;
   --Red700: #ca3521;
   --Red800: #ae2a19;
   --Red900: #601e16;
@@ -134,6 +137,7 @@
   --color-border-brand: var(--Blue700);
   --color-border-selected: var(--Blue700);
   --color-border-accent-blue: var(--Blue600);
+  --color-border-danger: var(--Red600);
 
   --color-primary-main: #0052cc;
   --color-primary-light: #deebff;

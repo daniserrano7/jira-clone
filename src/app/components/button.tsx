@@ -9,9 +9,9 @@ export const Button = ({
   return (
     <button
       className={cx(
-        "flex items-center justify-center rounded p-2",
+        "flex cursor-pointer items-center justify-center rounded p-2 disabled:cursor-not-allowed disabled:opacity-60",
         variant === "primary" &&
-          "bg-background-brand hover:bg-background-brand-hovered active:bg-background-brand-pressed text-font-inverse",
+          "bg-background-brand-bold text-font-inverse hover:bg-background-brand-bold-hovered active:bg-background-brand-bold-pressed",
         variant === "neutral" &&
           "bg-background-accent-grey-subtlest hover:bg-background-accent-grey-subtler active:bg-background-accent-grey-subtle",
         variant === "danger" &&

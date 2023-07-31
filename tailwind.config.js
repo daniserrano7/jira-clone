@@ -35,6 +35,7 @@ module.exports = {
       border: {
         DEFAULT: "var(--color-border)",
         brand: "var(--color-border-brand)",
+        danger: "var(--color-border-danger)",
         disabled: "var(--color-border-disabled)",
         focused: "var(--color-border-focused)",
         selected: "var(--color-border-selected)",

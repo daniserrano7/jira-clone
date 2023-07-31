@@ -9,6 +9,7 @@ import { Project } from "@domain/project";
 import { ActionData as ProjectActionData } from "@app/routes/__main/projects/new";
 import { useUserStore } from "@app/store/user.store";
 import { UserAvatar } from "@app/components/user-avatar";
+import { Button } from "@app/components/button";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/kbd-placeholder";
@@ -99,16 +100,14 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
               <PanelHeaderProject id={project?.id || "Create new project"} />
               <Form method="post" ref={formRef}>
                 <div className="mb-6">
-                  <Dialog.Title className="mt-5 mb-8 -ml-3">
+                  <Dialog.Title className="-ml-3 mb-8 mt-5">
                     <Title
                       initTitle={project?.name || ""}
                       maxLength={30}
                       error={actionData?.errors?.name}
                     />
                   </Dialog.Title>
-                  <p className="font-primary-black text-font-main">
-                    Description
-                  </p>
+                  <p className="font-primary-black">Description</p>
                   <div className="-ml-3 mb-5">
                     <Description initDescription={project?.description || ""} />
                   </div>
@@ -116,7 +115,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                     {users.map((user) => (
                       <li
                         key={user.id}
-                        className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-grey-300 hover:outline-primary-main"
+                        className="-mx-2 rounded-lg px-2 outline outline-2 outline-transparent duration-75 ease-linear hover:bg-background-brand-subtlest hover:outline-border-brand"
                       >
                         <label
                           htmlFor={`checkbox-${user.id}`}
@@ -128,13 +127,16 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                           </span>
                           <Checkbox.Root
                             id={`checkbox-${user.id}`}
-                            className="h-[36px] w-[36px] rounded-md bg-white"
+                            className="bg-white h-[36px] w-[36px] rounded-md"
                             name="user"
                             value={user.id}
                             defaultChecked={user.id === loggedUser?.id}
                           >
-                            <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-primary-main duration-150 ease-in flex-center">
-                              <BsCheckLg size={16} className="text-grey-400" />
+                            <Checkbox.Indicator className="flex h-[36px] w-[36px] rounded-md bg-background-brand-bold duration-150 ease-in flex-center">
+                              <BsCheckLg
+                                size={16}
+                                className="text-font-inverse"
+                              />
                             </Checkbox.Indicator>
                           </Checkbox.Root>
                         </label>
@@ -142,28 +144,31 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                     ))}
                   </ul>
                 </div>
-                <div className="mt-6 grid grid-cols-3 items-end">
-                  <span className="font-primary-light text-2xs text-font-light text-opacity-80">
+                <div className="mt-6 grid grid-cols-3 items-end justify-center">
+                  <span className="font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                   </span>
-                  <button
-                    type="submit"
-                    name="_action"
-                    value="upsert"
-                    className="flex w-fit cursor-pointer items-center gap-4 justify-self-center rounded border-none bg-primary-main py-2 px-8 font-primary-bold text-lg text-white enabled:hover:bg-primary-main-hover disabled:cursor-not-allowed disabled:opacity-60"
-                    disabled={fetcher.state !== "idle"}
-                    aria-label="Accept changes"
-                  >
-                    {fetcher.state !== "idle" ? (
-                      <>
-                        Submmiting
-                        <Spinner />
-                      </>
-                    ) : (
-                      "Accept"
-                    )}
-                  </button>
-                  <span className="justify-self-end font-primary-light text-2xs text-font-light text-opacity-80">
+                  <div className="flex justify-center">
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      name="_action"
+                      value="upsert"
+                      className="w-fit gap-2 px-8 py-2 font-primary-bold text-lg"
+                      disabled={fetcher.state !== "idle"}
+                      aria-label="Accept changes"
+                    >
+                      {fetcher.state !== "idle" ? (
+                        <>
+                          Submmiting
+                          <Spinner />
+                        </>
+                      ) : (
+                        "Accept"
+                      )}
+                    </Button>
+                  </div>
+                  <span className="justify-self-end font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Esc</Kbd> to close
                   </span>
                 </div>
@@ -175,7 +180,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
       {/* To avoid hydration issues because a missmatch with the server*/}
       <div
         ref={setPortalContainer}
-        className="fixed top-0 left-0 w-full h-full z-50"
+        className="fixed left-0 top-0 z-50 h-full w-full"
       />
     </>
   );
@@ -189,7 +194,7 @@ interface Props {
 const Spinner = (): JSX.Element => (
   <svg
     aria-hidden="true"
-    className="mr-2 inline-block h-5 w-5 animate-spin fill-grey-600"
+    className="fill-grey-600 mr-2 inline-block h-5 w-5 animate-spin"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

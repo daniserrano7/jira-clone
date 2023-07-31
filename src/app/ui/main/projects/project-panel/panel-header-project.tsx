@@ -9,11 +9,11 @@ export const PanelHeaderProject = ({
   return (
     <div className="flex">
       <span className="flex flex-grow items-center">
-        <span className="ml-1 text-font-light text-opacity-80">{id}</span>
+        <span className="ml-1">{id}</span>
       </span>
       <Link
         to="/projects"
-        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300"
+        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-background-accent-grey-subtlest"
       >
         <IoCloseOutline size={32} />
       </Link>

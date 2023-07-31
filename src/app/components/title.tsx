@@ -40,12 +40,12 @@ export const Title = ({
         textareaClassName={cx(
           "font-primary-black text-2xl",
           requireError &&
-            "focus-visible:outline-error-main outline outline-2 outline-error-main"
+            "focus-visible:outline-border-danger outline outline-2 outline-border-danger"
         )}
         autofocus
       />
       {requireError && (
-        <span className="ml-3 font-primary-light text-sm text-error-main">
+        <span className="ml-3 font-primary-light text-sm text-font-danger">
           {error}
         </span>
       )}
@@ -53,7 +53,7 @@ export const Title = ({
         <span
           className={cx(
             "absolute right-0 top-full font-primary-light",
-            isMaxLength ? "text-error-main" : "text-font-light"
+            isMaxLength ? "text-font-danger" : "text-font-subtlest"
           )}
         >
           {title.length} / {maxLength}
