@@ -19,12 +19,12 @@ export const PanelHeaderIssue = ({
         <span className="flex items-center">
           <TaskIcon size={20} />
         </span>
-        <span className="ml-1 text-font-light text-opacity-80">{id}</span>
+        <span className="text-font-light ml-1 text-opacity-80">{id}</span>
       </span>
       <DeleteIssueModalDialog disabled={deleteDisabled} />
       <Link
         to={previousUrl}
-        className="ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon hover:bg-grey-300"
+        className="hover:bg-grey-300 ml-3 flex cursor-pointer rounded border-none p-0.5 text-icon"
         aria-label="Close issue panel"
       >
         <IoCloseOutline size={32} />
@@ -45,7 +45,7 @@ const DeleteIssueModalDialog = ({
     <AlertDialog.Root>
       <AlertDialog.Trigger
         className={cx(
-          "flex cursor-pointer rounded border-none p-1.5 text-icon flex-center hover:bg-grey-300",
+          "hover:bg-grey-300 flex cursor-pointer rounded border-none p-1.5 text-icon flex-center",
           disabled ? "cursor-not-allowed" : "hover:text-error-main"
         )}
         aria-label="Open delete issue dialog"
@@ -65,14 +65,14 @@ const DeleteIssueModalDialog = ({
           </AlertDialog.Description>
           <Form method="delete" className="mt-8 flex w-full justify-end gap-4">
             <AlertDialog.Cancel aria-label="Cancel">Cancel</AlertDialog.Cancel>
-            <AlertDialog.Confirm
+            <AlertDialog.Action
               name="_action"
               value="delete"
               type="submit"
               aria-label="Delete issue"
             >
               Delete
-            </AlertDialog.Confirm>
+            </AlertDialog.Action>
           </Form>
         </AlertDialog.Content>
       </AlertDialog.Portal>

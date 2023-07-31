@@ -101,14 +101,14 @@ const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
               <AlertDialog.Cancel aria-label="Cancel">
                 Cancel
               </AlertDialog.Cancel>
-              <AlertDialog.Confirm
+              <AlertDialog.Action
                 name="_action"
                 value="delete"
                 type="submit"
                 aria-label="Delete issue"
               >
                 Delete
-              </AlertDialog.Confirm>
+              </AlertDialog.Action>
               <input type="hidden" name="projectId" value={project.id} />
             </Form>
           </AlertDialog.Content>

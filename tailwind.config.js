@@ -61,7 +61,10 @@ module.exports = {
           },
           sunken: "var(--color-elevation-surface-sunken)",
         },
-        "shadow-overflow": "var(--color-shadow-overlay)",
+        shadow: {
+          overflow: "var(--color-elevation-shadow-overflow)",
+          overlay: "var(--color-elevation-shadow-overlay)",
+        },
       },
       background: {
         brand: {
@@ -81,10 +84,19 @@ module.exports = {
             pressed: "var(--color-background-brand-boldest-pressed)",
           },
         },
+        danger: {
+          DEFAULT: "var(--color-background-danger)",
+          hovered: "var(--color-background-danger-hovered)",
+          pressed: "var(--color-background-danger-pressed)",
+          bold: {
+            DEFAULT: "var(--color-background-danger-bold)",
+            hovered: "var(--color-background-danger-bold-hovered)",
+            pressed: "var(--color-background-danger-bold-pressed)",
+          },
+        },
         success: "var(--color-background-success)",
         info: "var(--color-background-info)",
         warning: "var(--color-background-warning)",
-        danger: "var(--color-background-danger)",
         subtle: "var(--color-background-subtle)",
         subtlest: "var(--color-background-subtlest)",
         selected: {
