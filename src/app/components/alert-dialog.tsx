@@ -1,11 +1,6 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import cx from "classix";
 import { twix } from "tailwindcss-radix-ui";
 import { Button, Props as ButtonProps } from "./button";
-
-const buttonBaseClass = cx(
-  "border-none py-1.5 px-3.5 rounded bg-grey-300 font-primary-bold cursor-pointer"
-);
 
 export const Root = AlertDialog.Root;
 export const Trigger = AlertDialog.Trigger;
