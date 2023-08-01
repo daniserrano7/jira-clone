@@ -20,11 +20,11 @@ export const Tooltip = ({
       </div>
       <div
         className={cx(
-          "z-80 absolute top-full left-1/2 mt-1.5 -translate-x-1/2 transform justify-center break-words",
+          "z-80 absolute left-1/2 top-full mt-1.5 -translate-x-1/2 transform justify-center break-words",
           isVisible ? "flex" : "hidden"
         )}
       >
-        <div className="w-fit whitespace-nowrap rounded bg-font-main py-0.5 px-1.5 text-2xs text-white">
+        <div className="w-fit whitespace-nowrap rounded bg-background-interaction px-1.5 py-0.5 text-2xs text-font-inverse">
           {title}
         </div>
       </div>

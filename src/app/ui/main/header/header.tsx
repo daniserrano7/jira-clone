@@ -8,14 +8,14 @@ import { UserProfile } from "./user-profile";
 
 export const Header = (): JSX.Element => {
   const iconBaseClass =
-    "w-[24px] h-[24px] rounded-full flex items-center justify-center cursor-pointer fill-white hover:bg-primary-light hover:text-primary-main";
+    "w-[24px] h-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-background-brand-subtlest hover:text-icon-brand";
 
   return (
-    <header className="relative z-10 flex w-full items-center justify-between bg-white py-2 px-5 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">
+    <header className="bg-white relative z-10 flex w-full items-center justify-between px-5 py-2 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">
       <section>
         <Link
           to="/"
-          className="flex cursor-pointer items-center rounded py-2 px-3 hover:bg-primary-light"
+          className="flex cursor-pointer items-center rounded px-3 py-2 hover:bg-background-brand-subtlest hover:text-font-brand"
         >
           <img src="/images/logo.png" width={24} height={24} alt="Logo" />
           <span className="ml-2">Jira Clone</span>

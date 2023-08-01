@@ -37,7 +37,7 @@ export const SelctTheme = (): JSX.Element => {
     },
   ];
   const currentValue = preference === Preference.SYSTEM ? preference : theme;
-  const triggerIconClass = cx("fill-icon group-hover:fill-primary-main");
+  const triggerIconClass = cx("fill-icon group-hover:fill-icon-brand");
 
   const selectTheme = (value: string): void => {
     if (isValidPreference(value)) {
@@ -54,7 +54,7 @@ export const SelctTheme = (): JSX.Element => {
       <Tooltip title="Select theme">
         <DropdownMenu.Trigger
           aria-label="Open theme select"
-          className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-primary-light hover:outline-primary-main"
+          className="group flex h-[30px] w-[30px] rounded-full outline outline-2 outline-icon flex-center hover:bg-background-brand-subtlest hover:outline-border-brand"
         >
           {theme === Theme.LIGHT ? (
             <MdLightMode className={triggerIconClass} />
@@ -67,9 +67,9 @@ export const SelctTheme = (): JSX.Element => {
         <DropdownMenu.Content
           align="end"
           sideOffset={5}
-          className="z-50 origin-top-right rounded bg-white px-3 py-1 shadow-md-dark radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
+          className="z-50 origin-top-right rounded bg-elevation-surface-overlay px-3 py-1 shadow-md radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
         >
-          <DropdownMenu.Label className="text-gray-700 select-none py-2 text-lg">
+          <DropdownMenu.Label className="select-none py-2 text-lg">
             Select theme
           </DropdownMenu.Label>
           <DropdownMenu.RadioGroup
@@ -82,22 +82,23 @@ export const SelctTheme = (): JSX.Element => {
                 key={value}
                 value={value}
                 className={cx(
-                  "group flex gap-4 rounded px-2 pt-1 pb-2 outline outline-2 outline-transparent hover:outline-primary-main",
-                  value === currentValue &&
-                    "bg-primary-light text-primary-main outline-primary-main"
+                  "group flex gap-4 rounded px-2 pb-2 pt-1 outline outline-2 hover:outline-border-brand",
+                  value === currentValue
+                    ? "bg-background-brand-subtlest text-font-brand outline-border-brand"
+                    : "outline-transparent"
                 )}
               >
                 <span
                   className={cx(
-                    "border-1 mt-1 flex h-4 w-4 rounded-full border flex-center group-hover:border-primary-main",
+                    "border-1 mt-1 flex h-4 w-4 rounded-full border flex-center group-hover:border-border-brand",
                     value === currentValue
-                      ? "border-primary-main"
-                      : "border-grey-600"
+                      ? "border-border-brand"
+                      : "border-border-disabled"
                   )}
                 >
                   <span
                     className={cx(
-                      "h-2 w-2 rounded-full bg-primary-main",
+                      "h-2 w-2 rounded-full bg-background-brand-bold",
                       value === currentValue ? "block" : "hidden"
                     )}
                   />
@@ -107,7 +108,7 @@ export const SelctTheme = (): JSX.Element => {
                   <img
                     src={image}
                     alt={`${label} theme`}
-                    className="h-[100px] w-[180px] rounded border-2 border-grey-300 object-cover"
+                    className="h-[100px] w-[180px] rounded border-2 border-border-disabled object-cover"
                   />
                 </div>
               </DropdownMenu.RadioItem>

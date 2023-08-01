@@ -28,6 +28,7 @@
   --Neutral900: #2c3e5d;
   --Neutral1000: #172b4d;
 
+  --Neutral200A: #091e420f;
   --Neutral400A: #091e424f;
 
   --DarkNeutral100: #172b4d;
@@ -73,6 +74,15 @@
   --color-font-subtlest: var(--Neutral700);
   --color-font-disabled: var(--Neutral400A);
   --color-font-inverse: var(--Neutral0);
+
+  /* Icon */
+  --color-icon: var(--Neutral1000);
+  --color-icon-brand: var(--Blue700);
+  --color-icon-danger: var(--Red600);
+  --color-icon-selected: var(--Blue700);
+  --color-icon-subtle: var(--Neutral700);
+  --color-icon-inverse: var(--Neutral0);
+  --color-icon-disabled: var(--Neutral400A);
 
   /* Elevation */
   --color-elevation-surface: var(--Neutral0);
@@ -133,13 +143,16 @@
   --color-background-input: var(--Placeholder);
   --color-background-input-hovered: var(--Placeholder);
 
+  --color-background-interaction: var(--Neutral1000);
+
   /* Border */
   --color-border-brand: var(--Blue700);
   --color-border-selected: var(--Blue700);
   --color-border-accent-blue: var(--Blue600);
   --color-border-danger: var(--Red600);
+  --color-border-disabled: var(--Neutral200A);
 
-  --color-primary-main: #0052cc;
+  /* --color-primary-main: #0052cc;
   --color-primary-light: #deebff;
   --color-primary-main-hover: #005ce6;
   --color-primary-light-hover: #c5dcff;
@@ -167,7 +180,7 @@
   --color-font-success-light: #e3fcef;
   --color-icon: #344563;
   --color-focus: #4c9aff;
-  --color-transparent: transparent;
+  --color-transparent: transparent; */
 }
 
 .dark {
