@@ -9,9 +9,9 @@ export const PriorityIcon = ({
   <span
     className={cx(
       "flex",
-      priority === "low" && "text-success-main",
-      priority === "medium" && "text-warn-main",
-      priority === "high" && "text-error-main"
+      priority === "low" && "text-icon-accent-green",
+      priority === "medium" && "text-icon-accent-yellow",
+      priority === "high" && "text-icon-accent-red"
     )}
   >
     <HiFlag size={size} />

@@ -39,10 +39,17 @@ module.exports = {
         subtle: "var(--color-icon-subtle)",
         inverse: "var(--color-icon-inverse)",
         disabled: "var(--color-icon-disabled)",
+        accent: {
+          green: "var(--color-icon-accent-green)",
+          yellow: "var(--color-icon-accent-yellow)",
+          red: "var(--color-icon-accent-red)",
+        },
       },
       border: {
         DEFAULT: "var(--color-border)",
+        bold: "var(--color-border-bold)",
         brand: "var(--color-border-brand)",
+        success: "var(--color-border-success)",
         danger: "var(--color-border-danger)",
         disabled: "var(--color-border-disabled)",
         focused: "var(--color-border-focused)",
@@ -118,6 +125,13 @@ module.exports = {
           hovered: "var(--color-background-selected-hovered)",
           pressed: "var(--color-background-selected-pressed)",
         },
+        disabled: "var(--color-background-disabled)",
+        input: {
+          DEFAULT: "var(--color-background-input)",
+          hovered: "var(--color-background-input-hovered)",
+          pressed: "var(--color-background-input-pressed)",
+        },
+        interaction: "var(--color-background-interaction)",
         accent: {
           DEFAULT: "var(--color-background-accent)",
           green: "var(--color-background-accent-green)",
@@ -134,12 +148,6 @@ module.exports = {
             bolder: "var(--color-background-accent-grey-bolder)",
           },
         },
-        disabled: "var(--color-background-disabled)",
-        input: {
-          DEFAULT: "var(--color-background-input)",
-          hovered: "var(--color-background-input-hovered)",
-        },
-        interaction: "var(--color-background-interaction)",
       },
       transparent: "transparent",
       // "primary-main": "var(--color-primary-main)",
@@ -183,6 +191,7 @@ module.exports = {
       md: "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
       lg: "rgba(14, 18, 22, 0.35) 0px 10px 38px -10px, rgba(14, 18, 22, 0.2) 0px 10px 20px -15px",
       blue: "5px 5px 20px 1px rgba(0, 82, 204, 0.2)",
+      overlay: "0px 8px 12px rgba(9, 30, 66, 0.15),0px 0px 1px rgba(9, 30, 66, 0.31)",
       "dialog-overlay": "rgba(0,0,0,0.45)",
     },
     extend: {

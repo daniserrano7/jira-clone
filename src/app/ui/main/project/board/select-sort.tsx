@@ -24,7 +24,7 @@ export const SelectSort = (): JSX.Element => {
     <Form method="get">
       <Select.Root defaultValue={sortBy} onValueChange={handleSubmit}>
         <Select.Trigger
-          className="flex cursor-pointer items-center justify-center rounded border-none bg-primary-light py-1.5 px-3 text-xs text-primary-main hover:bg-primary-light-hover"
+          className="flex cursor-pointer items-center justify-center rounded border-none bg-background-brand-subtlest px-3 py-1.5 text-xs text-font-brand hover:bg-background-brand-subtlest-hovered active:bg-background-brand-subtlest-pressed"
           aria-label="Open sort issues select"
         >
           <div className="mr-2 flex items-center">
@@ -32,14 +32,14 @@ export const SelectSort = (): JSX.Element => {
           </div>
           <Select.Value>Sort by {sortBy}</Select.Value>
         </Select.Trigger>
-        <Select.Content className="select-none rounded bg-white p-1.5 shadow-blue">
+        <Select.Content className="select-none rounded bg-elevation-surface-overlay p-1.5 shadow-blue">
           <Select.ScrollUpButton />
           <Select.Viewport>
             {sortList.map((sort, index) => (
               <Select.Item
                 key={index}
                 value={sort.id}
-                className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-primary-main outline-none hover:bg-primary-light focus:bg-primary-light"
+                className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-font-brand outline-none hover:bg-background-brand-subtlest-hovered focus:bg-background-brand-subtlest-hovered active:bg-background-brand-subtlest-pressed"
               >
                 <SortIcon sort={sort.id} />
                 <Select.ItemText>{sort.label}</Select.ItemText>

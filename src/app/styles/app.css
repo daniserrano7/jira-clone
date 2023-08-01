@@ -45,6 +45,28 @@
   --Blue900: #09326c;
   --Blue1000: #092957;
 
+  --Green100: #dffcf0;
+  --Green200: #baf3db;
+  --Green300: #7ee2b8;
+  --Green400: #4bce97;
+  --Green500: #2abb7f;
+  --Green600: #22a06b;
+  --Green700: #1f845a;
+  --Green800: #216e4e;
+  --Green900: #164b35;
+  --Green1000: #143c2b;
+
+  --Yellow100: #fff7d6;
+  --Yellow200: #f8e6a0;
+  --Yellow300: #f5cd47;
+  --Yellow400: #e2b203;
+  --Yellow500: #cf9f02;
+  --Yellow600: #b38600;
+  --Yellow700: #946f00;
+  --Yellow800: #7f5f01;
+  --Yellow900: #533f04;
+  --Yellow1000: #3f3102;
+
   --Red100: #ffedeb;
   --Red200: #ffd2cc;
   --Red300: #ff9c8f;
@@ -54,6 +76,7 @@
   --Red700: #ca3521;
   --Red800: #ae2a19;
   --Red900: #601e16;
+  --Red1000: #4f1c16;
 }
 
 :root,
@@ -84,6 +107,9 @@
   --color-icon-subtle: var(--Neutral700);
   --color-icon-inverse: var(--Neutral0);
   --color-icon-disabled: var(--Neutral400A);
+  --color-icon-accent-green: var(--Green600);
+  --color-icon-accent-yellow: var(--Yellow400);
+  --color-icon-accent-red: var(--Red600);
 
   /* Elevation */
   --color-elevation-surface: var(--Neutral0);
@@ -145,18 +171,25 @@
   --color-background-accent-grey-bolder: var(--Neutral700);
 
   --color-background-disabled: var(--Placeholder);
-  --color-background-input: var(--Placeholder);
-  --color-background-input-hovered: var(--Placeholder);
+
+  --color-background-input: var(--Neutral0);
+  --color-background-input-hovered: var(--Neutral100);
+  --color-background-input-pressed: var(--Neutral0);
 
   --color-background-interaction: var(--Neutral1000);
 
   /* Border */
   --color-border: var(--Neutral300A);
+  --color-border-bold: var(--Neutral600);
   --color-border-brand: var(--Blue700);
-  --color-border-selected: var(--Blue700);
-  --color-border-accent-blue: var(--Blue600);
+  --color-border-success: var(--Green600);
   --color-border-danger: var(--Red600);
+  --color-border-selected: var(--Blue700);
+  --color-border-focused: var(--Blue500);
+  --color-border-input: var(--Neutral300A);
   --color-border-disabled: var(--Neutral200A);
+  --color-border-accent-blue: var(--Blue600);
+  --color-border-accent-grey: var(--Neutral600);
 
   /* --color-primary-main: #0052cc;
   --color-primary-light: #deebff;

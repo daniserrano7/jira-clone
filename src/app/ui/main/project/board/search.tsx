@@ -29,10 +29,10 @@ export const Search = (): JSX.Element => {
         placeholder="Filter issues"
         onChange={handleChange}
         className={cx(
-          "border-1 bg-grey-100 box-border h-[40px] w-[120px] rounded border-none py-2",
-          "outline-grey-400 pl-2 pr-8 outline outline-2 duration-200 ease-in-out",
-          "placeholder:text-font-light placeholder:font-primary-light placeholder:text-xs",
-          "hover:bg-grey-300 placeholder:duration-200 placeholder:ease-in-out focus:w-[190px]",
+          "h-[40px] w-[120px] rounded border-none bg-background-input py-2 hover:bg-background-input-hovered",
+          "border-1 box-border pl-2 pr-8 outline outline-2 outline-border-input duration-200 ease-in-out",
+          "placeholder:font-primary-light placeholder:text-xs placeholder:text-font-subtlest",
+          "placeholder:duration-200 placeholder:ease-in-out focus:w-[190px]",
           "focus:bg-white focus:shadow-blue focus:outline-border-brand"
         )}
       />
@@ -58,7 +58,10 @@ const ClearIcon = ({ onClick }: ClearIconProps): JSX.Element => (
   // before 'click' event, but not before 'onMouseDown'
   <button
     onMouseDown={onClick}
-    className={cx(iconBaseClass, "hover:bg-grey-300 cursor-pointer rounded")}
+    className={cx(
+      iconBaseClass,
+      "cursor-pointer rounded hover:bg-background-neutral"
+    )}
     aria-label="Clear search"
   >
     <IoCloseOutline size={16} />

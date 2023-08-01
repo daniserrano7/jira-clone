@@ -49,8 +49,7 @@ export const IssueCard = ({
     <div
       ref={isSubmitting ? undefined : dragRef}
       className={cx(
-        "hover:bg-primary-light flex w-full cursor-pointer flex-col rounded border-none bg-elevation-surface-raised p-3 text-left shadow-xs duration-200 ease-in-out",
-        isDragging && "opacity-50",
+        "flex w-full cursor-pointer flex-col rounded border-none bg-elevation-surface-raised p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-elevation-surface-raised-hovered active:bg-elevation-surface-raised-pressed",
         isSubmitting && "opacity-50"
       )}
     >
@@ -60,7 +59,7 @@ export const IssueCard = ({
           <div className="flex items-center justify-between pt-4">
             <span className="flex items-center">
               <TaskIcon size={18} />
-              <span className="text-font-light ml-1.5 text-2xs">
+              <span className="ml-1.5 text-2xs text-font-subtlest">
                 {issueIdPrefix}
               </span>
             </span>
