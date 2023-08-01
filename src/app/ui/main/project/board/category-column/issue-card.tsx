@@ -49,18 +49,18 @@ export const IssueCard = ({
     <div
       ref={isSubmitting ? undefined : dragRef}
       className={cx(
-        "flex w-full cursor-pointer flex-col rounded border-none bg-white p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-primary-light",
+        "hover:bg-primary-light flex w-full cursor-pointer flex-col rounded border-none bg-elevation-surface-raised p-3 text-left shadow-xs duration-200 ease-in-out",
         isDragging && "opacity-50",
         isSubmitting && "opacity-50"
       )}
     >
       <Link to={issueLink}>
         <>
-          <p className="min-h-[48px] w-full line-clamp-2">{issue.name}</p>
+          <p className="line-clamp-2 min-h-[48px] w-full">{issue.name}</p>
           <div className="flex items-center justify-between pt-4">
             <span className="flex items-center">
               <TaskIcon size={18} />
-              <span className="ml-1.5 text-2xs text-font-light">
+              <span className="text-font-light ml-1.5 text-2xs">
                 {issueIdPrefix}
               </span>
             </span>

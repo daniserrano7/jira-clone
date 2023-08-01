@@ -13,7 +13,7 @@ export const Button = ({
         variant === "primary" &&
           "bg-background-brand-bold text-font-inverse hover:bg-background-brand-bold-hovered active:bg-background-brand-bold-pressed",
         variant === "neutral" &&
-          "bg-background-accent-grey-subtlest hover:bg-background-accent-grey-subtler active:bg-background-accent-grey-subtle",
+          "bg-background-neutral hover:bg-background-neutral-hovered active:bg-background-neutral-pressed",
         variant === "danger" &&
           "bg-background-danger text-font-danger hover:bg-background-danger-hovered active:bg-background-danger-pressed",
         className

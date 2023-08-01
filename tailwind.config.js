@@ -108,6 +108,11 @@ module.exports = {
         warning: "var(--color-background-warning)",
         subtle: "var(--color-background-subtle)",
         subtlest: "var(--color-background-subtlest)",
+        neutral: {
+          DEFAULT: "var(--color-background-neutral)",
+          hovered: "var(--color-background-neutral-hovered)",
+          pressed: "var(--color-background-neutral-pressed)",
+        },
         selected: {
           DEFAULT: "var(--color-background-selected)",
           hovered: "var(--color-background-selected-hovered)",

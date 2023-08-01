@@ -82,7 +82,7 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
   return (
     <div
       ref={dropRef}
-      className="relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md bg-grey-200"
+      className="bg-grey-200 relative flex h-full w-[260px] max-w-[260px] flex-col rounded-md"
     >
       {/* Column drop area */}
       <div
@@ -97,22 +97,22 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
             "relative h-full w-full rounded border-[3px]",
             isDragging ? "visible" : "hidden",
             isOver
-              ? "border-solid border-success-main"
-              : "flex items-center justify-center border-dashed border-primary-main"
+              ? "border-success-main border-solid"
+              : "flex items-center justify-center border-dashed border-border-brand"
           )}
         >
-          {!isOver && <span className="rounded bg-white px-1">DROP HERE</span>}
+          {!isOver && <span className="bg-white rounded px-1">DROP HERE</span>}
         </div>
       </div>
       {/* Column header */}
-      <div className="sticky top-0 left-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase text-font-light duration-200 ease-in-out">
+      <div className="text-font-light sticky left-0 top-0 flex justify-between px-3 py-2.5 font-primary-light text-xs uppercase duration-200 ease-in-out">
         <span className="flex gap-2">
           <span>{category.name}</span>
           {!emptyCategory && <span>( {category.issues.length} )</span>}
         </span>
         <Link
           to={issueLink}
-          className="flex cursor-pointer rounded border-none p-1 text-font-light/60 hover:bg-grey-400"
+          className="text-font-light/60 hover:bg-grey-400 flex cursor-pointer rounded border-none p-1"
           aria-label={`Add new ${category.name} issue`}
         >
           <AiOutlinePlus size={24} />
@@ -154,7 +154,7 @@ interface CategoryColumnProps {
 }
 
 const EmptyCategory = (): JSX.Element => (
-  <li className="mt-4 flex flex-col items-center text-font-light">
+  <li className="text-font-light mt-4 flex flex-col items-center">
     <RxValueNone size={36} />
     <p className="mt-4 font-primary-light text-xs uppercase">No issues found</p>
   </li>

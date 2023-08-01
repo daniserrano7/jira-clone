@@ -6,8 +6,8 @@
   * {
     /* @apply focus-visible:outline;
     @apply focus-visible:outline-2;
-    @apply focus-visible:outline-primary-main; */
-    /* @apply dark:focus-visible:outline-primary-main; */
+    @apply focus-visible:outline-border-brand; */
+    /* @apply dark:focus-visible:outline-border-brand; */
   }
 }
 
@@ -124,6 +124,10 @@
 
   --color-background-subtle: var(--Placeholder);
   --color-background-subtlest: var(--Placeholder);
+
+  --color-background-neutral: var(--Neutral200A);
+  --color-background-neutral-hovered: var(--Neutral300A);
+  --color-background-neutral-pressed: var(--Neutral400A);
 
   --color-background-selected: var(--Blue100);
   --color-background-selected-hovered: var(--Blue200);

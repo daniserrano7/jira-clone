@@ -11,7 +11,7 @@ export const Header = (): JSX.Element => {
     "w-[24px] h-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-background-brand-subtlest hover:text-icon-brand";
 
   return (
-    <header className="bg-white relative z-10 flex w-full items-center justify-between px-5 py-2 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">
+    <header className="relative z-10 flex w-full items-center justify-between px-5 py-2 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">
       <section>
         <Link
           to="/"

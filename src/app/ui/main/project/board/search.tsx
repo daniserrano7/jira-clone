@@ -29,11 +29,11 @@ export const Search = (): JSX.Element => {
         placeholder="Filter issues"
         onChange={handleChange}
         className={cx(
-          "border-1 box-border h-[40px] w-[120px] rounded border-none bg-grey-100 py-2",
-          "pr-8 pl-2 outline outline-2 outline-grey-400 duration-200 ease-in-out",
-          "placeholder:font-primary-light placeholder:text-xs placeholder:text-font-light",
-          "placeholder:duration-200 placeholder:ease-in-out hover:bg-grey-300 focus:w-[190px]",
-          "focus:bg-white focus:shadow-blue focus:outline-primary-main"
+          "border-1 bg-grey-100 box-border h-[40px] w-[120px] rounded border-none py-2",
+          "outline-grey-400 pl-2 pr-8 outline outline-2 duration-200 ease-in-out",
+          "placeholder:text-font-light placeholder:font-primary-light placeholder:text-xs",
+          "hover:bg-grey-300 placeholder:duration-200 placeholder:ease-in-out focus:w-[190px]",
+          "focus:bg-white focus:shadow-blue focus:outline-border-brand"
         )}
       />
       <span className="absolute right-0 top-1/2 -translate-y-1/2 px-2">
@@ -58,7 +58,7 @@ const ClearIcon = ({ onClick }: ClearIconProps): JSX.Element => (
   // before 'click' event, but not before 'onMouseDown'
   <button
     onMouseDown={onClick}
-    className={cx(iconBaseClass, "cursor-pointer rounded hover:bg-grey-300")}
+    className={cx(iconBaseClass, "hover:bg-grey-300 cursor-pointer rounded")}
     aria-label="Clear search"
   >
     <IoCloseOutline size={16} />

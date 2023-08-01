@@ -6,8 +6,8 @@
   * {
     @apply focus-visible:outline;
     @apply focus-visible:outline-2;
-    @apply focus-visible:outline-primary-main;
-    @apply dark:focus-visible:outline-primary-main;
+    @apply focus-visible:outline-border-brand;
+    @apply dark:focus-visible:outline-border-brand;
   }
 }
 
