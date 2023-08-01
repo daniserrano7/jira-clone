@@ -4,13 +4,14 @@ import { FaPowerOff } from "react-icons/fa";
 import cx from "classix";
 import { useUserStore } from "@app/store/user.store";
 import { UserAvatar } from "@app/components/user-avatar";
+import { Button } from "@app/components/button";
 
 export const UserProfile = (): JSX.Element => {
   const { user } = useUserStore();
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="ml-1 rounded-full outline outline-2 outline-grey-300 hover:outline-primary-main">
+      <DropdownMenu.Trigger className="ml-1 rounded-full outline outline-2 outline-border-disabled hover:outline-border-brand">
         <UserAvatar {...user} />
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
@@ -18,7 +19,7 @@ export const UserProfile = (): JSX.Element => {
           align="end"
           sideOffset={5}
           className={cx(
-            "z-50 rounded bg-white shadow-md-dark",
+            "z-50 rounded bg-elevation-surface-overlay shadow-md",
             "radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
           )}
         >
@@ -26,18 +27,19 @@ export const UserProfile = (): JSX.Element => {
             <UserAvatar {...user} size={80} />
             <span className="mt-2 text-lg">{user.name}</span>
           </DropdownMenu.Item>
-          <DropdownMenu.Separator className="h-px bg-grey-500" />
+          <DropdownMenu.Separator className="h-px bg-border" />
           <DropdownMenu.Item className="select-none p-1 !outline-none">
             <Form action="action/logout" method="post">
-              <button
+              <Button
+                variant="danger"
                 type="submit"
                 onClick={(e) => e.stopPropagation()} // To prevent dropdown menu from closing
-                className="flex w-full items-center gap-2 rounded p-2 text-sm text-error-main hover:bg-error-light"
+                className="flex w-full items-center gap-2 rounded bg-transparent p-2 text-sm text-font-danger hover:bg-background-danger-hovered active:bg-background-danger-pressed"
                 aria-label="Log out"
               >
                 <FaPowerOff />
                 <span>Log out</span>
-              </button>
+              </Button>
             </Form>
           </DropdownMenu.Item>
         </DropdownMenu.Content>

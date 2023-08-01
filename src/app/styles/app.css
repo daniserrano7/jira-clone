@@ -29,6 +29,7 @@
   --Neutral1000: #172b4d;
 
   --Neutral200A: #091e420f;
+  --Neutral300A: #091e4224;
   --Neutral400A: #091e424f;
 
   --DarkNeutral100: #172b4d;
@@ -146,6 +147,7 @@
   --color-background-interaction: var(--Neutral1000);
 
   /* Border */
+  --color-border: var(--Neutral300A);
   --color-border-brand: var(--Blue700);
   --color-border-selected: var(--Blue700);
   --color-border-accent-blue: var(--Blue600);
