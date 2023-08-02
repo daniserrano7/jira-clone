@@ -17,12 +17,12 @@ export const ProjectsView = ({
     <div className="p-6">
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
       <div className="mt-8">
-        <Link to="new">
-          <Button color="neutral" className="flex w-fit py-3 pl-3 pr-4">
+        <Link to="new" className="flex w-fit">
+          <Button color="neutral" className="py-3 pl-3 pr-4">
             <span>
               <AiOutlinePlus size={22} />
             </span>
-            <span className="ml-2 leading-4">Add Project</span>
+            <span className="leading-4">Add Project</span>
           </Button>
         </Link>
       </div>
@@ -48,7 +48,7 @@ const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
       <Link
         to={project.id}
         className={cx(
-          "group flex h-[112px] rounded shadow-sm outline outline-2 outline-transparent duration-100 ease-linear",
+          "group flex h-[112px] rounded bg-elevation-surface-raised shadow-sm outline outline-2 outline-transparent duration-100 ease-linear",
           "hover:-translate-y-0.5 hover:bg-background-brand-subtlest-hovered hover:text-font-brand hover:shadow-md hover:outline-border-brand"
         )}
       >

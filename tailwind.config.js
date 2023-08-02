@@ -59,28 +59,6 @@ module.exports = {
           grey: "var(--color-border-accent-grey)",
         },
       },
-      elevation: {
-        surface: {
-          DEFAULT: "var(--color-elevation-surface)",
-          hovered: "var(--color-elevation-surface-hovered)",
-          pressed: "var(--color-elevation-surface-pressed)",
-          raised: {
-            DEFAULT: "var(--color-elevation-surface-raised)",
-            hovered: "var(--color-elevation-surface-raised-hovered)",
-            pressed: "var(--color-elevation-surface-raised-pressed)",
-          },
-          overlay: {
-            DEFAULT: "var(--color-elevation-surface-overlay)",
-            hovered: "var(--color-elevation-surface-overlay-hovered)",
-            pressed: "var(--color-elevation-surface-overlay-pressed)",
-          },
-          sunken: "var(--color-elevation-surface-sunken)",
-        },
-        shadow: {
-          overflow: "var(--color-elevation-shadow-overflow)",
-          overlay: "var(--color-elevation-shadow-overlay)",
-        },
-      },
       background: {
         brand: {
           subtlest: {
@@ -151,6 +129,28 @@ module.exports = {
             subtle: "var(--color-background-accent-grey-subtle)",
             bolder: "var(--color-background-accent-grey-bolder)",
           },
+        },
+      },
+      elevation: {
+        surface: {
+          DEFAULT: "var(--color-elevation-surface)",
+          hovered: "var(--color-elevation-surface-hovered)",
+          pressed: "var(--color-elevation-surface-pressed)",
+          raised: {
+            DEFAULT: "var(--color-elevation-surface-raised)",
+            hovered: "var(--color-elevation-surface-raised-hovered)",
+            pressed: "var(--color-elevation-surface-raised-pressed)",
+          },
+          overlay: {
+            DEFAULT: "var(--color-elevation-surface-overlay)",
+            hovered: "var(--color-elevation-surface-overlay-hovered)",
+            pressed: "var(--color-elevation-surface-overlay-pressed)",
+          },
+          sunken: "var(--color-elevation-surface-sunken)",
+        },
+        shadow: {
+          overflow: "var(--color-elevation-shadow-overflow)",
+          overlay: "var(--color-elevation-shadow-overlay)",
         },
       },
       transparent: "transparent",

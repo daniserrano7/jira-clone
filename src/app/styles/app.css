@@ -4,14 +4,11 @@
 
 @layer base {
   * {
-    /* @apply focus-visible:outline;
-    @apply focus-visible:outline-2;
-    @apply focus-visible:outline-border-brand; */
-    /* @apply dark:focus-visible:outline-border-brand; */
+    @apply focus-visible:outline;
+    @apply focus-visible:!outline-2;
+    @apply focus-visible:!outline-border-brand;
   }
-}
 
-@layer base {
   :root {
     --Placeholder: 0 85 204;
 
@@ -220,12 +217,12 @@
   --color-background-accent-grey-subtle: var(--DarkNeutral500);
   --color-background-accent-grey-bolder: var(--DarkNeutral700);
 
-  --color-background-input: var(--DarkNeutral200);
-  --color-background-input-hovered: var(--DarkNeutral250);
-  --color-background-input-pressed: var(--DarkNeutral200);
+  --color-background-input: var(--Neutral0);
+  --color-background-input-hovered: var(--Neutral100);
+  --color-background-input-pressed: var(--Neutral0);
 
   --color-background-disabled: var(--Neutral100A);
-  --color-background-interaction: var(--Neutral1000);
+  --color-background-interaction: var(--Neutral500A);
 }
 
 .dark {
@@ -335,7 +332,7 @@
   --color-background-input-pressed: var(--DarkNeutral200);
 
   --color-background-disabled: var(--DarkNeutral100A);
-  --color-background-interaction: var(--Neutral1000);
+  --color-background-interaction: #10121499;
 
   /* --color-primary-main: #0052cc;
   --color-primary-light: #deebff;

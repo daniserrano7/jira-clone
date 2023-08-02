@@ -25,7 +25,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
           color === "danger" &&
             "bg-background-danger text-font-danger hover:bg-background-danger-hovered active:bg-background-danger-pressed",
           variant === "text" && "bg-transparent",
-          size === "lg" && "gap-4 px-8 py-2 text-lg",
+          size === "lg" && "gap-3 px-8 py-2 text-lg",
           className
         )}
         {...rest}

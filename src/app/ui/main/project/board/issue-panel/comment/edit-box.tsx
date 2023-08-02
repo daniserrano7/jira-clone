@@ -74,7 +74,7 @@ export const EditBox = ({
           Save
         </Button>
         <Button
-          color="danger"
+          color="neutral"
           variant="text"
           className="px-4 py-2.5"
           onClick={onCancel}

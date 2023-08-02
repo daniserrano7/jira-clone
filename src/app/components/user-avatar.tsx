@@ -33,7 +33,7 @@ export const UserAvatar = ({
         />
         <Avatar.Fallback
           delayMs={0}
-          className="flex items-center justify-center rounded-full text-font-main"
+          className="flex items-center justify-center rounded-full text-[var(--Neutral1000)]"
           style={{
             ...imageSize,
             backgroundColor: color,

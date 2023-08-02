@@ -24,7 +24,7 @@ export const Tooltip = ({
           isVisible ? "flex" : "hidden"
         )}
       >
-        <div className="w-fit whitespace-nowrap rounded bg-background-interaction px-1.5 py-0.5 text-2xs text-font-inverse">
+        <div className="w-fit whitespace-nowrap rounded bg-font px-1.5 py-0.5 text-2xs text-font-inverse">
           {title}
         </div>
       </div>

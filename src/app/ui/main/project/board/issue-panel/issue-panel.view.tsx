@@ -141,7 +141,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
                 <div className="grid grid-cols-5 gap-16">
                   <section className="col-span-3">
-                    <Dialog.Title className="my-5 -ml-3">
+                    <Dialog.Title className="my-5 -ml-3" asChild>
                       <Title
                         initTitle={issue?.name || ""}
                         readOnly={userIsNotReporter}

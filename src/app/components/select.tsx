@@ -7,7 +7,7 @@ export const SelectTrigger = twix(
   Select.Trigger,
   cx(
     "flex cursor-pointer items-center rounded border-none py-1.5 px-2",
-    "bg-background-accent-grey-subtlest hover:bg-background-accent-grey-subtler active:bg-background-accent-grey-subtle",
+    "bg-background-neutral hover:bg-background-neutral-hovered active:bg-background-neutral-pressed",
     "font-primary-bold text-sm"
   )
 );
