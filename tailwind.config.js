@@ -27,7 +27,7 @@ module.exports = {
       },
       link: {
         DEFAULT: "var(--color-link)",
-        hover: "var(--color-link-hover)",
+        hovered: "var(--color-link-hover)",
         pressed: "var(--color-link-pressed)",
       },
       icon: {
