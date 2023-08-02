@@ -207,7 +207,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   </section>
                 </div>
                 <div className="mt-6 grid grid-cols-3 items-end">
-                  <span className="text-font-light font-primary-light text-2xs text-opacity-80">
+                  <span className="font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                   </span>
                   <Button
@@ -226,7 +226,7 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                       "Accept"
                     )}
                   </Button>
-                  <span className="text-font-light justify-self-end font-primary-light text-2xs text-opacity-80">
+                  <span className="justify-self-end font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Esc</Kbd> to close
                   </span>
                 </div>

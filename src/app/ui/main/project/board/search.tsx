@@ -33,7 +33,7 @@ export const Search = (): JSX.Element => {
           "border-1 box-border pl-2 pr-8 outline outline-2 outline-border-input duration-200 ease-in-out",
           "placeholder:font-primary-light placeholder:text-xs placeholder:text-font-subtlest",
           "placeholder:duration-200 placeholder:ease-in-out focus:w-[190px]",
-          "focus:bg-white focus:shadow-blue focus:outline-border-brand"
+          "focus:bg-background-input-pressed focus:shadow-blue focus:outline-border-brand"
         )}
       />
       <span className="absolute right-0 top-1/2 -translate-y-1/2 px-2">

@@ -127,7 +127,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                           </span>
                           <Checkbox.Root
                             id={`checkbox-${user.id}`}
-                            className="bg-white h-[36px] w-[36px] rounded-md"
+                            className="h-[36px] w-[36px] rounded-md bg-background-input"
                             name="user"
                             value={user.id}
                             defaultChecked={user.id === loggedUser?.id}

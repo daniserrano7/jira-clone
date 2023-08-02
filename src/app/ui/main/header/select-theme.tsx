@@ -72,9 +72,9 @@ export const SelctTheme = (): JSX.Element => {
         <DropdownMenu.Content
           align="end"
           sideOffset={5}
-          className="z-50 origin-top-right rounded bg-elevation-surface-overlay px-3 py-1 shadow-md radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
+          className="z-50 origin-top-right rounded bg-elevation-surface-overlay p-3 shadow-md radix-side-bottom:animate-slide-down radix-side-top:animate-slide-up"
         >
-          <DropdownMenu.Label className="select-none py-2 text-lg">
+          <DropdownMenu.Label className="select-none pb-2 text-lg">
             Select theme
           </DropdownMenu.Label>
           <DropdownMenu.RadioGroup

@@ -170,14 +170,14 @@ export function CatchBoundary() {
       <Dialog.Portal>
         <Dialog.Overlay
           className={cx(
-            "bg-black absolute left-0 top-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-opacity-50 px-[40px] py-[40px]",
+            "absolute left-0 top-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 px-[40px] py-[40px]",
             "radix-state-open:animate-fade-in duration-300"
           )}
         >
           <Dialog.Content
             onPointerDownOutside={handleProgrammaticNavigation}
             className={cx(
-              "bg-white relative z-50 flex rounded-md px-20 py-12 shadow-lg flex-center",
+              "bg-background-surface relative z-50 flex rounded-md px-20 py-12 shadow-lg flex-center",
               "duration-300 radix-state-open:animate-slide-up"
             )}
           >
