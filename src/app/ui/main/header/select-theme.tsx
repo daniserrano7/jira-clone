@@ -31,6 +31,11 @@ export const SelctTheme = (): JSX.Element => {
       image: "/images/select-theme-dark.png",
     },
     {
+      value: Theme.LAVA,
+      label: "Lava",
+      image: "/images/select-theme-dark.png",
+    },
+    {
       value: Preference.SYSTEM,
       label: "System",
       image: "/images/select-theme-system.png",
@@ -75,7 +80,14 @@ export const SelctTheme = (): JSX.Element => {
           <DropdownMenu.RadioGroup
             value={currentValue || DEFAULT_THEME}
             onValueChange={selectTheme}
-            className="space-y-2"
+            className={cx(
+              "grid gap-2",
+              themeOptions.length > 6
+                ? "grid-cols-3"
+                : themeOptions.length > 3
+                ? "grid-cols-2"
+                : "grid-cols-1"
+            )}
           >
             {themeOptions.map(({ value, label, image }) => (
               <DropdownMenu.RadioItem

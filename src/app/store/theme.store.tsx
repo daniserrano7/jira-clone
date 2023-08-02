@@ -12,6 +12,7 @@ import { useFetcher } from "@remix-run/react";
 export enum Theme {
   LIGHT = "light",
   DARK = "dark",
+  LAVA = "lava",
 }
 export const themes: Array<Theme> = Object.values(Theme);
 export enum Preference {
