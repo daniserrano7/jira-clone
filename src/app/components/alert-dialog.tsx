@@ -21,17 +21,15 @@ export const Description = twix(
   AlertDialog.Description,
   "mt-8 flex w-full justify-end gap-4"
 );
-export const Cancel = ({ children, ...args }: ButtonProps): JSX.Element => (
+export const Cancel = ({ children, ...rest }: ButtonProps): JSX.Element => (
   <AlertDialog.Cancel asChild>
-    <Button {...args} variant="neutral">
+    <Button {...rest} color="neutral">
       Cancel
     </Button>
   </AlertDialog.Cancel>
 );
-export const Action = ({ children, ...args }: ButtonProps): JSX.Element => (
-  <AlertDialog.Action asChild>
-    <Button {...args} variant="danger">
-      {children}
-    </Button>
-  </AlertDialog.Action>
+export const Action = ({ children, ...rest }: ButtonProps): JSX.Element => (
+  <Button {...rest} color="danger">
+    {children}
+  </Button>
 );

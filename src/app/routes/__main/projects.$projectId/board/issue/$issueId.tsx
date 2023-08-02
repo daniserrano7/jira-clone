@@ -139,6 +139,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   }
 
   if (_action === "delete") {
+    console.log("DELETING ISSUE");
     await deleteIssue(id);
     emitter.emit(EVENTS.ISSUE_DELETED, Date.now());
   }
@@ -169,14 +170,14 @@ export function CatchBoundary() {
       <Dialog.Portal>
         <Dialog.Overlay
           className={cx(
-            "absolute top-0 left-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-black bg-opacity-50 py-[40px] px-[40px]",
+            "bg-black absolute left-0 top-0 z-50 box-border grid h-full w-full place-items-center overflow-y-auto bg-opacity-50 px-[40px] py-[40px]",
             "radix-state-open:animate-fade-in duration-300"
           )}
         >
           <Dialog.Content
             onPointerDownOutside={handleProgrammaticNavigation}
             className={cx(
-              "relative z-50 flex rounded-md bg-white py-12 px-20 shadow-lg flex-center",
+              "bg-white relative z-50 flex rounded-md px-20 py-12 shadow-lg flex-center",
               "duration-300 radix-state-open:animate-slide-up"
             )}
           >

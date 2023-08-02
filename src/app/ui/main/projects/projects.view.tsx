@@ -18,7 +18,7 @@ export const ProjectsView = ({
       <h1 className="font-primary-black text-2xl">PROJECTS</h1>
       <div className="mt-8">
         <Link to="new">
-          <Button variant="neutral" className="flex w-fit py-3 pl-3 pr-4">
+          <Button color="neutral" className="flex w-fit py-3 pl-3 pr-4">
             <span>
               <AiOutlinePlus size={22} />
             </span>

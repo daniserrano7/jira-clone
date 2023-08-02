@@ -41,10 +41,13 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
       <SelectTrigger
         aria-label="Open status select"
         className={cx(
+          "text-font-inverse hover:!opacity-80",
+          selectedStatus === "TODO" &&
+            "hover:bg-background-accent-grey-bolder-hovered !bg-background-accent-grey-bolder",
           selectedStatus === "IN_PROGRESS" &&
-            "!bg-primary-main !text-white hover:!bg-primary-main-hover",
+            "hover:bg-background-accent-blue-bolder-hovered !bg-background-accent-blue-bolder",
           selectedStatus === "DONE" &&
-            "!bg-success-main !text-white hover:!bg-success-light"
+            "hover:bg-background-accent-green-bolder-hovered !bg-background-accent-green-bolder"
         )}
       >
         <Select.Value className="pt-1" />
@@ -58,12 +61,13 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
               <SelectItemIndicator />
               <span
                 className={cx(
-                  "flex w-fit items-center gap-2 rounded p-0.5 text-2xs uppercase",
-                  category.type === "TODO" && "bg-grey-300 text-font-grey",
+                  "flex w-fit items-center gap-2 rounded px-1 py-0.5 text-2xs uppercase",
+                  category.type === "TODO" &&
+                    "bg-background-accent-grey-subtler text-font-accent-grey",
                   category.type === "IN_PROGRESS" &&
-                    "bg-primary-light text-primary-main",
+                    "bg-background-accent-blue-subtler text-font-accent-blue",
                   category.type === "DONE" &&
-                    "bg-font-success-light text-font-success-main"
+                    "bg-background-accent-green-subtler text-font-accent-green"
                 )}
               >
                 <Select.ItemText>{category.name}</Select.ItemText>

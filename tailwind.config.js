@@ -20,7 +20,6 @@ module.exports = {
         inverse: "var(--color-font-inverse)",
         disabled: "var(--color-font-disabled)",
         accent: {
-          DEFAULT: "var(--color-font-accent)",
           green: "var(--color-font-accent-green)",
           blue: "var(--color-font-accent-blue)",
           grey: "var(--color-font-accent-grey)",
@@ -134,7 +133,12 @@ module.exports = {
         interaction: "var(--color-background-interaction)",
         accent: {
           DEFAULT: "var(--color-background-accent)",
-          green: "var(--color-background-accent-green)",
+          green: {
+            subtlest: "var(--color-background-accent-green-subtlest)",
+            subtler: "var(--color-background-accent-green-subtler)",
+            subtle: "var(--color-background-accent-green-subtle)",
+            bolder: "var(--color-background-accent-green-bolder)",
+          },
           blue: {
             subtlest: "var(--color-background-accent-blue-subtlest)",
             subtler: "var(--color-background-accent-blue-subtler)",

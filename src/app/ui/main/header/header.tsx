@@ -8,7 +8,7 @@ import { UserProfile } from "./user-profile";
 
 export const Header = (): JSX.Element => {
   const iconBaseClass =
-    "w-[24px] h-[24px] rounded-full flex items-center justify-center cursor-pointer hover:bg-background-brand-subtlest hover:text-icon-brand";
+    "w-[24px] h-[24px] rounded-full flex items-center justify-center hover:bg-background-brand-subtlest hover:text-icon-brand";
 
   return (
     <header className="relative z-10 flex w-full items-center justify-between px-5 py-2 shadow-[0_1px_5px_-1px_rgba(0,0,0,0.3)]">

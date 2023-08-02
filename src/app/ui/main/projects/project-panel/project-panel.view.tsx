@@ -150,7 +150,7 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                   </span>
                   <div className="flex justify-center">
                     <Button
-                      variant="primary"
+                      color="primary"
                       type="submit"
                       name="_action"
                       value="upsert"

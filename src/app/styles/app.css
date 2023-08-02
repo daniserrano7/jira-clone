@@ -11,72 +11,72 @@
   }
 }
 
-:root {
-  --Placeholder: rgb(0, 85, 204);
-  --Red500: rgb(255, 59, 48);
-  --Green500: rgb(76, 217, 100);
+@layer base {
+  :root {
+    --Placeholder: 0 85 204;
 
-  --Neutral0: #ffffff;
-  --Neutral100: #f7f8f9;
-  --Neutral200: #f1f2f4;
-  --Neutral300: #dcdfe4;
-  --Neutral400: #b3b9c4;
-  --Neutral500: #8590a2;
-  --Neutral600: #758195;
-  --Neutral700: #626f86;
-  --Neutral800: #44546f;
-  --Neutral900: #2c3e5d;
-  --Neutral1000: #172b4d;
+    --Neutral0: #ffffff;
+    --Neutral100: #f7f8f9;
+    --Neutral200: #f1f2f4;
+    --Neutral300: #dcdfe4;
+    --Neutral400: #b3b9c4;
+    --Neutral500: #8590a2;
+    --Neutral600: #758195;
+    --Neutral700: #626f86;
+    --Neutral800: #44546f;
+    --Neutral900: #2c3e5d;
+    --Neutral1000: #172b4d;
 
-  --Neutral200A: #091e420f;
-  --Neutral300A: #091e4224;
-  --Neutral400A: #091e424f;
+    --Neutral200A: #091e420f;
+    --Neutral300A: #091e4224;
+    --Neutral400A: #091e424f;
 
-  --DarkNeutral100: #172b4d;
+    --DarkNeutral100: #172b4d;
 
-  --Blue100: #e9f2ff;
-  --Blue200: #cce0ff;
-  --Blue300: #85b8ff;
-  --Blue400: #579dff;
-  --Blue500: #388bff;
-  --Blue600: #1d7afc;
-  --Blue700: #0c66e4;
-  --Blue800: #0055cc;
-  --Blue900: #09326c;
-  --Blue1000: #092957;
+    --Blue100: #e9f2ff;
+    --Blue200: #cce0ff;
+    --Blue300: #85b8ff;
+    --Blue400: #579dff;
+    --Blue500: #388bff;
+    --Blue600: #1d7afc;
+    --Blue700: #0c66e4;
+    --Blue800: #0055cc;
+    --Blue900: #09326c;
+    --Blue1000: #092957;
 
-  --Green100: #dffcf0;
-  --Green200: #baf3db;
-  --Green300: #7ee2b8;
-  --Green400: #4bce97;
-  --Green500: #2abb7f;
-  --Green600: #22a06b;
-  --Green700: #1f845a;
-  --Green800: #216e4e;
-  --Green900: #164b35;
-  --Green1000: #143c2b;
+    --Green100: #dffcf0;
+    --Green200: #baf3db;
+    --Green300: #7ee2b8;
+    --Green400: #4bce97;
+    --Green500: #2abb7f;
+    --Green600: #22a06b;
+    --Green700: #1f845a;
+    --Green800: #216e4e;
+    --Green900: #164b35;
+    --Green1000: #143c2b;
 
-  --Yellow100: #fff7d6;
-  --Yellow200: #f8e6a0;
-  --Yellow300: #f5cd47;
-  --Yellow400: #e2b203;
-  --Yellow500: #cf9f02;
-  --Yellow600: #b38600;
-  --Yellow700: #946f00;
-  --Yellow800: #7f5f01;
-  --Yellow900: #533f04;
-  --Yellow1000: #3f3102;
+    --Yellow100: #fff7d6;
+    --Yellow200: #f8e6a0;
+    --Yellow300: #f5cd47;
+    --Yellow400: #e2b203;
+    --Yellow500: #cf9f02;
+    --Yellow600: #b38600;
+    --Yellow700: #946f00;
+    --Yellow800: #7f5f01;
+    --Yellow900: #533f04;
+    --Yellow1000: #3f3102;
 
-  --Red100: #ffedeb;
-  --Red200: #ffd2cc;
-  --Red300: #ff9c8f;
-  --Red400: #f87462;
-  --Red500: #ef5c48;
-  --Red600: #e34935;
-  --Red700: #ca3521;
-  --Red800: #ae2a19;
-  --Red900: #601e16;
-  --Red1000: #4f1c16;
+    --Red100: #ffedeb;
+    --Red200: #ffd2cc;
+    --Red300: #ff9c8f;
+    --Red400: #f87462;
+    --Red500: #ef5c48;
+    --Red600: #e34935;
+    --Red700: #ca3521;
+    --Red800: #ae2a19;
+    --Red900: #601e16;
+    --Red1000: #4f1c16;
+  }
 }
 
 :root,
@@ -88,9 +88,9 @@
   --color-font-danger: var(--Red800);
   --color-font-warning: var(--Placeholder);
   --color-font-info: var(--Placeholder);
-  --color-font-accent-blue: var(--Blue700);
-  --color-font-accent-green: var(--Green500);
-  --color-font-accent-grey: var(--Placeholder);
+  --color-font-accent-blue: var(--Blue800);
+  --color-font-accent-green: var(--Green800);
+  --color-font-accent-grey: var(--Neutral800);
   --color-font-link: var(--Placeholder);
   --color-font-link-hover: var(--Placeholder);
   --color-font-link-pressed: var(--Placeholder);
@@ -160,7 +160,10 @@
   --color-background-selected-pressed: var(--Blue300);
 
   --color-background-accent: var(--Placeholder);
-  --color-background-accent-green: var(--Placeholder);
+  --color-background-accent-green-subtlest: var(--Green100);
+  --color-background-accent-green-subtler: var(--Green200);
+  --color-background-accent-green-subtle: var(--Green400);
+  --color-background-accent-green-bolder: var(--Green700);
   --color-background-accent-blue-subtlest: var(--Blue100);
   --color-background-accent-blue-subtler: var(--Blue200);
   --color-background-accent-blue-subtle: var(--Blue400);
