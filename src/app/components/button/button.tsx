@@ -35,7 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
         ref={forwardedRef}
         className={twMerge(
           cx(
-            "flex cursor-pointer items-center justify-center gap-2 rounded p-2 disabled:cursor-not-allowed disabled:opacity-60",
+            "flex cursor-pointer items-center justify-center gap-2 rounded p-2 text-font disabled:cursor-not-allowed disabled:opacity-60",
             color === "primary" &&
               "bg-background-brand-bold text-font-inverse hover:bg-background-brand-bold-hovered active:bg-background-brand-bold-pressed",
             color === "neutral" &&
