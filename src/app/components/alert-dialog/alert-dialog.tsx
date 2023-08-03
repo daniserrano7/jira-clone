@@ -1,6 +1,6 @@
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import { twix } from "tailwindcss-radix-ui";
-import { Button, Props as ButtonProps } from "./button";
+import { Button, Props as ButtonProps } from "../button";
 
 export const Root = AlertDialog.Root;
 export const Trigger = AlertDialog.Trigger;
@@ -11,7 +11,7 @@ export const Overlay = twix(
 );
 export const Content = twix(
   AlertDialog.Content,
-  "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded bg-elevation-surface-overlay p-5 shadow-lg"
+  "fixed top-1/2 text-font left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded bg-elevation-surface-overlay p-5 shadow-lg"
 );
 export const Title = twix(
   AlertDialog.Title,
