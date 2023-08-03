@@ -36,6 +36,11 @@ export const SelctTheme = (): JSX.Element => {
       image: "/images/select-theme-dark.png",
     },
     {
+      value: Theme.LIME,
+      label: "Lime",
+      image: "/images/select-theme-dark.png",
+    },
+    {
       value: Preference.SYSTEM,
       label: "System",
       image: "/images/select-theme-system.png",

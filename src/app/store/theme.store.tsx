@@ -13,6 +13,7 @@ export enum Theme {
   LIGHT = "light",
   DARK = "dark",
   LAVA = "lava",
+  LIME = "lime",
 }
 export const themes: Array<Theme> = Object.values(Theme);
 export enum Preference {

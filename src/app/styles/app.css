@@ -56,6 +56,17 @@
     --DarkNeutral400A: #bfdbf847;
     --DarkNeutral500A: #9bb4ca80;
 
+    --Lime100: #eefbda;
+    --Lime200: #d3f1a7;
+    --Lime300: #b3df72;
+    --Lime400: #94c748;
+    --Lime500: #82b536;
+    --Lime600: #6a9a23;
+    --Lime700: #5b7f24;
+    --Lime800: #4c6b1f;
+    --Lime900: #37471f;
+    --Lime1000: #2a3818;
+
     --Blue100: #e9f2ff;
     --Blue200: #cce0ff;
     --Blue300: #85b8ff;
@@ -424,18 +435,128 @@
   --color-background-selected-hovered: var(--Blue900);
   --color-background-selected-pressed: var(--Blue800);
 
-  --color-background-accent-green-subtlest: var(--Green100);
-  --color-background-accent-green-subtler: var(--Green200);
-  --color-background-accent-green-subtle: var(--Green400);
-  --color-background-accent-green-bolder: var(--Green700);
-  --color-background-accent-blue-subtlest: var(--Blue100);
-  --color-background-accent-blue-subtler: var(--Blue200);
-  --color-background-accent-blue-subtle: var(--Blue400);
-  --color-background-accent-blue-bolder: var(--Blue700);
-  --color-background-accent-grey-subtlest: var(--Neutral200);
-  --color-background-accent-grey-subtler: var(--Neutral300);
-  --color-background-accent-grey-subtle: var(--Neutral500);
-  --color-background-accent-grey-bolder: var(--Neutral700);
+  --color-background-accent-green-subtlest: var(--Green1000);
+  --color-background-accent-green-subtler: var(--Green900);
+  --color-background-accent-green-subtle: var(--Green800);
+  --color-background-accent-green-bolder: var(--Green400);
+  --color-background-accent-blue-subtlest: var(--Blue1000);
+  --color-background-accent-blue-subtler: var(--Blue900);
+  --color-background-accent-blue-subtle: var(--Blue800);
+  --color-background-accent-blue-bolder: var(--Blue400);
+  --color-background-accent-grey-subtlest: var(--DarkNeutral300);
+  --color-background-accent-grey-subtler: var(--DarkNeutral400);
+  --color-background-accent-grey-subtle: var(--DarkNeutral500);
+  --color-background-accent-grey-bolder: var(--DarkNeutral700);
+
+  --color-background-input: var(--DarkNeutral200);
+  --color-background-input-hovered: var(--DarkNeutral250);
+  --color-background-input-pressed: var(--DarkNeutral200);
+
+  --color-background-disabled: var(--DarkNeutral100A);
+  --color-background-interaction: #10121499;
+}
+
+.lime {
+  /* Text */
+  --color-font: var(--DarkNeutral900);
+  --color-font-brand: var(--Lime400);
+  --color-font-success: var(--Green300);
+  --color-font-danger: var(--Red300);
+  --color-font-warning: var(--Yellow300);
+  --color-font-info: var(--Blue300);
+  --color-font-accent-blue: var(--Blue300);
+  --color-font-accent-green: var(--Green300);
+  --color-font-accent-grey: var(--DarkNeutral800);
+  --color-font-link: var(--Blue400);
+  --color-font-link-hovered: var(--Blue300);
+  --color-font-link-pressed: var(--Blue300);
+  --color-font-subtle: var(--DarkNeutral800);
+  --color-font-subtlest: var(--DarkNeutral700);
+  --color-font-disabled: var(--DarkNeutral400A);
+  --color-font-inverse: var(--DarkNeutral100);
+
+  /* Icon */
+  --color-icon: var(--DarkNeutral800);
+  --color-icon-brand: var(--Lime400);
+  --color-icon-danger: var(--Red500);
+  --color-icon-selected: var(--Lime400);
+  --color-icon-subtle: var(--DarkNeutral700);
+  --color-icon-inverse: var(--DarkNeutral100);
+  --color-icon-disabled: var(--DarkNeutral400A);
+  --color-icon-accent-green: var(--Green500);
+  --color-icon-accent-yellow: var(--Yellow500);
+  --color-icon-accent-red: var(--Red500);
+
+  /* Border */
+  --color-border: var(--DarkNeutral300A);
+  --color-border-bold: var(--DarkNeutral600);
+  --color-border-brand: var(--Lime400);
+  --color-border-success: var(--Green500);
+  --color-border-danger: var(--Red500);
+  --color-border-selected: var(--Lime400);
+  --color-border-focused: var(--Blue300);
+  --color-border-input: var(--DarkNeutral300A);
+  --color-border-disabled: var(--DarkNeutral200A);
+  --color-border-accent-blue: var(--Blue500);
+  --color-border-accent-grey: var(--DarkNeutral600);
+
+  /* Elevation */
+  --color-elevation-surface: var(--DarkNeutral100);
+  --color-elevation-surface-hovered: var(--DarkNeutral200);
+  --color-elevation-surface-pressed: var(--DarkNeutral250);
+  --color-elevation-surface-overlay: var(--DarkNeutral250);
+  --color-elevation-surface-overlay-hovered: var(--DarkNeutral300);
+  --color-elevation-surface-overlay-pressed: var(--DarkNeutral350);
+  --color-elevation-surface-raised: var(--DarkNeutral200);
+  --color-elevation-surface-raised-hovered: var(--DarkNeutral250);
+  --color-elevation-surface-raised-pressed: var(--DarkNeutral300);
+  --color-elevation-surface-sunken: var(--DarkNeutral0);
+
+  --color-shadow-overflow: 0px 0px 12px rgba(3, 4, 4, 0.56), 0px 0px 1px rgba(3, 4, 4, 0.5);
+  --color-shadow-overlay: 0px 0px 0px rgba(188, 214, 240, 0.12), 0px 8px 12px rgba(3, 4, 4, 0.36),
+    0px 0px 1px rgba(3, 4, 4, 0.5);
+
+  /* Background */
+  --color-background-brand-subtlest: var(--Lime1000);
+  --color-background-brand-subtlest-hovered: var(--Lime900);
+  --color-background-brand-subtlest-pressed: var(--Lime800);
+  --color-background-brand-bold: var(--Lime400);
+  --color-background-brand-bold-hovered: var(--Lime300);
+  --color-background-brand-bold-pressed: var(--Lime200);
+  --color-background-brand-boldest: var(--Lime100);
+  --color-background-brand-boldest-hovered: var(--Lime200);
+  --color-background-brand-boldest-pressed: var(--Lime300);
+
+  --color-background-success: var(--Green1000);
+  --color-background-info: var(--Blue1000);
+  --color-background-warning: var(--Yellow1000);
+  --color-background-danger: var(--Red1000);
+  --color-background-danger-hovered: var(--Red900);
+  --color-background-danger-pressed: var(--Red800);
+  --color-background-danger-bold: var(--Red400);
+  --color-background-danger-bold-hovered: var(--Red300);
+  --color-background-danger-bold-pressed: var(--Red200);
+
+  --color-background-neutral: var(--DarkNeutral200A);
+  --color-background-neutral-hovered: var(--DarkNeutral300A);
+  --color-background-neutral-pressed: var(--DarkNeutral400A);
+
+  --color-background-selected: var(--Lime1000);
+  --color-background-selected-hovered: var(--Lime900);
+  --color-background-selected-pressed: var(--Lime800);
+
+  --color-background-accent-green-subtlest: var(--Green1000);
+  --color-background-accent-green-subtler: var(--Green900);
+  --color-background-accent-green-subtle: var(--Green800);
+  --color-background-accent-green-bolder: var(--Green400);
+  --color-background-accent-blue-subtlest: var(--Blue1000);
+  --color-background-accent-blue-subtler: var(--Blue900);
+  --color-background-accent-blue-subtle: var(--Blue800);
+  --color-background-accent-blue-bolder: var(--Blue400);
+  --color-background-accent-grey-subtlest: var(--DarkNeutral300);
+  --color-background-accent-grey-subtler: var(--DarkNeutral400);
+  --color-background-accent-grey-subtle: var(--DarkNeutral500);
+  --color-background-accent-grey-bolder: var(--DarkNeutral700);
 
   --color-background-input: var(--DarkNeutral200);
   --color-background-input-hovered: var(--DarkNeutral250);
