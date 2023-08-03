@@ -10,7 +10,6 @@ const meta: Meta<typeof Toast> = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
   argTypes: {},
   decorators: [
     (Story) => (

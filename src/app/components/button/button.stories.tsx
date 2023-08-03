@@ -8,7 +8,6 @@ const meta: Meta<typeof Button> = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
   argTypes: {
     children: {
       control: {

@@ -8,7 +8,6 @@ const meta: Meta<typeof Error500> = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
   argTypes: {
     message: {
       control: {

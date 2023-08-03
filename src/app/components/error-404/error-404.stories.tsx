@@ -8,7 +8,6 @@ const meta: Meta<typeof Error404> = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
   argTypes: {
     message: {
       control: {
