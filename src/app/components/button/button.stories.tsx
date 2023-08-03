@@ -40,6 +40,28 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+export const Default: Story = {
+  render: (_) => (
+    <div className="grid grid-cols-3 gap-4 p-4">
+      {[
+        Primary,
+        Neutral,
+        Danger,
+        PrimaryText,
+        NeutralText,
+        DangerText,
+        PrimaryBig,
+        NeutralBig,
+        DangerBig,
+      ].map((ButtonStory, index) => (
+        <Button {...ButtonStory.args} className="w-fit" key={index}>
+          Click
+        </Button>
+      ))}
+    </div>
+  ),
+};
+
 export const Primary: Story = {
   args: {
     children: "Click",
@@ -75,7 +97,7 @@ export const NeutralText: Story = {
   },
 };
 
-export const Dangerext: Story = {
+export const DangerText: Story = {
   args: {
     variant: "text",
     color: "danger",
@@ -83,9 +105,25 @@ export const Dangerext: Story = {
   },
 };
 
-export const Big: Story = {
+export const PrimaryBig: Story = {
   args: {
     size: "lg",
+    children: "Click",
+  },
+};
+
+export const NeutralBig: Story = {
+  args: {
+    size: "lg",
+    color: "neutral",
+    children: "Click",
+  },
+};
+
+export const DangerBig: Story = {
+  args: {
+    size: "lg",
+    color: "danger",
     children: "Click",
   },
 };
