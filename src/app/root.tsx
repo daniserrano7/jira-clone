@@ -129,7 +129,7 @@ const App = (): JSX.Element => {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <Toast />
+        <Toast theme={theme || Theme.LIGHT} />
         <script
           dangerouslySetInnerHTML={{
             __html: !sessionTheme
