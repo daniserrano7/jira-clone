@@ -8,12 +8,16 @@ export const ErrorBase = ({ variant, message, href }: Props) => {
         alt="Server error"
         className="mx-auto mb-4 h-[350px] w-auto"
       />
-      <a
-        href={href}
-        className="max-w-[100px] text-lg text-primary-main hover:underline"
-      >
-        {message}
-      </a>
+      {href ? (
+        <a
+          href={href}
+          className="max-w-[100px] text-lg text-link hover:underline active:text-link-pressed"
+        >
+          {message}
+        </a>
+      ) : (
+        <span className="max-w-[100px] text-lg text-font">{message}</span>
+      )}
     </div>
   );
 };
