@@ -5,7 +5,8 @@ import { twix } from "tailwindcss-radix-ui";
 export const Root = Dialog.Root;
 export const Trigger = Dialog.Trigger;
 export const Portal = Dialog.Portal;
-export const Title = Dialog.Title;
+export const Description = Dialog.Description;
+export const Close = Dialog.Close;
 
 export const Overlay = twix(
   Dialog.Overlay,
@@ -17,7 +18,9 @@ export const Overlay = twix(
 export const Content = twix(
   Dialog.Content,
   cx(
-    "relative z-50 w-4/5 max-w-[1000px] rounded-md bg-elevation-surface py-6 px-8 shadow-lg",
+    "relative z-50 text-font w-4/5 max-w-[1000px] rounded-md bg-elevation-surface py-6 px-8 shadow-lg",
     "duration-300 radix-state-open:animate-slide-up"
   )
 );
+
+export const Title = twix(Dialog.Title, "mb-5 font-primary-black text-3xl");
