@@ -154,6 +154,10 @@
   --color-font-disabled: var(--Neutral400A);
   --color-font-inverse: var(--Neutral0);
 
+  /* Link */
+  --color-link: var(--Blue700);
+  --color-link-pressed: var(--Blue800);
+
   /* Icon */
   --color-icon: var(--Neutral1000);
   --color-icon-brand: var(--Blue700);
@@ -267,6 +271,10 @@
   --color-font-disabled: var(--DarkNeutral400A);
   --color-font-inverse: var(--DarkNeutral100);
 
+  /* Link */
+  --color-link: var(--Blue400);
+  --color-link-pressed: var(--Blue300);
+
   /* Icon */
   --color-icon: var(--DarkNeutral800);
   --color-icon-brand: var(--Blue400);
@@ -379,6 +387,10 @@
   --color-font-disabled: var(--DarkNeutral400A);
   --color-font-inverse: var(--DarkNeutral100);
 
+  /* Link */
+  --color-link: var(--Blue400);
+  --color-link-pressed: var(--Blue300);
+
   /* Icon */
   --color-icon: var(--DarkNeutral800);
   --color-icon-brand: var(--Red400);
@@ -490,6 +502,10 @@
   --color-font-subtlest: var(--DarkNeutral700);
   --color-font-disabled: var(--DarkNeutral400A);
   --color-font-inverse: var(--DarkNeutral100);
+
+  /* Link */
+  --color-link: var(--Blue400);
+  --color-link-pressed: var(--Blue300);
 
   /* Icon */
   --color-icon: var(--DarkNeutral800);
