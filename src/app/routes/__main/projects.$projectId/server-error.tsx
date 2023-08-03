@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { Error500 } from "@app/components/error-500";
 
 export const loader = async () => {
@@ -5,6 +7,10 @@ export const loader = async () => {
 };
 
 export function ErrorBoundary({ error }: { error: Error }) {
+  useEffect(() => {
+    toast.error("Try reloading the page.");
+  }, []);
+
   console.error(error);
   const errorMessage =
     "The Server error page failed. This is an example of a server error page (check network tab). Navigate to the board page";
