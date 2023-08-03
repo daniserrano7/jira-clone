@@ -14,5 +14,5 @@
     }
   ],
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["cx", "twix"]
+  "tailwindFunctions": ["cx", "twix", "twMerge"]
 }
