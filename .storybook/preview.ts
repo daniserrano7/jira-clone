@@ -14,6 +14,15 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    backgrounds: {
+      default: "surface",
+      values: [
+        { name: "surface", value: "var(--color-elevation-surface)" },
+        { name: "overlay", value: "var(--color-elevation-surface-overlay)" },
+        { name: "raised", value: "var(--color-elevation-surface-raised)" },
+        { name: "sunken", value: "var(--color-elevation-surface-sunken)" },
+      ],
+    },
   },
 
   decorators: [
@@ -23,6 +32,8 @@ const preview: Preview = {
       themes: {
         light: "light",
         dark: "dark",
+        lava: "lava",
+        lime: "lime",
       },
       defaultTheme: "light",
     }),
