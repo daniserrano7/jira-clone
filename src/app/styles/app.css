@@ -7,6 +7,16 @@
     @apply focus-visible:outline;
     @apply focus-visible:outline-2;
     @apply focus-visible:outline-border-brand;
+
+    --toastify-color-light: var(--color-elevation-surface-overlay) !important;
+    --toastify-color-dark: var(--color-elevation-surface-overlay) !important;
+    --toastify-color-info: var(--color-border-info) !important;
+    --toastify-color-success: var(--color-border-success) !important;
+    --toastify-color-warning: var(--color-border-warning) !important;
+    --toastify-color-error: var(--color-border-danger) !important;
+    --toastify-text-color-dark: var(--color-font) !important;
+    --toastify-text-color-light: var(--color-font) !important;
+    --toastify-text-color-success: var(--color-font) !important;
   }
 
   :root {
@@ -161,7 +171,9 @@
   --color-border-bold: var(--Neutral600);
   --color-border-brand: var(--Blue700);
   --color-border-success: var(--Green600);
+  --color-border-warning: var(--Orange600);
   --color-border-danger: var(--Red600);
+  --color-border-info: var(--Blue600);
   --color-border-selected: var(--Blue700);
   --color-border-focused: var(--Blue500);
   --color-border-input: var(--Neutral300A);
@@ -272,7 +284,9 @@
   --color-border-bold: var(--DarkNeutral600);
   --color-border-brand: var(--Blue400);
   --color-border-success: var(--Green500);
+  --color-border-warning: var(--Yellow500);
   --color-border-danger: var(--Red500);
+  --color-border-info: var(--Blue500);
   --color-border-selected: var(--Blue400);
   --color-border-focused: var(--Blue300);
   --color-border-input: var(--DarkNeutral300A);
@@ -382,7 +396,9 @@
   --color-border-bold: var(--DarkNeutral600);
   --color-border-brand: var(--Red400);
   --color-border-success: var(--Green500);
+  --color-border-warning: var(--Yellow500);
   --color-border-danger: var(--Red500);
+  --color-border-info: var(--Blue500);
   --color-border-selected: var(--Blue400);
   --color-border-focused: var(--Blue300);
   --color-border-input: var(--DarkNeutral300A);
@@ -492,7 +508,9 @@
   --color-border-bold: var(--DarkNeutral600);
   --color-border-brand: var(--Lime400);
   --color-border-success: var(--Green500);
+  --color-border-warning: var(--Yellow500);
   --color-border-danger: var(--Red500);
+  --color-border-info: var(--Blue500);
   --color-border-selected: var(--Lime400);
   --color-border-focused: var(--Blue300);
   --color-border-input: var(--DarkNeutral300A);

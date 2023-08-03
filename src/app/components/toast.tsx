@@ -1,9 +1,9 @@
-import { ToastContainer } from 'react-toastify';
-import { useTheme, Theme } from '@app/store/theme.store';
+import { ToastContainer } from "react-toastify";
+import { useTheme } from "@app/store/theme.store";
 
 export const Toast = () => {
   const { theme } = useTheme();
-  const toastTheme: Theme = theme || Theme.LIGHT;
+  const toastTheme = theme === "light" ? "light" : "dark";
 
   return (
     <ToastContainer
@@ -19,4 +19,4 @@ export const Toast = () => {
       theme={toastTheme}
     />
   );
-}
+};
