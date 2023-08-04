@@ -47,7 +47,7 @@ export const UserAvatar = ({
   );
 };
 
-interface UserAvatarProps extends User {
+interface UserAvatarProps extends Omit<User, "id"> {
   size?: number;
   tooltip?: boolean;
 }

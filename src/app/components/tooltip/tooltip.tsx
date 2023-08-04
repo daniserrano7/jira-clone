@@ -14,7 +14,7 @@ export const Tooltip = ({
   if (!show) return children;
 
   return (
-    <div className="relative w-fit">
+    <div className="relative h-fit w-fit">
       <div onMouseEnter={showTooltip} onMouseLeave={hideTooltip}>
         {children}
       </div>
