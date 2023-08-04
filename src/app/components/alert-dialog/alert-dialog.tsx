@@ -23,7 +23,7 @@ export const Description = twix(
 );
 export const Cancel = ({ children, ...rest }: ButtonProps): JSX.Element => (
   <AlertDialog.Cancel asChild>
-    <Button {...rest} color="neutral">
+    <Button {...rest} color="neutral" variant="subtlest">
       Cancel
     </Button>
   </AlertDialog.Cancel>
