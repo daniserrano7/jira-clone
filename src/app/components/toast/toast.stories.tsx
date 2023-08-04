@@ -39,7 +39,11 @@ export const Default: Story = {
 };
 
 const SuccessAlert = () => (
-  <Button color="neutral" onClick={() => toast.success(text)}>
+  <Button
+    color="success"
+    variant="subtlest"
+    onClick={() => toast.success(text)}
+  >
     Success
   </Button>
 );
@@ -48,7 +52,11 @@ export const Success: Story = {
 };
 
 const WarningAlert = () => (
-  <Button color="neutral" onClick={() => toast.warning(text)}>
+  <Button
+    color="warning"
+    variant="subtlest"
+    onClick={() => toast.warning(text)}
+  >
     Warning
   </Button>
 );
@@ -57,7 +65,7 @@ export const Warning: Story = {
 };
 
 const DangerAlert = () => (
-  <Button color="neutral" onClick={() => toast.error(text)}>
+  <Button color="danger" variant="subtlest" onClick={() => toast.error(text)}>
     Danger
   </Button>
 );
@@ -66,7 +74,7 @@ export const Danger: Story = {
 };
 
 const InfoAlert = () => (
-  <Button color="neutral" onClick={() => toast.info(text)}>
+  <Button color="info" variant="subtlest" onClick={() => toast.info(text)}>
     Info
   </Button>
 );
