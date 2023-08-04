@@ -1,6 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
+  "homepage": "http://daniserrano7.github.io/jira-clone",
   "scripts": {
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./src/app/styles/app.css -o ./src/app/styles/app-compiled.css",
@@ -17,7 +18,8 @@
     "test-all": "pnpm run type-check && pnpm run lint && pnpm run test",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "gh-pages -d storybook-static"
   },
   "prisma": {
     "schema": "src/infrastructure/db/schema.prisma",
@@ -81,6 +83,7 @@
     "concurrently": "^7.5.0",
     "eslint": "^8.23.1",
     "eslint-plugin-storybook": "^0.6.13",
+    "gh-pages": "^5.0.0",
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
