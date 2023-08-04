@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { unstable_createRemixStub as createRemixStub } from "@remix-run/testing";
-import { UserContextProvider } from "@app/store/user.store";
-import { ThemeProvider, Theme, Preference } from "@app/store/theme.store";
-import { userMock1 } from "@domain/user";
+import { withMainContext, withRemixStub } from "@app/stories/utils";
 import { Header } from "./header";
 
 const meta: Meta<typeof Header> = {
@@ -12,32 +9,9 @@ const meta: Meta<typeof Header> = {
     layout: "top",
   },
   decorators: [
-    (Story) => {
-      const RemixStub = createRemixStub([
-        {
-          path: "/",
-          element: (
-            <UserContextProvider user={userMock1}>
-              <ThemeProvider
-                specifiedTheme={Theme.LIGHT}
-                specifiedPreference={Preference.SELECTED}
-              >
-                <div className="w-full">
-                  <Story />
-                </div>
-              </ThemeProvider>
-            </UserContextProvider>
-          ),
-          action: async () => {
-            return {
-              status: 200,
-            };
-          },
-        },
-      ]);
-
-      return <RemixStub />;
-    },
+    (Story) => (
+      <div className="w-full">{withRemixStub(withMainContext(Story))}</div>
+    ),
   ],
 };
 

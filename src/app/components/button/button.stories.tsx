@@ -40,7 +40,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
-  render: (_) => (
+  render: () => (
     <>
       <div className="grid grid-cols-6 gap-4 p-4">
         {[
