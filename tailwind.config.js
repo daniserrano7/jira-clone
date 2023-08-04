@@ -79,6 +79,16 @@ module.exports = {
             pressed: "var(--color-background-brand-boldest-pressed)",
           },
         },
+        success: {
+          DEFAULT: "var(--color-background-success)",
+          hovered: "var(--color-background-success-hovered)",
+          pressed: "var(--color-background-success-pressed)",
+          bold: {
+            DEFAULT: "var(--color-background-success-bold)",
+            hovered: "var(--color-background-success-bold-hovered)",
+            pressed: "var(--color-background-success-bold-pressed)",
+          },
+        },
         danger: {
           DEFAULT: "var(--color-background-danger)",
           hovered: "var(--color-background-danger-hovered)",
@@ -89,15 +99,37 @@ module.exports = {
             pressed: "var(--color-background-danger-bold-pressed)",
           },
         },
-        success: "var(--color-background-success)",
-        info: "var(--color-background-info)",
-        warning: "var(--color-background-warning)",
+        warning: {
+          DEFAULT: "var(--color-background-warning)",
+          hovered: "var(--color-background-warning-hovered)",
+          pressed: "var(--color-background-warning-pressed)",
+          bold: {
+            DEFAULT: "var(--color-background-warning-bold)",
+            hovered: "var(--color-background-warning-bold-hovered)",
+            pressed: "var(--color-background-warning-bold-pressed)",
+          },
+        },
+        info: {
+          DEFAULT: "var(--color-background-info)",
+          hovered: "var(--color-background-info-hovered)",
+          pressed: "var(--color-background-info-pressed)",
+          bold: {
+            DEFAULT: "var(--color-background-info-bold)",
+            hovered: "var(--color-background-info-bold-hovered)",
+            pressed: "var(--color-background-info-bold-pressed)",
+          },
+        },
         subtle: "var(--color-background-subtle)",
         subtlest: "var(--color-background-subtlest)",
         neutral: {
           DEFAULT: "var(--color-background-neutral)",
           hovered: "var(--color-background-neutral-hovered)",
           pressed: "var(--color-background-neutral-pressed)",
+          bold: {
+            DEFAULT: "var(--color-background-neutral-bold)",
+            hovered: "var(--color-background-neutral-bold-hovered)",
+            pressed: "var(--color-background-neutral-bold-pressed)",
+          },
         },
         selected: {
           DEFAULT: "var(--color-background-selected)",

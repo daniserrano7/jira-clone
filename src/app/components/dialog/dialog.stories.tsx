@@ -29,7 +29,9 @@ export const Default: Story = {
             <div className="flex gap-2">
               <Button>Accept</Button>
               <Dialog.Close asChild>
-                <Button color="neutral">Close</Button>
+                <Button color="neutral" variant="subtlest">
+                  Close
+                </Button>
               </Dialog.Close>
             </div>
           </Dialog.Content>
