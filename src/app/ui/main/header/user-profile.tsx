@@ -32,9 +32,11 @@ export const UserProfile = (): JSX.Element => {
             <Form action="action/logout" method="post">
               <Button
                 color="danger"
+                variant="subtlest"
                 type="submit"
                 onClick={(e) => e.stopPropagation()} // To prevent dropdown menu from closing
-                className="flex w-full items-center gap-2 rounded bg-transparent p-2 text-sm text-font-danger hover:bg-background-danger-hovered active:bg-background-danger-pressed"
+                className="w-full"
+                // className="flex w-full items-center gap-2 rounded bg-transparent p-2 text-sm text-font-danger hover:bg-background-danger-hovered active:bg-background-danger-pressed"
                 aria-label="Log out"
               >
                 <FaPowerOff />
