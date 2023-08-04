@@ -210,22 +210,24 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
                   <span className="font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Shift</Kbd> + <Kbd>S</Kbd> to accept
                   </span>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-fit"
-                    disabled={transition.state !== "idle"}
-                    aria-label="Accept changes"
-                  >
-                    {transition.state !== "idle" ? (
-                      <>
-                        Submmiting
-                        <Spinner />
-                      </>
-                    ) : (
-                      "Accept"
-                    )}
-                  </Button>
+                  <div className="flex justify-center">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-fit"
+                      disabled={transition.state !== "idle"}
+                      aria-label="Accept changes"
+                    >
+                      {transition.state !== "idle" ? (
+                        <>
+                          Submmiting
+                          <Spinner />
+                        </>
+                      ) : (
+                        "Accept"
+                      )}
+                    </Button>
+                  </div>
                   <span className="justify-self-end font-primary-light text-2xs text-font-subtlest text-opacity-80">
                     Press <Kbd>Esc</Kbd> to close
                   </span>

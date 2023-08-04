@@ -13,7 +13,7 @@ import { Button } from "@app/components/button";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/kbd-placeholder";
-import { PanelHeaderProject } from "./panel-header-project";
+import { PanelHeaderProject } from "./create-project-panel-header";
 
 export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);

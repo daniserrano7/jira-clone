@@ -9,7 +9,7 @@ import { User, UserId } from "@domain/user";
 import { Category, categoryTypes, categoryTypeDict } from "@domain/category";
 import { getUsers } from "@infrastructure/db/user";
 import { createProject } from "@infrastructure/db/project";
-import { ProjectPanelView } from "@app/ui/main/projects/project-panel/project-panel.view";
+import { ProjectPanelView } from "@app/ui/main/projects/create-project-panel/create-project-panel.view";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { getRandomProjectImage } from "@utils/random-project-image";
 import { formatTags, formatProperties } from "@utils/meta";
