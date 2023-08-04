@@ -41,35 +41,43 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   render: (_) => (
-    <div className="grid grid-cols-6 gap-4 p-4">
-      {[
-        Primary,
-        Neutral,
-        Success,
-        Danger,
-        Warning,
-        Info,
-        PrimarySubtle,
-        NeutralSubtle,
-        SuccessSubtle,
-        DangerSubtle,
-        WarningSubtle,
-        InfoSubtle,
-        PrimaryText,
-        NeutralText,
-        SuccessText,
-        DangerText,
-        WarningText,
-        InfoText,
-        PrimaryContainedBig,
-        PrimarySubtleBig,
-        PrimaryTextBig,
-      ].map((ButtonStory, index) => (
-        <Button {...ButtonStory.args} className="w-fit" key={index}>
-          {ButtonStory.args?.children}
-        </Button>
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-6 gap-4 p-4">
+        {[
+          Primary,
+          Neutral,
+          Success,
+          Danger,
+          Warning,
+          Info,
+          PrimarySubtle,
+          NeutralSubtle,
+          SuccessSubtle,
+          DangerSubtle,
+          WarningSubtle,
+          InfoSubtle,
+          PrimaryText,
+          NeutralText,
+          SuccessText,
+          DangerText,
+          WarningText,
+          InfoText,
+        ].map((ButtonStory, index) => (
+          <Button {...ButtonStory.args} className="w-fit" key={index}>
+            {ButtonStory.args?.children}
+          </Button>
+        ))}
+      </div>
+      <div className="grid grid-cols-3 gap-4">
+        {[PrimaryContainedBig, PrimarySubtleBig, PrimaryTextBig].map(
+          (ButtonStory, index) => (
+            <Button {...ButtonStory.args} className="w-fit" key={index}>
+              {ButtonStory.args?.children}
+            </Button>
+          )
+        )}
+      </div>
+    </>
   ),
 };
 
