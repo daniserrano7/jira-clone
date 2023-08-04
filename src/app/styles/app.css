@@ -269,6 +269,7 @@
 
   --color-background-disabled: var(--Neutral100A);
   --color-background-interaction: var(--Neutral500A);
+  --color-background-drop: rgba(255, 255, 255, 0.7);
 }
 
 .dark {
@@ -406,6 +407,7 @@
 
   --color-background-disabled: var(--DarkNeutral100A);
   --color-background-interaction: #10121499;
+  --color-background-drop: rgba(0, 0, 0, 0.7);
 }
 
 .lava {
@@ -543,6 +545,7 @@
 
   --color-background-disabled: var(--DarkNeutral100A);
   --color-background-interaction: #10121499;
+  --color-background-drop: rgba(0, 0, 0, 0.7);
 }
 
 .lime {
@@ -680,4 +683,5 @@
 
   --color-background-disabled: var(--DarkNeutral100A);
   --color-background-interaction: #10121499;
+  --color-background-drop: rgba(0, 0, 0, 0.7);
 }

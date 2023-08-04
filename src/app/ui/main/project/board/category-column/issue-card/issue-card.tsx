@@ -47,13 +47,7 @@ export const IssueCard = ({
   }, [isDragging, handleDragging]);
 
   return (
-    <div
-      ref={isSubmitting ? undefined : dragRef}
-      className={cx(
-        "flex w-full cursor-pointer flex-col rounded border-none bg-elevation-surface-raised p-3 text-left shadow-xs duration-200 ease-in-out hover:bg-elevation-surface-raised-hovered active:bg-elevation-surface-raised-pressed",
-        isSubmitting && "opacity-50"
-      )}
-    >
+    <div ref={isSubmitting ? undefined : dragRef}>
       <IssueCardContent
         link={issueLink}
         name={issue.name}

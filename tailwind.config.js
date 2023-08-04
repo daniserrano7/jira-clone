@@ -137,6 +137,7 @@ module.exports = {
           pressed: "var(--color-background-selected-pressed)",
         },
         disabled: "var(--color-background-disabled)",
+        drop: "var(--color-background-drop)",
         input: {
           DEFAULT: "var(--color-background-input)",
           hovered: "var(--color-background-input-hovered)",

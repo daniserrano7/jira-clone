@@ -89,7 +89,7 @@ export const CategoryColumn = (props: CategoryColumnProps): JSX.Element => {
         className={cx(
           "absolute z-50 box-border h-[100%] w-[100%] rounded p-1.5 duration-200",
           isDragging ? "visible" : "hidden",
-          isOver || "bg-[#fff]/70"
+          isOver || "bg-background-drop"
         )}
       >
         <div
