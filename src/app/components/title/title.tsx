@@ -6,10 +6,11 @@ import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 const DEFAULT_MAX_LENGTH = 80;
 
 export const Title = ({
-  initTitle,
+  initTitle = "",
   readOnly,
   maxLength = DEFAULT_MAX_LENGTH,
   error,
+  placeholder = "Write the title",
 }: TitleProps): JSX.Element => {
   const [title, setTitle] = useState<string>(initTitle);
   const [isFocus, setIsFocus] = useState<boolean>(true);
@@ -18,7 +19,9 @@ export const Title = ({
   const requireError =
     error && (title.length === 0 || textAreOnlySpaces(title));
 
-  const onFocus = () => setIsFocus(true);
+  const onFocus = () => {
+    if (!readOnly) setIsFocus(true);
+  };
   const onBlur = () => setIsFocus(false);
 
   const updateTitle = (newTitle: string) => {
@@ -33,7 +36,7 @@ export const Title = ({
         name="title"
         value={title}
         setValue={updateTitle}
-        placeholder="Write the title"
+        placeholder={placeholder}
         readOnly={readOnly}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -64,8 +67,9 @@ export const Title = ({
 };
 
 interface TitleProps {
-  initTitle: string;
+  initTitle?: string;
   readOnly?: boolean;
   maxLength?: number;
   error?: string;
+  placeholder?: string;
 }
