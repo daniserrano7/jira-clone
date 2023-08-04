@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/app/routes/404.tsx"],
+  "sourcesContent": ["// TODO: This is currently not working\nexport default function NotFound404Route() {\n  return <div>NOT FOUNDDDD</div>;\n}\n"],
+  "mappings": ";;;;;;;;AAES;AADM,SAAR,mBAAoC;AACzC,SAAO,mDAAC,SAAI,4BAAL;AAAA;AAAA;AAAA;AAAA,SAAiB;AAC1B;",
+  "names": []
+}

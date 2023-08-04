@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["empty-module:@app/session-storage/theme-storage.server", "../../../../src/app/routes/action/set-theme.tsx"],
+  "sourcesContent": ["module.exports = {};", "import type { ActionFunction } from \"@remix-run/node\";\nimport { json, redirect } from \"@remix-run/node\";\nimport { Theme, Preference } from \"@app/store/theme.store\";\nimport { getThemeSession } from \"@app/session-storage/theme-storage.server\";\n\nexport const loader = () => redirect(\"/\", { status: 404 });\n\nexport const action: ActionFunction = async ({ request }) => {\n  const form = await request.formData();\n  const theme = form.get(\"theme\") as Theme;\n  const preference = form.get(\"preference\") as Preference;\n  const themeSession = await getThemeSession(request);\n  themeSession.setTheme({ theme, preference });\n\n  return json(\n    { success: true },\n    {\n      headers: { \"Set-Cookie\": await themeSession.commit() },\n    }\n  );\n};\n\nexport default function SetThemeAction() {\n  return <div>Oops... You should not see this.</div>;\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;AAAA;AAAA,WAAO,UAAU,CAAC;AAAA;AAAA;;;ACClB,kBAA+B;AAE/B,2BAAgC;AAoBvB;AADM,SAAR,iBAAkC;AACvC,SAAO,mDAAC,SAAI,gDAAL;AAAA;AAAA;AAAA;AAAA,SAAqC;AAC9C;",
+  "names": []
+}

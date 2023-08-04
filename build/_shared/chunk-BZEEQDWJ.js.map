@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/app/store/user.store.tsx"],
+  "sourcesContent": ["import { createContext, useContext } from \"react\";\nimport { User } from \"@domain/user\";\n\ninterface UserStore {\n  user: User;\n}\n\nconst UserContext = createContext<UserStore | undefined>(undefined);\n\nexport const UserContextProvider = ({\n  user,\n  children,\n}: {\n  user: User;\n  children: JSX.Element;\n}): JSX.Element => (\n  <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>\n);\n\nexport const useUserStore = (): UserStore => {\n  const userStore = useContext(UserContext);\n  if (!userStore) {\n    throw new Error(\"User context not found\");\n  }\n  return userStore;\n};\n"],
+  "mappings": ";;;;;;;;;AAAA,mBAA0C;AAgBxC;AATF,IAAM,kBAAc,4BAAqC,MAAS;AAE3D,IAAM,sBAAsB,CAAC;AAAA,EAClC;AAAA,EACA;AACF,MAIE,mDAAC,YAAY,UAAZ,EAAqB,OAAO,EAAE,KAAK,GAAI,YAAxC;AAAA;AAAA;AAAA;AAAA,OAAiD;AAG5C,IAAM,eAAe,MAAiB;AAC3C,QAAM,gBAAY,yBAAW,WAAW;AACxC,MAAI,CAAC,WAAW;AACd,UAAM,IAAI,MAAM,wBAAwB;AAAA,EAC1C;AACA,SAAO;AACT;",
+  "names": []
+}

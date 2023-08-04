@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/app/components/error-base.tsx"],
+  "sourcesContent": ["export const ErrorBase = ({ variant, message, href }: Props) => {\n  const imgPath = `/images/error-${variant}.svg`;\n\n  return (\n    <div className=\"max-w-[500px] text-center\">\n      <img\n        src={imgPath}\n        alt=\"Server error\"\n        className=\"mx-auto mb-4 h-[350px] w-auto\"\n      />\n      {href ? (\n        <a\n          href={href}\n          className=\"max-w-[100px] text-lg text-link hover:underline active:text-link-pressed\"\n        >\n          {message}\n        </a>\n      ) : (\n        <span className=\"max-w-[100px] text-lg text-font\">{message}</span>\n      )}\n    </div>\n  );\n};\n\ninterface Props {\n  variant: \"500\" | \"404\";\n  message: string;\n  href: string;\n}\n"],
+  "mappings": ";;;;;;;;AAKM;AALC,IAAM,YAAY,CAAC,EAAE,SAAS,SAAS,KAAK,MAAa;AAC9D,QAAM,UAAU,iBAAiB;AAEjC,SACE,mDAAC,SAAI,WAAU,6BACb;AAAA;AAAA,MAAC;AAAA;AAAA,QACC,KAAK;AAAA,QACL,KAAI;AAAA,QACJ,WAAU;AAAA;AAAA,MAHZ;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IAIA;AAAA,IACC,OACC;AAAA,MAAC;AAAA;AAAA,QACC;AAAA,QACA,WAAU;AAAA,QAET;AAAA;AAAA,MAJH;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IAKA,IAEA,mDAAC,UAAK,WAAU,mCAAmC,qBAAnD;AAAA;AAAA;AAAA;AAAA,WAA2D;AAAA,OAd/D;AAAA;AAAA;AAAA;AAAA,SAgBA;AAEJ;",
+  "names": []
+}

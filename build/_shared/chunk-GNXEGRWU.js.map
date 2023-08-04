@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/app/components/error-404/error-404.tsx"],
+  "sourcesContent": ["import { ErrorBase } from \"../error-base\";\n\nexport const Error404 = ({ message = \"Error 404: Not Found\", href }: Props) => {\n  return <ErrorBase variant=\"404\" message={message} href={href} />;\n};\n\ninterface Props {\n  message: string;\n  href: string;\n}\n"],
+  "mappings": ";;;;;;;;;;;AAGS;AADF,IAAM,WAAW,CAAC,EAAE,UAAU,wBAAwB,KAAK,MAAa;AAC7E,SAAO,mDAAC,aAAU,SAAQ,OAAM,SAAkB,QAA3C;AAAA;AAAA;AAAA;AAAA,SAAuD;AAChE;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/domain/category/category.ts"],
+  "sourcesContent": ["import { Issue } from \"@domain/issue\";\n\nexport type CategoryId = string;\nexport type CategoryType = typeof categoryTypes[number];\nexport const categoryTypes = [\"TODO\", \"IN_PROGRESS\", \"DONE\"] as const;\n\nexport const categoryTypeDict: Record<CategoryType, string> = {\n  TODO: \"To do\",\n  IN_PROGRESS: \"In progress\",\n  DONE: \"Done\",\n};\n\nexport interface Category {\n  id: CategoryId;\n  type: CategoryType;\n  name: string;\n  issues: Issue[];\n  order: number;\n  createdAt?: number;\n  updatedAt?: number;\n}\n"],
+  "mappings": ";AAIO,IAAM,gBAAgB,CAAC,QAAQ,eAAe,MAAM;AAEpD,IAAM,mBAAiD;AAAA,EAC5D,MAAM;AAAA,EACN,aAAa;AAAA,EACb,MAAM;AACR;",
+  "names": []
+}
