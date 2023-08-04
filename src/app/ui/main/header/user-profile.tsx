@@ -25,7 +25,7 @@ export const UserProfile = (): JSX.Element => {
         >
           <DropdownMenu.Item className="flex flex-col items-center p-3 !outline-none">
             <UserAvatar {...user} size={80} />
-            <span className="mt-2 text-lg">{user.name}</span>
+            <span className="mt-2 text-lg text-font">{user.name}</span>
           </DropdownMenu.Item>
           <DropdownMenu.Separator className="h-px bg-border" />
           <DropdownMenu.Item className="select-none p-1 !outline-none">
