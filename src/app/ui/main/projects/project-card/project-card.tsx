@@ -8,7 +8,7 @@ const defaultProjectsIds: ProjectId[] = projectsMock.map(
   (projectMock) => projectMock.id
 );
 
-export const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
+export const ProjectCard = ({ project }: Props): JSX.Element => {
   const isDefaultProject = defaultProjectsIds.includes(project.id);
 
   return (
@@ -86,6 +86,6 @@ export const ProjectCard = ({ project }: ProjectCardProps): JSX.Element => {
   );
 };
 
-interface ProjectCardProps {
+interface Props {
   project: ProjectSummary;
 }

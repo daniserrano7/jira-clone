@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 import { IoCloseOutline } from "react-icons/io5";
 import { IssueId } from "@domain/issue";
 
-export const PanelHeaderProject = ({
+export const CreateProjectPanelHeader = ({
   id,
 }: PanelHeaderProjectProps): JSX.Element => {
   // TODO: Add edit mode

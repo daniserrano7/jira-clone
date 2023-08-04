@@ -13,9 +13,12 @@ import { Button } from "@app/components/button";
 import { Title } from "@app/components/title";
 import { Description } from "@app/components/description";
 import { Kbd } from "@app/components/kbd-placeholder";
-import { PanelHeaderProject } from "./create-project-panel-header";
+import { CreateProjectPanelHeader } from "./create-project-panel-header";
 
-export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
+export const CreateProjectPanelView = ({
+  project,
+  users,
+}: Props): JSX.Element => {
   const [isOpen, setIsOpen] = useState(true);
   const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(
     null
@@ -97,7 +100,9 @@ export const ProjectPanelView = ({ project, users }: Props): JSX.Element => {
                 !isOpen && "translate-y-[10px] opacity-0"
               )}
             >
-              <PanelHeaderProject id={project?.id || "Create new project"} />
+              <CreateProjectPanelHeader
+                id={project?.id || "Create new project"}
+              />
               <Form method="post" ref={formRef}>
                 <div className="mb-6">
                   <Dialog.Title className="-ml-3 mb-8 mt-5">
