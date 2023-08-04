@@ -1,5 +1,5 @@
 import { Form, useSubmit } from "@remix-run/react";
-import * as Select from "@app/components/select";
+import * as Select from "@radix-ui/react-select";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { HiFlag } from "react-icons/hi";
 import { BsClockHistory } from "react-icons/bs";
@@ -39,7 +39,7 @@ export const SelectSort = (): JSX.Element => {
               <Select.Item
                 key={index}
                 value={sort.id}
-                className="flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-2xs uppercase leading-none text-font-brand outline-none hover:bg-background-brand-subtlest-hovered focus:bg-background-brand-subtlest-hovered active:bg-background-brand-subtlest-pressed"
+                className="flex cursor-pointer items-center justify-start gap-2 rounded border-none px-2 py-2 text-xs uppercase leading-none text-font-brand outline-none hover:bg-background-brand-subtlest-hovered focus:bg-background-brand-subtlest-hovered active:bg-background-brand-subtlest-pressed"
               >
                 <SortIcon sort={sort.id} />
                 <Select.ItemText>{sort.label}</Select.ItemText>
