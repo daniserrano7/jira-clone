@@ -14,22 +14,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
     },
     forwardedRef
   ) => {
-    const getButtonStyle = () => {
-      if (color === "primary") {
-        if (variant === "contained") {
-          return cx(
-            "bg-background-brand-bold text-font-inverse hover:bg-background-brand-bold-hovered active:bg-background-brand-bold-pressed"
-          );
-        }
-
-        if (variant === "text") {
-          return cx(
-            "bg-transparent text-font-brand hover:bg-background-brand-bold-hovered active:bg-background-brand-bold-pressed"
-          );
-        }
-      }
-    };
-
     return (
       <button
         ref={forwardedRef}
