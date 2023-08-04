@@ -41,20 +41,32 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   render: (_) => (
-    <div className="grid grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-6 gap-4 p-4">
       {[
         Primary,
         Neutral,
+        Success,
         Danger,
+        Warning,
+        Info,
+        PrimarySubtle,
+        NeutralSubtle,
+        SuccessSubtle,
+        DangerSubtle,
+        WarningSubtle,
+        InfoSubtle,
         PrimaryText,
         NeutralText,
+        SuccessText,
         DangerText,
-        PrimaryBig,
-        NeutralBig,
-        DangerBig,
+        WarningText,
+        InfoText,
+        PrimaryContainedBig,
+        PrimarySubtleBig,
+        PrimaryTextBig,
       ].map((ButtonStory, index) => (
         <Button {...ButtonStory.args} className="w-fit" key={index}>
-          Click
+          {ButtonStory.args?.children}
         </Button>
       ))}
     </div>
@@ -63,28 +75,96 @@ export const Default: Story = {
 
 export const Primary: Story = {
   args: {
-    children: "Click",
+    children: "Primary",
   },
 };
 
 export const Neutral: Story = {
   args: {
     color: "neutral",
-    children: "Click",
+    children: "Neutral",
+  },
+};
+
+export const Success: Story = {
+  args: {
+    color: "success",
+    children: "Success",
   },
 };
 
 export const Danger: Story = {
   args: {
     color: "danger",
-    children: "Click",
+    children: "Danger",
+  },
+};
+
+export const Warning: Story = {
+  args: {
+    color: "warning",
+    children: "Warning",
+  },
+};
+
+export const Info: Story = {
+  args: {
+    color: "info",
+    children: "Info",
+  },
+};
+
+export const PrimarySubtle: Story = {
+  args: {
+    variant: "subtlest",
+    children: "Primary",
+  },
+};
+
+export const NeutralSubtle: Story = {
+  args: {
+    variant: "subtlest",
+    color: "neutral",
+    children: "Neutral",
+  },
+};
+
+export const SuccessSubtle: Story = {
+  args: {
+    variant: "subtlest",
+    color: "success",
+    children: "Success",
+  },
+};
+
+export const DangerSubtle: Story = {
+  args: {
+    variant: "subtlest",
+    color: "danger",
+    children: "Danger",
+  },
+};
+
+export const WarningSubtle: Story = {
+  args: {
+    variant: "subtlest",
+    color: "warning",
+    children: "Warning",
+  },
+};
+
+export const InfoSubtle: Story = {
+  args: {
+    variant: "subtlest",
+    color: "info",
+    children: "Info",
   },
 };
 
 export const PrimaryText: Story = {
   args: {
     variant: "text",
-    children: "Click",
+    children: "Primary",
   },
 };
 
@@ -92,7 +172,15 @@ export const NeutralText: Story = {
   args: {
     variant: "text",
     color: "neutral",
-    children: "Click",
+    children: "Neutral",
+  },
+};
+
+export const SuccessText: Story = {
+  args: {
+    variant: "text",
+    color: "success",
+    children: "Success",
   },
 };
 
@@ -100,29 +188,45 @@ export const DangerText: Story = {
   args: {
     variant: "text",
     color: "danger",
-    children: "Click",
+    children: "Danger",
   },
 };
 
-export const PrimaryBig: Story = {
+export const WarningText: Story = {
   args: {
-    size: "lg",
-    children: "Click",
+    variant: "text",
+    color: "warning",
+    children: "Warning",
   },
 };
 
-export const NeutralBig: Story = {
+export const InfoText: Story = {
   args: {
-    size: "lg",
-    color: "neutral",
-    children: "Click",
+    variant: "text",
+    color: "info",
+    children: "Info",
   },
 };
 
-export const DangerBig: Story = {
+export const PrimaryContainedBig: Story = {
   args: {
     size: "lg",
-    color: "danger",
-    children: "Click",
+    children: "Primary",
+  },
+};
+
+export const PrimarySubtleBig: Story = {
+  args: {
+    variant: "subtlest",
+    size: "lg",
+    children: "Primary",
+  },
+};
+
+export const PrimaryTextBig: Story = {
+  args: {
+    variant: "text",
+    size: "lg",
+    children: "Primary",
   },
 };
