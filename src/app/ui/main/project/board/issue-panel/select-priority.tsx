@@ -17,7 +17,10 @@ export const SelectPriority = ({ initPriority }: Props): JSX.Element => {
       defaultValue={initPriority}
       onValueChange={onValueChange}
     >
-      <Select.Trigger aria-label="Open priority select">
+      <Select.Trigger
+        aria-label="Open priority select"
+        className="text-xs uppercase"
+      >
         <div className="mr-2">
           <PriorityIcon priority={selectValue} />
         </div>
@@ -35,7 +38,7 @@ export const SelectPriority = ({ initPriority }: Props): JSX.Element => {
             >
               <Select.ItemIndicator />
               <PriorityIcon priority={priority.id} />
-              <Select.ItemText>{priority.name}</Select.ItemText>
+              <Select.ItemText>{priority.id}</Select.ItemText>
             </Select.Item>
           ))}
           <Select.Separator />
