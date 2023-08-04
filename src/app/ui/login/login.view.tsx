@@ -1,16 +1,9 @@
 import { useState } from "react";
 import { Form } from "@remix-run/react";
-import * as Select from "@radix-ui/react-select";
 import { User, UserId, userMock1 } from "@domain/user";
 import { Button } from "@app/components/button";
 import { UserAvatar } from "@app/components/user-avatar";
-import {
-  SelectContent,
-  SelectTrigger,
-  SelectTriggerIcon,
-  SelectItem,
-  SelectItemIndicator,
-} from "@app/components/select";
+import * as Select from "@app/components/select";
 
 export const LoginView = ({ users }: Props) => {
   const [selectedValue, setSelectedValue] = useState<User>(userMock1);
@@ -38,7 +31,7 @@ export const LoginView = ({ users }: Props) => {
           defaultValue={userMock1.id}
           onValueChange={onValueChange}
         >
-          <SelectTrigger
+          <Select.Trigger
             className="flex w-full justify-between"
             aria-label="Open user select"
           >
@@ -46,22 +39,22 @@ export const LoginView = ({ users }: Props) => {
               <UserAvatar {...selectedValue} />
               <Select.Value />
             </div>
-            <SelectTriggerIcon />
-          </SelectTrigger>
-          <SelectContent>
+            <Select.TriggerIcon />
+          </Select.Trigger>
+          <Select.Content>
             <Select.ScrollUpButton />
             <Select.Viewport>
               {users.map((user, index) => (
-                <SelectItem key={index} value={user.id}>
-                  <SelectItemIndicator />
+                <Select.Item key={index} value={user.id}>
+                  <Select.ItemIndicator />
                   <UserAvatar {...user} />
                   <Select.ItemText>{user.name}</Select.ItemText>
-                </SelectItem>
+                </Select.Item>
               ))}
               <Select.Separator />
             </Select.Viewport>
             <Select.ScrollDownButton />
-          </SelectContent>
+          </Select.Content>
         </Select.Root>
         <Button
           type="submit"

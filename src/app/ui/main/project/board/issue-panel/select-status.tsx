@@ -1,15 +1,8 @@
 import { useState } from "react";
-import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId, CategoryType } from "@domain/category";
 import { useProjectStore } from "@app/ui/main/project";
-import {
-  SelectTrigger,
-  SelectTriggerIcon,
-  SelectContent,
-  SelectItem,
-  SelectItemIndicator,
-} from "@app/components/select";
+import * as Select from "@app/components/select";
 
 export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
   const projectStore = useProjectStore();
@@ -38,7 +31,7 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
       defaultValue={defaultValue}
       onValueChange={onValueChange}
     >
-      <SelectTrigger
+      <Select.Trigger
         aria-label="Open status select"
         className={cx(
           "!text-font-inverse hover:!opacity-80",
@@ -51,14 +44,14 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
         )}
       >
         <Select.Value className="pt-1" />
-        <SelectTriggerIcon />
-      </SelectTrigger>
-      <SelectContent>
+        <Select.TriggerIcon />
+      </Select.Trigger>
+      <Select.Content>
         <Select.ScrollUpButton />
         <Select.Viewport>
           {categories.map((category, index) => (
-            <SelectItem key={index} value={category.id}>
-              <SelectItemIndicator />
+            <Select.Item key={index} value={category.id}>
+              <Select.ItemIndicator />
               <span
                 className={cx(
                   "flex w-fit items-center gap-2 rounded px-1 py-0.5 text-2xs uppercase",
@@ -72,12 +65,12 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
               >
                 <Select.ItemText>{category.name}</Select.ItemText>
               </span>
-            </SelectItem>
+            </Select.Item>
           ))}
           <Select.Separator />
         </Select.Viewport>
         <Select.ScrollDownButton />
-      </SelectContent>
+      </Select.Content>
     </Select.Root>
   );
 };

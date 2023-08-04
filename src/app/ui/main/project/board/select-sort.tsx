@@ -1,5 +1,5 @@
 import { Form, useSubmit } from "@remix-run/react";
-import * as Select from "@radix-ui/react-select";
+import * as Select from "@app/components/select";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 import { HiFlag } from "react-icons/hi";
 import { BsClockHistory } from "react-icons/bs";
