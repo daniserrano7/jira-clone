@@ -5,9 +5,9 @@ import { userMock1 } from "@domain/user";
 import { UserContextProvider } from "@app/store/user.store";
 import { ThemeProvider, Theme, Preference } from "@app/store/theme.store";
 
-export const withMainContext = (
-  Story: PartialStoryFn<ReactRenderer, Record<string, never>>
-): JSX.Element => {
+type Story = PartialStoryFn<ReactRenderer, Record<string, never>>;
+
+export const withMainContext = (Story: Story): JSX.Element => {
   return (
     <UserContextProvider user={userMock1}>
       <ThemeProvider
