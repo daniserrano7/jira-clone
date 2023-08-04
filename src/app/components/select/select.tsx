@@ -16,7 +16,7 @@ export const Trigger = twix(
   cx(
     "flex cursor-pointer items-center rounded border-none py-1.5 px-2",
     "bg-background-neutral hover:bg-background-neutral-hovered active:bg-background-neutral-pressed",
-    "font-primary-bold text-sm"
+    "font-primary-bold text-sm text-font"
   )
 );
 
@@ -35,7 +35,7 @@ export const Item = twix(
   Select.Item,
   cx(
     "relative flex items-center gap-2 cursor-pointer select-none border-l-[3px] border-l-transparent p-2 pl-8",
-    "font-primary-bold text-sm hover:bg-background-selected active:bg-background-selected-pressed",
+    "font-primary-bold text-sm text-font hover:bg-background-selected active:bg-background-selected-pressed",
     "focus:border-l-[3px] focus:border-l-border-selected focus:bg-background-selected focus-visible:outline-none outline-none"
   )
 );
