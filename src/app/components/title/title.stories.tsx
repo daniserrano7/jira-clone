@@ -49,7 +49,9 @@ export const Default: Story = {
   ),
 };
 
-export const DefaultTitle: Story = {
+export const DefaultTitle: Story = {};
+
+export const InitTitle: Story = {
   args: {
     initTitle: "Default title",
   },
