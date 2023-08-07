@@ -1,9 +1,11 @@
 import { useState } from "react";
 import cx from "classix";
+import { twMerge } from "tailwind-merge";
 
 export const Tooltip = ({
   title,
   show = true,
+  className = "",
   children,
 }: TooltipProps): JSX.Element => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -21,11 +23,16 @@ export const Tooltip = ({
       </div>
       <div
         className={cx(
-          "z-80 absolute left-1/2 top-full mt-1.5 -translate-x-1/2 transform justify-center break-words",
+          "absolute left-1/2 top-full z-50 mt-1.5 -translate-x-1/2 transform justify-center break-words",
           isVisible ? "flex" : "hidden"
         )}
       >
-        <div className="w-fit whitespace-nowrap rounded bg-font px-1.5 py-0.5 text-2xs text-font-inverse">
+        <div
+          className={twMerge(
+            "w-fit whitespace-nowrap rounded bg-font px-1.5 py-0.5 text-2xs text-font-inverse",
+            className
+          )}
+        >
           {title}
         </div>
       </div>
@@ -36,5 +43,6 @@ export const Tooltip = ({
 interface TooltipProps {
   title: string;
   show?: boolean;
+  className?: string;
   children: JSX.Element;
 }
