@@ -1,5 +1,5 @@
 import * as Avatar from "@radix-ui/react-avatar";
-import { User } from "@domain/user";
+import { User, getRandomPastelColor } from "@domain/user";
 import { Tooltip } from "@app/components/tooltip";
 
 export const UserAvatar = ({
@@ -36,7 +36,7 @@ export const UserAvatar = ({
           className="flex items-center justify-center rounded-full text-[var(--Neutral1000)]"
           style={{
             ...imageSize,
-            backgroundColor: color,
+            backgroundColor: color || getRandomPastelColor(),
             fontSize: `${size / 2}px`,
           }}
         >
