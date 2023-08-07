@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/app/routes/action/logout.tsx"],
-  "sourcesContent": ["import type { ActionFunction } from \"@remix-run/node\";\nimport { redirect } from \"@remix-run/node\";\nimport { getUserSession } from \"@app/session-storage\";\n\nexport const loader = () => redirect(\"/\", { status: 404 });\n\nexport const action: ActionFunction = async ({ request }) => {\n  const userSession = await getUserSession(request);\n\n  return redirect(\"/login\", {\n    headers: { \"Set-Cookie\": await userSession.destroyUser() },\n  });\n};\n\nexport default function SetThemeAction() {\n  return <div>Oops... You should not see this.</div>;\n}\n"],
-  "mappings": ";;;;;;;;;;;AACA,kBAAyB;AAchB;AADM,SAAR,iBAAkC;AACvC,SAAO,mDAAC,SAAI,gDAAL;AAAA;AAAA;AAAA;AAAA,SAAqC;AAC9C;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/utils/meta.ts"],
-  "sourcesContent": ["export const formatTags = (tags: Record<string, string>) => {\n  return Object.entries(tags).map(([key, value]) => ({\n    name: key,\n    content: value,\n  }));\n};\n\nexport const formatProperties = (properties: Record<string, string>) => {\n  return Object.entries(properties).map(([key, value]) => ({\n    property: key,\n    content: value,\n  }));\n};\n"],
-  "mappings": ";AAAO,IAAM,aAAa,CAAC,SAAiC;AAC1D,SAAO,OAAO,QAAQ,IAAI,EAAE,IAAI,CAAC,CAAC,KAAK,KAAK,OAAO;AAAA,IACjD,MAAM;AAAA,IACN,SAAS;AAAA,EACX,EAAE;AACJ;AAEO,IAAM,mBAAmB,CAAC,eAAuC;AACtE,SAAO,OAAO,QAAQ,UAAU,EAAE,IAAI,CAAC,CAAC,KAAK,KAAK,OAAO;AAAA,IACvD,UAAU;AAAA,IACV,SAAS;AAAA,EACX,EAAE;AACJ;",
-  "names": []
-}

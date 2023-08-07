@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/app/components/error-500/error-500.tsx"],
-  "sourcesContent": ["import { ErrorBase } from \"../error-base\";\n\nexport const Error500 = ({\n  message = \"Error 500: Server error\",\n  href,\n}: Props) => {\n  return <ErrorBase variant=\"500\" message={message} href={href} />;\n};\n\ninterface Props {\n  message: string;\n  href: string;\n}\n"],
-  "mappings": ";;;;;;;;;;;AAMS;AAJF,IAAM,WAAW,CAAC;AAAA,EACvB,UAAU;AAAA,EACV;AACF,MAAa;AACX,SAAO,mDAAC,aAAU,SAAQ,OAAM,SAAkB,QAA3C;AAAA;AAAA;AAAA;AAAA,SAAuD;AAChE;",
-  "names": []
-}

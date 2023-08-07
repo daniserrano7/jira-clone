@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../src/app/routes/__main/projects.$projectId/server-error.tsx"],
-  "sourcesContent": ["import { useEffect } from \"react\";\nimport { toast } from \"react-toastify\";\nimport { Error500 } from \"@app/components/error-500\";\n\nexport const loader = async () => {\n  throw new Error(\"Fail from Error500Route\");\n};\n\nexport function ErrorBoundary({ error }: { error: Error }) {\n  useEffect(() => {\n    toast.error(\"Try reloading the page.\");\n  }, []);\n\n  console.error(error);\n  const errorMessage =\n    \"The Server error page failed. This is an example of a server error page (check network tab). Navigate to the board page\";\n\n  return (\n    <div className=\"flex h-full items-center justify-center\">\n      <Error500 message={errorMessage} href=\"board\" />\n    </div>\n  );\n}\n\nexport default function Error500Route() {\n  return <div>This will never show because of the server error 500</div>;\n}\n\n//  -^-\n//   O\n//  /|\\  -> Felicidad\n//  / \\\n"],
-  "mappings": ";;;;;;;;;;;;;;;;AAAA,mBAA0B;AAmBpB;AAXC,SAAS,cAAc,EAAE,MAAM,GAAqB;AACzD,8BAAU,MAAM;AACd,MAAM,MAAM,yBAAyB;AAAA,EACvC,GAAG,CAAC,CAAC;AAEL,UAAQ,MAAM,KAAK;AACnB,QAAM,eACJ;AAEF,SACE,mDAAC,SAAI,WAAU,2CACb,6DAAC,YAAS,SAAS,cAAc,MAAK,WAAtC;AAAA;AAAA;AAAA;AAAA,SAA8C,KADhD;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;AAEe,SAAR,gBAAiC;AACtC,SAAO,mDAAC,SAAI,oEAAL;AAAA;AAAA;AAAA;AAAA,SAAyD;AAClE;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/app/routes/index.tsx"],
-  "sourcesContent": ["import { LoaderFunction, redirect } from \"@remix-run/node\";\nimport { Error404 } from \"@app/components/error-404\";\n\nexport const loader: LoaderFunction = async ({ request }) => {\n  const url = new URL(request.url);\n  if (url.pathname === \"/\") {\n    return redirect(\"projects\");\n  }\n  return null;\n};\n\n// Currently there is no landing. Just redirecting to /projects\nexport default function IndexRoute() {\n  return (\n    <div>\n      <h1>LANDING</h1>\n    </div>\n  );\n}\n\nexport function CatchBoundary() {\n  return (\n    <div>\n      <Error404\n        message=\"It seems that you have lost! Go to the main page\"\n        href=\"/\"\n      />\n    </div>\n  );\n}\n"],
-  "mappings": ";;;;;;;;;;;;;;;AAAA,kBAAyC;AAenC;AAHS,SAAR,aAA8B;AACnC,SACE,mDAAC,SACC,6DAAC,QAAG,uBAAJ;AAAA;AAAA;AAAA;AAAA,SAAW,KADb;AAAA;AAAA;AAAA;AAAA,SAEA;AAEJ;AAEO,SAAS,gBAAgB;AAC9B,SACE,mDAAC,SACC;AAAA,IAAC;AAAA;AAAA,MACC,SAAQ;AAAA,MACR,MAAK;AAAA;AAAA,IAFP;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,EAGA,KAJF;AAAA;AAAA;AAAA;AAAA,SAKA;AAEJ;",
-  "names": []
-}

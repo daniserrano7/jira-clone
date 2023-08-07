@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../node_modules/.pnpm/tailwindcss-radix-ui@0.0.4_react@18.2.0/node_modules/tailwindcss-radix-ui/dist/index.mjs"],
-  "sourcesContent": ["import React from 'react';\n\nfunction twix(component, className) {\n  return React.forwardRef((props, ref) => {\n    return React.createElement(component, {\n      ...props,\n      ref,\n      className: `${className} ${props.className ?? \"\"}`\n    });\n  });\n}\n\nexport { twix };\n"],
-  "mappings": ";;;;;;;;AAAA,mBAAkB;AAElB,SAAS,KAAK,WAAW,WAAW;AAClC,SAAO,aAAAA,QAAM,WAAW,CAAC,OAAO,QAAQ;AACtC,WAAO,aAAAA,QAAM,cAAc,WAAW;AAAA,MACpC,GAAG;AAAA,MACH;AAAA,MACA,WAAW,GAAG,aAAa,MAAM,aAAa;AAAA,IAChD,CAAC;AAAA,EACH,CAAC;AACH;",
-  "names": ["React"]
-}
