@@ -23,16 +23,16 @@ export const ProjectView = ({
       <Sidebar
         projectName={name}
         projectDescription={description || "Description undefined"}
-        projectImage={image || "/images/default-project.png"}
+        projectImage={image || "./images/default-project.png"}
       />
-      <div className="z-10 flex h-full w-full flex-grow flex-col py-6 px-5">
+      <div className="z-10 flex h-full w-full flex-grow flex-col px-5 py-6">
         <section>
           <Link to="/projects" className="underline underline-offset-[3px]">
             Projects
           </Link>
           <span className="mx-2">/</span>
           <span>{name}</span>
-          <h1 className="mt-4 mb-5 font-primary-black text-2xl">
+          <h1 className="mb-5 mt-4 font-primary-black text-2xl">
             {sectionTitle}
           </h1>
         </section>

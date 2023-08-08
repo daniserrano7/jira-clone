@@ -22,7 +22,8 @@ export const Title = ({
   const onFocus = () => {
     if (!readOnly) setIsFocus(true);
   };
-  const onBlur = () => setIsFocus(false);
+  // const onBlur = () => setIsFocus(false);
+  const onBlur = () => console.log("onBlur");
 
   const updateTitle = (newTitle: string) => {
     if (newTitle.length > maxLength) return;
@@ -55,7 +56,7 @@ export const Title = ({
       {isFocus && (
         <span
           className={cx(
-            "absolute right-0 top-full font-primary-light",
+            "absolute right-0 top-full font-primary-light text-sm",
             isMaxLength ? "text-font-danger" : "text-font-subtlest"
           )}
         >

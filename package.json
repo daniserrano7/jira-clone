@@ -1,7 +1,7 @@
 {
   "private": true,
   "sideEffects": false,
-  "homepage": "http://daniserrano7.github.io/jira-clone",
+  "homepage": "http://daniserrano7.github.io/jira-clone/",
   "scripts": {
     "build": "npm run build:css && remix build",
     "build:css": "tailwindcss -m -i ./src/app/styles/app.css -o ./src/app/styles/app-compiled.css",
@@ -19,7 +19,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "touch ./storybook-static/.nojekyll && gh-pages -d storybook-static -t true"
+    "deploy-storybook": "pnpm run build-storybook && touch ./storybook-static/.nojekyll && gh-pages -d storybook-static -t true"
   },
   "prisma": {
     "schema": "src/infrastructure/db/schema.prisma",
