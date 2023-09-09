@@ -23,32 +23,32 @@ export const SelctTheme = (): JSX.Element => {
     {
       value: Theme.LIGHT,
       label: "Light",
-      image: "/images/select-theme-light.png",
+      image: "/images/theme/light.png",
     },
     {
       value: Theme.DARK,
       label: "Dark",
-      image: "/images/select-theme-dark.png",
+      image: "/images/theme/dark.png",
     },
     {
       value: Theme.LAVA,
       label: "Lava",
-      image: "/images/select-theme-dark.png",
+      image: "/images/theme/lava.png",
     },
     {
       value: Theme.LIME,
       label: "Lime",
-      image: "/images/select-theme-dark.png",
+      image: "/images/theme/lime.png",
     },
     {
       value: Theme.BARBIE,
       label: "Barbie",
-      image: "/images/select-theme-dark.png",
+      image: "/images/theme/barbie.png",
     },
     {
       value: Preference.SYSTEM,
       label: "System",
-      image: "/images/select-theme-system.png",
+      image: "/images/theme/system.png",
     },
   ];
   const currentValue = preference === Preference.SYSTEM ? preference : theme;
