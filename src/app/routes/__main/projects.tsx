@@ -45,7 +45,7 @@ export const meta: V2_MetaFunction = () => {
     "og:image": image,
   };
 
-  return [...formatTags(tags), ...formatProperties(properties)];
+  return [{ title }, ...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {
@@ -83,7 +83,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   return (
     <div className="h-full w-full text-center">
-      <h1 className="mt-[200px] mb-6 text-lg">/projects ERROR</h1>
+      <h1 className="mb-6 mt-[200px] text-lg">/projects ERROR</h1>
       <a href="/" className="text-primary-main hover:underline">
         Navigate to home
       </a>
