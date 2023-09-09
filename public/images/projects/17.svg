@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_notes_flag</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_notes_flag">
+            <g id="project_avatar_flag">
+                <g id="Red_flag">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#FFC400" xlink:href="#path-1"></use>
+                    <path d="M112.668,34.252 L65.986,34.252 L65.986,91.44 C65.986,94.386 68.374,96.773 71.319,96.773 L112.668,96.773 L102.391,65.512 L112.668,34.252 Z" id="Shape" fill="#DE350A" fill-rule="nonzero" ></path>
+                    <path d="M33.879,26.684 L73.953,26.684 C76.899,26.684 79.286,29.072 79.286,32.017 L79.286,87.227 L33.879,87.227 L33.879,26.684 Z" id="Shape" fill="#FF5630" fill-rule="nonzero" ></path>
+                    <path d="M65.986,87.227 L65.986,91.44 C65.986,94.386 68.374,96.773 71.319,96.773 L73.015,96.773 L79.287,87.226 L65.986,87.226 L65.986,87.227 Z" id="Shape" fill="#BF2601" fill-rule="nonzero" opacity="0.3" ></path>
+                    <rect id="Rectangle-path" fill="#D32F06" fill-rule="nonzero" opacity="0.2"  x="33.879" y="26.684" width="4.547" height="60.543"></rect>
+                    <path d="M29.744,20.262 C27.158,20.262 25.043,22.378 25.043,24.963 L25.043,128.762 C27.986,131.024 31.13,127.032 34.446,128.762 L34.446,24.964 C34.445,22.378 32.329,20.262 29.744,20.262 Z" id="Shape" fill="#C9E6F4" fill-rule="nonzero" ></path>
+                    <path d="M25.042,24.964 L25.042,128.806 C25.958,129.51 26.89,128.151 27.844,128.806 L27.844,24.964 C27.844,22.869 29.242,21.104 31.144,20.501 C30.698,20.36 30.234,20.262 29.743,20.262 C27.158,20.262 25.042,22.378 25.042,24.964 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
