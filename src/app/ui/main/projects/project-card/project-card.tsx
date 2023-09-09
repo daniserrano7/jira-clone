@@ -21,7 +21,7 @@ export const ProjectCard = ({ project }: Props): JSX.Element => {
         )}
       >
         <img
-          src={project.image || "./images/default-project.png"}
+          src={project.image || "/images/default-project.png"}
           alt="Project"
           width="90px"
           height="104px"

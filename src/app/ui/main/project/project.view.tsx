@@ -23,7 +23,7 @@ export const ProjectView = ({
       <Sidebar
         projectName={name}
         projectDescription={description || "Description undefined"}
-        projectImage={image || "./images/default-project.png"}
+        projectImage={image || "/images/default-project.png"}
       />
       <div className="z-10 flex h-full w-full flex-grow flex-col px-5 py-6">
         <section>

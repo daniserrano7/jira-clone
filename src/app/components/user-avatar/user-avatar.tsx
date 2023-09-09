@@ -10,8 +10,7 @@ export const UserAvatar = ({
   tooltip = false,
 }: UserAvatarProps): JSX.Element => {
   const imageMinName = image?.replace(".webp", "-min.webp");
-  const imageSrc =
-    size > 80 ? `./avatars/${image}` : `./avatars/${imageMinName}`;
+  const imageSrc = size > 80 ? `/avatars/${image}` : `/avatars/${imageMinName}`;
   const imageSize = {
     width: `${size}px`,
     minWidth: `${size}px`,

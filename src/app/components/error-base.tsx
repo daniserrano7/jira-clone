@@ -1,5 +1,5 @@
 export const ErrorBase = ({ variant, message, href }: Props) => {
-  const imgPath = `./images/error-${variant}.svg`;
+  const imgPath = `/images/error-${variant}.svg`;
 
   return (
     <div className="max-w-[500px] text-center">
