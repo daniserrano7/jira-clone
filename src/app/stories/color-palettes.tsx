@@ -27,9 +27,11 @@ export const ColorPalettes = () => {
     Lime: creatColorVariables("Lime"),
     Blue: creatColorVariables("Blue"),
     Green: creatColorVariables("Green"),
+    Teal: creatColorVariables("Teal"),
     Yellow: creatColorVariables("Yellow"),
     Orange: creatColorVariables("Orange"),
     Red: creatColorVariables("Red"),
+    Magenta: creatColorVariables("Magenta"),
   };
 
   const lightPalettes: Palettes = {
