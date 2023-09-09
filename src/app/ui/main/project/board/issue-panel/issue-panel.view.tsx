@@ -141,21 +141,23 @@ export const IssuePanel = ({ issue }: Props): JSX.Element => {
               <Form method="post" onSubmit={handleFormSumbit} ref={formRef}>
                 <div className="grid grid-cols-5 gap-16">
                   <section className="col-span-3">
-                    <Dialog.Title className="my-5 -ml-3" asChild>
-                      <Title
-                        initTitle={issue?.name || ""}
-                        readOnly={userIsNotReporter}
-                        error={actionData?.errors?.name}
-                      />
-                    </Dialog.Title>
+                    <div className="my-5 -ml-3 mb-6">
+                      <Dialog.Title asChild>
+                        <Title
+                          initTitle={issue?.name || ""}
+                          readOnly={userIsNotReporter}
+                          error={actionData?.errors?.name}
+                        />
+                      </Dialog.Title>
+                    </div>
                     <p className="font-primary-black text-font">Description</p>
-                    <div className="-ml-3">
+                    <div className="-ml-3 mb-6">
                       <Description
                         initDescription={issue?.description || ""}
                         readOnly={userIsNotReporter}
                       />
                     </div>
-                    <div className="mt-6">
+                    <div>
                       <p className="font-primary-black text-font">Comments</p>
                       <div>
                         <CreateComment addComment={addComment} />
