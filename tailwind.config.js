@@ -212,9 +212,6 @@ module.exports = {
         "2xs": ["0.75rem", "1rem"],
         xs: ["0.8125rem", "1rem"],
       },
-      gridTemplateColumns: {
-        "auto-400": "repeat(auto-fit, 400px)",
-      },
       keyframes: {
         // Dropdown menu
         "scale-in": {

@@ -20,7 +20,7 @@ export const ProjectsView = ({
           </Button>
         </Link>
       </div>
-      <div className="4 mt-4 grid grid-cols-auto-400 gap-8">
+      <div className="4 mt-4 grid grid-cols-[repeat(auto-fix_400px)] gap-8">
         {projectsSummary.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
