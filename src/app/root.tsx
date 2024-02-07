@@ -12,16 +12,20 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import cx from "classix";
-import { Theme, Preference } from "@app/store/theme.store";
+import {
+  Theme,
+  Preference,
+  ThemeProvider,
+  useTheme,
+} from "@app/store/theme.store";
 import { formatTags, formatProperties } from "@utils/meta";
 import { getThemeSession } from "./session-storage/theme-storage.server";
-import { ThemeProvider, useTheme } from "./store/theme.store";
 import { Toast } from "./components/toast";
 import { Error404 } from "./components/error-404";
 import { Error500 } from "./components/error-500";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
-import fuck from 'react-toastify/dist/ReactToastify.css'
+import fuck from "react-toastify/dist/ReactToastify.css";
 
 export const links = () => {
   return [
@@ -94,7 +98,6 @@ const App = (): JSX.Element => {
   const { theme: sessionTheme, preference: sessionPreference } = loaderData;
   const { theme } = useTheme();
   const fetcher = useFetcher();
-  const isDarkTheme = theme === Theme.DARK;
 
   useEffect(() => {
     // To avoid missmatch between server and client, theme is loaded
@@ -116,17 +119,17 @@ const App = (): JSX.Element => {
   }, []);
 
   return (
-    <html lang="en" className={cx("h-full", isDarkTheme && Theme.DARK)}>
+    <html lang="en" className={cx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
+      <body className="h-full bg-elevation-surface font-primary text-font">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <Toast />
+        <Toast theme={theme || Theme.LIGHT} />
         <script
           dangerouslySetInnerHTML={{
             __html: !sessionTheme

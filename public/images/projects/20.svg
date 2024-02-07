@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_science</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_science">
+            <g id="science">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#6555C0" xlink:href="#path-1"></use>
+                    <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero"  cx="63.218" cy="68.882" r="40.675"></circle>
+                    <path d="M81.832,41.449 L45.294,41.449 L45.294,23.237 C45.294,21.58 46.637,20.237 48.294,20.237 L78.832,20.237 C80.489,20.237 81.832,21.58 81.832,23.237 L81.832,41.449 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                    <circle id="Oval" fill="#7F4CBF" fill-rule="nonzero" opacity="0.1"  cx="63.127" cy="68.882" r="30.804"></circle>
+                    <path d="M72.24,32.878 L54.886,32.878 C53.229,32.878 51.886,31.535 51.886,29.878 L51.886,14.797 C51.886,13.14 53.229,11.797 54.886,11.797 L72.24,11.797 C73.897,11.797 75.24,13.14 75.24,14.797 L75.24,29.878 C75.24,31.535 73.897,32.878 72.24,32.878 Z" id="Shape" fill="#00C7E6" fill-rule="nonzero" ></path>
+                    <path d="M64.255,68.882 C64.255,68.882 31.745,53.289 32.567,71.881 C33.22,86.665 59.937,83.747 59.937,83.747 L64.255,68.882 Z" id="Shape" fill="#DE350A" fill-rule="nonzero" ></path>
+                    <path d="M62.085,66.354 C79.394,51.896 93.542,70.82 93.542,70.82 L93.69,71.015 C92.594,86.962 79.32,99.56 63.094,99.56 C47.163,99.56 34.071,87.416 32.564,71.88 C33.191,72.369 45.309,80.367 62.085,66.354 Z" id="Shape" fill="#FF5630" fill-rule="nonzero" ></path>
+                    <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" opacity="0.5"  x="50.348" y="20.237" width="26.575" height="14.892"></rect>
+                    <circle id="Oval" fill="#FF5630" fill-rule="nonzero"  cx="61.798" cy="47.945" r="6.007"></circle>
+                    <circle id="Oval" fill="#FF5630" fill-rule="nonzero"  cx="74.681" cy="53.024" r="3.793"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

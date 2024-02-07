@@ -45,7 +45,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
       <textarea
         name={name}
         className={cx(
-          "box-border w-full resize-none overflow-y-hidden rounded-md border-none p-3 text-font-main outline-2 hover:bg-grey-300 focus-visible:bg-white dark:bg-dark-500 dark:text-font-main-dark",
+          "box-border w-full resize-none overflow-y-hidden rounded-md border-none bg-background-input p-3 text-font outline-2 hover:bg-background-input-hovered focus-visible:bg-background-input-pressed",
           textareaClassName
         )}
         value={value}
@@ -60,7 +60,7 @@ export const TextareaAutosize = (props: TitleProps): JSX.Element => {
       <p
         ref={textareaRef}
         className={cx(
-          "absolute top-0 left-0 -z-10 box-border overflow-y-hidden p-3 opacity-0",
+          "absolute left-0 top-0 -z-10 box-border overflow-y-hidden p-3 opacity-0",
           textareaClassName
         )}
       >

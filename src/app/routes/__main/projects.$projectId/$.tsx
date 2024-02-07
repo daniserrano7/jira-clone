@@ -1,5 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
+import { useEffect } from "react";
 import { useParams } from "@remix-run/react";
+import { toast } from "react-toastify";
 import { ProjectId } from "@domain/project";
 import { Error404 } from "@app/components/error-404";
 
@@ -10,6 +12,10 @@ export const loader: LoaderFunction = async () => {
 };
 
 export function CatchBoundary() {
+  useEffect(() => {
+    toast.warning("Try to go back to the previous page.");
+  }, []);
+
   const params = useParams();
   const projectId = params.projectId as ProjectId;
   const slug = params["*"] as string;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_koala</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_koala">
+            <g id="koala">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#2684FF" xlink:href="#path-1"></use>
+                    <circle id="Oval" fill="#B3D4FF" fill-rule="nonzero"  cx="36.752" cy="41.942" r="19.148"></circle>
+                    <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero"  cx="36.752" cy="41.942" r="11.347"></circle>
+                    <circle id="Oval" fill="#B3D4FF" fill-rule="nonzero"  cx="91.248" cy="41.942" r="19.148"></circle>
+                    <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero"  cx="91.248" cy="41.942" r="11.347"></circle>
+                    <path d="M103.833,75.564 L96.656,47.107 C95.447,41.678 90.631,37.816 85.068,37.816 L66.304,37.816 L62.038,37.816 L43.274,37.816 C37.712,37.816 32.895,41.678 31.686,47.107 L24.509,75.564 C21.206,90.394 32.49,104.468 47.684,104.468 L62.038,104.468 L66.304,104.468 L80.658,104.468 C95.852,104.467 107.136,90.394 103.833,75.564 Z" id="Shape" fill="#B3D4FF" fill-rule="nonzero" ></path>
+                    <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero"  cx="45.733" cy="65.823" r="8.827"></circle>
+                    <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero"  cx="82.468" cy="65.823" r="8.827"></circle>
+                    <circle id="Oval" fill="#2A5083" fill-rule="nonzero"  cx="45.733" cy="65.823" r="4.113"></circle>
+                    <circle id="Oval" fill="#2A5083" fill-rule="nonzero"  cx="82.468" cy="65.823" r="4.113"></circle>
+                    <path d="M64.171,62.915 C59.958,62.915 56.512,66.362 56.512,70.574 L56.512,72.669 L56.512,81.269 L56.512,83.364 L71.83,83.364 L71.83,81.269 L71.83,72.669 L71.83,70.574 C71.83,66.362 68.384,62.915 64.171,62.915 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M87.65,78.449 C87.284,77.607 86.238,77.184 85.382,77.544 C78.799,80.259 71.814,81.637 64.618,81.637 C54.2,81.637 46.328,78.791 43.427,77.567 C42.59,77.218 41.59,77.59 41.186,78.395 C40.97,78.827 40.942,79.333 41.109,79.785 C41.275,80.233 41.623,80.598 42.067,80.783 C45.171,82.088 53.586,85.125 64.644,85.125 C72.293,85.125 79.72,83.66 86.722,80.772 C87.155,80.593 87.492,80.251 87.67,79.813 C87.847,79.37 87.842,78.886 87.65,78.449 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M95.918,99.176 C93.051,86.653 81.166,82.708 81.166,82.708 C77.52,92.362 81.17,99.372 85.755,103.979 C89.577,103.202 93.035,101.519 95.918,99.176 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" opacity="0.1" ></path>
+                    <path d="M81.258,82.708 C81.258,82.708 101.191,82.453 104.41,104.467 C104.411,104.467 80.663,103.426 81.258,82.708 Z" id="Shape" fill="#00C7E6" fill-rule="nonzero" ></path>
+                    <path d="M96.688,96.974 C97.211,96.398 97.168,95.499 96.592,94.976 L83.242,82.845 C82.011,82.7 81.256,82.708 81.256,82.708 C81.234,83.467 81.254,84.192 81.296,84.899 L94.69,97.07 C95.266,97.593 96.165,97.55 96.688,96.974 Z" id="Shape" fill="#00A3BF" fill-rule="nonzero" ></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

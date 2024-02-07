@@ -9,7 +9,7 @@ import { User, UserId } from "@domain/user";
 import { Category, categoryTypes, categoryTypeDict } from "@domain/category";
 import { getUsers } from "@infrastructure/db/user";
 import { createProject } from "@infrastructure/db/project";
-import { ProjectPanelView } from "@app/ui/main/projects/project-panel/project-panel.view";
+import { CreateProjectPanelView } from "@app/ui/main/projects/create-project-panel/create-project-panel.view";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { getRandomProjectImage } from "@utils/random-project-image";
 import { formatTags, formatProperties } from "@utils/meta";
@@ -120,5 +120,5 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function IssuePanelRoute() {
   const { users } = useLoaderData() as LoaderData;
-  return <ProjectPanelView users={users} />;
+  return <CreateProjectPanelView users={users} />;
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_parrot</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_parrot">
+            <g id="Bird">
+                <g>
+                    <rect id="Rectangle" fill="#6555C0" x="0" y="0" width="128" height="128"></rect>
+                    <path d="M70.403969,21.081 C67.2674729,20.332 63.9990078,19.924 60.6352868,19.924 C37.3005891,19.924 18.3833798,38.989 18.3833798,62.506 C18.3833798,86.023 37.3005891,105.088 60.6352868,105.088 C63.9990078,105.088 67.2664806,104.68 70.403969,103.931 L70.403969,21.081 Z" id="Shape" fill="#00B8D9" fill-rule="nonzero"></path>
+                    <path d="M69.0862636,104.236 C84.7409612,101.033 97.2432868,89.105 101.399814,73.71 L69.0862636,75.472 L69.0862636,104.236 Z" id="Shape" fill="#FF991F" fill-rule="nonzero"></path>
+                    <path d="M69.0862636,31.085 C67.7764961,30.931 66.4508527,30.831 65.1004031,30.831 C46.2655504,30.831 30.9968372,46.219 30.9968372,65.201 C30.9968372,84.183 46.2655504,99.571 65.1004031,99.571 C66.4508527,99.571 67.7764961,99.471 69.0862636,99.317 L69.0862636,31.085 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                    <ellipse id="Oval" fill="#403294" fill-rule="nonzero" cx="51.952124" cy="56.634" rx="8.68316279" ry="8.751"></ellipse>
+                    <path d="M69.0862636,75.471 C69.0862636,75.471 82.3030078,89.46 101.402791,73.709 C101.402791,73.709 107.59045,67.495 115.542326,74.913 C116.418481,75.731 117.831442,75.016 117.735194,73.817 C116.83324,62.524 110.655504,28.361 69.0862636,20.777 L69.0862636,75.471 Z" id="Shape" fill="#FFC400" fill-rule="nonzero"></path>
+                    <ellipse id="Oval" fill="#FF991F" fill-rule="nonzero" transform="translate(79.156302, 31.142560) rotate(16.146077) translate(-79.156302, -31.142560) " cx="79.1563019" cy="31.1425597" rx="4.13984927" ry="2.12009749"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
