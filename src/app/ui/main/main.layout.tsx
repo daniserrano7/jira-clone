@@ -6,7 +6,7 @@ import { Header } from "./header";
 export const MainLayout = ({ user }: Props) => {
   return (
     <UserContextProvider user={user}>
-      <div className="flex h-full flex-col bg-white dark:bg-dark-400 dark:text-font-main-dark">
+      <div className="flex h-full flex-col">
         <Header />
         <Outlet />
       </div>

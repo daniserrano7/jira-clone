@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect } from "react";
-import type { MetaFunction, LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import {
   Links,
@@ -12,23 +12,31 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import cx from "classix";
-import { Theme, Preference } from "@app/store/theme.store";
+import {
+  Theme,
+  Preference,
+  ThemeProvider,
+  useTheme,
+} from "@app/store/theme.store";
+import { formatTags, formatProperties } from "@utils/meta";
 import { getThemeSession } from "./session-storage/theme-storage.server";
-import { ThemeProvider, useTheme } from "./store/theme.store";
+import { Toast } from "./components/toast";
 import { Error404 } from "./components/error-404";
 import { Error500 } from "./components/error-500";
 import styles from "./styles/app-compiled.css";
 import fonts from "./styles/fonts.css";
+import fuck from "react-toastify/dist/ReactToastify.css";
 
 export const links = () => {
   return [
     { rel: "stylesheet", href: fonts },
     { rel: "stylesheet", href: styles },
+    { rel: "stylesheet", href: fuck },
     { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
   ];
 };
 
-export const meta: MetaFunction = () => {
+export const meta: V2_MetaFunction = () => {
   const title = "Jira clone";
   const description =
     "Task manager application inspired in Jira. Side project made with Remix, React, Tailwind, TypeScript and more.";
@@ -36,17 +44,11 @@ export const meta: MetaFunction = () => {
     "https://jira-clone.fly.dev/static/images/select-theme-light.png";
   const url = "https://jira-clone.fly.dev";
 
-  return {
+  const tags = {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
     title: title,
     description: description,
-    "og:url": url,
-    "og:type": "website",
-    "og:site_name": title,
-    "og:title": title,
-    "og:description": description,
-    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
@@ -59,6 +61,17 @@ export const meta: MetaFunction = () => {
     "twitter:creator": "@Jack_DanielSG",
     "twitter:creator:id": "Jack_DanielSG",
   };
+
+  const properties = {
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+
+  return [...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {
@@ -85,7 +98,6 @@ const App = (): JSX.Element => {
   const { theme: sessionTheme, preference: sessionPreference } = loaderData;
   const { theme } = useTheme();
   const fetcher = useFetcher();
-  const isDarkTheme = theme === Theme.DARK;
 
   useEffect(() => {
     // To avoid missmatch between server and client, theme is loaded
@@ -107,16 +119,17 @@ const App = (): JSX.Element => {
   }, []);
 
   return (
-    <html lang="en" className={cx("h-full", isDarkTheme && Theme.DARK)}>
+    <html lang="en" className={cx("h-full", theme)}>
       <head>
         <Meta />
         <Links />
       </head>
-      <body className="h-full font-primary text-font-main dark:bg-dark-300 dark:text-font-main-dark">
+      <body className="h-full bg-elevation-surface font-primary text-font">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <Toast theme={theme || Theme.LIGHT} />
         <script
           dangerouslySetInnerHTML={{
             __html: !sessionTheme

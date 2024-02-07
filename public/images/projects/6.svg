@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_design</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_design">
+            <g id="design">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#FFC400" xlink:href="#path-1"></use>
+                    <circle id="Oval" fill="#FFC400" fill-rule="nonzero"  cx="64" cy="63.83" r="63.885"></circle>
+                    <path d="M42.242,111.759 L42.242,111.759 C39.888,111.759 37.962,109.833 37.962,107.479 L37.962,22.169 C37.962,19.815 39.888,17.889 42.242,17.889 L42.242,17.889 C44.596,17.889 46.522,19.815 46.522,22.169 L46.522,107.479 C46.522,109.833 44.596,111.759 42.242,111.759 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M85.758,111.759 L85.758,111.759 C83.404,111.759 81.478,109.833 81.478,107.479 L81.478,22.169 C81.478,19.815 83.404,17.889 85.758,17.889 L85.758,17.889 C88.112,17.889 90.038,19.815 90.038,22.169 L90.038,107.479 C90.038,109.833 88.112,111.759 85.758,111.759 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M37.962,97.996 L37.962,95.868 C37.962,94.099 39.409,92.652 41.178,92.652 L86.823,92.652 C88.592,92.652 90.039,94.099 90.039,95.868 L90.039,97.996 C90.039,99.765 88.592,101.212 86.823,101.212 L41.178,101.212 C39.409,101.211 37.962,99.764 37.962,97.996 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M102.938,31.115 C102.714,28.274 100.343,26.082 97.493,26.082 L71.283,26.082 L56.717,26.082 L30.508,26.082 C27.658,26.082 25.287,28.273 25.063,31.115 L21.373,77.849 C21.122,81.025 23.632,83.741 26.818,83.741 L56.717,83.741 L71.283,83.741 L101.181,83.741 C104.367,83.741 106.877,81.025 106.626,77.849 L102.938,31.115 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                    <path d="M32.879,75.424 L95.54,75.424 C97.911,75.424 99.099,72.557 97.422,70.88 L84.381,57.839 C83.359,56.817 81.709,56.797 80.663,57.794 L71.624,66.402 C70.6,67.377 68.992,67.382 67.963,66.412 L50.668,50.119 C49.65,49.16 48.062,49.152 47.035,50.102 L31.439,64.53 C30.934,64.997 30.629,65.642 30.589,66.329 L30.222,72.607 C30.132,74.135 31.347,75.424 32.879,75.424 Z" id="Shape" fill="#00B8D9" fill-rule="nonzero" ></path>
+                    <circle id="Oval" fill="#FFAB00" fill-rule="nonzero"  cx="75.137" cy="40.498" r="7.738"></circle>
+                    <rect id="Rectangle-path" fill="#153A56" fill-rule="nonzero"  x="37.962" y="83.742" width="8.56" height="8.91"></rect>
+                    <rect id="Rectangle-path" fill="#153A56" fill-rule="nonzero"  x="81.478" y="83.742" width="8.56" height="8.91"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

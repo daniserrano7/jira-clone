@@ -1,15 +1,8 @@
 import { useState } from "react";
-import * as Select from "@radix-ui/react-select";
 import cx from "classix";
 import { CategoryId, CategoryType } from "@domain/category";
 import { useProjectStore } from "@app/ui/main/project";
-import {
-  SelectTrigger,
-  SelectTriggerIcon,
-  SelectContent,
-  SelectItem,
-  SelectItemIndicator,
-} from "@app/components/select";
+import * as Select from "@app/components/select";
 
 export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
   const projectStore = useProjectStore();
@@ -38,43 +31,46 @@ export const SelectStatus = ({ initStatus }: Props): JSX.Element => {
       defaultValue={defaultValue}
       onValueChange={onValueChange}
     >
-      <SelectTrigger
+      <Select.Trigger
         aria-label="Open status select"
         className={cx(
+          "!text-font-inverse hover:!opacity-80",
+          selectedStatus === "TODO" &&
+            "hover:bg-background-accent-grey-bolder-hovered !bg-background-accent-grey-bolder",
           selectedStatus === "IN_PROGRESS" &&
-            "!bg-primary-main !text-white hover:!bg-primary-main-hover",
+            "hover:bg-background-accent-blue-bolder-hovered !bg-background-accent-blue-bolder",
           selectedStatus === "DONE" &&
-            "!bg-success-main !text-white hover:!bg-success-light"
+            "hover:bg-background-accent-green-bolder-hovered !bg-background-accent-green-bolder"
         )}
       >
         <Select.Value className="pt-1" />
-        <SelectTriggerIcon />
-      </SelectTrigger>
-      <SelectContent>
+        <Select.TriggerIcon />
+      </Select.Trigger>
+      <Select.Content>
         <Select.ScrollUpButton />
         <Select.Viewport>
           {categories.map((category, index) => (
-            <SelectItem key={index} value={category.id}>
-              <SelectItemIndicator />
+            <Select.Item key={index} value={category.id}>
+              <Select.ItemIndicator />
               <span
                 className={cx(
-                  "flex w-fit items-center gap-2 rounded p-0.5 text-2xs uppercase dark:bg-dark-300",
+                  "flex w-fit items-center gap-2 rounded px-1 py-0.5 text-2xs uppercase",
                   category.type === "TODO" &&
-                    "bg-grey-300 text-font-grey dark:text-font-light-dark",
+                    "bg-background-accent-grey-subtler text-font-accent-grey",
                   category.type === "IN_PROGRESS" &&
-                    "bg-primary-light text-primary-main dark:text-primary-main-dark",
+                    "bg-background-accent-blue-subtler text-font-accent-blue",
                   category.type === "DONE" &&
-                    "bg-font-success-light text-font-success-main dark:text-font-success-main-dark"
+                    "bg-background-accent-green-subtler text-font-accent-green"
                 )}
               >
                 <Select.ItemText>{category.name}</Select.ItemText>
               </span>
-            </SelectItem>
+            </Select.Item>
           ))}
           <Select.Separator />
         </Select.Viewport>
         <Select.ScrollDownButton />
-      </SelectContent>
+      </Select.Content>
     </Select.Root>
   );
 };

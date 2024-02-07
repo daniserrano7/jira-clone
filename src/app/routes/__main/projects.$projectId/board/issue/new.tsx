@@ -1,7 +1,7 @@
 import type {
   ActionFunction,
   LoaderFunction,
-  MetaFunction,
+  V2_MetaFunction,
 } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
@@ -13,10 +13,11 @@ import { PriorityId } from "@domain/priority";
 import { isValidSort } from "@domain/filter";
 import { createIssue, CreateIssueInputData } from "@infrastructure/db/issue";
 import { IssuePanel } from "@app/ui/main/project/board/issue-panel";
-import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 import { emitter, EVENTS } from "@app/events";
+import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
+import { formatTags, formatProperties } from "@utils/meta";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   const { projectId } = data as LoaderData;
   const title = `Jira clone - Create issue`;
   const description = "Create new issue, edit it and and assigne team members.";
@@ -24,17 +25,11 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     "https://jira-clone.fly.dev/static/images/readme/issue-panel.png";
   const url = `https://jira-clone.fly.dev/projects/${projectId}/board/issue/new`;
 
-  return {
+  const tags = {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
     title: title,
     description: description,
-    "og:url": url,
-    "og:type": "website",
-    "og:site_name": title,
-    "og:title": title,
-    "og:description": description,
-    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
@@ -47,6 +42,17 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     "twitter:creator": "@Jack_DanielSG",
     "twitter:creator:id": "Jack_DanielSG",
   };
+
+  const properties = {
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+
+  return [...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {
@@ -77,7 +83,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     : "";
   const previousUrl = `/projects/${projectId}/board${sortBySeachParam}`;
 
-  if (_action === "upsert") {
+  if (_action === "create") {
     const name = formData.get("title") as string;
     const description = formData.get("description") as string;
     const categoryId = formData.get("status") as CategoryId;
@@ -106,7 +112,7 @@ export const action: ActionFunction = async ({ request, params }) => {
 
     await createIssue(issueInputData);
 
-    emitter.emit(EVENTS.ISSUE_CHANGED, Date.now());
+    emitter.emit(EVENTS.ISSUE_CREATED, Date.now());
   }
 
   return redirect(previousUrl);

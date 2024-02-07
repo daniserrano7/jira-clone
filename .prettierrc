@@ -12,5 +12,7 @@
         "printWidth": 80
       }
     }
-  ]
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["cx", "twix", "twMerge"]
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_coffee</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_coffee">
+            <g id="coffee">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#00C7E6" xlink:href="#path-1"></use>
+                    <path d="M64.81,37.247 L63.461,37.247 L34.351,37.247 L42.3,105.758 C42.448,107.083 43.568,108.085 44.901,108.085 L63.46,108.085 L64.809,108.085 L82.197,108.085 C84.197,108.085 85.877,106.582 86.099,104.594 L93.918,37.246 L64.81,37.246 L64.81,37.247 Z" id="Shape" fill="#FF4E4A" fill-rule="nonzero" ></path>
+                    <path d="M63.461,37.522 L34.515,37.522 L34.515,38.983 L42.301,106.034 C42.449,107.359 43.569,108.361 44.902,108.361 L63.461,108.361 L64.81,108.361 L64.81,37.522 L63.461,37.522 Z" id="Shape" fill="#211618" fill-rule="nonzero" opacity="0.1" ></path>
+                    <polygon id="Shape" fill="#211618" fill-rule="nonzero" opacity="0.1"  points="40.809 92.906 87.457 92.906 87.923 88.892 40.344 88.892"></polygon>
+                    <polygon id="Shape" fill="#211618" fill-rule="nonzero" opacity="0.1"  points="93.483 41.15 93.919 37.247 64.81 37.247 63.461 37.247 34.352 37.247 34.787 41.15"></polygon>
+                    <path d="M68.729,52.931 L59.542,52.931 L34.372,52.931 C33.589,52.931 32.981,53.614 33.072,54.392 L37.301,87.736 C37.378,88.395 37.937,88.892 38.601,88.892 L59.542,88.892 L68.729,88.892 L89.67,88.892 C90.334,88.892 90.892,88.395 90.97,87.736 L95.199,54.392 C95.29,53.614 94.682,52.931 93.899,52.931 L68.729,52.931 L68.729,52.931 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                    <path d="M38.601,88.892 L58.901,88.892 L58.901,52.931 L34.371,52.931 C33.588,52.931 32.98,53.614 33.071,54.392 L37.3,87.736 C37.378,88.395 37.937,88.892 38.601,88.892 Z" id="Shape" fill="#4AC6C6" fill-rule="nonzero" opacity="0.2" ></path>
+                    <circle id="Oval" fill="#00B8D9" fill-rule="nonzero"  cx="64.193" cy="70.916" r="11.466"></circle>
+                    <path d="M86.005,20.925 C85.532,20.076 84.68,19.557 83.761,19.557 L66.266,19.557 L62.34,19.557 L44.846,19.557 C43.927,19.557 43.075,20.076 42.602,20.925 L37.802,29.536 L62.34,29.536 L66.266,29.536 L90.804,29.536 L86.005,20.925 Z" id="Shape" fill="#2A5083" fill-rule="nonzero" ></path>
+                    <path d="M95.191,37.247 L33.416,37.247 C31.704,37.247 30.303,35.846 30.303,34.134 L30.303,31.936 C30.303,30.224 31.704,28.823 33.416,28.823 L95.192,28.823 C96.904,28.823 98.305,30.224 98.305,31.936 L98.305,34.134 C98.305,35.846 96.904,37.247 95.191,37.247 Z" id="Shape" fill="#194063" fill-rule="nonzero" ></path>
+                    <path d="M64.81,19.557 L62.34,19.557 L44.845,19.557 C43.926,19.557 43.074,20.076 42.601,20.925 L38.199,28.823 L34.514,28.823 C32.197,28.823 30.302,30.719 30.302,33.035 C30.302,35.352 32.198,37.247 34.514,37.247 L64.81,37.247 L64.81,19.557 Z" id="Shape" fill="#211618" fill-rule="nonzero" opacity="0.1" ></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

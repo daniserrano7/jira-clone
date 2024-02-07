@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="128px" height="128px" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFFFFF;">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>project_avatar_disc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="128" height="128"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="project_avatar_disc">
+            <g id="disc">
+                <g>
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#FF5630" xlink:href="#path-1"></use>
+                    <circle id="Oval" fill="#253858" fill-rule="nonzero"  cx="65.172" cy="64" r="48.667"></circle>
+                    <path d="M50.961,37.484 L50.952,37.488 L47.272,35.244 C46.241,34.615 45.612,33.495 45.612,32.287 L45.612,26.393 L45.622,26.391 L45.619,26.386 C41.92,28.145 38.451,30.548 35.389,33.61 C32.327,36.672 29.924,40.141 28.165,43.84 L28.306,43.908 L33.991,43.908 C35.199,43.908 36.319,44.537 36.948,45.568 L38.927,48.814 C39.043,49.004 39.211,49.157 39.412,49.253 L61.074,59.679 L61.459,59.294 L50.961,37.484 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                    <path d="M79.585,89.503 L79.594,89.499 L83.274,91.743 C84.305,92.372 84.934,93.492 84.934,94.7 L84.934,100.594 L84.924,100.596 L84.927,100.601 C88.626,98.842 92.095,96.439 95.157,93.377 C98.219,90.315 100.622,86.846 102.381,83.147 L102.24,83.079 L96.555,83.079 C95.347,83.079 94.227,82.45 93.598,81.419 L91.619,78.173 C91.503,77.983 91.335,77.83 91.134,77.734 L69.472,67.308 L69.087,67.693 L79.585,89.503 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero" ></path>
+                    <circle id="Oval" fill="#00C7E6" fill-rule="nonzero"  cx="65.172" cy="63.876" r="20.524"></circle>
+                    <circle id="Oval" fill="#6555C0" fill-rule="nonzero"  cx="65.172" cy="63.876" r="7.129"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

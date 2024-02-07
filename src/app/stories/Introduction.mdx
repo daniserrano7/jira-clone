@@ -1,0 +1,36 @@
+import { Meta } from "@storybook/blocks";
+import cx from "classix";
+import Code from "./assets/code-brackets.svg";
+import Colors from "./assets/colors.svg";
+import Comments from "./assets/comments.svg";
+import Direction from "./assets/direction.svg";
+import Flow from "./assets/flow.svg";
+import Plugin from "./assets/plugin.svg";
+import Repo from "./assets/repo.svg";
+import StackAlt from "./assets/stackalt.svg";
+import { ColorPalettes } from "./color-palettes";
+
+<style>
+  {`
+    html {
+      background: var(--color-elevation-surface);
+      color: var(--color-font);
+    }
+
+    h1, h2 {
+      color: var(--color-font) !important;
+    }
+
+    .sbdocs {
+      background: none;
+    }
+  `}
+</style>
+
+<Meta title="Example/Introduction" />
+
+# Design System
+
+## Color palette
+
+<ColorPalettes />

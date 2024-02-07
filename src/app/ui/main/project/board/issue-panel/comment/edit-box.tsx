@@ -1,6 +1,7 @@
 import { useState } from "react";
 import cx from "classix";
 import { TextareaAutosize } from "@app/components/textarea-autosize";
+import { Button } from "@app/components/button";
 import { textAreOnlySpaces } from "@utils/text-are-only-spaces";
 
 export const EditBox = ({
@@ -39,7 +40,6 @@ export const EditBox = ({
   const onFocus = () => setIsEditing(true);
 
   const isError = initError && !messageIsValid();
-  const buttonStyle = cx("mt-2 py-2.5 px-4 rounded");
   const placeholder = isError
     ? "Message cannot be empty"
     : "Add your comment...";
@@ -54,35 +54,34 @@ export const EditBox = ({
         onFocus={onFocus}
         autofocus={autofocus}
         textareaClassName={cx(
-          "min-h-[80px] leading-6 font-primary-light outline outline-2 outline-grey-400 focus:outline-primary-main dark:outline-dark-200 dark:focus:outline-primary-main-dark bg-grey-200",
+          "min-h-[80px] leading-6 font-primary-light outline outline-2 outline-border-input focus:outline-border-brand bg-background-input",
           isError &&
-            "placeholder:text-error-main placeholder:text-opacity-70 !outline-error-main !outline-2"
+            "placeholder:text-font-danger placeholder:text-opacity-70 !outline-border-danger !outline-2"
         )}
       />
       <div
-        className={cx("space-x-2 text-sm", isEditing ? "visible" : "hidden")}
+        className={cx(
+          "mt-2 flex gap-2 text-sm",
+          isEditing ? "visible" : "hidden"
+        )}
       >
-        <button
+        <Button
           type="button"
-          className={cx(
-            buttonStyle,
-            "bg-primary-main text-white hover:bg-primary-main-hover"
-          )}
+          className="px-4 py-2.5"
           onClick={onSave}
           aria-label="Save comment"
         >
           Save
-        </button>
-        <button
-          className={cx(
-            buttonStyle,
-            "hover:bg-error-light hover:text-error-dark dark:hover:bg-dark-100 dark:hover:text-font-main-dark"
-          )}
+        </Button>
+        <Button
+          color="neutral"
+          variant="text"
+          className="px-4 py-2.5"
           onClick={onCancel}
           aria-label="Cancel comment"
         >
           Cancel
-        </button>
+        </Button>
       </div>
     </div>
   );

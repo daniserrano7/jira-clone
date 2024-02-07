@@ -20,7 +20,7 @@ export const BoardView = ({ project }: Props): JSX.Element => {
       <div className="box-border flex h-full flex-col">
         <section className="flex items-center">
           <Search />
-          <div className="my-0 mx-4 inline">
+          <div className="mx-4 my-0 inline">
             <UserAvatarList users={project.users} />
           </div>
           <div className="inline">
@@ -46,7 +46,12 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
   const { revalidate } = useRevalidator();
   const navigate = useNavigate();
 
-  const data = useEventSource("board/issue/issue-event", {
+  // Data created
+  useEventSource("board/issue/issue-event", {
+    event: EVENTS.ISSUE_CREATED,
+  });
+
+  const dataUpdated = useEventSource("board/issue/issue-event", {
     event: EVENTS.ISSUE_CHANGED,
   });
 
@@ -64,9 +69,10 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
     setSubmittingIssues([]);
   }, [categories]);
 
+  // Revalidate to update category columns on event received
   useEffect(() => {
     revalidate();
-  }, [data, revalidate]);
+  }, [dataUpdated, revalidate]);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyDown);
@@ -76,7 +82,7 @@ const Categories = ({ categories }: CategoriesProps): JSX.Element => {
 
   return (
     <section className="mt-12 flex h-full flex-col">
-      <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-light text-opacity-80 dark:text-font-light-dark">
+      <span className="mb-2 block justify-self-end font-primary-light text-2xs text-font-subtlest">
         Press <Kbd>Shift</Kbd> + <Kbd>N</Kbd> to create a new issue
       </span>
       <div className="flex h-full gap-3">

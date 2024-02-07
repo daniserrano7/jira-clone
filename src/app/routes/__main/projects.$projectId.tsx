@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
@@ -7,8 +7,9 @@ import { getProjectSummary } from "@infrastructure/db/project";
 import { Error404 } from "@app/components/error-404";
 import { Error500 } from "@app/components/error-500";
 import { ProjectView } from "@app/ui/main/project";
+import { formatTags, formatProperties } from "@utils/meta";
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
+export const meta: V2_MetaFunction<typeof loader> = ({ data }) => {
   const { projectSummary } = data as LoaderData;
   const title = `Jira clone - ${projectSummary.name || "Project"}`;
   const description =
@@ -16,17 +17,11 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   const image = "https://jira-clone.fly.dev/static/images/readme/project.png";
   const url = `https://jira-clone.fly.dev/projects/${projectSummary.id}`;
 
-  return {
+  const tags = {
     charset: "utf-8",
     viewport: "width=device-width,initial-scale=1",
     title: title,
     description: description,
-    "og:url": url,
-    "og:type": "website",
-    "og:site_name": title,
-    "og:title": title,
-    "og:description": description,
-    "og:image": image,
     "twitter:card": "summary_large_image",
     "twitter:site": url,
     "twitter:domain": "jira-clone.fly.dev",
@@ -39,6 +34,17 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
     "twitter:creator": "@Jack_DanielSG",
     "twitter:creator:id": "Jack_DanielSG",
   };
+
+  const properties = {
+    "og:url": url,
+    "og:type": "website",
+    "og:site_name": title,
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+
+  return [{ title }, ...formatTags(tags), ...formatProperties(properties)];
 };
 
 type LoaderData = {

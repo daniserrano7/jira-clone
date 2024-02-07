@@ -10,11 +10,11 @@ import { dnull } from "src/utils/dnull";
 
 export const getProject = async (
   projectId: ProjectId,
-  options: GetProjectOptions
+  options?: GetProjectOptions
 ): Promise<Project | null> => {
   type PrismaSortType = Prisma.Enumerable<Prisma.IssueOrderByWithRelationInput>;
 
-  const { sortIssuesBy } = options;
+  const sortIssuesBy = options?.sortIssuesBy;
   const sortByDate: PrismaSortType = {
     createdAt: "desc",
   };

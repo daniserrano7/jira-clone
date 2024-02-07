@@ -1,15 +1,9 @@
 import { useState } from "react";
 import { Form } from "@remix-run/react";
-import * as Select from "@radix-ui/react-select";
 import { User, UserId, userMock1 } from "@domain/user";
+import { Button } from "@app/components/button";
 import { UserAvatar } from "@app/components/user-avatar";
-import {
-  SelectContent,
-  SelectTrigger,
-  SelectTriggerIcon,
-  SelectItem,
-  SelectItemIndicator,
-} from "@app/components/select";
+import * as Select from "@app/components/select";
 
 export const LoginView = ({ users }: Props) => {
   const [selectedValue, setSelectedValue] = useState<User>(userMock1);
@@ -23,9 +17,11 @@ export const LoginView = ({ users }: Props) => {
   };
 
   return (
-    <div className="mx-auto max-w-[400px] pt-[20vh]">
-      <h1 className="font-primary-black text-5xl">Select login user</h1>
-      <h2 className="mt-3 mb-8 font-primary-light text-lg text-font-light dark:text-font-light-dark">
+    <div className="mx-auto max-w-[400px] pt-[10vh]">
+      <h1 className="font-primary-black text-5xl text-font">
+        Select login user
+      </h1>
+      <h2 className="mb-8 mt-3 font-primary-light text-lg text-font-subtle">
         There is no authentication involved. You can login with any user you
         want! Keep in mind you can only access the projects the user is member
         of. Try to create issues and comments with different users to see how it
@@ -37,7 +33,7 @@ export const LoginView = ({ users }: Props) => {
           defaultValue={userMock1.id}
           onValueChange={onValueChange}
         >
-          <SelectTrigger
+          <Select.Trigger
             className="flex w-full justify-between"
             aria-label="Open user select"
           >
@@ -45,32 +41,32 @@ export const LoginView = ({ users }: Props) => {
               <UserAvatar {...selectedValue} />
               <Select.Value />
             </div>
-            <SelectTriggerIcon />
-          </SelectTrigger>
-          <SelectContent>
+            <Select.TriggerIcon />
+          </Select.Trigger>
+          <Select.Content>
             <Select.ScrollUpButton />
             <Select.Viewport>
               {users.map((user, index) => (
-                <SelectItem key={index} value={user.id}>
-                  <SelectItemIndicator />
+                <Select.Item key={index} value={user.id}>
+                  <Select.ItemIndicator />
                   <UserAvatar {...user} />
                   <Select.ItemText>{user.name}</Select.ItemText>
-                </SelectItem>
+                </Select.Item>
               ))}
               <Select.Separator />
             </Select.Viewport>
             <Select.ScrollDownButton />
-          </SelectContent>
+          </Select.Content>
         </Select.Root>
-        <button
+        <Button
           type="submit"
           name="_action"
           value="setUser"
           aria-label="Login"
-          className="mt-2 w-full rounded bg-primary-main p-2 text-white hover:bg-primary-main-hover dark:bg-primary-main-dark dark:hover:bg-primary-main-hover-dark"
+          className="mt-2 w-full"
         >
           Login
-        </button>
+        </Button>
       </Form>
     </div>
   );

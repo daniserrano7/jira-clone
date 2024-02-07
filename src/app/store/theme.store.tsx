@@ -8,10 +8,12 @@ import {
 } from "react";
 import { useFetcher } from "@remix-run/react";
 
-// Inspired from Kent C. Dodds repo https://github.com/kentcdodds/kentcdodds.com/blob/main/app/utils/theme-provider.tsx
 export enum Theme {
   LIGHT = "light",
   DARK = "dark",
+  LAVA = "lava",
+  LIME = "lime",
+  BARBIE = "barbie",
 }
 export const themes: Array<Theme> = Object.values(Theme);
 export enum Preference {
@@ -31,6 +33,7 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
+// Inspired from Kent C. Dodds repo https://github.com/kentcdodds/kentcdodds.com/blob/main/app/utils/theme-provider.tsx
 const prefersLightMQ = "(prefers-color-scheme: light)";
 export const getSystemTheme = (): Theme =>
   window.matchMedia(prefersLightMQ).matches ? Theme.LIGHT : Theme.DARK;
