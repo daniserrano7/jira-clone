@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for jira-clone-cool-glitter-9829 on 2025-10-25T17:40:11+02:00
+# fly.toml app configuration file generated for jira-clone on 2025-10-25T17:40:11+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'jira-clone-cool-glitter-9829'
+app = 'jira-clone'
 primary_region = 'cdg'
 kill_signal = 'SIGINT'
 kill_timeout = '5s'
