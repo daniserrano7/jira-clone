@@ -183,7 +183,7 @@ export function CatchBoundary() {
   return (
     <html>
       <head>
-        <title>Oops! Not found</title>
+        <title>Ooops! Not found</title>
         <Meta />
         <Links />
       </head>
