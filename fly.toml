@@ -1,40 +1,60 @@
-# fly.toml file generated for jira-clone on 2023-01-13T19:03:42+01:00
+# fly.toml app configuration file generated for jira-clone-cool-glitter-9829 on 2025-10-25T17:40:11+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "jira-clone"
-kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+app = 'jira-clone-cool-glitter-9829'
+primary_region = 'cdg'
+kill_signal = 'SIGINT'
+kill_timeout = '5s'
+
+[build]
 
 [env]
-DATABASE_URL = "file:/data/jira_clone.db"
-PORT = "8080"
+  DATABASE_URL = 'file:/data/jira_clone.db'
+  PORT = '8080'
 
-[mounts]
-destination = "/data"
-source = "data"
+[[mounts]]
+  source = 'data'
+  destination = '/data'
 
-[[statics]]
-guest_path = "/app/public/images"
-url_prefix = "/static/images"
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[services]]
-http_checks = []
-internal_port = 8080
-processes = ["app"]
-protocol = "tcp"
-script_checks = []
-tcp_checks = []
-[services.concurrency]
-hard_limit = 25
-soft_limit = 20
-type = "connections"
+  protocol = 'tcp'
+  internal_port = 8080
+  processes = ['app']
 
-[[services.ports]]
-force_https = true
-handlers = ["http"]
-port = 80
-http_options = { response = { headers = { Expect-CT = false } } }
+  [[services.ports]]
+    port = 80
+    handlers = ['http']
+    force_https = true
 
-[[services.ports]]
-handlers = ["tls", "http"]
-port = 443
+    [services.ports.http_options]
+      [services.ports.http_options.response]
+        [services.ports.http_options.response.headers]
+          Expect-CT = false
+
+  [[services.ports]]
+    port = 443
+    handlers = ['tls', 'http']
+
+  [services.concurrency]
+    type = 'connections'
+    hard_limit = 25
+    soft_limit = 20
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[[statics]]
+  guest_path = '/app/public/images'
+  url_prefix = '/static/images'
