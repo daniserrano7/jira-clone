@@ -4,6 +4,7 @@ import { userMock1 } from "@domain/user";
 import { UserContextProvider } from "@app/store/user.store";
 import { ThemeProvider, Theme, Preference } from "@app/store/theme.store";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Story = PartialStoryFn<any, Record<string, never>>;
 
 export const withMainContext = (Story: Story): JSX.Element => {
